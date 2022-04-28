@@ -5,7 +5,6 @@ import React from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { BsBell } from "react-icons/bs";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import SwiperHome from "./SwiperHome";
 
 const NavBar = () => {
 
