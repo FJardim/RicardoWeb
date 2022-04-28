@@ -1,5 +1,4 @@
 import './App.css';
-import Contact from './pages/Contact';
 import {
   BrowserRouter,
   Routes,
@@ -8,20 +7,21 @@ import {
 import Home from './pages/Home';
 import AppLayout from './componentes/AppLayout';
 import Recipes from './pages/Recipes';
+import Contact from './pages/Contact';
 
 
 function App() {
 
   return (
     <AppLayout>
-        <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-        </BrowserRouter>
-    </AppLayout>    
+      </BrowserRouter>
+    </AppLayout>
   );
 }
 
