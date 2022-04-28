@@ -2,9 +2,9 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import NavInfo from "./NavInfo";
 
-const AppLayout = ({children}) => {
+const AppLayout = ({ children }) => {
     return (
-        <div className="br-gray-800">
+        <div className="bg-gray-50">
             <NavBar />
             <NavInfo />
             {children}
