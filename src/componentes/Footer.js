@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container h-full">
         <div className="flex items-center">
           <PageLogo />
-          <b className='ml-4'>Ricardo APP</b>
+          <b className="ml-4">Ricardo APP</b>
         </div>
         <div className="flex justify-between items-top my-4">
           <div>
@@ -28,19 +28,24 @@ export default function Footer() {
             <ul className="">
               <li className="font-bold my-4">Connections</li>
               <li className="my-4 flex">
-                <SiFacebook className='h-6 w-6 hover:text-teal-400 cursor-pointer mr-1' /> Facebook
+                <SiFacebook className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                Facebook
               </li>
               <li className="my-4 flex">
-                <SiTwitter className='h-6 w-6 hover:text-teal-400 cursor-pointer mr-1' /> Twitter
+                <SiTwitter className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                Twitter
               </li>
               <li className="my-4 flex">
-                <SiInstagram className='h-6 w-6 hover:text-teal-400 cursor-pointer mr-1' /> Instagram
+                <SiInstagram className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                Instagram
               </li>
               <li className="my-4 flex">
-                <IoLogoYoutube className='h-6 w-6 hover:text-teal-400 cursor-pointer mr-1' /> Youtube
+                <IoLogoYoutube className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                Youtube
               </li>
               <li className="my-4 flex">
-                <FaLinkedinIn className='h-6 w-6 hover:text-teal-400 cursor-pointer mr-1' /> LinkedinIn
+                <FaLinkedinIn className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                LinkedinIn
               </li>
             </ul>
           </div>
@@ -64,10 +69,12 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-center mt-10 ">
-          <p>&copy; 2022 <span className='text-teal-400 text-red-500'>Ricardo APP.</span> Todos los derechos reservados. Diseñado por JV, AN, LV & FJ</p>
+          <p>
+            &copy; 2022 <span className="text-teal-400">Ricardo APP.</span>{" "}
+            Todos los derechos reservados. Diseñado por JV, AN, LV & FJ
+          </p>
         </div>
       </div>
-
     </footer>
   );
 }
