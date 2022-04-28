@@ -1,10 +1,5 @@
 import './App.css';
-import NavBar from './componentes/NavBar';
-import NavInfo from './componentes/NavInfo';
-import SwiperHome from './componentes/SwiperHome';
-import Card from './componentes/Card';
-import Footer from './componentes/Footer';
-import CategorySectionCard from './componentes/CategorySectionCard';
+import Contact from './pages/Contact';
 import {
   BrowserRouter,
   Routes,
@@ -23,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recipes" element={<Recipes />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         </BrowserRouter>
     </AppLayout>    
