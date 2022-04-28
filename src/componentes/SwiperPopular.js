@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
-export default function SwaInfo() {
+const SwiperPopular = () => {
     return (
         <>
             <Swiper
@@ -27,3 +27,5 @@ export default function SwaInfo() {
         </>
     );
 }
+
+export default SwiperPopular;
