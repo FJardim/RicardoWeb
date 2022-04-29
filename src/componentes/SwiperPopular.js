@@ -1,41 +1,30 @@
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import CategorySectionCard from "../componentes/CategorySectionCard";
-// Import Swiper styles
+import PopularSearch from '../componentes/PopularSearch';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-// import required modules
-import { Pagination, Navigation } from "swiper";
+import Popular1 from '../assets/popular1.png';
+import Popular2 from '../assets/popular2.png';
+import { Navigation } from "swiper";
 
 const SwiperPopular = () => {
-  return (
-    <>
-      <Swiper
-        slidesPerView={2}
-        spaceBetween={20}
-        loop={true}
-        pagination={{ clickable: true }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <CategorySectionCard
-            titulo="POPULAR RECIPES"
-            img="https://api.tubeneficiosi.com/uploads/users/1632409630532-445581901.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CategorySectionCard
-            titulo="POPULAR MEAL PLANNERS"
-            img="http://tubeneficiosi.com/static/media/monitos.cc60357c.jpg"
-          />
-        </SwiperSlide>
-      </Swiper>
-    </>
-  );
-};
+    return (
+        <>
+            <Swiper
+                slidesPerView={2} spaceBetween={20} loop={true}
+                navigation={true} modules={[Navigation]}
+                className="mySwiper container mt-10 mb-10 grid grid-cols-2 gap-3"
+            >
+                <SwiperSlide>
+                    <PopularSearch title="Popular Recipes" img={Popular1} />
+                </SwiperSlide>
 
+                <SwiperSlide>
+                    <PopularSearch title="Popular Meal Planners" img={Popular2} />
+                </SwiperSlide>
+            </Swiper>
+        </>
+    );
+}
 export default SwiperPopular;

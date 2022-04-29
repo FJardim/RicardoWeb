@@ -20,7 +20,7 @@ const NavBar = () => {
                         <button className="hover:text-teal-400 ">Help</button>
                         <button className="hover:text-teal-400 "><BsBell className="h-6 w-6 ml-10" /></button>
                         <button className="flex items-center hover:text-teal-400 bg-transparent bg-gray-800 border border-slate-300 rounded-md
-                          py-2 px-2.5"><FaUserCircle className="mr-2" /> Sr. Felicia Jardim <MdKeyboardArrowDown className="h-4 w-4" /></button>
+                          py-2 px-2.5"><FaUserCircle className="mr-2" /> Sra. Felicia Jardim <MdKeyboardArrowDown className="h-4 w-4" /></button>
                     </div>
                 </div>
             </div>
