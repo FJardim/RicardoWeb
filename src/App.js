@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import AppLayout from './componentes/AppLayout';
 import Recipes from './pages/Recipes';
 import Categories from './pages/Categories';
+import RecipesDetail from './pages/RecipesDetail';
 
 function App() {
 
@@ -17,7 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/recipes" element={<Recipes />} />          
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipesdetail" element={<RecipesDetail />} />          
         </Routes>
       </BrowserRouter>
     </AppLayout>
