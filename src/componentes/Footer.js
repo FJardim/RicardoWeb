@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-center mt-10 ">
-          <p>&copy; 2022 <span className='text-teal-400'>Ricardo APP.</span> Todos los derechos reservados. Diseñado por JV, AN, LV & FJ</p>
+          <p>&copy; 2022 <span className='text-teal-400'>Ricardo APP.</span> All rights reserved. Designed by JV, AN, LV & FJ.</p>
         </div>
       </div>
     </footer>

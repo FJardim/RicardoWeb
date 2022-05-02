@@ -11,10 +11,10 @@ const ChefsCountries = ({ imgChefs, LogoBackg, imgFlag, name, sname }) => {
                 <img className="h-20 w-40 " src={imgFlag} alt="Flag" />
             </div>
             <div className="absolute font-sans text-white bottom-0 right-0 py-4 px-4 text-2xl">
-                <div className=" text-center font-sans text-white bottom-0 right-0 text-2xl" style={{ textShadow: "0px 0px 3px #000000" }}>
+                <div className="text-center font-sans text-white bottom-0 right-0 text-2xl" style={{ textShadow: "0px 0px 3px #000000" }}>
                     {name}
                 </div>
-                <div className=" font-sans text-white bottom-0 right-0 text-2xl" style={{ textShadow: "0px 0px 3px #000000" }}>
+                <div className="font-sans text-white bottom-0 right-0 text-2xl" style={{ textShadow: "0px 0px 3px #000000" }}>
                     {sname}
                 </div>
             </div>

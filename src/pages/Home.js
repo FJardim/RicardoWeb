@@ -13,9 +13,10 @@ import SwiperRecipes from "../componentes/SwiperRecipes";
 
 const Home = () => {
   return (
+    < div className="" >
 
-    <div className="">
       <SwiperHome />
+      {/* Category of Recipes */}
       <Card saludo="Category of Recipes" />
 
       <div className="container ">
@@ -24,6 +25,7 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Popular */}
       <Card saludo="Popular" />
       <SwiperPopular />
       <Card saludo="Plans" />
@@ -46,6 +48,22 @@ const Home = () => {
         </div>
 
       </div>
+
+      {/* Recipes */}
+      <Card saludo="Recipes" />
+      <div className="container mt-16 mb-16">
+        <SwiperRecipes />
+      </div>
+
+      {/* Popular by Countries */}
+      <Card saludo="Popular by Countries" />
+      <div className="flex container">
+        <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
+        <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
+        <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
+        <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
+      </div>
+
     </div>
 
   );
