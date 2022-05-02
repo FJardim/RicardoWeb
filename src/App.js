@@ -9,7 +9,6 @@ import AppLayout from './componentes/AppLayout';
 import Recipes from './pages/Recipes';
 import Contact from './pages/Contact';
 
-
 function App() {
 
   return (

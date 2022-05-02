@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillEmojiLaughingFill } from "react-icons/bs";
 
-const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing }) => {
+const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDefaultButtons }) => {
     return (
         <div className="flex bg-white h-38 rounded-md overflow-hidden shadow-md">
             <div className="h-full ">
@@ -38,20 +38,21 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing }) => {
                         </div>
                     </div>
                 </div>
-                <div className="w-2/5">
-                    <div className='font-bold text-base'>
+                <div className="w-2/5 flex flex-col">
+                    <div className='px-1 py-1 font-bold text-base'>
                         {cost}
                     </div>
-                    <p className="px-1 mt-1 text-gray-400 text-xs">{desccost}</p>
-                    <div className="justify-end items-center">
-                        <button classname="bg-white border rounded-lg shadow-md" ><AiOutlineClose className="text-red-500" /></button>
-                        <button classname="bg-white border rounded-full shadow-md" ><AiOutlineCheck className="text-green-700" /></button>
-                        <button classname="bg-white border bg-gray-800 border border-slate-300 rounded-full shadow-md" ><BsFillEmojiLaughingFill className="text-yellow-300" /></button>
+                    <p className="px-1 py-1 text-gray-400 text-xs">{desccost}</p>
+                    if(withDefaultButtons == true){
+
+                    }
+                    <div className="bottom-0 right-0 space-x-3 flex justify-end items-center mt-auto">
+                        <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
+                        <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
+                        <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><BsFillEmojiLaughingFill className="text-yellow-300" /></button>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 }
