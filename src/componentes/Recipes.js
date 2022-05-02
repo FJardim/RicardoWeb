@@ -43,9 +43,7 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
                         {cost}
                     </div>
                     <p className="px-1 py-1 text-gray-400 text-xs">{desccost}</p>
-                    if(withDefaultButtons == true){
 
-                    }
                     <div className="bottom-0 right-0 space-x-3 flex justify-end items-center mt-auto">
                         <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
                         <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>

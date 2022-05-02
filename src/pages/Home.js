@@ -29,9 +29,24 @@ const Home = () => {
       <Card saludo="Popular" />
       <SwiperPopular />
       <Card saludo="Plans" />
+      <div className="container flex">
+        <div className="container flex">
+          <SwiperWeightPlan />
+        </div>
+        <Card saludo="Recipes" />
+        <div className="container mt-16 mb-16">
+          <SwiperRecipes />
+        </div>
 
-      <div className="container flex ">
-        <SwiperWeightPlan />
+
+        <Card saludo="Popular by Countries" />
+        <div className="flex container">
+          <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
+          <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
+          <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
+          <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
+        </div>
+
       </div>
 
       {/* Recipes */}
@@ -49,7 +64,7 @@ const Home = () => {
         <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
       </div>
 
-    </div >
+    </div>
 
   );
 };

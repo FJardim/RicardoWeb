@@ -7,7 +7,7 @@ import {
 import Home from './pages/Home';
 import AppLayout from './componentes/AppLayout';
 import Recipes from './pages/Recipes';
-import Contact from './pages/Contact';
+import Categories from './pages/Categories';
 
 function App() {
 
@@ -16,8 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/contact" element={<Contact />} />          
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/recipes" element={<Recipes />} />          
         </Routes>
       </BrowserRouter>
     </AppLayout>
