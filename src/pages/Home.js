@@ -5,8 +5,8 @@ import WeightPlan from "../componentes/WeightPlan";
 import WeightLossPlan from "../assets/wh-plan.jpg";
 import logoPlan from "../assets/muestra.png";
 import PopularSearch from "../componentes/PopularSearch";
-import Popular1 from '../assets/popular1.png';
-import Popular2 from '../assets/popular2.png';
+import Popular1 from "../assets/popular1.png";
+import Popular2 from "../assets/popular2.png";
 const Home = () => {
   return (
     <div>
@@ -15,7 +15,6 @@ const Home = () => {
       <div className="container ">
         <div className="flex justify-center space-x-6 mx-8">
           <SwiperCategoryCard />
-
         </div>
       </div>
       <Card saludo="Popular" />
@@ -26,10 +25,24 @@ const Home = () => {
 
       <Card saludo="Plans" />
       <div className="container flex ">
-        <WeightPlan title="Weight loss plan" logo={logoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={WeightLossPlan} />
-        <WeightPlan title="Weight loss plan" logo={logoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={WeightLossPlan} />
-        <WeightPlan title="Weight loss plan" logo={logoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={WeightLossPlan} />
-
+        <WeightPlan
+          title="Weight loss plan"
+          logo={logoPlan}
+          text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
+          img={WeightLossPlan}
+        />
+        <WeightPlan
+          title="Weight loss plan"
+          logo={logoPlan}
+          text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
+          img={WeightLossPlan}
+        />
+        <WeightPlan
+          title="Weight loss plan"
+          logo={logoPlan}
+          text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
+          img={WeightLossPlan}
+        />
       </div>
       <Card saludo="Popular by Countries" />
     </div>
