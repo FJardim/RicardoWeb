@@ -1,7 +1,7 @@
 import AppLogo from "../assets/drafts.png";
 import { BsCalendarPlus, BsBookmark, BsFillShareFill } from "react-icons/bs";
 
-const CardRecipes = ({ texto, parrafo, foto }) => {
+const CardRecipes = ({ texto, parrafo, foto, title }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden">
       <div
@@ -16,7 +16,7 @@ const CardRecipes = ({ texto, parrafo, foto }) => {
             <BsFillShareFill />
             <BsCalendarPlus />
           </div>
-          <h1 className="m-auto text-2xl text-white font-semibold">Dinner</h1>
+          <h1 className="m-auto text-2xl text-white font-semibold">{title}</h1>
         </div>
       </div>
       <div className="p-2">
