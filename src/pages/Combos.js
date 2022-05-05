@@ -6,7 +6,7 @@ import { IoList, IoGridOutline } from "react-icons/io5";
 import ScrollNavigation from "../componentes/ScrollNavigation";
 import SelectCategory from "../componentes/SelectCategory";
 import SelectRank from "../componentes/SelectRank";
-import Matches from "../componentes/Matches";
+
 
 const Combos = () => {
   return (
@@ -94,7 +94,7 @@ const Combos = () => {
           </div>
         </div>
         <div>
-         <Matches/>
+       
          </div>
       </div>
     </div>
