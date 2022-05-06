@@ -10,6 +10,11 @@ import { TabsProvider } from "../contexts/TabsContext";
 import Tab from "../componentes/Tab";
 import TabsContainer from "../componentes/TabsContainer";
 import TabPanel from '../componentes/TabPanel';
+import IngredientRow from '../componentes/IngredientRow';
+import IngredientRowDetails from '../componentes/IngredientRowDetails';
+import Checkbox from '../componentes/Checkbox';
+import TabButton from '../componentes/TabButton';
+import { useState } from 'react';
 
 
 
@@ -29,6 +34,7 @@ const productImages = [
 ]
 
 const RecipesDetail = () => {
+    const [ingredientsPriceContent, setIngredientsPriceContent] = useState('stores');
 
 
     return (
@@ -102,7 +108,7 @@ const RecipesDetail = () => {
                 </div>
                 <TabsProvider>
                     {/* Tabs */}
-                    <TabsContainer className="md:flex">
+                    <TabsContainer className="md:flex m-10">
                         <Tab value={0}>Preparation</Tab>
                         <Tab value={1}>Ingredients purchase List</Tab>
                         <Tab value={2}>Ingredients price Comparator</Tab>
@@ -110,19 +116,136 @@ const RecipesDetail = () => {
 
                     {/* TAB PANELS */}
                     {/* Preparation */}
+                    <div className="mt-4 p-4">
+                        <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
+                            <p className='p-4'>Abrir nuestro coco, y guardar el agua que trae en su interior, ya que no la utilizaremos.
+                                Extraer la carne del coco, cortar en cubos pequeños y apartar.
+                                Poner los trozos de coco, la leche de coco y la leche condensada en la licuadora, y licuar por un par de minutos, o hasta que adquiera un estado de espesor.
+                                Una vez que sacamos nuestra cocada, agregamos azúcar y canela al gusto, y servimos.</p>
+                        </TabPanel>
 
-                    <TabPanel className="py-4 animate__animated animate__fadeInUp" value={0}>
-                        <p>Abrir nuestro coco, y guardar el agua que trae en su interior, ya que no la utilizaremos.
-                            Extraer la carne del coco, cortar en cubos pequeños y apartar.
-                            Poner los trozos de coco, la leche de coco y la leche condensada en la licuadora, y licuar por un par de minutos, o hasta que adquiera un estado de espesor.
-                            Una vez que sacamos nuestra cocada, agregamos azúcar y canela al gusto, y servimos.</p>
-                    </TabPanel>
-                    {/* Ingredients purchase List */}
+                        {/* Ingredients purchase List */}
+                        <TabPanel className=" bg-white rounded-lg" value={1}>
+                            <IngredientRow >
+                                <IngredientRowDetails
+                                    title={"Noodles"}
+                                    subtitle={"1 kg"}
+                                    imageSource={Coco}
+                                />
+                                <div className='flex items-center'>
+                                    <Checkbox />
+                                </div>
+                            </IngredientRow>
+                            <IngredientRow >
+                                <IngredientRowDetails
+                                    title={"Noodles"}
+                                    subtitle={"1 kg"}
+                                    imageSource={Coco}
+                                />
+                                <div className='flex items-center'>
+                                    <Checkbox />
+                                </div>
+                            </IngredientRow>
+                            <IngredientRow >
+                                <IngredientRowDetails
+                                    title={"Noodles"}
+                                    subtitle={"1 kg"}
+                                    imageSource={Coco}
+                                />
+                                <div className='flex items-center'>
+                                    <Checkbox />
+                                </div>
+                            </IngredientRow>
+                        </TabPanel>
 
-                    {/* Ingredients price Comparator */}
-
+                        {/* Ingredients price Comparator */}
+                        <TabPanel className="bg-white rounded-lg" value={2}>
+                            <TabButton
+                                setIngredientsPriceContent={setIngredientsPriceContent}
+                                ingredientsPriceContent={ingredientsPriceContent}
+                            />
+                            {ingredientsPriceContent === 'stores'
+                                ? <>
+                                    <IngredientRow colsNumber={3}>
+                                        <IngredientRowDetails
+                                            title={"Noodles"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            imageSource={Coco}
+                                        />
+                                        <IngredientRowDetails
+                                            title={"Ground beef"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            price={"$ 4.99"}
+                                            imageSource={Coco}
+                                        />
+                                        <IngredientRowDetails
+                                            title={"Parmesan"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            imageSource={Coco}
+                                        />
+                                    </IngredientRow>
+                                    <IngredientRow colsNumber={3}>
+                                        <IngredientRowDetails
+                                            title={"Noodles"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            imageSource={Coco}
+                                        />
+                                        <IngredientRowDetails
+                                            title={"Ground beef"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            price={"$ 4.99"}
+                                            imageSource={Coco}
+                                        />
+                                        <IngredientRowDetails
+                                            title={"Parmesan"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            imageSource={Coco}
+                                        />
+                                    </IngredientRow>
+                                </>
+                                :
+                                <>
+                                    <IngredientRow colsNumber={2}>
+                                        <IngredientRowDetails
+                                            title={"Noodles"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            imageSource={Coco}
+                                        />
+                                        <IngredientRowDetails
+                                            title={"Ground beef"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            price={"$ 4.99"}
+                                            imageSource={Coco}
+                                        />
+                                    </IngredientRow>
+                                    <IngredientRow colsNumber={2}>
+                                        <IngredientRowDetails
+                                            title={"Noodles"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            imageSource={Coco}
+                                        />
+                                        <IngredientRowDetails
+                                            title={"Ground beef"}
+                                            subtitle={"Juncal 2930"}
+                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
+                                            price={"$ 4.99"}
+                                            imageSource={Coco}
+                                        />
+                                    </IngredientRow>
+                                </>
+                            }
+                        </TabPanel>
+                    </div>
                 </TabsProvider>
-
             </div >
         </>
     );

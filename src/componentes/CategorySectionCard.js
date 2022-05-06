@@ -1,11 +1,26 @@
-const CategorySectionCard = ({ img, name }) => {
+import clsx from "clsx";
+
+const CategorySectionCard = ({ className, img, name }) => {
     return (
-        <div className="mt-10 mb-10 relative h-70 w-full rounded-md transition transform hover:-translate-y-1 hover:drop-shadow-2xl duration-300 cursor-pointer" style={{ backgroundImage: `url(${img})` }}>
+        <div
+            className={clsx(`
+                flex items-center justify-center
+                relative 
+                w-full
+                rounded-md
+                transition transform hover:-translate-y-1
+                hover:drop-shadow-2xl
+                duration-300
+                cursor-pointer
+                bg-cover
+                py-10
+            `, className)}
+            style={{ backgroundImage: `url(${img})` }}
+        >
             <div className='rounded-md absolute bg-black h-full w-full opacity-30' >
             </div>
-            <div className="relative text-white text-center py-10 text-2xl" style={{ textShadow: "0px 0px 3px #000000" }} >
+            <div className="relative text-white text-center text-2xl" style={{ textShadow: "0px 0px 3px #000000" }} >
                 {name}
-
             </div>
         </div>
 

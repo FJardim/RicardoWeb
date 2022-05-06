@@ -45,36 +45,49 @@ const ProductInfo = () => {
             </div>
 
             <div className='py-6 grid grid-cols-2 gap-4 text-xl text-gray-400'>
-                <div className='flex py-2 '>
-                    <p className="w-1/2">Level</p>
-                    <div className='flex '>
-                        <img className="w-5 h-5" src={Chefs} alt="chefs" />
-                        <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
-                        <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
-                        <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
+                <div>
+                    <div className='flex py-2 '>
+                        <p className="w-1/2">Level</p>
+                        <div className='flex '>
+                            <img className="w-5 h-5" src={Chefs} alt="chefs" />
+                            <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
+                            <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
+                            <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
+                        </div>
                     </div>
+                    <div className='flex py-2 '>
+                        <p className="w-1/2">Category:</p>
+                        <p className="w-1/2 text-black">Fitness</p>
+                    </div>
+                    <div className='flex py-2 '>
+                        <p className="w-1/2">Time:</p>
+                        <p className="w-1/2 text-teal-400 underline">60-90 days</p>
+                    </div>
+                    <div className='flex py-2 '>
+                        <p className="w-1/2">Ingredients:</p>
+                        <p className="w-1/2 text-black">6</p>
+                    </div>
+
                 </div>
-                <div className='flex py-2 '>
-                    <p className="w-1/2">Category:</p>
-                    <p className="w-1/2 text-black">Fitness</p>
-                </div>
-                <div className='flex py-2 '>
-                    <p className="w-1/2">Time:</p>
-                    <p className="w-1/2 text-teal-400 underline">60-90 days</p>
-                </div>
-                <div className='flex py-2 '>
-                    <p className="w-1/2">Ingredients:</p>
-                    <p className="w-1/2 text-black">6</p>
-                </div>
-                <div className=''>
-                    <p className="w-1/2">Pucharse in:</p>
+                <div className='m-2 '>
+                    <p className="w-1/2 mb-4">Pucharse in:</p>
                     <button
-                        className="flex justify-center items-center font-bold text-center p-2 w-40 h-10 bg-blue-700 hover:bg-blue-500 rounded-xl text-white">
+                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-blue-700 hover:bg-blue-500 rounded-xl text-white">
                         <BsPaypal className="text-white" />
                         Paypal
                     </button>
                     <button
-                        className="flex justify-center items-center font-bold text-center p-2 w-40 h-10 bg-white hover:bg-white-100 rounded-xl text-black">
+                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-white hover:bg-white-100 rounded-xl text-black">
+                        <SiAmazonaws className=" text-black" />
+                        Amazonaws
+                    </button>
+                    <button
+                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-blue-700 hover:bg-blue-500 rounded-xl text-white">
+                        <BsPaypal className="text-white" />
+                        Paypal
+                    </button>
+                    <button
+                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-white hover:bg-white-100 rounded-xl text-black">
                         <SiAmazonaws className=" text-black" />
                         Amazonaws
                     </button>
