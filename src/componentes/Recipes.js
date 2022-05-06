@@ -4,7 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillEmojiLaughingFill } from "react-icons/bs";
 
-const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDefaultButtons }) => {
+const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDefaultButtons = true }) => {
+
     return (
         <div className="flex bg-white h-38 rounded-md overflow-hidden shadow-md">
             <div className="h-full ">
@@ -45,9 +46,17 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
                     <p className="px-1 py-1 text-gray-400 text-xs">{desccost}</p>
 
                     <div className="bottom-0 right-0 space-x-3 flex justify-end items-center mt-auto">
-                        <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
-                        <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
-                        <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><BsFillEmojiLaughingFill className="text-yellow-300" /></button>
+                        {withDefaultButtons
+                            ? <>
+                                <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
+                                <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><BsFillEmojiLaughingFill className="text-yellow-300" /></button>
+                                <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
+                            </>
+                            : <>
+                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"> Dismiss</button>
+                                <button className="bg-teal-400 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded"> Select</button>
+                            </>
+                        }
                     </div>
                 </div>
             </div>
