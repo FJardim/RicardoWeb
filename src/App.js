@@ -9,6 +9,7 @@ import Combos from "./pages/Combos";
 import RecipesChef from "./pages/RecipesChef";
 import CombosChef from "./pages/CombosChef";
 import BlogChef from "./pages/BlogChef";
+import Sellers from "./pages/Sellers";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/recipeschef" element={<RecipesChef />} />
           <Route path="/comboschef" element={<CombosChef />} />
           <Route path="/blogchef" element={<BlogChef />} />
+          <Route path="/sellers" element={<Sellers />} />
         </Routes>
       </BrowserRouter>
     </AppLayout>

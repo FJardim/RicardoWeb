@@ -6,6 +6,7 @@ import { IoList, IoGridOutline } from "react-icons/io5";
 import ScrollNavigation from "../componentes/ScrollNavigation";
 import SelectCategory from "../componentes/SelectCategory";
 import SelectRank from "../componentes/SelectRank";
+import Matches from "../componentes/Matches";
 
 const Combos = () => {
   return (
@@ -29,35 +30,41 @@ const Combos = () => {
       </div>
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
-          <div className="ml-6">
-            <h4 className="text-xl font-semibold mb-2">Categories</h4>
-            <div>New Recipes</div>
-            <div>Low in Calories </div>
-            <div>Paleo</div>
-            <div>High in Proteccion</div>
-            <div>See All</div>
-            <div className="mt-6">
-              <h1 className="mb-2 ml-2">Types</h1>
-              <SelectCategory title="Breakfast" />
-              <SelectCategory title="Lunch" />
-              <SelectCategory title="Dinner" />
-              <SelectCategory title="Snacks" />
+          <div>
+            <div className="ml-6 bg-white w-48 rounded-lg ">
+              <h4 className="text-xl font-semibold mb-2">Categories</h4>
+              <div>New Recipes</div>
+              <div>Low in Calories </div>
+              <div>Paleo</div>
+              <div>High in Proteccion</div>
+              <div>See All</div>
             </div>
-            <div className="mt-6">
-              <h1 className="mb-2 ml-2">Rating</h1>
-              <SelectRank />
-              <SelectRank />
-              <SelectRank />
-              <SelectRank />
-              <SelectRank />
+            <div>
+              <div className="mt-6 ml-6 bg-white w-48 rounded-lg ">
+                <h1 className="mb-2 ml-2">Types</h1>
+                <SelectCategory title="Breakfast" />
+                <SelectCategory title="Lunch" />
+                <SelectCategory title="Dinner" />
+                <SelectCategory title="Snacks" />
+              </div>
             </div>
-            <div className="flex space-x-8">
-              <button className="bg-teal-500 mt-10 text-white font-bold py-2 px-4 rounded-lg">
-                Apply
-              </button>
-              <button className="bg-white mt-10 text-black font-bold py-2 px-4 rounded-lg">
-                Reset
-              </button>
+            <div>
+              <div className="mt-6 ml-6 bg-white w-48 rounded-lg">
+                <h1 className="mb-2 ml-2">Rating</h1>
+                <SelectRank />
+                <SelectRank />
+                <SelectRank />
+                <SelectRank />
+                <SelectRank />
+                <div className="flex space-x-8">
+                  <button className="bg-teal-500 mt-14 mb-4 ml-2 text-white font-bold py-2 px-4 rounded-lg">
+                    Apply
+                  </button>
+                  <button className="bg-white mt-14 mb-4 ml-2 text-black font-bold py-2 px-4 rounded-lg">
+                    Reset
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -86,8 +93,10 @@ const Combos = () => {
             </div>
           </div>
         </div>
+        <div>
+         <Matches/>
+         </div>
       </div>
-
     </div>
   );
 };

@@ -31,38 +31,43 @@ const Recipes = () => {
       </div>
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
-          <div className="ml-6">
-            <h4 className="text-xl font-semibold mb-2">Categories</h4>
-            <div>New Recipes</div>
-            <div>Low in Calories </div>
-            <div>Paleo</div>
-            <div>High in Proteccion</div>
-            <div>See All</div>
-            <div className="mt-6">
-              <h1 className="mb-2 ml-2">Types</h1>
-              <SelectCategory title="Breakfast" />
-              <SelectCategory title="Lunch" />
-              <SelectCategory title="Dinner" />
-              <SelectCategory title="Snacks" />
+          <div>
+            <div className="ml-6 bg-white w-48 rounded-lg ">
+              <h4 className="text-xl font-semibold mb-2">Categories</h4>
+              <div>New Recipes</div>
+              <div>Low in Calories </div>
+              <div>Paleo</div>
+              <div>High in Proteccion</div>
+              <div>See All</div>
             </div>
-            <div className="mt-6">
-              <h1 className="mb-2 ml-2">Rating</h1>
-              <SelectRank />
-              <SelectRank />
-              <SelectRank />
-              <SelectRank />
-              <SelectRank />
+            <div>
+              <div className="mt-6 ml-6 bg-white w-48 rounded-lg ">
+                <h1 className="mb-2 ml-2">Types</h1>
+                <SelectCategory title="Breakfast" />
+                <SelectCategory title="Lunch" />
+                <SelectCategory title="Dinner" />
+                <SelectCategory title="Snacks" />
+              </div>
             </div>
-            <div className="flex space-x-8">
-              <button className="bg-teal-500 mt-10 text-white font-bold py-2 px-4 rounded-lg">
-                Apply
-              </button>
-              <button className="bg-white mt-10 text-black font-bold py-2 px-4 rounded-lg">
-                Reset
-              </button>
+            <div>
+              <div className="mt-6 ml-6 bg-white w-48 rounded-lg">
+                <h1 className="mb-2 ml-2">Rating</h1>
+                <SelectRank />
+                <SelectRank />
+                <SelectRank />
+                <SelectRank />
+                <SelectRank />
+                <div className="flex space-x-8">
+                  <button className="bg-teal-500 mt-14 mb-4 ml-2 text-white font-bold py-2 px-4 rounded-lg">
+                    Apply
+                  </button>
+                  <button className="bg-white mt-14 mb-4 ml-2 text-black font-bold py-2 px-4 rounded-lg">
+                    Reset
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-
           <div className="md:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-10 mr-10 mb-20">
               {[...Array(12).keys()].map((numero, i) => {
@@ -75,21 +80,26 @@ const Recipes = () => {
                   />
                 );
               })}
+              <div></div>
             </div>
+
             <div className="flex justify-center space-x-2 mb-6">
-              <ScrollNavigation title={<MdKeyboardArrowLeft className="text-2xl" />} />
+              <ScrollNavigation
+                title={<MdKeyboardArrowLeft className="text-2xl" />}
+              />
               <ScrollNavigation title="1" />
               <ScrollNavigation title="2" />
               <ScrollNavigation title="3" />
               <ScrollNavigation title="4" />
               <ScrollNavigation title="5" />
               <ScrollNavigation title="6" />
-              <ScrollNavigation title={<MdKeyboardArrowRight className="text-2xl" />} />
+              <ScrollNavigation
+                title={<MdKeyboardArrowRight className="text-2xl" />}
+              />
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };
