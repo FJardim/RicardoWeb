@@ -10,6 +10,7 @@ import FlagIta from "../assets/FlagItalia.jpg";
 import FlagMex from "../assets/FlagMexico.png";
 import logo from "../assets/img2.jpg";
 import SwiperRecipes from "../componentes/SwiperRecipes";
+import Public from "../assets/home1.jpg";
 
 const Home = () => {
   return (
@@ -54,7 +55,10 @@ const Home = () => {
       <div className="container mt-16 mb-16">
         <SwiperRecipes />
       </div>
-
+      {/* Imgs Public */}
+      <div>
+        <img className="w-full h-96" src={Public} alt="Public" />
+      </div>
       {/* Popular by Countries */}
       <Card saludo="Popular by Countries" />
       <div className="flex container">

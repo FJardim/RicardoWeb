@@ -7,6 +7,7 @@ import DescriptionChef from "../componentes/DescriptionChef";
 import Post from "../componentes/Post";
 import ButtonItems from "../componentes/ButtonItems";
 import DescriptionPost from "../componentes/DescriptionPost";
+
 const BlogChef = () => {
   return (
     <div className="bg-slate-100 min-w-0">
