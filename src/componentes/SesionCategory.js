@@ -1,0 +1,15 @@
+const SesionCategory = () => {
+    return (
+        <form className="m-10  ml-8 cursor-pointer ">
+            <select className="text-teal-400 font-semibold text-lg bg-white border border-gray-400 rounded-md py-1.5 px-20 border-gray-300 
+                         focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50 leading-4">
+                <option value="">New recipes</option>
+                <option value="">Low in calories</option>
+                <option value="">Paleo</option>
+                <option value="">High in protein </option>
+            </select>
+        </form >
+    );
+}
+
+export default SesionCategory;

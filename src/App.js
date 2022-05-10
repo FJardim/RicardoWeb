@@ -12,8 +12,8 @@ import BlogChef from "./pages/BlogChef";
 
 function App() {
   return (
-    <AppLayout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AppLayout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
@@ -24,8 +24,8 @@ function App() {
           <Route path="/comboschef" element={<CombosChef />} />
           <Route path="/blogchef" element={<BlogChef />} />
         </Routes>
-      </BrowserRouter>
-    </AppLayout>
+      </AppLayout>
+    </BrowserRouter>
   );
 }
 
