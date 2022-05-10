@@ -1,6 +1,6 @@
 import AppLogo from "../assets/drafts.png";
 import { BsCalendarPlus, BsBookmark, BsFillShareFill } from "react-icons/bs";
-import Matches from "../componentes/Matches"
+import Matches from "./Matches"
 
 const CardRecipes = ({ texto, parrafo, foto, title }) => {
   return (
@@ -34,14 +34,14 @@ const CardRecipes = ({ texto, parrafo, foto, title }) => {
               <p>8.7K</p>
             </div>
           </div>
-         
+
         </div>
         <div>
-         <Matches/>
-         </div>
+          <Matches />
+        </div>
       </div>
     </div>
-  
+
   );
 };
 
