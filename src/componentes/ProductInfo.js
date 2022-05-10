@@ -5,8 +5,11 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillEmojiLaughingFill } from "react-icons/bs";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import Chefs from '../assets/chef-hat.png';
-import { BsPaypal } from "react-icons/bs";
-import { SiAmazonaws } from "react-icons/si";
+import Amazon from "../assets/Img-button/amazon-fresh.jpg";
+import Wallmart from "../assets/Img-button/wallmart-logo.jpg";
+import Instacart from "../assets/Img-button/Instacart.png";
+import Paypal from "../assets/Img-button/paypal-3.png";
+import ButtonImage from "./ButtonImage";
 
 const ProductInfo = () => {
     const ingredients = [
@@ -71,27 +74,10 @@ const ProductInfo = () => {
                 </div>
                 <div className='m-2 '>
                     <p className="w-1/2 mb-4">Pucharse in:</p>
-                    <button
-                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-blue-700 hover:bg-blue-500 rounded-xl text-white">
-                        <BsPaypal className="text-white" />
-                        Paypal
-                    </button>
-                    <button
-                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-white hover:bg-white-100 rounded-xl text-black">
-                        <SiAmazonaws className=" text-black" />
-                        Amazonaws
-                    </button>
-                    <button
-                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-blue-700 hover:bg-blue-500 rounded-xl text-white">
-                        <BsPaypal className="text-white" />
-                        Paypal
-                    </button>
-                    <button
-                        className="flex justify-center items-center mb-4 font-bold text-center p-2 w-40 h-10 bg-white hover:bg-white-100 rounded-xl text-black">
-                        <SiAmazonaws className=" text-black" />
-                        Amazonaws
-                    </button>
-
+                    <ButtonImage image={Instacart} />
+                    <ButtonImage image={Amazon} />
+                    <ButtonImage image={Wallmart} />
+                    <ButtonImage image={Paypal} />
                 </div>
             </div>
             <div className="flex grid grid-cols-2 gap-4 items-center m-4 p-4 bg-white rounded-md mt-10">

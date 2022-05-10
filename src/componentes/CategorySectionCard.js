@@ -1,6 +1,12 @@
 import clsx from "clsx";
 
-const CategorySectionCard = ({ className, img, name }) => {
+const CategorySectionCard = ({
+    className,
+    img,
+    name,
+    withoutPaddingY = false,
+    withoutBgCover = false,
+}) => {
     return (
         <div
             className={clsx(`
@@ -12,9 +18,10 @@ const CategorySectionCard = ({ className, img, name }) => {
                 hover:drop-shadow-2xl
                 duration-300
                 cursor-pointer
-                bg-cover
-                py-10
-            `, className)}
+            `, {
+                'py-10': !withoutPaddingY,
+                'bg-cover': !withoutBgCover,
+            }, className)}
             style={{ backgroundImage: `url(${img})` }}
         >
             <div className='rounded-md absolute bg-black h-full w-full opacity-30' >

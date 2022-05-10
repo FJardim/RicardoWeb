@@ -69,7 +69,7 @@ const RegisterForm = ({ changeForm }) => {
                 </div>
 
                 <div className="text-center">
-                    <button className="bg-slate-50 px-2 py-1 rounded">sing in</button>
+                    <button className="bg-slate-50 px-2 py-1 rounded"> sing in</button>
                     <div className="px-2 py-1 mb-2 text-white">
                         <p className="mb-2">You do not have an account? <b className="cursor-pointer text-slate-700" onClick={() => { changeForm('login') }}>Sign in</b></p>
                         <div className=" mb-2 text-center">

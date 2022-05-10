@@ -7,10 +7,11 @@ import { Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import SearchHome from "../componentes/SearchHome";
 
 const SwiperHome = () => {
     return (
-        <>
+        <div className='relative'>
             <Swiper slidesPerView={1} spaceBetween={30} loop={true} pagination={{ clickable: true, }}
                 navigation={true} modules={[Pagination, Navigation]} className="mySwiper">
                 <SwiperSlide>
@@ -23,7 +24,8 @@ const SwiperHome = () => {
                     <img className="w-full h-72" src={img3} alt="imh3" />
                 </SwiperSlide>
             </Swiper>
-        </>
+            <SearchHome />
+        </div>
     );
 }
 export default SwiperHome; 

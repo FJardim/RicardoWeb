@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { BsBell } from "react-icons/bs";
 import AuthModal from "./AuthModal";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
 
@@ -21,8 +22,8 @@ const NavBar = () => {
                         <PageLogo />
                         <NavSearchBar />
                         <div className="flex ml-auto space-x-12 items-center h-full" >
-                            <button className="hover:text-teal-400 ">Buy</button>
-                            <button className="hover:text-teal-400 ">Sell</button>
+                            <Link to={"/categories"} className="hover:text-teal-400 ">Categories</Link>
+                            <button className="hover:text-teal-400 ">Sellers</button>
                             <button className="hover:text-teal-400 ">Help</button>
                             <button className="hover:text-teal-400 "><BsBell className="h-6 w-6 ml-10" /></button>
                             <button onClick={handleLogin} className="flex items-center hover:text-teal-400 bg-transparent bg-gray-800 border border-slate-300 rounded-md

@@ -11,15 +11,16 @@ import FlagMex from "../assets/FlagMexico.png";
 import logo from "../assets/img2.jpg";
 import SwiperRecipes from "../componentes/SwiperRecipes";
 import Public from "../assets/home1.jpg";
+import CategoriesVideo from "../componentes/CategoriesVideo";
 
 const Home = () => {
   return (
     < div className="" >
-
+      {/*swiper de home*/}
       <SwiperHome />
+
       {/* Category of Recipes */}
       <Card saludo="Category of Recipes" />
-
       <div className="container ">
         <div className="flex justify-center space-x-6 mx-8">
           <SwiperCategoryCard />
@@ -34,19 +35,11 @@ const Home = () => {
         <div className="container flex">
           <SwiperWeightPlan />
         </div>
-        <Card saludo="Recipes" />
-        <div className="container mt-16 mb-16">
-          <SwiperRecipes />
-        </div>
+      </div>
 
-
-        <Card saludo="Popular by Countries" />
-        <div className="flex container">
-          <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
-          <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
-          <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
-          <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
-        </div>
+      {/*Video*/}
+      <div className="container">
+        <CategoriesVideo />
 
       </div>
 
@@ -55,10 +48,12 @@ const Home = () => {
       <div className="container mt-16 mb-16">
         <SwiperRecipes />
       </div>
+
       {/* Imgs Public */}
       <div>
         <img className="w-full h-96" src={Public} alt="Public" />
       </div>
+
       {/* Popular by Countries */}
       <Card saludo="Popular by Countries" />
       <div className="flex container">

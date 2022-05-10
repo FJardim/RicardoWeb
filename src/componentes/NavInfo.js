@@ -1,4 +1,5 @@
 import { BiMap } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const NavInfo = () => {
     return (
@@ -13,9 +14,15 @@ const NavInfo = () => {
                 </div>
                 <div className="flex items-center justify-center flex-wrap">
                     <nav className="flex items-center space-x-7">
-                        <a href="/">Offers of the day</a>
-                        <a href="/#">Customer service</a>
-                        <a href="/##">Stores</a>
+                        <Link to={"/recipes"}>
+                            <p>Recipes</p>
+                        </Link>
+                        <Link to={""}>
+                            <p>Plans</p>
+                        </Link>
+                        <Link to={"/combos"}>
+                            <p>Combos</p>
+                        </Link>
                     </nav>
                 </div>
             </div>

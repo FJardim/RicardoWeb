@@ -13,8 +13,8 @@ import Sellers from "./pages/Sellers";
 
 function App() {
   return (
-    <AppLayout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AppLayout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
@@ -26,8 +26,8 @@ function App() {
           <Route path="/blogchef" element={<BlogChef />} />
           <Route path="/sellers" element={<Sellers />} />
         </Routes>
-      </BrowserRouter>
-    </AppLayout>
+      </AppLayout>
+    </BrowserRouter>
   );
 }
 
