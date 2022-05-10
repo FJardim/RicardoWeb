@@ -7,6 +7,8 @@ import SelectCategory from "../componentes/SelectCategory";
 import SelectRank from "../componentes/SelectRank";
 import CardChef from "../componentes/CardChef";
 import banner from "../assets/banner.jpg";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Sellers = () => {
   return (
@@ -71,25 +73,30 @@ const Sellers = () => {
           <div className="md:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-10 mr-10 mb-20">
               {[...Array(9).keys()].map((numero, i) => {
-                return <CardChef foto={banner} 
-                name="Anya Taylor" 
-                description="Chef, Nutrition, Specialist" 
-                recipes=" Recipes:50"
-                plans="Plans:50"
-                pack="Pack:10"
-                
+                return <CardChef foto={banner}
+                  name="Anya Taylor"
+                  description="Chef, Nutrition, Specialist"
+                  recipes=" Recipes:50"
+                  plans="Plans:50"
+                  pack="Pack:10"
+
                 />;
               })}
             </div>
+
             <div className="flex justify-center space-x-2 mb-6">
-              <ScrollNavigation title="<" />
+              <ScrollNavigation
+                title={<MdKeyboardArrowLeft className="text-2xl" />}
+              />
               <ScrollNavigation title="1" />
               <ScrollNavigation title="2" />
               <ScrollNavigation title="3" />
               <ScrollNavigation title="4" />
               <ScrollNavigation title="5" />
               <ScrollNavigation title="6" />
-              <ScrollNavigation title=">" />
+              <ScrollNavigation
+                title={<MdKeyboardArrowRight className="text-2xl" />}
+              />
             </div>
           </div>
         </div>
