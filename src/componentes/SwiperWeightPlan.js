@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import LogoPlan from "../assets/muestra.png";
+import LogoPlan from "../assets/Premium-icon.svg";
 import WeightPlan from '../componentes/WeightPlan';
 import { Navigation } from "swiper";
 import whPlan from "../assets/whPlan.jpg"

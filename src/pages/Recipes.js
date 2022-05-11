@@ -100,7 +100,7 @@ const Recipes = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 export default Recipes;

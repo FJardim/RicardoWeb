@@ -44,7 +44,7 @@ const productImages = [
     }
 ]
 
-const RecipesDetail = () => {
+const CombosDetail = () => {
     const [ingredientsPriceContent, setIngredientsPriceContent] = useState('stores');
 
 
@@ -211,4 +211,4 @@ const RecipesDetail = () => {
     );
 }
 
-export default RecipesDetail;
+export default CombosDetail;

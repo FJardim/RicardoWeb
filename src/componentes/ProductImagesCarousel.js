@@ -20,13 +20,12 @@ const ProductImagesCarousel = ({ images, productName }) => {
               <img
                 src={image.path}
                 alt={productName}
-                className="rounded-xl w-full"
+                className="rounded-xl w-full h-96"
               />
             </div>
           </SwiperSlide>)}
       </Swiper>
     </div>
-
     <div className="flex justify-center mt-6 space-x-3">
       {images?.length > 0 &&
         images?.map((image, i) => <img

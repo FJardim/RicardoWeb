@@ -7,25 +7,18 @@ import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import Chefs from '../assets/chef-hat.png';
 import Amazon from "../assets/Img-button/amazon-fresh.jpg";
 import Wallmart from "../assets/Img-button/wallmart-logo.jpg";
-import Instacart from "../assets/Img-button/Instacart.png";
+import Instacart from "../assets/Img-button/instacart.jpg";
 import Paypal from "../assets/Img-button/paypal-3.png";
 import ButtonImage from "./ButtonImage";
 
-const ProductInfo = () => {
-    const ingredients = [
-        { id: 1, name: '3 cups rice.' },
-        { id: 2, name: '1 tablespoon ground cinnamon or cinnamon splinter.' },
-        { id: 3, name: '1 lirer od milk.' },
-        { id: 4, name: '1 can co ndenses milk.' },
-        { id: 5, name: 'Half a teaspoon of cloves.' },
-        { id: 6, name: 'Sugar to taste.' },
-    ];
+const ProductInfo = ({ name, ingredients }) => {
+
 
     return (
 
         <div className="md:w-1/2 px-8">
             <div className='flex items-center text-3xl justify-between'>
-                <h1 className='font-bold text-2xl'>Plan CocoNout</h1>
+                <h1 className='font-bold text-2xl'>{name}</h1>
                 <div className='flex space-x-4'>
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
@@ -77,7 +70,7 @@ const ProductInfo = () => {
                     <ButtonImage image={Instacart} />
                     <ButtonImage image={Amazon} />
                     <ButtonImage image={Wallmart} />
-                    <ButtonImage image={Paypal} />
+                    {/* //<ButtonImage image={Paypal} /> */}
                 </div>
             </div>
             <div className="flex grid grid-cols-2 gap-4 items-center m-4 p-4 bg-white rounded-md mt-10">

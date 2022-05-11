@@ -40,7 +40,6 @@ const Home = () => {
       {/*Video*/}
       <div className="container">
         <CategoriesVideo />
-
       </div>
 
       {/* Recipes */}

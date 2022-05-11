@@ -1,4 +1,7 @@
 import Pasticho from '../assets/pasticho.png';
+import Bebida from '../assets/bebida.png';
+import Coco from '../assets/coco.jpg';
+import Recipes from '../componentes/Recipes';
 import ProductImagesCarousel from '../componentes/ProductImagesCarousel';
 import ProductInfo from '../componentes/ProductInfo';
 import { TabsProvider } from "../contexts/TabsContext";
@@ -10,41 +13,34 @@ import IngredientRowDetails from '../componentes/IngredientRowDetails';
 import Checkbox from '../componentes/Checkbox';
 import TabButton from '../componentes/TabButton';
 import { useState } from 'react';
+import Calendar from '../componentes/Calendar';
 
 
 const ingredients = [
-    { id: 1, name: '500 grams of sausage.' },
-    { id: 2, name: '125 milliliters of warm water.' },
-    { id: 3, name: '150 grams of black olives.' },
-    { id: 4, name: '1 pinch of dried basil.' },
-    { id: 5, name: '2 teaspoons garlic powder.' },
-    { id: 6, name: '1 1 / 2 teaspoons sage.' },
-    { id: 7, name: '2 teaspoons ground black pepper.' },
-    { id: 8, name: '2 teaspoons finely chopped fresh garlic.' },
-    { id: 9, name: '1 tablespoon of onion.' },
-    { id: 10, name: '800 grams of tomato sauce.' },
-    { id: 11, name: '500 grams of lasagna pasta.' },
-    { id: 12, name: '225 grams of cottage cheese.' },
-    { id: 13, name: '455 grams of grated mozzarella cheese.' },
+    { id: 1, name: '3 cups rice.' },
+    { id: 2, name: '1 tablespoon ground cinnamon or cinnamon splinter.' },
+    { id: 3, name: '1 lirer od milk.' },
+    { id: 4, name: '1 can co ndenses milk.' },
+    { id: 5, name: 'Half a teaspoon of cloves.' },
+    { id: 6, name: 'Sugar to taste.' },
 ];
-
 
 const productImages = [
     {
         "id": 568,
-        "path": Pasticho,
+        "path": Coco,
         "isPortrait": true,
         "position": 0
     },
     {
         "id": 569,
-        "path": Pasticho,
+        "path": Coco,
         "isPortrait": false,
         "position": 1
     }
 ]
 
-const RecipesDetail = () => {
+const PlanDetail = () => {
     const [ingredientsPriceContent, setIngredientsPriceContent] = useState('stores');
 
 
@@ -59,29 +55,82 @@ const RecipesDetail = () => {
                     </div>
 
                     {/* ProductInfo*/}
-                    <ProductInfo name="Lasagna" ingredients={ingredients} />
+                    <ProductInfo name="Plan Coconout" ingredients={ingredients} />
+                </div>
+
+                {/* Calendar */}
+                {/* <div className=''>
+                    <FullCalendar plugins={[dayGridPlugin]} />
+                </div> */}
+                <div className='bg-white container w-full h-full'>
+                    <Calendar day="1" />
+                    <Calendar day="2" />
+                </div>
+
+                {/* Recipes day */}
+                <h1 className='text-center m-8 text-6xl font-bold'>Day 1</h1>
+                <div className='container p-8'>
+                    <div className='grid grid-cols-2 gap-14'>
+                        <Recipes
+                            title="Lasagna"
+                            descsh="Space for a small product description"
+                            cost="$36.99"
+                            desccost="Pescription cost"
+                            level="Expert"
+                            time="60-80 Minutes"
+                            ing="5 pcs"
+                            img={Pasticho}
+                            withDefaultButtons={false}
+                        />
+                        <Recipes
+                            title="Margarita"
+                            descsh="Space for a small product description"
+                            cost="$6.99"
+                            desccost="Pescription cost"
+                            level="Easy"
+                            time="6-8 Minutes"
+                            ing="3 pcs"
+                            img={Bebida}
+                            withDefaultButtons={false}
+                        />
+                        <Recipes
+                            title="Margarita"
+                            descsh="Space for a small product description"
+                            cost="$6.99"
+                            desccost="Pescription cost"
+                            level="Easy"
+                            time="6-8 Minutes"
+                            ing="3 pcs"
+                            img={Bebida}
+                            withDefaultButtons={false}
+                        />
+                        <Recipes
+                            title="Lasagna"
+                            descsh="Space for a small product description"
+                            cost="$36.99"
+                            desccost="Pescription cost"
+                            level="Expert"
+                            time="60-80 Minutes"
+                            ing="5 pcs"
+                            img={Pasticho}
+                            withDefaultButtons={false}
+                        />
+                    </div>
                 </div>
                 <TabsProvider>
                     {/* Tabs */}
                     <TabsContainer className="md:flex m-10">
                         <Tab value={0}>Preparation</Tab>
                         <Tab value={1}>Ingredients purchase List</Tab>
-                        <Tab value={2}>Price Comparator</Tab>
+                        <Tab value={2}>Ingredients price Comparator</Tab>
                     </TabsContainer>
 
                     {/* TAB PANELS */}
                     {/* Preparation */}
                     <div className="mt-4 p-4">
                         <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
-                            <p className='p-4'>Seal ground beef and sausage in a large skillet over medium-high heat. Drain excess fat. Add water and black olives and season with basil, garlic powder, oregano, sage, pepper, fresh garlic and onion. Simmer for 15 minutes, stirring constantly. Add tomato sauce and remove from heat.</p>
-
-
-
-                            <p className='p-4'>Preheat oven to 190 °C.</p>
-
-                            <p className='p-4'>Place a layer of meat and sauce on the bottom of a 23 x 33 cm baking dish. Cover with a layer of lasagna. Spread a thin layer of cottage cheese over the pasta and sprinkle with a little mozzarella cheese. Cover with another layer of sauce and repeat the process until you finish with a layer of meat and sauce. Reserve about 1/2 cup mozzarella cheese for later use.</p>
-
-                            <p className='p-4'> Bake for about 45 minutes, but check after 30 minutes as cooking time may vary depending on how thick the pasta is. You’ll know it’s ready when you can easily insert a knife into it. Sprinkle the reserved mozzarella cheese and bake for another 10 minutes for a perfect gratin.</p>
+                            <p className='p-4'>Open our coconut, and save the water that it brings inside, since we will not use it. Extract the meat from the coconut, cut into small cubes and set aside. Put the coconut pieces, coconut milk and condensed milk in the blender, and blend for a couple of minutes, or until thick. </p>
+                            <p className='p-4'>Once we take out our cocada, we add sugar and cinnamon to taste, and serve.</p>
                         </TabPanel>
 
                         {/* Ingredients purchase List */}
@@ -90,7 +139,7 @@ const RecipesDetail = () => {
                                 <IngredientRowDetails
                                     title={"Noodles"}
                                     subtitle={"1 kg"}
-                                    imageSource={Pasticho}
+                                    imageSource={Coco}
                                 />
                                 <div className='flex items-center'>
                                     <Checkbox />
@@ -100,7 +149,7 @@ const RecipesDetail = () => {
                                 <IngredientRowDetails
                                     title={"Noodles"}
                                     subtitle={"1 kg"}
-                                    imageSource={Pasticho}
+                                    imageSource={Coco}
                                 />
                                 <div className='flex items-center'>
                                     <Checkbox />
@@ -110,7 +159,7 @@ const RecipesDetail = () => {
                                 <IngredientRowDetails
                                     title={"Noodles"}
                                     subtitle={"1 kg"}
-                                    imageSource={Pasticho}
+                                    imageSource={Coco}
                                 />
                                 <div className='flex items-center'>
                                     <Checkbox />
@@ -131,20 +180,20 @@ const RecipesDetail = () => {
                                             title={"Noodles"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                         <IngredientRowDetails
                                             title={"Ground beef"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
                                             price={"$ 4.99"}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                         <IngredientRowDetails
                                             title={"Parmesan"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                     </IngredientRow>
                                     <IngredientRow colsNumber={3}>
@@ -152,20 +201,20 @@ const RecipesDetail = () => {
                                             title={"Noodles"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                         <IngredientRowDetails
                                             title={"Ground beef"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
                                             price={"$ 4.99"}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                         <IngredientRowDetails
                                             title={"Parmesan"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                     </IngredientRow>
                                 </>
@@ -176,14 +225,14 @@ const RecipesDetail = () => {
                                             title={"Noodles"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                         <IngredientRowDetails
                                             title={"Ground beef"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
                                             price={"$ 4.99"}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                     </IngredientRow>
                                     <IngredientRow colsNumber={2}>
@@ -191,14 +240,14 @@ const RecipesDetail = () => {
                                             title={"Noodles"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                         <IngredientRowDetails
                                             title={"Ground beef"}
                                             subtitle={"Juncal 2930"}
                                             subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
                                             price={"$ 4.99"}
-                                            imageSource={Pasticho}
+                                            imageSource={Coco}
                                         />
                                     </IngredientRow>
                                 </>
@@ -211,4 +260,4 @@ const RecipesDetail = () => {
     );
 }
 
-export default RecipesDetail;
+export default PlanDetail;
