@@ -18,7 +18,7 @@ const NavInfo = () => {
                         <Link to={"/recipes"}>
                             <p>Recipes</p>
                         </Link>
-                        <Link to={""}>
+                        <Link to={"/plans"}>
                             <p>Plans</p>
                         </Link>
                         <Link to={"/combos"}>
