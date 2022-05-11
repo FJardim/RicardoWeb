@@ -6,8 +6,9 @@ const TabButton = ({ setIngredientsPriceContent, ingredientsPriceContent }) => {
             <div className='flex justify-end'>
                 <button
                     className={clsx(
-                        'bg-teal-400 items-center px-2 py-2 rounded-xl text-white font-bold border border-1 hover:text-teal-400 hover:border-teal-400 hover:bg-white',
-                        ingredientsPriceContent === 'stores' && 'text-teal-400 border-teal-400 bg-white'
+                        'items-center px-2 py-2 rounded-xl font-bold border border-1 hover:text-teal-400 hover:border-teal-400 hover:bg-white',
+                        ingredientsPriceContent === 'stores' && 'text-teal-400 border-teal-400 bg-white',
+                        ingredientsPriceContent !== 'stores' && 'text-white border-teal-400 bg-teal-400',
                     )}
                     onClick={() => setIngredientsPriceContent('stores')}
                 >
@@ -17,8 +18,9 @@ const TabButton = ({ setIngredientsPriceContent, ingredientsPriceContent }) => {
             <div className='flex justify-end'>
                 <button
                     className={clsx(
-                        'bg-teal-400 items-center px-2 py-2 rounded-xl text-white font-bold border border-1 hover:text-teal-400 hover:border-teal-400 hover:bg-white',
-                        ingredientsPriceContent === 'best-offer' && 'text-teal-400 border-teal-400 bg-white'
+                        'items-center px-2 py-2 rounded-xl font-bold border border-1 hover:text-teal-400 hover:border-teal-400 hover:bg-white',
+                        ingredientsPriceContent === 'best-offer' && 'text-teal-400 border-teal-400 bg-white',
+                        ingredientsPriceContent !== 'best-offer' && 'text-white border-teal-400 bg-teal-400',
                     )}
                     onClick={() => setIngredientsPriceContent('best-offer')}
                 >
