@@ -1,6 +1,6 @@
 import AppLogo from "../assets/drafts.png";
-import { BsCalendarPlus, BsBookmark, BsFillShareFill,BsBasket } from "react-icons/bs";
-import {AiOutlineShopping} from "react-icons/ai"
+import { BsCalendarPlus, BsBookmark, BsFillShareFill, BsBasket } from "react-icons/bs";
+import { AiOutlineShopping } from "react-icons/ai"
 import Matches from "./Matches"
 import womenchef from "../assets/womenchef.jpg"
 
@@ -26,8 +26,8 @@ const CardRecipes = ({ texto, parrafo, foto, title, hideButtons = false }) => {
         <h1 className="text-green-400">{texto}</h1>
         <div className="grid grid-cols-2 gap-4">
           <div className="flex text-bold">
-          <img className="h-8 w-8 " src={womenchef} alt="" />
-          <h1>Anya Taylor</h1>
+            <img className="h-8 w-8 " src={womenchef} alt="" />
+            <h1>Anya Taylor</h1>
           </div>
           <div className="flex justify-end space-x-4">
             <BsFillShareFill className="text-green-400" />
@@ -44,7 +44,7 @@ const CardRecipes = ({ texto, parrafo, foto, title, hideButtons = false }) => {
         </div>}
       </div>
     </div>
-    
+
   );
 };
 

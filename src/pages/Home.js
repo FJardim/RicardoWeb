@@ -57,24 +57,41 @@ const Home = () => {
 
       {/* Combos */}
       <Card saludo="Combos" />
-      <div className="flex">
+      <div className="flex p-10 space-x-4">
         <CardRecipes
           texto="Tacos al Pastor"
           parrafo="Ricardo App Team"
           title="Dinner"
           foto={collage}
+          hideButtons
         />
         <CardRecipes
           texto="Tacos al Pastor"
           parrafo="Ricardo App Team"
           title="Dinner"
           foto={collage}
+          hideButtons
         />
         <CardRecipes
           texto="Tacos al Pastor"
           parrafo="Ricardo App Team"
           title="Dinner"
           foto={collage}
+          hideButtons
+        />
+        <CardRecipes
+          texto="Tacos al Pastor"
+          parrafo="Ricardo App Team"
+          title="Dinner"
+          foto={collage}
+          hideButtons
+        />
+        <CardRecipes
+          texto="Tacos al Pastor"
+          parrafo="Ricardo App Team"
+          title="Dinner"
+          foto={collage}
+          hideButtons
         />
       </div>
 
