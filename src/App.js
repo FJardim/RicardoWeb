@@ -12,6 +12,7 @@ import BlogChef from "./pages/BlogChef";
 import Sellers from "./pages/Sellers";
 import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
+import PaymentMethod from "./pages/PaymentMethod";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/plans" element={<Plans />} />
+          <Route path="/paymentmethod" element={<PaymentMethod />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>

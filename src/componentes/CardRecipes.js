@@ -4,7 +4,7 @@ import {AiOutlineShopping} from "react-icons/ai"
 import Matches from "./Matches"
 import womenchef from "../assets/womenchef.jpg"
 
-const CardRecipes = ({ texto, parrafo, foto, title }) => {
+const CardRecipes = ({ texto, parrafo, foto, title, hideButtons = false }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden">
       <div
@@ -39,9 +39,9 @@ const CardRecipes = ({ texto, parrafo, foto, title }) => {
           </div>
 
         </div>
-        <div>
+        {!hideButtons && <div>
           <Matches />
-        </div>
+        </div>}
       </div>
     </div>
     
