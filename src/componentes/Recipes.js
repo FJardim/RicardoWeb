@@ -54,7 +54,7 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
                             </>
                             : <>
                                 <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"> Dismiss</button>
-                                <button className="bg-teal-400 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded"> Select</button>
+                                <button className="bg-main hover:bg-main-dark text-white font-bold py-2 px-4 rounded"> Select</button>
                             </>
                         }
                     </div>

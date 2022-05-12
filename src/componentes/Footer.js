@@ -28,23 +28,23 @@ export default function Footer() {
             <ul className="">
               <li className="font-bold my-4">Connections</li>
               <li className="my-4 flex">
-                <SiFacebook className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                <SiFacebook className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
                 Facebook
               </li>
               <li className="my-4 flex">
-                <SiTwitter className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                <SiTwitter className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
                 Twitter
               </li>
               <li className="my-4 flex">
-                <SiInstagram className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                <SiInstagram className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
                 Instagram
               </li>
               <li className="my-4 flex">
-                <IoLogoYoutube className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                <IoLogoYoutube className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
                 Youtube
               </li>
               <li className="my-4 flex">
-                <FaLinkedinIn className="h-6 w-6 hover:text-teal-400 cursor-pointer mr-1" />{" "}
+                <FaLinkedinIn className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
                 LinkedinIn
               </li>
             </ul>
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-center mt-10 ">
-          <p>&copy; 2022 <span className='text-teal-400'>Ricardo APP.</span> All rights reserved. Designed by JV, AN, LV & FJ.</p>
+          <p>&copy; 2022 <span className='text-main'>Ricardo APP.</span> All rights reserved. Designed by JV, AN, LV & FJ.</p>
         </div>
       </div>
     </footer>

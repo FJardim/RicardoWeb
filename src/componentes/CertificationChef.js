@@ -5,7 +5,7 @@ const CertificationChef = () => {
   return (
     <div className="mt-6">
       <button className="flex items-center space-x-2 text-black text-lg	 font-semibold">
-        <BsPatchCheckFill className="text-teal-400" />
+        <BsPatchCheckFill className="text-main" />
         <span>Professional Certification</span>
       </button>
       <div className=" mt-4">

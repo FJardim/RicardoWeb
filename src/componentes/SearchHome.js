@@ -12,7 +12,7 @@ const SearchHome = () => {
                             leading-4 border-0 rounded-bl-lg rounded-r-lg w-full top-0 right-0'
                         type="text"
                         placeholder="Enter the item you are looking for or a characteristic (example:Rice, Sushi)..." />
-                    <button className="absolute h-full px-6 text-center bg-teal-400 top-0 right-0 rounded-r-lg font-semibold">Search</button>
+                    <button className="absolute h-full px-6 text-center bg-main top-0 right-0 rounded-r-lg font-semibold">Search</button>
                 </div>
 
             </div>

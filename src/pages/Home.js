@@ -15,7 +15,7 @@ import CategoriesVideo from "../componentes/CategoriesVideo";
 
 const Home = () => {
   return (
-    < div className="" >
+    <div>
       {/*swiper de home*/}
       <SwiperHome />
 
@@ -52,6 +52,9 @@ const Home = () => {
       <div>
         <img className="w-full h-96" src={Public} alt="Public" />
       </div>
+
+      {/* Combos */}
+      <Card saludo="Combos" />
 
       {/* Popular by Countries */}
       <Card saludo="Popular by Countries" />

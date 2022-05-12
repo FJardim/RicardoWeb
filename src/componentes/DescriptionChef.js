@@ -5,7 +5,7 @@ const DescriptionChef = () => {
   return (
     <div className="mt-10">
       <button className="flex items-center space-x-2 text-black text-xl font-semibold">
-        <RiBookReadLine className="text-teal-400" />
+        <RiBookReadLine className="text-main" />
         <span>Description</span>
       </button>
       <div className="mt-4 text-justify px-2">

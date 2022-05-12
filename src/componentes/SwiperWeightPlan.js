@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import LogoPlan from "../assets/Premium-icon.svg";
 import WeightPlan from '../componentes/WeightPlan';
 import { Navigation } from "swiper";
-import whPlan from "../assets/whPlan.jpg"
+import whPlan from "../assets/girltraining.jpg"
 const SwiperWeightPlan = () => {
     return (
         <>
