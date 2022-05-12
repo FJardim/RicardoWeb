@@ -23,7 +23,7 @@ const ProductInfo = ({ name, ingredients }) => {
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><BsFillEmojiLaughingFill className="text-yellow-300" /></button>
-                    <IoHeartOutline className='text-teal-400 w-10 h-10' />
+                    <IoHeartOutline className='text-main w-10 h-10' />
                 </div>
 
             </div>
@@ -57,7 +57,7 @@ const ProductInfo = ({ name, ingredients }) => {
                     </div>
                     <div className='flex py-2 '>
                         <p className="w-1/2">Time:</p>
-                        <p className="w-1/2 text-teal-400 underline">60-90 days</p>
+                        <p className="w-1/2 text-main underline">60-90 days</p>
                     </div>
                     <div className='flex py-2 '>
                         <p className="w-1/2">Ingredients:</p>
@@ -76,13 +76,13 @@ const ProductInfo = ({ name, ingredients }) => {
             <div className="flex grid grid-cols-2 gap-4 items-center m-4 p-4 bg-white rounded-md mt-10">
                 <div className="text-main text-3xl font-semibold">
                     <div className='md:w-56 flex-shrink-0'>
-                        <p className='text-teal-400'>$36.23</p>
+                        <p className='text-main'>$36.23</p>
                         <p className='text-gray-400 text-sm'>$48.56</p>
                     </div>
                 </div>
                 <div className='flex justify-end'>
                     <button
-                        className="bg-teal-400 items-center px-4 py-4 rounded-xl text-white font-bold hover:bg-teal-700">
+                        className="bg-main items-center px-4 py-4 rounded-xl text-white font-bold hover:bg-teal-700">
                         + Comprar
                     </button>
                 </div>

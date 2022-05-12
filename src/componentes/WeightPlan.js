@@ -1,7 +1,7 @@
 const WeightPlan = ({ img, logo, title, text }) => {
     return (
 
-        <div className="flex relative h-80 w-96 bg-teal-400 rounded-md cursor-pointer mt-10 mr-5 ml-5 mb-10  bg-cover" style={{ backgroundImage: `url(${img})` }}>
+        <div className="flex relative h-80 w-96 bg-main rounded-md cursor-pointer mt-10 mr-5 ml-5 mb-10  bg-cover" style={{ backgroundImage: `url(${img})` }}>
             <div className="absolute bg-black opacity-40 rounded-md w-full h-full">
             </div>
 

@@ -16,7 +16,7 @@ const BannerChef = ({ foto, name, description, recipes, plans, pack }) => {
         <div className="text-center text-white font-sans">
           <div className="flex  justify-center text-center">
             <p className="text-xl text-center font-bold">{name}</p>
-            <BsPatchCheckFill className="mt-2 ml-3  text-teal-400	" />
+            <BsPatchCheckFill className="mt-2 ml-3  text-main	" />
           </div>
 
           <p className="text-base">{description}</p>

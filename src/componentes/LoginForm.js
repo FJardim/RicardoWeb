@@ -5,7 +5,7 @@ import PageLogo from "../componentes/PageLogo";
 
 const LoginForm = ({ changeForm }) => {
     return (
-        <div className="m-auto grid grid-cols-2 w-2/3 bg-teal-400">
+        <div className="m-auto grid grid-cols-2 w-2/3 bg-main">
             <div style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover' }}>
                 <div className="flex h-full w-full bg-black bg-opacity-50 p-4">
                     <div className="m-auto" >

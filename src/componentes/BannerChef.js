@@ -12,9 +12,9 @@ const BannerChef = ({ image }) => {
         </div>
 
         <div className="text-center text-white font-sans">
-          <div className="flex  justify-center text-center">
+          <div className="flex justify-center text-center">
             <p className="text-4xl text-center font-bold">Anya Taylor</p>
-            <BsPatchCheckFill className="mt-4 ml-3  text-teal-400	" />
+            <BsPatchCheckFill className="mt-4 ml-3  text-main" />
           </div>
 
           <p className="text-4xl">Chef, Nutrition Specialist.</p>

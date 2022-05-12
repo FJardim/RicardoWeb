@@ -13,7 +13,7 @@ const ButtonSearch = () => {
                     borderRadius: category === 'ingredients' && `10px 0 0 0`
                 }}
                 className={clsx(['px-2'], {
-                    'bg-white w-full rounded-tl-lg underline underline-offset-8 decoration-teal-400': category === 'ingredients'
+                    'bg-white w-full rounded-tl-lg underline underline-offset-8 decoration-main': category === 'ingredients'
                 })}>
                 <p>Ingredients</p>
             </button>
@@ -23,7 +23,7 @@ const ButtonSearch = () => {
                     borderRadius: category === 'plans' && `0 0 0 0`
                 }}
                 className={clsx(['px-2'], {
-                    'bg-white w-full underline underline-offset-8 decoration-teal-400': category === 'plans'
+                    'bg-white w-full underline underline-offset-8 decoration-main': category === 'plans'
                 })}>
                 <p>Recipes</p>
             </button>
@@ -33,7 +33,7 @@ const ButtonSearch = () => {
                     borderRadius: category === 'recipes' && `0 0 0 0`
                 }}
                 className={clsx(['px-2'], {
-                    'bg-white w-full underline underline-offset-8 decoration-teal-400': category === 'recipes'
+                    'bg-white w-full underline underline-offset-8 decoration-main': category === 'recipes'
                 })}>
                 <p> Palls</p>
             </button>
