@@ -11,9 +11,8 @@ import TabPanel from '../componentes/TabPanel';
 import IngredientRow from '../componentes/IngredientRow';
 import IngredientRowDetails from '../componentes/IngredientRowDetails';
 import Checkbox from '../componentes/Checkbox';
-import TabButton from '../componentes/TabButton';
-import { useState } from 'react';
 import Calendar from '../componentes/Calendar';
+import WaPay from '../componentes/WaPay';
 
 
 const ingredients = [
@@ -41,8 +40,6 @@ const productImages = [
 ]
 
 const PlanDetail = () => {
-    const [ingredientsPriceContent, setIngredientsPriceContent] = useState('stores');
-
 
     return (
         <>
@@ -55,13 +52,15 @@ const PlanDetail = () => {
                     </div>
 
                     {/* ProductInfo*/}
-                    <ProductInfo name="Plan Coconout" ingredients={ingredients} />
+                    <ProductInfo
+                        name="Plan Coconout"
+                        ingredients={ingredients}
+                        showPaypalButton
+                        hideMarketButtons
+                    />
                 </div>
 
                 {/* Calendar */}
-                {/* <div className=''>
-                    <FullCalendar plugins={[dayGridPlugin]} />
-                </div> */}
                 <div className='bg-white container w-full h-full'>
                     <Calendar day="1" />
                     <Calendar day="2" />
@@ -169,89 +168,7 @@ const PlanDetail = () => {
 
                         {/* Ingredients price Comparator */}
                         <TabPanel className="bg-white rounded-lg" value={2}>
-                            <TabButton
-                                setIngredientsPriceContent={setIngredientsPriceContent}
-                                ingredientsPriceContent={ingredientsPriceContent}
-                            />
-                            {ingredientsPriceContent === 'stores'
-                                ? <>
-                                    <IngredientRow colsNumber={3}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Coco}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Coco}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Parmesan"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Coco}
-                                        />
-                                    </IngredientRow>
-                                    <IngredientRow colsNumber={3}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Coco}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Coco}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Parmesan"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Coco}
-                                        />
-                                    </IngredientRow>
-                                </>
-                                :
-                                <>
-                                    <IngredientRow colsNumber={2}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Coco}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Coco}
-                                        />
-                                    </IngredientRow>
-                                    <IngredientRow colsNumber={2}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Coco}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Coco}
-                                        />
-                                    </IngredientRow>
-                                </>
-                            }
+                            <WaPay />
                         </TabPanel>
                     </div>
                 </TabsProvider>

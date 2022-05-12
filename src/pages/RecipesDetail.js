@@ -8,9 +8,7 @@ import TabPanel from '../componentes/TabPanel';
 import IngredientRow from '../componentes/IngredientRow';
 import IngredientRowDetails from '../componentes/IngredientRowDetails';
 import Checkbox from '../componentes/Checkbox';
-import TabButton from '../componentes/TabButton';
-import { useState } from 'react';
-
+import WaPay from '../componentes/WaPay';
 
 const ingredients = [
     { id: 1, name: '500 grams of sausage.' },
@@ -45,8 +43,6 @@ const productImages = [
 ]
 
 const RecipesDetail = () => {
-    const [ingredientsPriceContent, setIngredientsPriceContent] = useState('stores');
-
 
     return (
         <>
@@ -59,7 +55,10 @@ const RecipesDetail = () => {
                     </div>
 
                     {/* ProductInfo*/}
-                    <ProductInfo name="Lasagna" ingredients={ingredients} />
+                    <ProductInfo
+                        name="Lasagna"
+                        ingredients={ingredients}
+                    />
                 </div>
                 <TabsProvider>
                     {/* Tabs */}
@@ -74,13 +73,8 @@ const RecipesDetail = () => {
                     <div className="mt-4 p-4">
                         <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
                             <p className='p-4'>Seal ground beef and sausage in a large skillet over medium-high heat. Drain excess fat. Add water and black olives and season with basil, garlic powder, oregano, sage, pepper, fresh garlic and onion. Simmer for 15 minutes, stirring constantly. Add tomato sauce and remove from heat.</p>
-
-
-
                             <p className='p-4'>Preheat oven to 190 °C.</p>
-
                             <p className='p-4'>Place a layer of meat and sauce on the bottom of a 23 x 33 cm baking dish. Cover with a layer of lasagna. Spread a thin layer of cottage cheese over the pasta and sprinkle with a little mozzarella cheese. Cover with another layer of sauce and repeat the process until you finish with a layer of meat and sauce. Reserve about 1/2 cup mozzarella cheese for later use.</p>
-
                             <p className='p-4'> Bake for about 45 minutes, but check after 30 minutes as cooking time may vary depending on how thick the pasta is. You’ll know it’s ready when you can easily insert a knife into it. Sprinkle the reserved mozzarella cheese and bake for another 10 minutes for a perfect gratin.</p>
                         </TabPanel>
 
@@ -120,89 +114,7 @@ const RecipesDetail = () => {
 
                         {/* Ingredients price Comparator */}
                         <TabPanel className="bg-white rounded-lg" value={2}>
-                            <TabButton
-                                setIngredientsPriceContent={setIngredientsPriceContent}
-                                ingredientsPriceContent={ingredientsPriceContent}
-                            />
-                            {ingredientsPriceContent === 'stores'
-                                ? <>
-                                    <IngredientRow colsNumber={3}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Pasticho}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Parmesan"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
-                                        />
-                                    </IngredientRow>
-                                    <IngredientRow colsNumber={3}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Pasticho}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Parmesan"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
-                                        />
-                                    </IngredientRow>
-                                </>
-                                :
-                                <>
-                                    <IngredientRow colsNumber={2}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Pasticho}
-                                        />
-                                    </IngredientRow>
-                                    <IngredientRow colsNumber={2}>
-                                        <IngredientRowDetails
-                                            title={"Noodles"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            imageSource={Pasticho}
-                                        />
-                                        <IngredientRowDetails
-                                            title={"Ground beef"}
-                                            subtitle={"Juncal 2930"}
-                                            subtitle2={"1250 1st Ave S, Seattle, wa 98134, EE.UU."}
-                                            price={"$ 4.99"}
-                                            imageSource={Pasticho}
-                                        />
-                                    </IngredientRow>
-                                </>
-                            }
+                            <WaPay />
                         </TabPanel>
                     </div>
                 </TabsProvider>
