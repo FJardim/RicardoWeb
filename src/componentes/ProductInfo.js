@@ -6,12 +6,17 @@ import { BsFillEmojiLaughingFill } from "react-icons/bs";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import Chefs from '../assets/chef-hat.png';
 import Amazon from "../assets/Img-button/amazon-fresh.jpg";
-import Wallmart from "../assets/Img-button/wallmart-logo.jpg";
+import Wallmart from "../assets/Img-button/wallmart.jpeg";
 import Instacart from "../assets/Img-button/instacart.jpg";
-import Paypal from "../assets/Img-button/paypal-3.png";
+import Paypal from "../assets/Img-button/paypal-logo.png";
 import ButtonImage from "./ButtonImage";
 
-const ProductInfo = ({ name, ingredients }) => {
+const ProductInfo = ({
+    name,
+    ingredients,
+    showPaypalButton = false,
+    hideMarketButtons = false,
+}) => {
 
 
     return (
@@ -67,10 +72,13 @@ const ProductInfo = ({ name, ingredients }) => {
                 </div>
                 <div className='m-2 '>
                     <p className="w-1/2 mb-4">Pucharse in:</p>
-                    <ButtonImage image={Instacart} />
-                    <ButtonImage image={Amazon} />
-                    <ButtonImage image={Wallmart} />
-                    {/* //<ButtonImage image={Paypal} /> */}
+
+                    {!hideMarketButtons && <>
+                        <ButtonImage image={Instacart} />
+                        <ButtonImage image={Amazon} />
+                        <ButtonImage image={Wallmart} />
+                    </>}
+                    {showPaypalButton && <ButtonImage image={Paypal} />}
                 </div>
             </div>
             <div className="flex grid grid-cols-2 gap-4 items-center m-4 p-4 bg-white rounded-md mt-10">
