@@ -1,5 +1,5 @@
 import React from "react";
-import paypal from "../assets/Img-button/paypal-3.png";
+import paypal from "../assets/paypal.png";
 const PaymentMethod = () => {
   return (
     <div className="bg-white w-1/2 h-40 rounded-lg mt-6 mb-6 ml-6">
@@ -10,9 +10,6 @@ const PaymentMethod = () => {
             <h1 className="">Add Paypal</h1>
             <div className="">
               <h1 className="text-main top-0 right-0">Modificar</h1>
-            </div>
-            <div className="bg-white w-1/2">
-              <h1>hola</h1>
             </div>
           </div>
         </div>
