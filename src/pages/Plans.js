@@ -9,6 +9,7 @@ import CardGym from "../componentes/CardGym";
 import girltraining from "../assets/girltraining.jpg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import CategoriesRecipes from "../componentes/CategoriesRecipes"
 
 const Sellers = () => {
   return (
@@ -34,12 +35,7 @@ const Sellers = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
           <div>
             <div className="ml-6 bg-white w-48 rounded-lg ">
-              <h4 className="text-xl font-semibold mb-2">Categories</h4>
-              <div>New Recipes</div>
-              <div>Low in Calories </div>
-              <div>Paleo</div>
-              <div>High in Proteccion</div>
-              <div>See All</div>
+           <CategoriesRecipes />
             </div>
             <div>
               <div className="mt-6 ml-6 bg-white w-48 rounded-lg ">
