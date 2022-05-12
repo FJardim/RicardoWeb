@@ -8,13 +8,11 @@ const NavInfo = () => {
                 <div className="flex items-center cursor-pointer relative md:absolute -mt-3  ">
                     <BiMap className="h-8 w-8 mt-2" />
                     <div className="flex flex-col text-white ">
-                        {/* <span>Delive to </span> 
-                        <span>Location</span>
-                        <span>Main</span>*/}
+
                     </div>
                 </div>
                 <div className="flex items-center justify-center flex-wrap">
-                    <nav className="flex items-center space-x-7">
+                    <nav className="flex items-center space-x-20">
                         <Link to={"/recipes"}>
                             <p>Recipes</p>
                         </Link>

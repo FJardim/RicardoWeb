@@ -12,6 +12,8 @@ import logo from "../assets/img2.jpg";
 import SwiperRecipes from "../componentes/SwiperRecipes";
 import Public from "../assets/home1.jpg";
 import CategoriesVideo from "../componentes/CategoriesVideo";
+import CardRecipes from "../componentes/CardRecipes";
+import collage from "../assets/collage.jpg";
 
 const Home = () => {
   return (
@@ -55,6 +57,27 @@ const Home = () => {
 
       {/* Combos */}
       <Card saludo="Combos" />
+      <div className="flex">
+        <CardRecipes
+          texto="Tacos al Pastor"
+          parrafo="Ricardo App Team"
+          title="Dinner"
+          foto={collage}
+        />
+        <CardRecipes
+          texto="Tacos al Pastor"
+          parrafo="Ricardo App Team"
+          title="Dinner"
+          foto={collage}
+        />
+        <CardRecipes
+          texto="Tacos al Pastor"
+          parrafo="Ricardo App Team"
+          title="Dinner"
+          foto={collage}
+        />
+      </div>
+
 
       {/* Popular by Countries */}
       <Card saludo="Popular by Countries" />
