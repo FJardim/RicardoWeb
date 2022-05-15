@@ -12,7 +12,6 @@ import BlogChef from "./pages/BlogChef";
 import Sellers from "./pages/Sellers";
 import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
-import PaymentMethod from "./pages/PaymentMethod";
 import CombosDetail from "./pages/CombosDetail";
 
 function App() {
@@ -32,7 +31,7 @@ function App() {
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/paymentmethod" element={<PaymentMethod />} />
+         
         </Routes>
       </AppLayout>
     </BrowserRouter>
