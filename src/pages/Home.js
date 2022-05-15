@@ -10,10 +10,9 @@ import FlagIta from "../assets/FlagItalia.jpg";
 import FlagMex from "../assets/FlagMexico.png";
 import logo from "../assets/img2.jpg";
 import SwiperRecipes from "../componentes/SwiperRecipes";
-import Public from "../assets/home1.jpg";
+import Public from "../assets/Public.jpg";
 import CategoriesVideo from "../componentes/CategoriesVideo";
-import CardRecipes from "../componentes/CardRecipes";
-import collage from "../assets/collage.jpg";
+import SwiperCombos from "../componentes/SwiperCombos";
 
 const Home = () => {
   return (
@@ -52,32 +51,14 @@ const Home = () => {
 
       {/* Imgs Public */}
       <div>
-        <img className="w-full h-96" src={Public} alt="Public" />
+        <img className="w-full h-96 py-4" src={Public} alt="Public" />
       </div>
 
       {/* Combos */}
       <Card saludo="Combos" />
-      <div className="flex">
-        <CardRecipes
-          texto="Tacos al Pastor"
-          parrafo="Ricardo App Team"
-          title="Dinner"
-          foto={collage}
-        />
-        <CardRecipes
-          texto="Tacos al Pastor"
-          parrafo="Ricardo App Team"
-          title="Dinner"
-          foto={collage}
-        />
-        <CardRecipes
-          texto="Tacos al Pastor"
-          parrafo="Ricardo App Team"
-          title="Dinner"
-          foto={collage}
-        />
+      <div className="p-10">
+        <SwiperCombos />
       </div>
-
 
       {/* Popular by Countries */}
       <Card saludo="Popular by Countries" />

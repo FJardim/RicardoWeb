@@ -17,7 +17,7 @@ const RegisterForm = ({ changeForm }) => {
                     </div>
                 </div>
             </div>
-            <div className="p-4">
+            <form className="p-4">
                 <div className="text-center">
                     <PageLogo centered />
                     <h1 className="mt-4 text-2xl text-white font-bold">Registration</h1>
@@ -77,8 +77,8 @@ const RegisterForm = ({ changeForm }) => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </form>
+        </div >
     )
 }
 

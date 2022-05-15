@@ -13,7 +13,7 @@ import Sellers from "./pages/Sellers";
 import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
 import CombosDetail from "./pages/CombosDetail";
-
+import MyAccountLayout from "./componentes/MyAccountLayout";
 
 function App() {
   return (
@@ -32,8 +32,10 @@ function App() {
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
-         
-         
+
+          <Route element={<MyAccountLayout />}>
+            <Route path="/overview" element={"probando"} />
+          </Route>
         </Routes>
       </AppLayout>
     </BrowserRouter>
