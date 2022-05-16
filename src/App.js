@@ -14,6 +14,7 @@ import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
 import CombosDetail from "./pages/CombosDetail";
 import MyAccountLayout from "./componentes/MyAccountLayout";
+import OverviewUser from "./pages/OverviewUser";
 
 function App() {
   return (
@@ -33,8 +34,10 @@ function App() {
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/paymentmethod" element={<PaymentMethod />} />
+
           <Route element={<MyAccountLayout />}>
-            <Route path="/overview" element={'probando'} />
+            <Route path="/overview" element={<OverviewUser />} />
+
           </Route>
         </Routes>
       </AppLayout>

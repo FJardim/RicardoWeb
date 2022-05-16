@@ -1,9 +1,12 @@
 import { FaUserCircle } from "react-icons/fa";
-import { BsFillHeartFill, BsFillGearFill, BsFillCalendar2MinusFill } from "react-icons/bs";
-import { BiMessageRoundedDetail } from "react-icons/bi";
+import { BsFillBookmarkHeartFill, BsFillGearFill, BsFillCalendar2MinusFill } from "react-icons/bs";
+import { RiMessage2Fill } from "react-icons/ri";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaListAlt, FaRegBookmark } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
+import {
+    IoHeart
+} from "react-icons/io5";
 
 const MenuConfig = ({ changeForm, show }) => {
     const { setAuthInfo } = useAuth();
@@ -35,7 +38,7 @@ const MenuConfig = ({ changeForm, show }) => {
                 <a href="dfd">
                     <div className="flex hover:text-main">
                         <BsFillGearFill className="mt-1" />
-                        <p className="ml-4 mb-4">Configuración</p>
+                        <p className="ml-4 mb-4">Setting</p>
                     </div>
 
                 </a>
@@ -50,18 +53,17 @@ const MenuConfig = ({ changeForm, show }) => {
                 </a>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="dfdf">
+                <a href="DSD">
                     <div className="flex hover:text-main">
-                        <BsFillHeartFill className="mt-1" />
+                        <IoHeart className="BsFillHeartFill" />
                         <p className="ml-4 mb-4">My Favorites</p>
                     </div>
-
                 </a>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="dfdf">
+                <a href="DSD">
                     <div className="flex hover:text-main">
-                        <FaRegBookmark className="mt-1" />
+                        <BsFillBookmarkHeartFill className="BsFillHeartFill" />
                         <p className="ml-4 mb-4">Saved</p>
                     </div>
 
@@ -79,14 +81,14 @@ const MenuConfig = ({ changeForm, show }) => {
             <li className="space-x-2 border-b px-4">
                 <a href="dfdf">
                     <div className="flex hover:text-main">
-                        <BiMessageRoundedDetail className="mt-1" />
+                        <RiMessage2Fill className="mt-1" />
                         <p className="ml-4 mb-4">Contact</p>
                     </div>
 
                 </a>
             </li>
             <li className="space-x-2 px-4">
-                <a onClick={handleLougoutClick} href="">
+                <a onClick={handleLougoutClick} href="dfdf">
                     <div className="flex hover:text-main">
                         <AiOutlineLogout className="mt-1" />
                         <p className="ml-4 ">Log Out</p>
