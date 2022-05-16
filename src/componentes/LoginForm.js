@@ -1,9 +1,34 @@
+import { useState } from "react";
 import Logo from "../assets/drafts.png";
 import LoginBg from "../assets/img1.png";
 import PageLogo from "../componentes/PageLogo";
+import { useAuth } from "../contexts/AuthContext";
+import Checkbox from "./Checkbox";
 
 
 const LoginForm = ({ changeForm }) => {
+    const { setAuthInfo } = useAuth();
+
+    const [formData, setFormData] = useState({ email: '', password: '' });
+
+    const handleChange = (e) => {
+        setFormData(prevData => ({
+            ...prevData,
+            [e.target.name]: e.target.value,
+        }));
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (formData.email !== 'client@gmail.com' || formData.password !== 'password') {
+            alert('Las credenciales son incorrectas')
+            return;
+        }
+
+        setAuthInfo({ isAuthenticated: true, user: { name: 'Sr. Pedro Perez' }, token: 'asdfasdfasfd' });
+    }
+
     return (
         <div className="m-auto grid grid-cols-2 w-2/3 bg-main">
             <div style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover' }}>
@@ -15,7 +40,7 @@ const LoginForm = ({ changeForm }) => {
                     </div>
                 </div>
             </div>
-            <div className="p-4">
+            <form onSubmit={handleSubmit} className="p-4">
                 <div className="text-center">
                     <PageLogo centered />
                     <h1 className="mt-4 text-2xl text-white font-bold">Login</h1>
@@ -23,17 +48,26 @@ const LoginForm = ({ changeForm }) => {
                 </div>
                 <div className="text-white ">
                     <p className="font-bold mt-4">E-Mail Address</p>
-                    <div className="border border-slate-100 rounded-md text-white py-2 px-2">
-                        <p>E-Mail Address</p>
-                    </div>
+                    <input
+                        className="border border-slate-100 rounded-md text-white py-2 px-2 w-full text-black"
+                        placeholder="E-Mail Address"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
                     <p className="font-bold">Password</p>
-                    <div className="border border-slate-100 rounded-md text-white py-2 px-2">
-                        <p>Password</p>
-                    </div>
+                    <input
+                        className="border border-slate-100 rounded-md text-white py-2 px-2 w-full text-black"
+                        placeholder="Password"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
                 </div>
-                <div className="flex mx-2 my-2">
-                    <div className="cursor-pointer mt-1.5 ml-2 border border-slate-100 rounded text-white h-4 w-4">
-                    </div>
+                <div className="flex mx-2 my-2 ">
+                    <Checkbox className="mt-1.5" />
                     <p className="text-white ml-2" >remember me</p>
                 </div>
                 <div className="text-center">
@@ -48,7 +82,7 @@ const LoginForm = ({ changeForm }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
