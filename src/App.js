@@ -33,8 +33,6 @@ function App() {
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
-          <Route path="/paymentmethod" element={<PaymentMethod />} />
-
           <Route element={<MyAccountLayout />}>
             <Route path="/overview" element={<OverviewUser />} />
 
