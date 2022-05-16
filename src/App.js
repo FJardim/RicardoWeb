@@ -14,6 +14,7 @@ import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
 import CombosDetail from "./pages/CombosDetail";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +32,7 @@ function App() {
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
+         
          
         </Routes>
       </AppLayout>
