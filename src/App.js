@@ -12,7 +12,6 @@ import BlogChef from "./pages/BlogChef";
 import Sellers from "./pages/Sellers";
 import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
-import PaymentMethod from "./pages/PaymentMethod";
 import CombosDetail from "./pages/CombosDetail";
 import MyAccountLayout from "./componentes/MyAccountLayout";
 import OverviewUser from "./pages/OverviewUser";
