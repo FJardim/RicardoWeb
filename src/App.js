@@ -14,6 +14,7 @@ import RecipesDetail from "./pages/RecipesDetail";
 import Plans from "./pages/Plans";
 import PaymentMethod from "./pages/PaymentMethod";
 import CombosDetail from "./pages/CombosDetail";
+import MyAccountLayout from "./componentes/MyAccountLayout";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/paymentmethod" element={<PaymentMethod />} />
+          <Route element={<MyAccountLayout />}>
+            <Route path="/overview" element={'probando'} />
+          </Route>
         </Routes>
       </AppLayout>
     </BrowserRouter>

@@ -1,15 +1,16 @@
 import { BsPatchCheckFill } from "react-icons/bs";
+
 const BannerChef = ({ foto, name, description, recipes, plans, pack }) => {
   return (
     <div
       className=" w-full flex justify-center items-center rounded-lg"
       style={{ background: `url(${foto})`, backgroundSize: "100% 100%" }}
     >
-      <div>
+      <div className="">
         <div className="flex justify-center items-center mt-6">
           <img
             src="https://5.imimg.com/data5/PD/LS/MY-21970292/women-s-chef-uniform-500x500.jpg"
-            className="h-20 w-20 rounded-full items-center"
+            className="h-20 w-20 rounded-full items-center" alt=""
           />
         </div>
 

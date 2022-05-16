@@ -41,6 +41,7 @@ const SwiperRecipes = () => {
                         img={Bebida}
                     />
                 </SwiperSlide>
+
             </Swiper>
         </>
     );
