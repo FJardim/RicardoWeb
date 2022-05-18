@@ -2,11 +2,12 @@ import { FaUserCircle } from "react-icons/fa";
 import { BsFillBookmarkHeartFill, BsFillGearFill, BsFillCalendar2MinusFill } from "react-icons/bs";
 import { RiMessage2Fill } from "react-icons/ri";
 import { AiOutlineLogout } from "react-icons/ai";
-import { FaListAlt, FaRegBookmark } from "react-icons/fa";
+import { FaListAlt } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
 import {
     IoHeart
 } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const MenuConfig = ({ changeForm, show }) => {
     const { setAuthInfo } = useAuth();
@@ -44,48 +45,47 @@ const MenuConfig = ({ changeForm, show }) => {
                 </a>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="dfdf">
+                <Link to={'/overview'}>
                     <div className="flex hover:text-main">
                         <BsFillCalendar2MinusFill className="mt-1" />
                         <p className="ml-4 mb-4">Overview</p>
                     </div>
 
-                </a>
+                </Link>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="DSD">
+                <Link to={"/favorites"}>
                     <div className="flex hover:text-main">
-                        <IoHeart className="BsFillHeartFill" />
+                        <IoHeart className="mt-1" />
                         <p className="ml-4 mb-4">My Favorites</p>
                     </div>
-                </a>
+                </Link>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="DSD">
+                <Link to={'/saves'}>
                     <div className="flex hover:text-main">
-                        <BsFillBookmarkHeartFill className="BsFillHeartFill" />
+                        <BsFillBookmarkHeartFill className="mt-1" />
                         <p className="ml-4 mb-4">Saved</p>
                     </div>
-
-                </a>
+                </Link>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="dfdf">
+                <Link to={'/shopping'}>
                     <div className="flex hover:text-main">
                         <FaListAlt className="mt-1" />
                         <p className="ml-4 mb-4">My Shopping List</p>
                     </div>
 
-                </a>
+                </Link>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="dfdf">
+                <Link to={'/contactus'}>
                     <div className="flex hover:text-main">
                         <RiMessage2Fill className="mt-1" />
                         <p className="ml-4 mb-4">Contact</p>
                     </div>
 
-                </a>
+                </Link>
             </li>
             <li className="space-x-2 px-4">
                 <a onClick={handleLougoutClick} href="dfdf">

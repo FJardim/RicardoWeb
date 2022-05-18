@@ -15,8 +15,13 @@ import Plans from "./pages/Plans";
 import CombosDetail from "./pages/CombosDetail";
 import MyAccountLayout from "./componentes/MyAccountLayout";
 import OverviewUser from "./pages/OverviewUser";
+import MyFavoritesUser from "./pages/MyFavoritesUser";
+import Contactus from "./pages/Contactus";
+import MyShoppingList from "./pages/MyShoppingList";
+import Saves from "./pages/Saves";
 import AccountInfo from "./pages/AccountInfo";
 import Configuration from "./pages/Configuration"
+
 
 function App() {
   return (
@@ -37,6 +42,10 @@ function App() {
           <Route path="/plans" element={<Plans />} />
           <Route element={<MyAccountLayout />}>
             <Route path="/overview" element={<OverviewUser />} />
+            <Route path="/favorites" element={<MyFavoritesUser />} />
+            <Route path="/shopping" element={<MyShoppingList />} />
+            <Route path="/contactus" element={<Contactus />} />
+            <Route path="/saves" element={<Saves />} />
             <Route path="/accountinfo" element={<AccountInfo />} />
             <Route path="/configuration" element={<Configuration />} />
           </Route>

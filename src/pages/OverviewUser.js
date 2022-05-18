@@ -1,5 +1,6 @@
 import BoxName from "../componentes/BoxName";
 import ButtonOverview from "../componentes/ButtonOverview";
+import LyOverview from "../componentes/LyOverview";
 
 const OverviewUser = () => {
     return (
@@ -13,13 +14,24 @@ const OverviewUser = () => {
                 <BoxName name="thursday" />
                 <BoxName name="Friday" />
                 <BoxName name="Saturday" />
+                <div className="grig grid-rows-4 gap-48 ">
+                    <LyOverview name="B" />
+                    <LyOverview name="S" />
+                    <LyOverview name="L" />
+                    <LyOverview name="S" />
+                    <LyOverview name="D" />
+                </div>
+
+
             </div>
-            <ButtonOverview name="Breakfact" />
-            <ButtonOverview name="Morning Snack" />
-            <ButtonOverview name="Lunch" />
-            <ButtonOverview name="Afternoon Snack" />
-            <ButtonOverview name="Dinner" />
-            <ButtonOverview name="Opctional Snacks" />
+            <div className="mt-8 px-20 py-2">
+                <ButtonOverview name="Breakfact" />
+                <ButtonOverview name="Morning Snack" />
+                <ButtonOverview name="Lunch" />
+                <ButtonOverview name="Afternoon Snack" />
+                <ButtonOverview name="Dinner" />
+                <ButtonOverview name="Opctional Snacks" />
+            </div>
         </div>
     );
 }
