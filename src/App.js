@@ -15,6 +15,8 @@ import Plans from "./pages/Plans";
 import CombosDetail from "./pages/CombosDetail";
 import MyAccountLayout from "./componentes/MyAccountLayout";
 import OverviewUser from "./pages/OverviewUser";
+import AccountInfo from "./pages/AccountInfo";
+import Configuration from "./pages/Configuration"
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
           <Route path="/plans" element={<Plans />} />
           <Route element={<MyAccountLayout />}>
             <Route path="/overview" element={<OverviewUser />} />
+            <Route path="/accountinfo" element={<AccountInfo />} />
+            <Route path="/configuration" element={<Configuration />} />
           </Route>
         </Routes>
       </AppLayout>
