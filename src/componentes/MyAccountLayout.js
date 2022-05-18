@@ -5,7 +5,7 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import { FaListAlt } from "react-icons/fa";
 import { RiMessage2Fill } from "react-icons/ri";
 import { AiOutlineLogout } from "react-icons/ai";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const MyAccountLayout = () => {
 
@@ -13,9 +13,12 @@ const MyAccountLayout = () => {
 
     const [show, setShow] = useState(false);
 
+    const location = useLocation();
+
     useEffect(() => {
-        setCurrentPath(window?.location?.pathname);
-    }, [window?.location?.pathname, setCurrentPath]);
+        setCurrentPath(location?.pathname);
+        console.log(location);
+    }, [location]);
 
     return (
         <div className="flex">
@@ -35,39 +38,39 @@ const MyAccountLayout = () => {
                     </Link>
                 </div>
                 <div>
-                    <Link title="Overview" to={'//my-account/cards'}>
+                    <Link title="Overview" to={'/overview'}>
                         <BsFillCalendar2MinusFill className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
-                            'text-main': currentPath === '/my-account/orders'
+                            'text-main': currentPath === '/overview'
                         })}></BsFillCalendar2MinusFill>
                     </Link>
                 </div>
                 <div>
-                    <Link title="My Favorites" to={'//my-account/cards'}>
+                    <Link title="My Favorites" to={'/favorites'}>
                         <BsFillHeartFill className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
-                            'text-main': currentPath === '/my-account/orders'
+                            'text-main': currentPath === '/favorites'
                         })}></BsFillHeartFill>
                     </Link>
                 </div>
                 <div>
-                    <Link title="Saved" to={'//my-account/cards'}>
+                    <Link title="Saved" to={'/saves'}>
                         <BsFillBookmarkHeartFill className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
-                            'text-main': currentPath === '/my-account/orders'
+                            'text-main': currentPath === '/saves'
                         })}></BsFillBookmarkHeartFill>
                     </Link>
                 </div>
 
 
                 <div>
-                    <Link title="My Shopping List" to={'/my-account/cards'}>
+                    <Link title="My Shopping List" to={'/shopping'}>
                         <FaListAlt className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
-                            'text-main': currentPath === '/my-account/cards'
+                            'text-main': currentPath === '/shopping'
                         })}></FaListAlt>
                     </Link>
                 </div>
                 <div>
-                    <Link title="Contact" to={'/my-account/cards'}>
+                    <Link title="Contact" to={'/contactus'}>
                         <RiMessage2Fill className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
-                            'text-main': currentPath === '/my-account/cards'
+                            'text-main': currentPath === '/contactus'
                         })}></RiMessage2Fill>
                     </Link>
                 </div>
