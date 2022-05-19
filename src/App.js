@@ -22,7 +22,7 @@ import Saves from "./pages/Saves";
 import AccountInfo from "./pages/AccountInfo";
 import Configuration from "./pages/Configuration"
 import MealPlanOverview from "./pages/MealPlanOverview";
-
+import PaymentMethod from "./pages/PaymentMethod"
 
 function App() {
   return (
@@ -41,6 +41,7 @@ function App() {
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
+          <Route path="/payment" element={<PaymentMethod />} />
           <Route element={<MyAccountLayout />}>
             <Route path="/overview" element={<OverviewUser />} />
             <Route path="/favorites" element={<MyFavoritesUser />} />
