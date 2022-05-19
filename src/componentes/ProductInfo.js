@@ -10,6 +10,7 @@ import Wallmart from "../assets/Img-button/wallmart.jpeg";
 import Instacart from "../assets/Img-button/instacart.jpg";
 import Paypal from "../assets/Img-button/paypal-logo.png";
 import ButtonImage from "./ButtonImage";
+import Details from "./Details";
 
 const ProductInfo = ({
     name,
@@ -46,30 +47,15 @@ const ProductInfo = ({
             </div>
 
             <div className='py-6 grid grid-cols-2 gap-4 text-xl text-gray-400'>
-                <div>
-                    <div className='flex py-2 '>
-                        <p className="w-1/2">Level</p>
-                        <div className='flex '>
-                            <img className="w-5 h-5" src={Chefs} alt="chefs" />
-                            <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
-                            <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
-                            <img className="ml-2 w-5 h-5" src={Chefs} alt="chefs" />
-                        </div>
-                    </div>
-                    <div className='flex py-2 '>
-                        <p className="w-1/2">Category:</p>
-                        <p className="w-1/2 text-black">Fitness</p>
-                    </div>
-                    <div className='flex py-2 '>
-                        <p className="w-1/2">Time:</p>
-                        <p className="w-1/2 text-main underline">60-90 days</p>
-                    </div>
-                    <div className='flex py-2 '>
-                        <p className="w-1/2">Ingredients:</p>
-                        <p className="w-1/2 text-black">6</p>
-                    </div>
-
-                </div>
+                <Details
+                    level="Level"
+                    categories="Categoria"
+                    fitness="Lunch"
+                    time="time"
+                    days="60-90 days"
+                    ingredients="Ingredients"
+                    number="6"
+                />
                 <div className='m-2 '>
                     <p className="w-1/2 mb-4">Pucharse in:</p>
 
