@@ -9,9 +9,9 @@ const PaymentMethod = () => {
   return (
     <div className="p-8 flex mt-14 ml-8 mb-12">
       <div className="w-1/2">
-        <CardWithTitle>
+       
           <CardPaypal title="Add Paypal" text="Modificar" />
-        </CardWithTitle>
+        
         <div className="mt-6 ">
           <CardWithTitle title="Order Sellers">
             <CardOrder title="Sellers" chef="Anya Taylor" />
@@ -33,9 +33,9 @@ const PaymentMethod = () => {
       </div>
 
       <div className=" ml-8 w-4/12">
-        <CardWithTitle>
+       
           <CardResum title="Orden Resum" total="Total a Pagar" price="$35.23" />
-        </CardWithTitle>
+       
       </div>
     </div>
   );
