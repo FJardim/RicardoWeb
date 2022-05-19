@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import Checkbox from "./Checkbox";
 
 
-const LoginForm = ({ changeForm }) => {
+const LoginForm = ({ changeForm, onClose }) => {
     const { setAuthInfo } = useAuth();
 
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -21,12 +21,13 @@ const LoginForm = ({ changeForm }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.email !== 'client@gmail.com' || formData.password !== 'password') {
+        if (formData.email !== 'client@gmail.com' || formData.password !== '123456') {
             alert('Las credenciales son incorrectas')
             return;
         }
 
         setAuthInfo({ isAuthenticated: true, user: { name: 'Sr. Pedro Perez' }, token: 'asdfasdfasfd' });
+        onClose()
     }
 
     return (

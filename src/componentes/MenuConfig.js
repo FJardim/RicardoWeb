@@ -24,25 +24,25 @@ const MenuConfig = ({ changeForm, show }) => {
 
     return (
         <ul
-            style={{ top: '100%', zIndex: 10, right: 0 }}
-            className="absolute space-y-2 text-white bg-gray-800 w-48 border border-slate-300 rounded-md py-4"
+            style={{ top: '100%' }}
+            className="absolute space-y-2 z-20 right-0 text-white bg-gray-800 w-48 border border-slate-300 rounded-md py-4"
         >
             <li className="space-x-2 border-b px-4">
-                <a href="dfd" value="dfdf">
+                <Link to={"/accountinfo"}>
                     <div className="flex hover:text-main">
                         <FaUserCircle className="mt-1" />
                         <p className="ml-4 mb-4">My Profile</p>
                     </div>
-                </a>
+                </Link>
             </li>
             <li className="space-x-2 border-b px-4">
-                <a href="dfd">
+                <Link to={"/configuration"}>
                     <div className="flex hover:text-main">
                         <BsFillGearFill className="mt-1" />
                         <p className="ml-4 mb-4">Setting</p>
                     </div>
+                </Link>
 
-                </a>
             </li>
             <li className="space-x-2 border-b px-4">
                 <Link to={'/overview'}>

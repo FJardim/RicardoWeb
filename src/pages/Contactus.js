@@ -23,7 +23,7 @@ const Contactus = () => {
                         placeholder="Your Massager...">
                     </textarea>
                     <div className="m-4 text-right">
-                        <button className="bg-main text-white px-6 py-2 hover:bg-main-dark font-semibold rounded-lg">
+                        <button className="bg-main text-white px-6 py-2 hover:bg-main-light font-semibold rounded-lg">
                             send Message
                         </button>
                     </div>

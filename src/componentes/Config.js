@@ -1,5 +1,6 @@
 import React from "react";
 import CheckboxConfig from "../componentes/CheckboxConfig";
+import ButtonChange from "./ButtonChange";
 
 const LanguageConfig = ({ title, spam }) => {
   return (
@@ -12,8 +13,8 @@ const LanguageConfig = ({ title, spam }) => {
           >
             {title}
           </label>
-           <div>
-          <CheckboxConfig />
+          <div>
+            <CheckboxConfig />
           </div>
         </div>
         <div className="grid grid-cols-4 ml-4">
@@ -23,14 +24,12 @@ const LanguageConfig = ({ title, spam }) => {
           >
             {spam}
           </label>
-           <div>
-          <CheckboxConfig />
+          <div>
+            <CheckboxConfig />
           </div>
         </div>
         <div className="flex justify-end ">
-          <button className="bg-main px-4 py-2 text-white font-semibold rounded-lg">
-            Change
-          </button>
+          <ButtonChange />
         </div>
       </div>
     </div>

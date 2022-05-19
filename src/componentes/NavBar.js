@@ -37,7 +37,7 @@ const NavBar = () => {
                             <button onClick={handleLogin} className="flex relative items-center hover:text-main bg-transparent 
                                     bg-gray-800 border border-slate-300 rounded-md py-2 px-2.5">
                                 <FaUserCircle className="mr-2" />
-                                {user ? user.name : 'Iniciar Sesion'}
+                                {user ? user.name : 'Log in'}
                                 <MenuConfig show={showMenu} />
                             </button>
                         </div>
