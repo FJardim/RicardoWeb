@@ -17,6 +17,7 @@ import MyAccountLayout from "./componentes/MyAccountLayout";
 import OverviewUser from "./pages/OverviewUser";
 import AccountInfo from "./pages/AccountInfo";
 import Configuration from "./pages/Configuration"
+import PaymentMethod from "./pages/PaymentMethod"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/recipes/:slug" element={<RecipesDetail />} />
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
+          <Route path="/payment" element={<PaymentMethod />} />
           <Route element={<MyAccountLayout />}>
             <Route path="/overview" element={<OverviewUser />} />
             <Route path="/accountinfo" element={<AccountInfo />} />
