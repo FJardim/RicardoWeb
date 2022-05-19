@@ -1,7 +1,7 @@
 import React from "react";
 import womenchef from "../assets/womenchef.jpg";
 import { BsPatchCheckFill } from "react-icons/bs";
-import Details from "../componentes/Details";
+
 const CardOrder = ({title,chef}) => {
   return (
     <div className="mb-6">
