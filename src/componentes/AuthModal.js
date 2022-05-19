@@ -28,7 +28,7 @@ const AuthModal = ({ show, onClose }) => {
         <div ref={modalRef} onClick={handleClose} className="flex h-screen w-screen bg-black bg-opacity-50 fixed z-10" style={{ top: 0, left: 0 }}>
             {
                 showForm === 'login' &&
-                <LoginForm changeForm={handleForm} />
+                <LoginForm changeForm={handleForm} onClose={onClose} />
             }
 
             {

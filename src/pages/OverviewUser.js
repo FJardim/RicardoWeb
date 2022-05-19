@@ -4,8 +4,8 @@ import LyOverview from "../componentes/LyOverview";
 
 const OverviewUser = () => {
     return (
-        <div className="container p-4 mt-6">
-            <p className="text-4xl font-bold text-black">Overview</p>
+        <div className="container p-20 h-full w-full mb-20">
+            <p className="text-4xl font-bold text-black ">Overview</p>
             <div className="grid grid-cols-8 px-2 py-2 mt-10">
                 <BoxName name="Sunday" />
                 <BoxName name="Monday" />

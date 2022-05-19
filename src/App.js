@@ -21,6 +21,7 @@ import MyShoppingList from "./pages/MyShoppingList";
 import Saves from "./pages/Saves";
 import AccountInfo from "./pages/AccountInfo";
 import Configuration from "./pages/Configuration"
+import MealPlanOverview from "./pages/MealPlanOverview";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
             <Route path="/saves" element={<Saves />} />
             <Route path="/accountinfo" element={<AccountInfo />} />
             <Route path="/configuration" element={<Configuration />} />
+            <Route path="/meanplanoverview" element={<MealPlanOverview />} />
           </Route>
         </Routes>
       </AppLayout>

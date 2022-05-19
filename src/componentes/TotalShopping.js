@@ -1,4 +1,4 @@
-const TotalShopping = ({ img, price }) => {
+const TotalShopping = ({ img }) => {
     return (
         <div className="p-4">
             <div className="bg-white">
