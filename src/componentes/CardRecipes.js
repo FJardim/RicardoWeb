@@ -17,7 +17,7 @@ const CardRecipes = ({ texto, parrafo, foto, title, hideButtons = false }) => {
           <div className="absolute flex left-1 top-1 bg-main-dark rounded-lg opacity-70">
             <p className="text-white h-6 w-15 ml-1 ">150 $  </p>
           </div>
-          <div className="absolute flex z-10 top-3 right-3 flex justify-end text-white">
+          <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
             <div className="flex mr-2">
               <img src={BolsaCompras} className="h-5 w-5 text-white m-auto" alt="BolsaCompras" />
               <p className="text-white h-5 w-15 ml-1">5</p>

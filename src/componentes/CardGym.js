@@ -1,10 +1,10 @@
 import PremiumIcon from "../assets/PremiumIcon.svg";
 import Matches from "../componentes/Matches";
-const BannerChef = ({ foto, name, description }) => {
+const BannerChef = ({ foto, name, description, hideButtons }) => {
   return (
-    <div>
+    <div className="bg-white w-full rounded-xl overflow-hidden">
       <div
-        className="w-full flex flex-col justify-center items-center p-5 mb-6 rounded-lg"
+        className="w-full flex flex-col justify-center items-center p-4 rounded-lg"
         style={{ background: `url(${foto})`, backgroundSize: "100% 100%" }}
       >
         <div className="flex -mr-36">
@@ -22,8 +22,12 @@ const BannerChef = ({ foto, name, description }) => {
         </div>
 
       </div>
-      <div className="flex">
-        <Matches />
+      <div >
+        {!hideButtons &&
+          <div className="p-2">
+            <Matches />
+          </div>
+        }
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ const ButtonSearch = () => {
                     borderRadius: category === 'recipes' && `0 0 0 0`
                 }}
                 className={clsx(['px-2'], {
-                    'bg-white w-full underline underline-offset-8 decoration-main': category === 'recipes'
+                    'bg-white w-20 underline underline-offset-8 decoration-main': category === 'recipes'
                 })}>
                 <p> Palls</p>
             </button>

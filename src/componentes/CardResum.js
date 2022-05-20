@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import paypal from "../assets/paypaltransp.png";
 import PaypalModal from "./PaypalModal";
 
-const CardResum = ({title, total, price}) => {
+const CardResum = ({ title, total, price }) => {
   const [showPaypalModal, setShowPaypalModal] = useState(false);
-  
+
   return (
     <div className="bg-white shadow p-3 rounded-lg ">
       <div>

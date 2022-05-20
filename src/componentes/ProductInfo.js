@@ -11,6 +11,7 @@ import Instacart from "../assets/Img-button/instacart.jpg";
 import Paypal from "../assets/Img-button/paypal-logo.png";
 import ButtonImage from "./ButtonImage";
 import Details from "./Details";
+import { Link } from "react-router-dom";
 
 const ProductInfo = ({
     name,
@@ -29,7 +30,7 @@ const ProductInfo = ({
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
                     <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><BsFillEmojiLaughingFill className="text-yellow-300" /></button>
-                    <IoHeartOutline className='text-main w-10 h-10' />
+                    <IoHeartOutline className='text-main cursor-pointer w-10 h-10' />
                 </div>
 
             </div>
@@ -42,8 +43,11 @@ const ProductInfo = ({
                 <AiOutlineStar className="mt-2 text-gray-300" />
                 <p className='text-gray-300 text-xs m-2 underline'>(1 customer review)</p>
             </div>
-            <div className='py-4'>
-                {ingredients.map(ingredient => <div key={ingredient.id}>{ingredient.name}</div>)}
+            <div className='bg-white rounded-lg py-4'>
+                <div className="m-8">
+                    {ingredients.map(ingredient => <div key={ingredient.id}>{ingredient.name}</div>)}
+
+                </div>
             </div>
 
             <div className='py-6 grid grid-cols-2 gap-4 text-xl text-gray-400'>
@@ -64,7 +68,7 @@ const ProductInfo = ({
                         <ButtonImage image={Amazon} />
                         <ButtonImage image={Wallmart} />
                     </>}
-                    {showPaypalButton && <ButtonImage image={Paypal} />}
+                    {showPaypalButton && <Link to="/payment" ><ButtonImage image={Paypal} /></Link>}
                 </div>
             </div>
             <div className="flex grid grid-cols-2 gap-4 items-center m-4 p-4 bg-white rounded-md mt-10">

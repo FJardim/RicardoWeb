@@ -9,6 +9,8 @@ import SwiperOverview from "../componentes/SwiperOverview";
 import { Link } from "react-router-dom";
 import MealPlanOverviewImages from "../componentes/MealPlanOverviewImages";
 import MealDetailOverview from "../componentes/MealDetailOverview";
+import Recipes from "../componentes/Recipes";
+import CardRecipes from "../componentes/CardRecipes";
 
 const MealPlanOverview = () => {
     return (
@@ -97,7 +99,74 @@ const MealPlanOverview = () => {
                 <div className="h-full w-full ">
                     <div className="p-2 bg-white rounded-lg shadow">
                         <div className="mt-10 grid grid-cols-3 gap-x-10 gap-y-10">
-                            <MealDetailOverview source={Imagen1} text={"Burger"} />
+                            <CardRecipes
+                                texto="Coca-cola"
+                                parrafo="Ricardo App Team"
+                                title="Coca-cola"
+                                foto={Imagen5}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Pizza and Peperoni"
+                                parrafo="Ricardo App Team"
+                                title="Pizza"
+                                foto={Imagen2}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Tacos al Pastor"
+                                parrafo="Ricardo App Team"
+                                title="Burger"
+                                foto={Imagen1}
+                                hideButtons
+                            />
+
+                            <CardRecipes
+                                texto="Tacos al Pastor"
+                                parrafo="Ricardo App Team"
+                                title="Dinner"
+                                foto={Imagen1}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Tacos al Pastor"
+                                parrafo="Ricardo App Team"
+                                title="Papitas"
+                                foto={Imagen3}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Pasticho Venezolano"
+                                parrafo="Ricardo App Team"
+                                title="Dinner"
+                                foto={Pasticho}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Tacos al Pastor"
+                                parrafo="Ricardo App Team"
+                                title="Dinner"
+                                foto={Pasticho}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Tacos al Pastor"
+                                parrafo="Ricardo App Team"
+                                title="Dinner"
+                                foto={Imagen2}
+                                hideButtons
+                            />
+                            <CardRecipes
+                                texto="Tacos al Pastor"
+                                parrafo="Ricardo App Team"
+                                title="Dinner"
+                                foto={Imagen3}
+                                hideButtons
+                            />
+
+
+
+                            {/* <MealDetailOverview source={Imagen1} text={"Burger"} />
                             <MealDetailOverview source={Imagen2} text={"Fries"} />
                             <MealDetailOverview source={Imagen3} text={"Pizza"} />
                             <MealDetailOverview source={Imagen4} text={"Lasagna"} />
@@ -108,7 +177,7 @@ const MealPlanOverview = () => {
                             <MealDetailOverview source={Imagen3} text={"Pizza"} />
                             <MealDetailOverview source={Imagen1} text={"Burger"} />
                             <MealDetailOverview source={Imagen5} text={"Coca-cola"} />
-                            <MealDetailOverview source={Pasticho} text={"Pasticho"} />
+                            <MealDetailOverview source={Pasticho} text={"Pasticho"} /> */}
                         </div>
                     </div>
                 </div>
