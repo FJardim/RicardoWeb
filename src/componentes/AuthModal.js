@@ -25,7 +25,7 @@ const AuthModal = ({ show, onClose }) => {
     }
 
     return ReactDom.createPortal(
-        <div ref={modalRef} onClick={handleClose} className="animate__animated animate__fadeInUp flex h-screen w-screen bg-black bg-opacity-50 fixed z-10" style={{ top: 0, left: 0 }}>
+        <div ref={modalRef} onClick={handleClose} className="flex h-screen w-screen bg-black bg-opacity-50 fixed z-10" style={{ top: 0, left: 0 }}>
             {
                 showForm === 'login' &&
                 <LoginForm changeForm={handleForm} onClose={onClose} />
