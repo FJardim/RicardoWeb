@@ -39,8 +39,8 @@ function App() {
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/plan/:slug" element={<PlanDetail />} />
             <Route path="/combos" element={<Combos />} />
-            <Route path="/recipeschef/:slug" element={<RecipesChef />} />
-            <Route path="/comboschef/:slug" element={<CombosChef />} />
+            <Route path="/sellers/:slug/recipes" element={<RecipesChef />} />
+            <Route path="/sellers/:slug/combos" element={<CombosChef />} />
             <Route path="/blogchef" element={<BlogChef />} />
             <Route path="/sellers" element={<Sellers />} />
             <Route path="/recipes/:slug" element={<RecipesDetail />} />
