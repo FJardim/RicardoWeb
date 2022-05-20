@@ -7,7 +7,7 @@ import { BsPaypal } from "react-icons/bs";
 
 const RegisterForm = ({ changeForm }) => {
     return (
-        <div className="m-auto grid grid-cols-2  bg-main">
+        <div className="m-auto grid grid-cols-2 bg-main">
             <div style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover' }}>
                 <div className="flex h-full w-full bg-black bg-opacity-50 p-4">
                     <div className="m-auto" >
@@ -17,7 +17,7 @@ const RegisterForm = ({ changeForm }) => {
                     </div>
                 </div>
             </div>
-            <form className="p-4">
+            <form className="p-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                 <div className="text-center">
                     <PageLogo centered />
                     <h1 className="mt-4 text-2xl text-white font-bold">Registration</h1>

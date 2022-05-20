@@ -8,7 +8,7 @@ const SearchHome = () => {
                 <ButtonSearch />
                 <div className="relative text-white text-center text-base">
                     <input
-                        className='h-12 border-gray-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50 
+                        className='text-black h-12 border-gray-300 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50 
                             leading-4 border-0 rounded-bl-lg rounded-r-lg w-full top-0 right-0'
                         type="text"
                         placeholder="Enter the item you are looking for or a characteristic (example:Rice, Sushi)..." />

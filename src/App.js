@@ -23,6 +23,7 @@ import AccountInfo from "./pages/AccountInfo";
 import Configuration from "./pages/Configuration"
 import MealPlanOverview from "./pages/MealPlanOverview";
 import PaymentMethod from "./pages/PaymentMethod"
+import RequireAuth from "./componentes/RequireAuth";
 
 function App() {
   return (
@@ -42,7 +43,11 @@ function App() {
           <Route path="/combos/:slug" element={<CombosDetail />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/payment" element={<PaymentMethod />} />
-          <Route element={<MyAccountLayout />}>
+          <Route element={
+            <RequireAuth>
+              <MyAccountLayout />
+            </RequireAuth>
+          }>
             <Route path="/overview" element={<OverviewUser />} />
             <Route path="/favorites" element={<MyFavoritesUser />} />
             <Route path="/shopping" element={<MyShoppingList />} />

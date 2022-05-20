@@ -1,19 +1,26 @@
 import NavSearchBar from "./NavSearchBar";
 import PageLogo from "./PageLogo";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { BsBell } from "react-icons/bs";
 import AuthModal from "./AuthModal";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import MenuConfig from "./MenuConfig";
 
 const NavBar = () => {
+
+    const [searchParams] = useSearchParams();
+
     const { user } = useAuth();
 
     const [showModal, setShowModal] = useState(false);
 
     const [showMenu, setShowMenu] = useState(false);
+
+    useEffect(() => {
+        setShowModal(searchParams?.get('showLogin'));
+    }, [searchParams])
 
     const handleLogin = () => {
         if (!user) {
@@ -25,7 +32,7 @@ const NavBar = () => {
 
     return (
         <>
-            <div className="bg-gray-800 text-white h-14">
+            <div className="bg-gray-800 text-white h-14 px-4">
                 <div className="container h-full">
                     <div className="flex md:justify-none items-center h-full text-base">
                         <PageLogo />
