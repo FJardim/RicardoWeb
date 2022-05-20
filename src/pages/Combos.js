@@ -4,7 +4,6 @@ import img1 from "../assets/img1.png";
 import collage from "../assets/ImgCombos.jpeg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
-import ButtonSupr from "../componentes/ButtonSupr";
 import MenuLeft from "../componentes/MenuLeft";
 
 const Combos = () => {
@@ -12,7 +11,6 @@ const Combos = () => {
     <div className="">
       <BannerPage image={img1} title="Combos" />
       <div className="container p-8">
-        <ButtonSupr />
       </div>
       <div className="p-6 ">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
