@@ -26,6 +26,7 @@ const Combos = () => {
                     parrafo="Anya Taylor"
                     title=""
                     foto={collage}
+                    hideCart
                   /></Link>
                 );
               })}

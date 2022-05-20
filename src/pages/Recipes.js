@@ -26,6 +26,7 @@ const Recipes = () => {
                     parrafo="Ricardo App Team"
                     title="Dinner"
                     foto={Tacos}
+                    hideCart
                   /></Link>
                 );
               })}

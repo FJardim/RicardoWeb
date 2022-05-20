@@ -105,6 +105,7 @@ const MealPlanOverview = () => {
                                 title="Coca-cola"
                                 foto={Imagen5}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Pizza and Peperoni"
@@ -112,6 +113,7 @@ const MealPlanOverview = () => {
                                 title="Pizza"
                                 foto={Imagen2}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Tacos al Pastor"
@@ -119,6 +121,7 @@ const MealPlanOverview = () => {
                                 title="Burger"
                                 foto={Imagen1}
                                 hideButtons
+                                hideCart
                             />
 
                             <CardRecipes
@@ -127,6 +130,7 @@ const MealPlanOverview = () => {
                                 title="Dinner"
                                 foto={Imagen1}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Tacos al Pastor"
@@ -134,6 +138,7 @@ const MealPlanOverview = () => {
                                 title="Papitas"
                                 foto={Imagen3}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Pasticho Venezolano"
@@ -141,6 +146,7 @@ const MealPlanOverview = () => {
                                 title="Dinner"
                                 foto={Pasticho}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Tacos al Pastor"
@@ -148,6 +154,7 @@ const MealPlanOverview = () => {
                                 title="Dinner"
                                 foto={Pasticho}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Tacos al Pastor"
@@ -155,6 +162,7 @@ const MealPlanOverview = () => {
                                 title="Dinner"
                                 foto={Imagen2}
                                 hideButtons
+                                hideCart
                             />
                             <CardRecipes
                                 texto="Tacos al Pastor"
@@ -162,6 +170,7 @@ const MealPlanOverview = () => {
                                 title="Dinner"
                                 foto={Imagen3}
                                 hideButtons
+                                hideCart
                             />
 
 

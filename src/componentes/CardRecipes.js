@@ -5,8 +5,9 @@ import womenchef from "../assets/womenchef.jpg"
 import CestaCompras from "../assets/Img-button/cesta-de-la-compra.png";
 import BolsaCompras from "../assets/Img-button/bolsa-de-la-compra.png";
 import { IoArrowRedoOutline } from "react-icons/io5";
+import ButtonCart from "./ButtonCart"
 
-const CardRecipes = ({ texto, parrafo, foto, title, hideButtons = false }) => {
+const CardRecipes = ({ texto, parrafo, foto, title, hideButtons, hideCart = false }) => {
   return (
     <div className="bg-white w-full rounded-xl overflow-hidden">
       <div className="h-64 w-74 relative" style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}>
@@ -53,7 +54,13 @@ const CardRecipes = ({ texto, parrafo, foto, title, hideButtons = false }) => {
           <div className="p-2">
             <Matches />
           </div>
+          
         }
+        {!hideCart &&
+        <div className= "flex justify-center">
+          <ButtonCart/>
+        </div>
+}
       </div>
     </div>
   );
