@@ -12,7 +12,7 @@ const Recipes = () => {
     <div className="">
       <BannerPage image={img1} title="New Recipes" />
       <div className="container p-8">
-        <ButtonSupr />
+        {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">

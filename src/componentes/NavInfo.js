@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const NavInfo = () => {
     return (
-        <div className="bg-main text-white py-4">
+        <div className="bg-main text-black py-4">
             <div className="container relative font-semibold text-base">
                 <div className="flex items-center cursor-pointer relative md:absolute -mt-3  ">
-                    <BiMap className="h-8 w-8 mt-2" />
+                    <BiMap className="text-white h-8 w-8 mt-2" />
                     <div className="flex flex-col text-white ">
 
                     </div>

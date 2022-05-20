@@ -5,14 +5,14 @@ import CardChef from "../componentes/CardChef";
 import banner from "../assets/banner.jpg";
 import ButtomButton from "../componentes/ButtomButton";
 import MenuLeft from "../componentes/MenuLeft";
-import ButtonSupr from "../componentes/ButtonSupr";
+// import ButtonSupr from "../componentes/ButtonSupr";
 
 const Sellers = () => {
   return (
     <div className="">
       <BannerPage image={img1} title="Sellers" />
       <div className="container p-8">
-        <ButtonSupr />
+        {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">

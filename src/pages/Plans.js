@@ -5,7 +5,7 @@ import CardGym from "../componentes/CardGym";
 import girltraining from "../assets/girltraining.jpg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
-import ButtonSupr from "../componentes/ButtonSupr";
+// import ButtonSupr from "../componentes/ButtonSupr";
 import MenuLeft from "../componentes/MenuLeft";
 
 const Sellers = () => {
@@ -13,12 +13,12 @@ const Sellers = () => {
     <div className="">
       <BannerPage image={img1} title="Plans" />
       <div className="container p-8">
-        <ButtonSupr />
+        {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
           <MenuLeft />
-          <div className="md:col-span-3 bg-white ">
+          <div className="md:col-span-3  ">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-10 mr-10 mb-20">
               {[...Array(9).keys()].map((numero, i) => {
                 return (
