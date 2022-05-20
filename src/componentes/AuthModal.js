@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import ReactDom from "react-dom";
 import LoginForm from "./LoginForm";
@@ -14,7 +13,13 @@ const AuthModal = ({ show, onClose }) => {
         return null;
     }
 
-    const handleClose = (e) => {
+    const handleClose = (e, forceClose) => {
+        if (forceClose) {
+            onClose();
+            return;
+        }
+
+
         if (modalRef.current === e.target) {
             onClose();
         }

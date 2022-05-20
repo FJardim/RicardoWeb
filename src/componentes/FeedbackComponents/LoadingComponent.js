@@ -1,3 +1,4 @@
+import ReactDom from "react-dom";
 import { useEffect, useState } from "react";
 
 const LoadingComponent = ({ message, show }) => {
@@ -18,19 +19,21 @@ const LoadingComponent = ({ message, show }) => {
         }
     }, [show]);
 
-    return (
+    return ReactDom.createPortal(
         show ?
-            <div className="vw-100 vh-100 d-flex position-fixed" style={{ zIndex: 99, background: 'rgba(255,255,255, .5)' }}>
+            <div className="w-screen h-screen flex fixed top-0 left-0" style={{ zIndex: 99, background: 'rgba(255,255,255, .8)' }}>
                 <div className="m-auto">
                     <div className="spinner">
-                        <div className="double-bounce1 bg-primary"></div>
-                        <div className="double-bounce2 bg-primary"></div>
+                        <div className="double-bounce1 bg-main"></div>
+                        <div className="double-bounce2 bg-main"></div>
                     </div>
                     <h1 className="text-muted text-2xl">{message}{dots}</h1>
                 </div>
             </div>
             :
             null
+        ,
+        document.getElementById('feedback')
     )
 }
 
