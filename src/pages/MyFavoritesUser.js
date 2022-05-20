@@ -30,6 +30,7 @@ const MyFavoritesUser = () => {
                                         title="Dinner"
                                         foto={Tacos}
                                         hideButtons
+                                        hideCart
                                     /></Link>
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
@@ -37,6 +38,7 @@ const MyFavoritesUser = () => {
                                         title="Dinner"
                                         foto={Tacos}
                                         hideButtons
+                                        hideCart
                                     /></Link>
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
@@ -44,6 +46,7 @@ const MyFavoritesUser = () => {
                                         title="Dinner"
                                         foto={Tacos}
                                         hideButtons
+                                        hideCart
                                     /></Link>
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
@@ -51,6 +54,7 @@ const MyFavoritesUser = () => {
                                         title="Dinner"
                                         foto={Tacos}
                                         hideButtons
+                                        hideCart
                                     /></Link>
                                 </div>
                             </TabPanel>
@@ -62,35 +66,45 @@ const MyFavoritesUser = () => {
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons />
+                                        hideButtons 
+                                        hideCart
+                                        />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons />
+                                        hideButtons 
+                                        hideCart
+                                        />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons />
+                                        hideButtons 
+                                        hideCart
+                                        />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons />
+                                        hideButtons 
+                                        hideCart
+                                        />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons />
+                                        hideButtons 
+                                        hideCart
+                                        />
                                     </Link>
                                 </div>
                             </TabPanel>

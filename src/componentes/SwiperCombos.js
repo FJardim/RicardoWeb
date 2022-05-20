@@ -22,7 +22,8 @@ const SwiperCombos = () => {
                         parrafo="Anya Taylor"
                         title=""
                         foto={Collage}
-                        hideButtons />
+                        hideButtons 
+                        hideCart/>
                 </SwiperSlide>
 
                 <SwiperSlide>
@@ -31,7 +32,8 @@ const SwiperCombos = () => {
                         parrafo="Anya Taylor"
                         title=""
                         foto={Collage}
-                        hideButtons />
+                        hideButtons
+                        hideCart/>
                 </SwiperSlide>
             </Swiper>
         </>

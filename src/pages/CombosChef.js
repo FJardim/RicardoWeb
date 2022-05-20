@@ -43,6 +43,7 @@ const CombosChef = () => {
                   parrafo="Ricardo App Team"
                   title="Dinner"
                   foto={collage}
+                  hideButtons
                 />
               );
             })}

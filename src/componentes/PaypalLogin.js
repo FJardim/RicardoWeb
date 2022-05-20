@@ -19,7 +19,7 @@ const PaypalLogin = ({ title, help, login, create }) => {
           />
 
           <input
-            type="text"
+            type="password" id="password"
             placeholder="****************"
             className="border rounded-lg w-96 mt-6 bg-gray-200"
           />
