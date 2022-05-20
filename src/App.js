@@ -24,41 +24,46 @@ import Configuration from "./pages/Configuration"
 import MealPlanOverview from "./pages/MealPlanOverview";
 import PaymentMethod from "./pages/PaymentMethod"
 import RequireAuth from "./componentes/RequireAuth";
+import { FeedBackProvider } from "./contexts/FeedBackContext";
+import FeedbackComponents from "./componentes/FeedbackComponents/FeedbackComponents";
 
 function App() {
   return (
     <BrowserRouter>
-      <AppLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/plan/:slug" element={<PlanDetail />} />
-          <Route path="/combos" element={<Combos />} />
-          <Route path="/recipessellers/:slug" element={<RecipesChef />} />
-          <Route path="/sellers/:slug/combos" element={<CombosChef />} />
-          <Route path="/blog/:slug" element={<BlogChef />} />
-          <Route path="/sellers" element={<Sellers />} />
-          <Route path="/recipes/:slug" element={<RecipesDetail />} />
-          <Route path="/combos/:slug" element={<CombosDetail />} />
-          <Route path="/plans" element={<Plans />} />
-          <Route path="/payment" element={<PaymentMethod />} />
-          <Route element={
-            <RequireAuth>
-              <MyAccountLayout />
-            </RequireAuth>
-          }>
-            <Route path="/overview" element={<OverviewUser />} />
-            <Route path="/favorites" element={<MyFavoritesUser />} />
-            <Route path="/shopping" element={<MyShoppingList />} />
-            <Route path="/contactus" element={<Contactus />} />
-            <Route path="/saves" element={<Saves />} />
-            <Route path="/accountinfo" element={<AccountInfo />} />
-            <Route path="/configuration" element={<Configuration />} />
-            <Route path="/meanplanoverview" element={<MealPlanOverview />} />
-          </Route>
-        </Routes>
-      </AppLayout>
+      <FeedBackProvider>
+        <FeedbackComponents />
+        <AppLayout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/recipes" element={<Recipes />} />
+            <Route path="/plan/:slug" element={<PlanDetail />} />
+            <Route path="/combos" element={<Combos />} />
+            <Route path="/recipeschef/:slug" element={<RecipesChef />} />
+            <Route path="/comboschef/:slug" element={<CombosChef />} />
+            <Route path="/blogchef" element={<BlogChef />} />
+            <Route path="/sellers" element={<Sellers />} />
+            <Route path="/recipes/:slug" element={<RecipesDetail />} />
+            <Route path="/combos/:slug" element={<CombosDetail />} />
+            <Route path="/plans" element={<Plans />} />
+            <Route path="/payment" element={<PaymentMethod />} />
+            <Route element={
+              <RequireAuth>
+                <MyAccountLayout />
+              </RequireAuth>
+            }>
+              <Route path="/overview" element={<OverviewUser />} />
+              <Route path="/favorites" element={<MyFavoritesUser />} />
+              <Route path="/shopping" element={<MyShoppingList />} />
+              <Route path="/contactus" element={<Contactus />} />
+              <Route path="/saves" element={<Saves />} />
+              <Route path="/accountinfo" element={<AccountInfo />} />
+              <Route path="/configuration" element={<Configuration />} />
+              <Route path="/meanplanoverview" element={<MealPlanOverview />} />
+            </Route>
+          </Routes>
+        </AppLayout>
+      </FeedBackProvider>
     </BrowserRouter>
   );
 }
