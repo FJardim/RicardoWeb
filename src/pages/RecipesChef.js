@@ -43,7 +43,8 @@ const RecipesChef = () => {
                   parrafo="Ricardo App Team"
                   title="Dinner"
                   foto={Tacos}
-                />
+                  hideButtons />
+                
               );
             })}
           </div>
