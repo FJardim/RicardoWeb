@@ -10,9 +10,9 @@ import MenuConfig from "./MenuConfig";
 
 const NavBar = () => {
 
-    const [searchParams] = useSearchParams();
-
     const { user } = useAuth();
+
+    const [searchParams] = useSearchParams();
 
     const [showModal, setShowModal] = useState(false);
 
@@ -22,11 +22,12 @@ const NavBar = () => {
         setShowModal(searchParams?.get('showLogin'));
     }, [searchParams])
 
-    const handleLogin = () => {
-        if (!user) {
-            setShowModal((oldShowModal) => !oldShowModal);
-            return;
-        }
+    const handleToggleModal = () => {
+        setShowModal((oldShowModal) => !oldShowModal);
+        return;
+    }
+
+    const handleToggleMenu = () => {
         setShowMenu((oldShowMenu) => !oldShowMenu);
     }
 
@@ -41,7 +42,7 @@ const NavBar = () => {
                             <Link to={"/Categories"} className="hover:text-main ">Categories</Link>
                             <Link to={"/Sellers"} className="hover:text-main ">Sellers</Link>
                             <button className="hover:text-main "><BsBell className="h-6 w-6 ml-10" /></button>
-                            <button onClick={handleLogin} className="flex relative items-center hover:text-main bg-transparent 
+                            <button onClick={user ? handleToggleMenu : handleToggleModal} className="flex relative items-center hover:text-main bg-transparent 
                                     bg-gray-800 border border-slate-300 rounded-md py-2 px-2.5">
                                 <FaUserCircle className="mr-2" />
                                 {user ? user.name : 'Log in'}
@@ -51,7 +52,7 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-            <AuthModal show={showModal} onClose={handleLogin} />
+            <AuthModal show={showModal} onClose={handleToggleModal} />
         </>
     );
 }

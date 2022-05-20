@@ -10,6 +10,8 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
+    "axios": "^0.27.2",
+    "axios-hooks": "^3.0.4",
     "clsx": "^1.1.1",
     "mdb-ui-kit": "^4.0.0",
     "react": "^18.0.0",
@@ -19,6 +21,7 @@
     "react-player": "^2.10.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.1",
     "react-twitch-embed-video": "^3.0.2",
     "swiper": "^8.1.4",
     "web-vitals": "^2.1.4"

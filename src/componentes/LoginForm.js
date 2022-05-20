@@ -1,15 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../assets/drafts.png";
 import LoginBg from "../assets/img1.png";
 import PageLogo from "../componentes/PageLogo";
 import { useAuth } from "../contexts/AuthContext";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import useAxios from "../hooks/useAxios";
 import Checkbox from "./Checkbox";
 
 
 const LoginForm = ({ changeForm, onClose }) => {
+
     const { setAuthInfo } = useAuth();
 
+    const { setLoading } = useFeedBack();
+
     const [formData, setFormData] = useState({ email: '', password: '' });
+
+    const [{ data: loginData, loading: loginLoading }, login] = useAxios({ url: '/auth/login', method: 'POST' }, { manual: true, useCache: false });
+
+    useEffect(() => {
+        setLoading({
+            show: loginLoading,
+            message: 'Login'
+        })
+    }, [loginLoading]);
+
+    useEffect(() => {
+        if (loginData) {
+            setAuthInfo({
+                user: loginData?.user,
+                token: loginData?.accessToken
+            });
+            onClose(null, true);
+        }
+    }, [loginData])
 
     const handleChange = (e) => {
         setFormData(prevData => ({
@@ -21,12 +45,11 @@ const LoginForm = ({ changeForm, onClose }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setAuthInfo({ isAuthenticated: true, user: { name: 'Sr. Pedro Perez' }, token: 'asdfasdfasfd' });
-        onClose()
+        login({ data: formData });
     }
 
     return (
-        <div className="m-auto grid grid-cols-2 w-2/3 bg-main">
+        <div className="m-auto grid grid-cols-2 w-2/3 bg-main animate__animated animate__fadeInUp">
             <div style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover' }}>
                 <div className="flex h-full w-full bg-black bg-opacity-50 p-4">
                     <div className="m-auto" >
@@ -49,7 +72,7 @@ const LoginForm = ({ changeForm, onClose }) => {
                         placeholder="E-Mail Address"
                         type="email"
                         name="email"
-                        value={formData.email}
+                        value={formData?.email}
                         onChange={handleChange}
                     />
                     <p className="font-bold">Password</p>
@@ -58,7 +81,7 @@ const LoginForm = ({ changeForm, onClose }) => {
                         placeholder="Password"
                         type="password"
                         name="password"
-                        value={formData.password}
+                        value={formData?.password}
                         onChange={handleChange}
                     />
                 </div>
