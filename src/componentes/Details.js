@@ -1,6 +1,6 @@
 import React from 'react'
 import Chefs from '../assets/chef-hat.png'
-const Details = ({level,categories,fitness,time,days,ingredients,number}) => {
+const Details = ({level,categories,fitness,time,days,ingredients,number,price, hideprice=false}) => {
   return (
     <div>
                     <div className='flex py-2 '>
@@ -15,6 +15,8 @@ const Details = ({level,categories,fitness,time,days,ingredients,number}) => {
                     <div className='flex py-2 '>
                         <p className="w-1/2">{categories}</p>
                         <p className="w-1/2 text-black">{fitness}</p>
+                        { !hideprice && 
+                        <div><p className='text-main  ml-4 font-semibold'>{price}</p></div>}
                     </div>
                     <div className='flex py-2 '>
                         <p className="w-1/2">{time}</p>
