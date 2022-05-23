@@ -13,9 +13,10 @@ const PasswordUser = ({ title, text, spam }) => {
             {title}
           </label>
           <input
-            type="text"
+            type="password"
             className="mt-6 border rounded-lg w-80 block"
             id="user"
+            placeholder='Password'
           />
         </div>
         <div className="ml-2">
@@ -26,9 +27,10 @@ const PasswordUser = ({ title, text, spam }) => {
             {text}
           </label>
           <input
-            type="text"
+            type="password"
             className="mt-6 border rounded-lg w-80 block"
             id="user"
+            placeholder='Password'
           />
         </div>
         <div className="ml-2">
@@ -39,9 +41,10 @@ const PasswordUser = ({ title, text, spam }) => {
             {spam}
           </label>
           <input
-            type="text"
+            type="password"
             className="mt-6 border rounded-lg w-80 block"
             id="user"
+            placeholder='Password'
           />
         </div>
       </div>
