@@ -2,15 +2,13 @@ import BannerChef from "../componentes/BannerChef";
 import CardRecipes from "../componentes/CardRecipes";
 import banner from "../assets/banner.jpg";
 import Tacos from "../assets/Tacos.jpg";
-import ScrollNavigation from "../componentes/ScrollNavigation";
 import InformationChef from "../componentes/InformationChef";
 import CertificationChef from "../componentes/CertificationChef";
 import DescriptionChef from "../componentes/DescriptionChef";
 import Post from "../componentes/Post";
 import ButtonItems from "../componentes/ButtonItems";
 import SelectOrder from "../componentes/SelectOrder";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import ButtomButton from "../componentes/ButtomButton";
 
 const RecipesChef = () => {
   return (
@@ -44,20 +42,11 @@ const RecipesChef = () => {
                   title="Dinner"
                   foto={Tacos}
                   hideButtons />
-                
+
               );
             })}
           </div>
-          <div className="flex justify-center space-x-2 mb-6">
-            <ScrollNavigation title={<MdKeyboardArrowLeft className="text-2xl" />} />
-            <ScrollNavigation title="1" />
-            <ScrollNavigation title="2" />
-            <ScrollNavigation title="3" />
-            <ScrollNavigation title="4" />
-            <ScrollNavigation title="5" />
-            <ScrollNavigation title="6" />
-            <ScrollNavigation title={<MdKeyboardArrowRight className="text-2xl" />} />
-          </div>
+          <ButtomButton />
         </div>
       </div>
     </div>

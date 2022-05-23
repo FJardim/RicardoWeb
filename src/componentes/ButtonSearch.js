@@ -1,53 +1,31 @@
-import clsx from "clsx";
 import { useState } from "react";
+import ButtonSearchSelector from "./ButtonSearchSelector";
 
 const ButtonSearch = () => {
-
     const [category, setCategory] = useState('ingredients');
 
     return (
-        <div className="text-base m-0 rounded-tl-lg bg-zinc-300 w-96 h-12 justify-center space-x-4 rounded-t-lg flex ">
-            <button
-                onClick={() => { setCategory('ingredients') }}
-                style={{
-                    borderRadius: category === 'ingredients' && `10px 0 0 0`
-                }}
-                className={clsx(['px-2'], {
-                    'bg-white w-full rounded-tl-lg underline underline-offset-8 decoration-main': category === 'ingredients'
-                })}>
-                <p>Ingredients</p>
-            </button>
-            <button
-                onClick={() => { setCategory('plans') }}
-                style={{
-                    borderRadius: category === 'plans' && `0 0 0 0`
-                }}
-                className={clsx(['px-2'], {
-                    'bg-white w-full underline underline-offset-8 decoration-main': category === 'plans'
-                })}>
-                <p>Recipes</p>
-            </button>
-            <button
-                onClick={() => { setCategory('recipes') }}
-                style={{
-                    borderRadius: category === 'recipes' && `0 0 0 0`
-                }}
-                className={clsx(['px-2'], {
-                    'bg-white w-20 underline underline-offset-8 decoration-main': category === 'recipes'
-                })}>
-                <p> Palls</p>
-            </button>
-
-            <button
-                onClick={() => { setCategory('combos') }}
-                style={{
-                    borderRadius: category === 'combos' && `0 10px 0 0`
-                }}
-                className={clsx(['px-2'], {
-                    'bg-white w-full underline underline-offset-8 decoration-teal-400': category === 'combos'
-                })}>
-                <p>Combos</p>
-            </button>
+        <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex">
+            <ButtonSearchSelector
+                onClick={() => setCategory('ingredients')}
+                name="Ingredients"
+                isActive={category === 'ingredients'}
+            />
+            <ButtonSearchSelector
+                onClick={() => setCategory('recipes')}
+                name="Recipes"
+                isActive={category === 'recipes'}
+            />
+            <ButtonSearchSelector
+                onClick={() => setCategory('plans')}
+                name="Plans"
+                isActive={category === 'plans'}
+            />
+            <ButtonSearchSelector
+                onClick={() => setCategory('combos')}
+                name="Combos"
+                isActive={category === 'combos'}
+            />
         </div>
     );
 }

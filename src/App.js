@@ -26,6 +26,7 @@ import PaymentMethod from "./pages/PaymentMethod"
 import RequireAuth from "./componentes/RequireAuth";
 import { FeedBackProvider } from "./contexts/FeedBackContext";
 import FeedbackComponents from "./componentes/FeedbackComponents/FeedbackComponents";
+import PlansSellers from "./pages/PlansSellers";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/plan/:slug" element={<PlanDetail />} />
             <Route path="/combos" element={<Combos />} />
             <Route path="/sellers/:slug/recipes" element={<RecipesChef />} />
+            <Route path="/sellers/:slug/plans" element={<PlansSellers />} />
             <Route path="/sellers/:slug/combos" element={<CombosChef />} />
             <Route path="/blogchef" element={<BlogChef />} />
             <Route path="/sellers" element={<Sellers />} />
