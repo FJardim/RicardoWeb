@@ -8,7 +8,7 @@ const BannerChef = ({ image }) => {
       style={{ background: `url(${image})`, backgroundSize: "100% 100%" }}
     >
       <div>
-        <Link to={"/blog/:slug"}>
+        <Link to={"/blogchef"}>
           <div className="flex justify-center items-center">
             <img src="https://5.imimg.com/data5/PD/LS/MY-21970292/women-s-chef-uniform-500x500.jpg"
               className="h-40 w-40 rounded-full items-center" alt="" />

@@ -16,13 +16,13 @@ const SwiperWeightPlan = () => {
                 className="mySwiper "
             >
                 <SwiperSlide>
-                    <WeightPlan title="Weight loss plan" logo={LogoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={whPlan} />
+                    <WeightPlan hideCart title="Weight loss plan" logo={LogoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={whPlan} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <WeightPlan title="Weight loss plan" logo={LogoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={whPlan} />
+                    <WeightPlan hideCart title="Weight loss plan" logo={LogoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={whPlan} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <WeightPlan title="Weight loss plan" logo={LogoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={whPlan} />
+                    <WeightPlan hideCart title="Weight loss plan" logo={LogoPlan} text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds" img={whPlan} />
                 </SwiperSlide>
             </Swiper>
         </>
