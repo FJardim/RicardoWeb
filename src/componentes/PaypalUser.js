@@ -17,6 +17,7 @@ const PaypalUser = ({ textuser, textbutton }) => {
             type="text"
             className="mt-6 border rounded-lg w-80 block"
             id="user"
+            placeholder='User'
           />
         </div>
       </div>

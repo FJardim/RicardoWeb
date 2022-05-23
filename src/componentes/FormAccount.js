@@ -27,6 +27,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
             type="text"
             className=" border mt-6 rounded-lg w-80"
             id="text"
+            placeholder='Jeyver Vegas'
           />
         </div>
         <div>
@@ -40,6 +41,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
             type="number"
             className="border mt-6 rounded-lg w-80"
             id="number"
+            placeholder='1123916734'
           />
         </div>
         <div>
@@ -50,6 +52,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
             type="text"
             className="mt-6 border rounded-lg w-80 block"
             id="user"
+            placeholder='@RicadorIlGrande'
           />
         </div>
       </div>
