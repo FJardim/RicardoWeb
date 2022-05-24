@@ -15,13 +15,13 @@ const PaypalUser = ({ textuser, textbutton }) => {
           </label>
           <input
             type="text"
-            className="mt-6 border rounded-lg w-80 block"
+            className="mt-6 border rounded-lg md:w-80 block"
             id="user"
             placeholder='User'
           />
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="md:flex justify-end">
         <button className="bg-main hover:bg-main-light px-4 py-2 text-white font-semibold rounded-lg">
           {textbutton}
         </button>
