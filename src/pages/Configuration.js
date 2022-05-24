@@ -5,9 +5,9 @@ import Config from "../componentes/Config";
 
 const Configuration = () => {
   return (
-    <div className="container p-20 h-full w-full mb-20">
-      <p className="text-4xl font-bold text-black mb-12">Configuration</p>
-      <CardWithTitle title="Language">
+    <div className="container p-20 h-full md:w-full mb-20">
+      <p className="md:text-4xl font-bold text-black mb-12">Configuration</p>
+      <CardWithTitle title="Language" className="md:w-32">
         <Config title="English" spam="Spanish" />
       </CardWithTitle>
       <div className="mt-6">

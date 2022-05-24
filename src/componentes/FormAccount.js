@@ -5,12 +5,12 @@ import ButtonChange from "../componentes/ButtonChange";
 const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }) => {
   return (
     <form>
-      <div className="grid grid-cols-2 gap-4 mt-6">
+      <div className="md:grid md:grid-cols-2 gap-4 mt-6">
         <div className="flex items-center space-x-4">
-          <img src={profile} alt="" className="w-20" />
+          <img src={profile} alt="" className="md:w-20" />
           <label
             htmlFor="inputfile"
-            className="bg-main hover:bg-main-light text-white font-semibold px-6 py-2 rounded-lg cursor-pointer"
+            className="md:bg-main md:hover:bg-main-light text-white font-semibold md:px-6 md:py-2 rounded-lg cursor-pointer"
           >
             {sourseimg}
           </label>
@@ -25,7 +25,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           </label>
           <input
             type="text"
-            className=" border mt-6 rounded-lg w-80"
+            className=" border mt-6 rounded-lg md:w-80"
             id="text"
             placeholder='Jeyver Vegas'
           />
@@ -39,7 +39,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           </label>
           <input
             type="number"
-            className="border mt-6 rounded-lg w-80"
+            className="border mt-6 rounded-lg md:w-80"
             id="number"
             placeholder='1123916734'
           />
@@ -50,13 +50,13 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           </label>
           <input
             type="text"
-            className="mt-6 border rounded-lg w-80 block"
+            className="mt-6 border rounded-lg md:w-80 block"
             id="user"
             placeholder='@RicadorIlGrande'
           />
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="md:flex justify-end">
         <ButtonChange />
       </div>
     </form>

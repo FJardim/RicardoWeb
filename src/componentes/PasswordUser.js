@@ -14,7 +14,7 @@ const PasswordUser = ({ title, text, spam }) => {
           </label>
           <input
             type="password"
-            className="mt-6 border rounded-lg w-80 block"
+            className="mt-6 border rounded-lg md:w-80 block"
             id="user"
             placeholder='Password'
           />
@@ -28,7 +28,7 @@ const PasswordUser = ({ title, text, spam }) => {
           </label>
           <input
             type="password"
-            className="mt-6 border rounded-lg w-80 block"
+            className="mt-6 border rounded-lg md:w-80 block"
             id="user"
             placeholder='Password'
           />
@@ -42,13 +42,13 @@ const PasswordUser = ({ title, text, spam }) => {
           </label>
           <input
             type="password"
-            className="mt-6 border rounded-lg w-80 block"
+            className="mt-6 border rounded-lg md:w-80 block"
             id="user"
             placeholder='Password'
           />
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="md:flex justify-end">
         <ButtonChange />
       </div>
     </form>
