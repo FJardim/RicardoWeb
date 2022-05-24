@@ -1,7 +1,7 @@
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.png";
-import Tacos from "../assets/Tacos.jpg";
+import Tacos from "../assets/protein.jpg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
 import ButtonSupr from "../componentes/ButtonSupr";
