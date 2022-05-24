@@ -10,9 +10,9 @@ import Collage from "../assets/ImgCombos.jpeg";
 const MyFavoritesUser = () => {
     return (
         <div className="flex">
-            <div className="container p-20 h-full w-full mb-20">
-                <p className="text-4xl font-bold text-black mb-12">My Favorites</p>
-                <div className="bg-white p-10 rounded-lg h-full w-full shadow">
+            <div className="container p-20 md:h-full md:w-full mb-20">
+                <p className="md:text-4xl font-bold text-black mb-12">My Favorites</p>
+                <div className="md:bg-white p-10 rounded-lg md:h-full md:w-full shadow">
                     <TabsProvider>
                         {/* Tabs */}
                         <TabsContainer className="md:flex m-10 space-x-10">
@@ -22,8 +22,8 @@ const MyFavoritesUser = () => {
                         {/* TAB PANELS */}
                         {/* Recipes */}
                         <div className="mt-4 p-4">
-                            <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
-                                <div className="grid grid-cols-3 gap-10">
+                            <TabPanel className="animate__animated animate__fadeInUp  md:bg-white rounded-lg" value={0}>
+                                <div className="md:grid md:grid-cols-3 gap-10">
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
                                         parrafo="Ricardo App Team"
@@ -60,7 +60,7 @@ const MyFavoritesUser = () => {
                             </TabPanel>
                             {/* Plans and combos */}
                             <TabPanel className=" bg-white rounded-lg" value={1}>
-                                <div className="grid grid-cols-3 gap-10">
+                                <div className="md:grid md:grid-cols-3 gap-10">
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
