@@ -4,7 +4,7 @@ import ButtonChange from './ButtonChange'
 const PasswordUser = ({ title, text, spam }) => {
   return (
     <form>
-      <div className="flex space-x-8 mb-32 mt-6 justify-center">
+      <div className="md:flex space-x-8 mb-32 mt-6 justify-center">
         <div className="ml-2">
           <label
             htmlFor="user"
