@@ -30,8 +30,10 @@ const BlogChef = () => {
         <div className="w-full">
           <div className="space-y-6 mt-6 ml-20 mr-20">
             <h1 className="text-5xl font-semibold">Blog</h1>
+            <div className="bg-white rounded-xl p-5">
             <DescriptionPost title="5 Formas de Picar Cebolla" />
             <DescriptionPost title="Tips para Mejorar tus Jugos" />
+            </div>
           </div>
           <div className="flex justify-center space-x-2 mt-10 mb-10">
             <ScrollNavigation title="<" />
