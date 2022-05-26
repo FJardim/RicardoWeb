@@ -5,7 +5,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 const ButtomButton = () => {
     return (
 
-        <div className="flex justify-center space-x-2 mb-6">
+        <div className="flex overflow-auto justify-center space-x-2 mb-6">
             <ScrollNavigation
                 title={<MdKeyboardArrowLeft className="text-2xl" />}
             />

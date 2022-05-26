@@ -7,6 +7,7 @@ import DescriptionChef from "../componentes/DescriptionChef";
 import Post from "../componentes/Post";
 import ButtonItems from "../componentes/ButtonItems";
 import DescriptionPost from "../componentes/DescriptionPost";
+import ButtomButton from "../componentes/ButtomButton";
 
 const BlogChef = () => {
   return (
@@ -36,14 +37,7 @@ const BlogChef = () => {
             </div>
           </div>
           <div className="flex justify-center space-x-2 mt-10 mb-10">
-            <ScrollNavigation title="<" />
-            <ScrollNavigation title="1" />
-            <ScrollNavigation title="2" />
-            <ScrollNavigation title="3" />
-            <ScrollNavigation title="4" />
-            <ScrollNavigation title="5" />
-            <ScrollNavigation title="6" />
-            <ScrollNavigation title=">" />
+           <ButtomButton/>
           </div>
         </div>
       </div>

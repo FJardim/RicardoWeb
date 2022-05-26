@@ -18,12 +18,12 @@ const RecipesChef = () => {
         <div className="flex justify-center">
           <ButtonItems />
         </div>
-        <div className="flex justify-end">
+        <div className="md:flex justify-end">
           <SelectOrder />
         </div>
       </div>
 
-      <div className="flex flex-wrap md:flex-nowrap">
+      <div className="md:flex flex-wrap md:flex-nowrap">
         <div className="w-full md:w-[300px] shrink-0 p-3 bg-white mb-20 ml-8 rounded-lg">
           <div className="ml-6 mt-6">
             <InformationChef />
