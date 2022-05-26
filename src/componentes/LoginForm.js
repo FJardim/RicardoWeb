@@ -49,7 +49,7 @@ const LoginForm = ({ changeForm, onClose }) => {
     }
 
     return (
-        <div className="m-auto grid grid-cols-2 w-2/3 bg-main animate__animated animate__fadeInUp">
+        <div className="m-auto grid md:grid-cols-2 md:w-2/3 bg-main animate__animated animate__fadeInUp">
             <div style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover' }}>
                 <div className="flex h-full w-full bg-black bg-opacity-50 p-4">
                     <div className="m-auto" >
