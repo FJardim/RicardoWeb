@@ -3,7 +3,7 @@ import Chefs from '../assets/chef-hat.png'
 const Details = ({level,categories,fitness,time,days,ingredients,number,price, hideprice=false}) => {
   return (
     <div>
-                    <div className='flex py-2 '>
+                    <div className='md:flex py-2 '>
                         <p className="w-1/2">{level}</p>
                         <div className='flex '>
                             <img className="w-5 h-5" src={Chefs} alt="chefs" />
@@ -13,16 +13,16 @@ const Details = ({level,categories,fitness,time,days,ingredients,number,price, h
                         </div>
                     </div>
                     <div className='flex py-2 '>
-                        <p className="w-1/2">{categories}</p>
-                        <p className="w-1/2 text-black">{fitness}</p>
+                        <p className="md:w-1/2">{categories}</p>
+                        <p className="md:-1/2 text-black">{fitness}</p>
                         { !hideprice && 
                         <div><p className='text-main  ml-4 font-semibold'>{price}</p></div>}
                     </div>
-                    <div className='flex py-2 '>
-                        <p className="w-1/2">{time}</p>
-                        <p className="w-1/2 text-main underline">{days}</p>
+                    <div className='md:flex py-2 '>
+                        <p className="md:w-1/2">{time}</p>
+                        <p className="md:w-1/2 text-main underline">{days}</p>
                     </div>
-                    <div className='flex py-2 '>
+                    <div className='md:flex py-2 '>
                         <p className="w-1/2">{ingredients}</p>
                         <p className="w-1/2 text-black">{number}</p>
                     </div>
