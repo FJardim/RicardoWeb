@@ -62,7 +62,7 @@ const Home = () => {
 
       {/* Popular by Countries */}
       <Card saludo="Popular by Countries" />
-      <div className="flex container">
+      <div className="m-auto md:flex container">
         <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
         <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
         <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />

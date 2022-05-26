@@ -68,8 +68,8 @@ const LoginForm = ({ changeForm, onClose }) => {
                 <div className="text-white ">
                     <p className="font-bold mt-4">E-Mail Address</p>
                     <input
-                        className="border border-slate-100 rounded-md text-white py-2 px-2 w-full text-black"
-                        placeholder="E-Mail Address"
+                        className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                        placeholder="Email"
                         type="email"
                         name="email"
                         value={formData?.email}
@@ -77,7 +77,7 @@ const LoginForm = ({ changeForm, onClose }) => {
                     />
                     <p className="font-bold">Password</p>
                     <input
-                        className="border border-slate-100 rounded-md text-white py-2 px-2 w-full text-black"
+                        className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
                         placeholder="Password"
                         type="password"
                         name="password"
