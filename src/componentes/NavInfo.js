@@ -5,14 +5,14 @@ const NavInfo = () => {
     return (
         <div className="bg-main text-black py-4">
             <div className="container relative font-semibold text-base">
-                <div className="flex items-center cursor-pointer relative md:absolute -mt-3  ">
+                <div className="flex items-center cursor-pointer absolute -mt-3  ">
                     <BiMap className="text-white h-8 w-8 mt-2" />
                     <div className="flex flex-col text-white ">
 
                     </div>
                 </div>
                 <div className="flex items-center justify-center flex-wrap">
-                    <nav className="flex items-center space-x-20">
+                    <nav className="flex items-center space-x-10  md:space-x-20">
                         <Link to={"/recipes"}>
                             <p>Recipes</p>
                         </Link>
