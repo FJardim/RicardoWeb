@@ -1,9 +1,9 @@
 import Logo from "../assets/drafts.png";
 import LoginBg from "../assets/img1.png";
 import PageLogo from "../componentes/PageLogo";
-import { AiOutlineWhatsApp } from "react-icons/ai";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { BsPaypal } from "react-icons/bs";
+// import { AiOutlineWhatsApp } from "react-icons/ai";
+// import { AiOutlineInstagram } from "react-icons/ai";
+// import { BsPaypal } from "react-icons/bs";
 
 const RegisterForm = ({ changeForm }) => {
     return (
@@ -23,48 +23,87 @@ const RegisterForm = ({ changeForm }) => {
                     <h1 className="mt-4 text-2xl text-white font-bold">Registration</h1>
                     <div className="mx-1 my-2 h-px w-0.2 bg-white"></div>
                 </div>
-                <div className="mt-2 grid grid-cols-2 text-white ">
+                <div className="mt-2 grid md:grid-cols-2 text-white ">
                     <div className="mx-2 my-2">
-                        <p className="font-bold">Name and Surname:</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p>Name</p>
-                        </div>
+                        <span className="font-bold">Name and Surname:</span>
+                        <input
+                            className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                            placeholder="Name"
+                            type="text"
+                            name="text"
+                        // value={}
+                        // onChange={}
+                        />
                     </div>
                     <div className="mx-2 my-2">
-                        <p className="font-bold">E-Mail Address</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p>E-Mail Address</p>
-                        </div>
+                        <span className="font-bold">E-Mail Address</span>
+                        <input
+                            className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                            placeholder="email"
+                            type="email"
+                            name="email"
+                        // value={}
+                        // onChange={}
+                        />
+
                     </div>
                     <div className="mx-2 my-2">
-                        <p className="font-bold">Password</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p>Password</p>
-                        </div>
+                        <span className="font-bold">Password</span>
+                        <input
+                            className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                            placeholder="Password"
+                            type="Password"
+                            name="Password"
+                        // value={}
+                        // onChange={}
+                        />
                     </div>
                     <div className="mx-2 my-2">
-                        <p className="font-bold">Confirm Password:</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p>Confirm Password</p>
-                        </div>
+                        <span className="font-bold">Confirm Password:</span>
+                        <input
+                            className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                            placeholder="Confirm Password"
+                            type="Password"
+                            name="Password"
+                        // value={}
+                        // onChange={}
+                        />
                     </div>
                     <div className="mx-2 my-2">
-                        <p className="font-bold">Contact number and WhatsApp:</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p className="flex"><AiOutlineWhatsApp className="m-1" />+ 000 000 00000000</p>
-                        </div>
+                        <span className="font-bold">Contact number and WhatsApp:</span>
+                        <input
+                            className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                            placeholder="+ 000 000 00000000"
+                            type="Password"
+                            name="Password"
+                        // value={ }
+                        // onChange={ }
+                        />
+                        {/* <p className="flex"><AiOutlineWhatsApp className="m-1" />+ 000 000 00000000</p> */}
                     </div>
                     <div className="mx-2 my-2">
                         <p className="font-bold">User Instagram:</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p className="flex"><AiOutlineInstagram className="m-1" />@xxxxxxxxxxxx</p>
-                        </div>
+                        <input
+                            className="border border-slate-100 rounded-m py-2 px-2 w-full text-black"
+                            placeholder="@xxxxxxxxxxxx"
+                            type="text"
+                            name="text"
+                        // value={ }
+                        // onChange={ }
+                        />
+                        {/* <p className="flex"><AiOutlineInstagram className="m-1" />@xxxxxxxxxxxx</p> */}
                     </div>
                     <div className="mx-2 my-2">
                         <p className="font-bold">User PayPal:</p>
-                        <div className="cursor-pointer border border-slate-100 rounded-md text-white py-2 px-2">
-                            <p className="flex"><BsPaypal className="m-1" />xxxxx@xxxx.xxx</p>
-                        </div>
+                        <input
+                            className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
+                            placeholder="xxxxx@xxxx.xxx"
+                            type="email"
+                            name="email"
+                        // value={ }
+                        // onChange={ }
+                        />
+                        {/* <p className="flex"><BsPaypal className="m-1" />xxxxx@xxxx.xxx</p> */}
                     </div>
                 </div>
 

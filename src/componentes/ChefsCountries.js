@@ -1,7 +1,7 @@
 
 const ChefsCountries = ({ imgChefs, LogoBackg, imgFlag, name, sname }) => {
     return (
-        <div className="flex relative h-80 w-96 rounded-md cursor-pointer mt-10 mr-5 ml-5 mb-10 bg-cover" style={{ backgroundImage: `url(${LogoBackg})` }}>
+        <div className="mdflex relative h-80 md:w-96 rounded-md cursor-pointer mt-10 mr-5 ml-5 mb-10 bg-cover" style={{ backgroundImage: `url(${LogoBackg})` }}>
             <div className="absolute bg-black opacity-30 rounded-md w-full h-full">
             </div>
             <div className='absolute bg-white left-1/2 top-[30px] h-20  transform -translate-x-1/2 rounded shadow-md'>

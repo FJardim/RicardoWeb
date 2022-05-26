@@ -9,7 +9,7 @@ const ButtonItems = () => {
     <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex">
       <Link to={"/sellers/:slug/recipes"}>
         <ButtonSearchSelector
-          onClick={() => setCategory('recipes')}
+          onClick={() => { setCategory('recipes') }}
           name="Recipes"
           isActive={category === 'recipes'}
         />
@@ -17,7 +17,7 @@ const ButtonItems = () => {
 
       <Link to={"/sellers/:slug/plans"}>
         <ButtonSearchSelector
-          onClick={() => setCategory('plans')}
+          onClick={() => { setCategory('plans') }}
           name="Plans"
           isActive={category === 'plans'}
         />
@@ -25,7 +25,7 @@ const ButtonItems = () => {
 
       <Link to={"/sellers/:slug/combos"}>
         <ButtonSearchSelector
-          onClick={() => setCategory('recipes')}
+          onClick={() => { setCategory('combos') }}
           name="Combos"
           isActive={category === 'combos'}
         />
