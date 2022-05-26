@@ -4,7 +4,7 @@ import { TiContacts } from "react-icons/ti"
 const InformationChef = () => {
   return (
     <div>
-      <button className="flex items-center space-x-2 text-black text-xl font-semibold">
+      <button className="md:flex items-center space-x-2 text-black text-xl font-semibold">
         <TiContacts className="text-main" />
         <span>Information</span>
       </button>
