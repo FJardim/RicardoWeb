@@ -9,7 +9,7 @@ const PaypalUser = ({ textuser, textbutton }) => {
         <div className="ml-2">
           <label
             htmlFor="user"
-            className="text-gray-600 font-bold text-xl"
+            className="text-gray-600 font-bold md:text-xl"
           >
             {textuser}
           </label>

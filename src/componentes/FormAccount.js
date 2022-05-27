@@ -6,7 +6,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
   return (
     <form>
       <div className="md:grid md:grid-cols-2 gap-4 mt-6">
-        <div className="flex items-center space-x-4">
+        <div className="md:flex items-center space-x-4">
           <img src={profile} alt="" className="md:w-20" />
           <label
             htmlFor="inputfile"
@@ -14,11 +14,11 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           >
             {sourseimg}
           </label>
-          <input type="file" className="hidden" id="inputfile" />
+          <input type="file" className="md:hidden" id="inputfile" />
         </div>
         <div>
           <label
-            className="block text-gray-600 font-bold text-xl"
+            className="block text-gray-600 font-bold md:text-xl"
             htmlFor="text"
           >
             {textname}
@@ -32,7 +32,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
         </div>
         <div>
           <label
-            className="block text-gray-600 font-bold text-xl"
+            className="block text-gray-600 font-bold md:text-xl"
             htmlFor="number"
           >
             {textphone}
@@ -45,7 +45,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           />
         </div>
         <div>
-          <label htmlFor="user" className="text-gray-600 font-bold text-xl">
+          <label htmlFor="user" className="text-gray-600 font-bold md:text-xl">
             {textaccount}
           </label>
           <input

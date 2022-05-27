@@ -10,7 +10,7 @@ const Categories = () => {
   return (
     <div>
       <BannerPage image={img1} title="Category Of Recipes" />
-      <div className="container md:grid grid-cols-4 gap-6 py-20">
+      <div className="grid md:grid-cols-4 mr-6 ml-6 gap-5 md:gap-10  py-20">
         <CategorySectionCard img={food} name="New Recipes" className={"py-16"} />
         <CategorySectionCard img={food2} name="Low in Calories" className={"py-16"} />
         <CategorySectionCard img={food3} name="Paleo" className={"py-16"} />
