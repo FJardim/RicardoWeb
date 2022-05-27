@@ -34,7 +34,7 @@ const PlansSellers = () => {
                     </div>
                 </div>
                 <div className="md:w-full">
-                    <div className="md:grid md:grid-cols-3 mt-20 ml-20 mr-10 mb-20 ">
+                    <div className="md:grid grid-cols-1 md:grid-cols-3 mt-20 ml-20 mr-10 mb-20 ">
                         {[...Array(12).keys()].map((numero, i) => {
                             return (
                                 <WeightPlan
