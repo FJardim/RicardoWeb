@@ -36,7 +36,7 @@ const CombosChef = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 mt-20 ml-20 md:gap-10 mr-10 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mr-10 mb-20 mt-20 ml-20">
             {[...Array(9).keys()].map((numero, i) => {
               return (
                 <CardRecipes
