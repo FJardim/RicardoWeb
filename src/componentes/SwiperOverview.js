@@ -9,8 +9,11 @@ const SwiperOverview = () => {
     return (
         <>
             <Swiper
-                slidesPerView={4} spaceBetween={20} loop={true}
-                navigation={true} modules={[Navigation]}
+                slidesPerView={4}
+                spaceBetween={20}
+                loop={true}
+                navigation={true}
+                modules={[Navigation]}
                 className="mySwiper ml-10"
             >
                 <SwiperSlide className="ml-10">

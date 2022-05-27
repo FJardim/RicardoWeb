@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Recipes from '../componentes/Recipes';
 import "swiper/css";
@@ -9,12 +9,27 @@ import Bebida from '../assets/bebida.png';
 import { Navigation } from "swiper";
 
 const SwiperRecipes = () => {
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const resizeHandler = () => {
+            setInnerWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', resizeHandler);
+
+        return () => window.removeEventListener('resize', resizeHandler);
+    }, []);
+
     return (
-        <>
+        <div className="p-8">
             <Swiper
-                slidesPerView={2} spaceBetween={40} loop={true}
-                navigation={true} modules={[Navigation]}
-                className="mySwiper"
+                slidesPerView={innerWidth > 768 ? 2 : 1}
+                spaceBetween={40}
+                loop={true}
+                navigation={true}
+                modules={[Navigation]}
+                className="mySwiper m-auto"
             >
                 <SwiperSlide>
                     <Recipes
@@ -43,7 +58,7 @@ const SwiperRecipes = () => {
                 </SwiperSlide>
 
             </Swiper>
-        </>
+        </div>
     );
 }
 

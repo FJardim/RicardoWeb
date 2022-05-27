@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CardRecipes from "../componentes/CardRecipes";
 import "swiper/css";
@@ -9,11 +9,26 @@ import "swiper/css/navigation";;
 
 
 const SwiperCombos = () => {
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const resizeHandler = () => {
+            setInnerWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', resizeHandler);
+
+        return () => window.removeEventListener('resize', resizeHandler);
+    }, []);
     return (
         <>
             <Swiper
-                slidesPerView={3} spaceBetween={90} loop={true}
-                navigation={true} modules={[Navigation]}
+                slidesPerView={innerWidth > 768 ? 3 : 1}
+                spaceBetween={90}
+                loop={true}
+                navigation={true}
+                style={{ padding: innerWidth > 768 ? '0' : 10 }}
+                modules={[Navigation]}
                 className="mySwiper"
             >
                 <SwiperSlide>
@@ -22,8 +37,8 @@ const SwiperCombos = () => {
                         parrafo="Anya Taylor"
                         title=""
                         foto={Collage}
-                        hideButtons 
-                        hideCart/>
+                        hideButtons
+                        hideCart />
                 </SwiperSlide>
 
                 <SwiperSlide>
@@ -33,7 +48,7 @@ const SwiperCombos = () => {
                         title=""
                         foto={Collage}
                         hideButtons
-                        hideCart/>
+                        hideCart />
                 </SwiperSlide>
             </Swiper>
         </>

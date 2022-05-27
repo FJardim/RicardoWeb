@@ -9,7 +9,7 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
     return (
         <div className="flex bg-white h-38 rounded-md overflow-hidden shadow-md">
             <div className="h-full ">
-                <img className='w-96 h-full rounded-md' src={img} alt="Recipes" />
+                <img className='md:w-96 md:h-full md:block hidden rounded-md' src={img} alt="Recipes" />
             </div>
             <div className="flex py-4 px-4 w-full">
                 <div className='w-4/5'>

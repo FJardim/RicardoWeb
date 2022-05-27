@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PopularSearch from '../componentes/PopularSearch';
 import "swiper/css";
@@ -9,12 +9,28 @@ import Popular2 from '../assets/popular2.png';
 import { Navigation } from "swiper";
 
 const SwiperPopular = () => {
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const resizeHandler = () => {
+            setInnerWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', resizeHandler);
+
+        return () => window.removeEventListener('resize', resizeHandler);
+    }, []);
+
     return (
-        <>
+        <div className="container px-8">
             <Swiper
-                slidesPerView={2} spaceBetween={20} loop={true}
-                navigation={true} modules={[Navigation]}
-                className="mySwiper container mt-10 mb-10 grid grid-cols-2 gap-3"
+                slidesPerView={innerWidth > 768 ? 2 : 1}
+                spaceBetween={20}
+                navigation={true}
+                loop={true}
+                modules={[Navigation]}
+                style={{ padding: innerWidth > 768 ? '0' : 10 }}
+                className="mySwiper "
             >
                 <SwiperSlide>
                     <PopularSearch title="Popular Recipes" img={Popular1} />
@@ -24,7 +40,7 @@ const SwiperPopular = () => {
                     <PopularSearch title="Popular Meal Planners" img={Popular2} />
                 </SwiperSlide>
             </Swiper>
-        </>
+        </div>
     );
 }
 export default SwiperPopular;
