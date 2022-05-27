@@ -8,13 +8,13 @@ const PasswordUser = ({ title, text, spam }) => {
         <div className="ml-2">
           <label
             htmlFor="user"
-            className="text-gray-600 font-bold text-xl"
+            className="text-gray-600 font-bold md:text-xl"
           >
             {title}
           </label>
           <input
             type="password"
-            className="mt-6 border rounded-lg md:w-80 block"
+            className="mt-6 border rounded-lg sm:w-80 block"
             id="user"
             placeholder='Password'
           />
@@ -22,13 +22,13 @@ const PasswordUser = ({ title, text, spam }) => {
         <div className="ml-2">
           <label
             htmlFor="user"
-            className="text-gray-600 font-bold text-xl"
+            className="text-gray-600 font-bold md:text-xl"
           >
             {text}
           </label>
           <input
             type="password"
-            className="mt-6 border rounded-lg md:w-80 block"
+            className="mt-6 border rounded-lg sm:w-80 block"
             id="user"
             placeholder='Password'
           />
@@ -36,13 +36,13 @@ const PasswordUser = ({ title, text, spam }) => {
         <div className="ml-2">
           <label
             htmlFor="user"
-            className="text-gray-600 font-bold text-xl"
+            className="text-gray-600 font-bold md:text-xl"
           >
             {spam}
           </label>
           <input
             type="password"
-            className="mt-6 border rounded-lg md:w-80 block"
+            className="mt-6 border rounded-lg sm:w-80 block"
             id="user"
             placeholder='Password'
           />

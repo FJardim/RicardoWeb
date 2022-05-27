@@ -15,10 +15,10 @@ const Recipes = () => {
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
-          <div className="md:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-10 mr-10 mb-20">
+          <div className="mt-10 md:mt-0 md:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
               {[...Array(12).keys()].map((numero, i) => {
                 return (
                   <Link to="/recipes/:slug"><CardRecipes
@@ -31,6 +31,7 @@ const Recipes = () => {
                 );
               })}
             </div>
+            <br />
             <ButtomButton />
           </div>
         </div>
