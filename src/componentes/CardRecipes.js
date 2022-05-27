@@ -11,7 +11,7 @@ const CardRecipes = ({ texto, parrafo, foto, title, hideButtons, hideCart = fals
   return (
     <div className="bg-white w-full rounded-xl overflow-hidden">
       <div className="h-64 w-74 relative" style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}>
-        <div className="relative h-full w-full bg-black bg-opacity-20 flex">
+        <div className="relative h-full w-full bg-black bg-opacity-20 flex ">
           <div className="absolute left-0 top-1 w-full justify-center items-center flex">
             <img src={AppLogo} className="h-10 w-10 opacity-60 rounded-full" alt="AppLogo" />
           </div>
@@ -54,13 +54,13 @@ const CardRecipes = ({ texto, parrafo, foto, title, hideButtons, hideCart = fals
           <div className="p-2">
             <Matches />
           </div>
-          
+
         }
         {!hideCart &&
-        <div className= "flex justify-center">
-          <ButtonCart/>
-        </div>
-}
+          <div className="flex justify-center">
+            <ButtonCart />
+          </div>
+        }
       </div>
     </div>
   );

@@ -7,13 +7,13 @@ import VideoCategory from "./VideoCategory";
 const CategoriesVideo = () => {
     return (
         <div className="bg-white">
-            <div className="container p-4">
+            <div className="container p-4 ">
                 <SesionCategory />
-                <div className="flex p-8">
-                    <div className="w-8/12 p-1">
+                <div className=" md:p-8 md:flex">
+                    <div className="md:w-8/12 p-1">
                         <VideoCategory />
                     </div>
-                    <div className="w-4/12 p-2 ">
+                    <div className="md:w-4/12 p-2 ">
                         <CategorySectionCard
                             img={category}
                             name="Paleo"

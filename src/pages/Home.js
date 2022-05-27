@@ -17,51 +17,66 @@ import SwiperCombos from "../componentes/SwiperCombos";
 const Home = () => {
   return (
     <div>
-      {/*swiper de home*/}
+      {/*-------- swiper de home --------*/}
       <SwiperHome />
 
-      {/* Category of Recipes */}
-      <Card saludo="Category of Recipes" />
+      {/*-------- Category of Recipes --------*/}
+      <div className="container p-2">
+        <Card saludo="Category of Recipes" />
+      </div>
       <div className="container ">
         <div className="flex justify-center space-x-6 mx-8">
           <SwiperCategoryCard />
         </div>
       </div>
 
-      {/* Popular */}
-      <Card saludo="Popular" />
+      {/*-------- Popular --------*/}
+      <div className="container p-2">
+        <Card saludo="Popular" />
+      </div>
       <SwiperPopular />
-      <Card saludo="Plans" />
+
+      {/*-------- Plans --------*/}
+      <div className="container p-2">
+        <Card saludo="Plans" />
+      </div>
+
       <div className="container flex">
         <div className="container flex">
           <SwiperWeightPlan />
         </div>
       </div>
 
-      {/*Video*/}
-      <div className="container">
+      {/*--------- Video --------*/}
+      <div className="container p-2">
         <CategoriesVideo />
       </div>
 
-      {/* Recipes */}
-      <Card saludo="Recipes" />
-      <div className="container mt-16 mb-16">
+      {/*-------- Recipes ---------*/}
+      <div className="container p-2">
+        <Card saludo="Recipes" />
+      </div>
+      <div className="container">
         <SwiperRecipes />
       </div>
 
-      {/* Imgs Public */}
+      {/*--------- Imgs Public --------*/}
       <div>
-        <img className="w-full h-96 py-4" src={Public} alt="Public" />
+        <img className="md:w-full md:h-96 py-4" src={Public} alt="Public" />
       </div>
 
-      {/* Combos */}
-      <Card saludo="Combos" />
+      {/*-------- Combos --------*/}
+      <div className="container p-2">
+        <Card saludo="Combos" />
+      </div>
       <div className="p-10">
         <SwiperCombos />
       </div>
 
-      {/* Popular by Countries */}
-      <Card saludo="Popular by Countries" />
+      {/*-------- Popular by Countries --------*/}
+      <div className="container p-2">
+        <Card saludo="Popular by Countries" />
+      </div>
       <div className="m-auto md:flex container">
         <ChefsCountries imgChefs={ChefsW} LogoBackg={logo} imgFlag={FlagIta} name="Benito" sname="Molina" />
         <ChefsCountries imgChefs={ChefsSw} LogoBackg={logo} imgFlag={FlagMex} name="Giada" sname="de Laurentiis" />
