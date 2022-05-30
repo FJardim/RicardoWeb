@@ -25,7 +25,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           </label>
           <input
             type="text"
-            className=" border mt-6 rounded-lg md:w-80"
+            className="mt-6 border rounded-lg w-20 md:w-80 block"
             id="text"
             placeholder='Jeyver Vegas'
           />
@@ -39,7 +39,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           </label>
           <input
             type="number"
-            className="border mt-6 rounded-lg md:w-80"
+            className="mt-6 border rounded-lg w-20 md:w-80 block"
             id="number"
             placeholder='1123916734'
           />
@@ -50,7 +50,7 @@ const FormAccount = ({ sourseimg, textname, textphone, textaccount, textbutton }
           </label>
           <input
             type="text"
-            className="mt-6 border rounded-lg md:w-80 block"
+            className="mt-6 border rounded-lg w-20 md:w-80 block"
             id="user"
             placeholder='@RicadorIlGrande'
           />
