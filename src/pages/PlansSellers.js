@@ -25,7 +25,7 @@ const PlansSellers = () => {
             </div>
 
             <div className="md:flex flex-wrap md:flex-nowrap">
-                <div className="w-full md:w-[300px] shrink-0 p-3 bg-white mb-20 ml-8 rounded-lg">
+                <div className="w-full md:w-[300px] md:shrink-0 p-3 bg-white mb-20 md:ml-8 rounded-lg">
                     <div className="ml-6 mt-6">
                         <InformationChef />
                         <CertificationChef />

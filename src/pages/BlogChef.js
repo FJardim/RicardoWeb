@@ -20,7 +20,7 @@ const BlogChef = () => {
       </div>
 
       <div className="flex flex-wrap md:flex-nowrap">
-        <div className="w-full md:w-[300px] shrink-0 p-3 bg-white mb-20 ml-8 rounded-lg">
+        <div className="w-full md:w-[300px] md:shrink-0 p-3 bg-white mb-20 md:ml-8 rounded-lg">
           <div className="ml-6 mt-6">
             <InformationChef />
             <CertificationChef />
@@ -29,7 +29,7 @@ const BlogChef = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="space-y-6 mt-6 ml-20 mr-20">
+          <div className="space-y-6 md:mt-6 md:ml-20 md:mr-20">
             <h1 className="text-5xl font-semibold">Blog</h1>
             <div className="bg-white rounded-xl p-5">
             <DescriptionPost title="5 Formas de Picar Cebolla" />

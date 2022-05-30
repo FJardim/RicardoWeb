@@ -8,7 +8,7 @@ import CardResum from "../componentes/CardResum";
 
 const PaymentMethod = () => {
   return (
-    <div className="p-8 md:flex mt-14 ml-8 mb-12">
+    <div className="p-8 md:flex md:mt-14 md:ml-8 mb-12">
       <div className="md:w-1/2">
         <CardPaypal title="Add Paypal" text="Modificar" />
 
@@ -32,7 +32,7 @@ const PaymentMethod = () => {
         </div>
       </div>
 
-      <div className=" ml-8 md:w-4/12">
+      <div className=" md:ml-8 md:w-4/12 mt-0.5">
         <CardResum title="Orden Resum" total="Total a Pagar" price="$35.23" />
       </div>
     </div>
