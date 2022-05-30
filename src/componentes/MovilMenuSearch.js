@@ -1,11 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import SearchMovil from "./SearchMovil";
 import ReactDom from "react-dom";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import LoginBg from "../assets/img1.png";
 
-const AuthModal = ({ show, onClose }) => {
-
-    const [showForm, setShowForm] = useState('login');
+const MovilMenuSearch = ({ show, onClose }) => {
 
     const modalRef = useRef();
 
@@ -25,25 +23,15 @@ const AuthModal = ({ show, onClose }) => {
         }
     }
 
-    const handleForm = (form) => {
-        setShowForm(form);
-    }
-
     return ReactDom.createPortal(
         <div ref={modalRef} onClick={handleClose} className="flex h-screen w-screen bg-black bg-opacity-50 fixed z-10 p-10" style={{ top: 0, left: 0, overflowY: 'auto' }}>
-            {
-                showForm === 'login' &&
-                <LoginForm changeForm={handleForm} onClose={onClose} />
-            }
-
-            {
-                showForm === 'register' &&
-                <RegisterForm changeForm={handleForm} onClose={onClose} />
-            }
+            <div className="h-96 w-full m-auto" style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover', background: 'rgba(0, 0, 0, 0.3)' }}>
+                <SearchMovil />
+            </div>
         </div>
         ,
         document.getElementById("portal")
     );
-}
 
-export default AuthModal;
+}
+export default MovilMenuSearch;

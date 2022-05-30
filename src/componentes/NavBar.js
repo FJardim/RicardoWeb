@@ -1,13 +1,16 @@
-import NavSearchBar from "./NavSearchBar";
 import PageLogo from "./PageLogo";
 import React, { useEffect, useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { BsBell } from "react-icons/bs";
+import { BiSearchAlt } from "react-icons/bi";
 import AuthModal from "./AuthModal";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import MenuConfig from "./MenuConfig";
 import MobileMenuButton from "./MobileMenuButton";
+import clsx from "clsx";
+import MovilMenuSearch from "./MovilMenuSearch";
+
 
 const NavBar = () => {
 
@@ -17,7 +20,11 @@ const NavBar = () => {
 
     const [showModal, setShowModal] = useState(false);
 
+    const [showModalMenu, setShowModalMenu] = useState(false);
+
     const [showMenu, setShowMenu] = useState(false);
+
+    const [currentPath, setCurrentPath] = useState(""); //pat escucha 
 
     useEffect(() => {
         setShowModal(searchParams?.get('showLogin'));
@@ -32,22 +39,52 @@ const NavBar = () => {
         setShowMenu((oldShowMenu) => !oldShowMenu);
     }
 
+    const location = useLocation();
+    useEffect(() => {
+        setCurrentPath(location?.pathname);
+    }, [location]);
+
     return (
         <>
             <div className="bg-gray-800 text-white h-14 px-4">
                 <div className="container h-full">
                     <div className="flex md:justify-none items-center h-full text-base">
                         <PageLogo />
-                        <NavSearchBar />
-                        <div className="flex ml-auto space-x-12 items-center h-full" >
-                            <Link to={"/Categories"} className="hidden md:block hover:text-main ">Categories</Link>
-                            <Link to={"/Sellers"} className="hidden md:block hover:text-main ">Sellers</Link>
-                            <button className="hover:text-main "><BsBell className="h-6 w-6 ml-10" /></button>
+                        {/* <NavSearchBar /> */}
+                        <div className="flex ml-auto md:space-x-10 space-x-8 items-center h-full" >
+                            <Link to={"/Categories"} className="hidden md:block hover:text-main">
+                                <p className={clsx({
+                                    "text-main": currentPath === '/Categories',
+                                    'text-white': currentPath !== '/Categories'
+                                })}>
+                                    Categories
+                                </p>
+                            </Link>
+                            <Link to={"/Sellers"} className="hidden md:block hover:text-main">
+                                <p className={clsx({
+                                    "text-main": currentPath === '/Sellers',
+                                    'text-white': currentPath !== '/Sellers'
+                                })}>
+                                    Sellers
+                                </p>
+                            </Link>
+                            <button className="hover:text-main">
+                                <BsBell className="h-6 w-6 ml-18" />
+                            </button>
+                            <button
+                                className="md:hidden hover:text-main"
+                                onClick={() => setShowModalMenu(true)}
+                            >
+                                <BiSearchAlt className="h-6 w-6 md:ml-10" />
+                            </button>
                             <button onClick={user ? handleToggleMenu : handleToggleModal} className="hidden md:block relative items-center hover:text-main bg-transparent 
-                                    bg-gray-800 border border-slate-300 rounded-md py-2 px-2.5">
-                                <FaUserCircle className="mr-2" />
-                                {user ? user.name : 'Log in'}
-                                <MenuConfig show={showMenu} />
+                                    bg-gray-800 border border-slate-300 hover:border-main rounded-md py-2 px-2.5">
+                                <div className="flex">
+                                    <FaUserCircle className="m-auto mr-2" />
+                                    {user ? user.name : 'Log in'}
+                                    <MenuConfig show={showMenu} />
+                                </div>
+
                             </button>
                             <MobileMenuButton />
                         </div>
@@ -55,6 +92,7 @@ const NavBar = () => {
                 </div>
             </div>
             <AuthModal show={showModal} onClose={handleToggleModal} />
+            <MovilMenuSearch show={showModalMenu} onClose={() => setShowModalMenu(false)} />
         </>
     );
 }

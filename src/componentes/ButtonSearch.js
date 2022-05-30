@@ -5,7 +5,8 @@ const ButtonSearch = () => {
     const [category, setCategory] = useState('ingredients');
 
     return (
-        <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex">
+        <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex overflow-x-auto">
+
             <ButtonSearchSelector
                 onClick={() => setCategory('ingredients')}
                 name="Ingredients"
@@ -26,6 +27,7 @@ const ButtonSearch = () => {
                 name="Combos"
                 isActive={category === 'combos'}
             />
+
         </div>
     );
 }
