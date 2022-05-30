@@ -18,7 +18,34 @@ export default function Footer() {
         <div className="md:flex justify-between items-top my-4">
           <div className="">
             <ul className="flex flex-col items-center md:block">
-              <li className="font-bold my-4">Get in touch</li>
+              <li className="font-bold my-4">
+                <h1>
+                  Get in touch
+                </h1>
+                <ul className="flex flex-col items-center md:block">
+                  <li className="font-bold my-4">Connections</li>
+                  <li className="my-4 flex">
+                    <SiFacebook className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
+                    Facebook
+                  </li>
+                  <li className="my-4 flex">
+                    <SiTwitter className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
+                    Twitter
+                  </li>
+                  <li className="my-4 flex">
+                    <SiInstagram className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
+                    Instagram
+                  </li>
+                  <li className="my-4 flex">
+                    <IoLogoYoutube className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
+                    Youtube
+                  </li>
+                  <li className="my-4 flex">
+                    <FaLinkedinIn className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
+                    LinkedinIn
+                  </li>
+                </ul>
+              </li>
               <li className="my-4">About Us</li>
               <li className="my-4">Careers</li>
               <li className="my-4">Press Releases</li>
@@ -26,29 +53,6 @@ export default function Footer() {
             </ul>
           </div>
           <div className="">
-            <ul className="flex flex-col items-center md:block">
-              <li className="font-bold my-4">Connections</li>
-              <li className="my-4 flex">
-                <SiFacebook className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
-                Facebook
-              </li>
-              <li className="my-4 flex">
-                <SiTwitter className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
-                Twitter
-              </li>
-              <li className="my-4 flex">
-                <SiInstagram className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
-                Instagram
-              </li>
-              <li className="my-4 flex">
-                <IoLogoYoutube className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
-                Youtube
-              </li>
-              <li className="my-4 flex">
-                <FaLinkedinIn className="h-6 w-6 hover:text-main cursor-pointer mr-1" />{" "}
-                LinkedinIn
-              </li>
-            </ul>
           </div>
           <div>
             <ul className="flex flex-col items-center md:block">

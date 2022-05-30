@@ -1,11 +1,53 @@
+import { useEffect, useState } from "react";
 import Logo from "../assets/drafts.png";
 import LoginBg from "../assets/img1.png";
 import PageLogo from "../componentes/PageLogo";
-// import { AiOutlineWhatsApp } from "react-icons/ai";
-// import { AiOutlineInstagram } from "react-icons/ai";
-// import { BsPaypal } from "react-icons/bs";
+import useAxios from "../hooks/useAxios";
 
 const RegisterForm = ({ changeForm }) => {
+
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        passwordVerification: "",
+        instagram: '',
+        paypal: ''
+    });
+
+    const [{ data: registerData, loading: registerLoading }, register] = useAxios({ url: `/auth/register`, method: 'POST' }, { manual: true, useCache: false });
+
+    useEffect(() => {
+        if (registerData) {
+            console.log(registerData);
+        }
+    }, [registerData])
+
+    const handleChange = (e) => {
+        setData((oldData) => {
+            return {
+                ...oldData,
+                [e.target.name]: e.target.value
+            }
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e?.preventDefault?.();
+
+        if (registerLoading) return;
+
+        if (data?.password !== data.passwordVerification) {
+            alert('Las contraseñas no coinciden.');
+            return;
+        }
+
+        const { passwordVerification, ...rest } = data;
+
+        register({ data: rest });
+    }
+
     return (
         <div className="m-auto grid md:grid-cols-2 bg-main animate__animated animate__fadeInUp">
             <div style={{ backgroundImage: `url(${LoginBg})`, backgroundPosition: 'center center', backgroundSize: 'cover' }}>
@@ -17,7 +59,7 @@ const RegisterForm = ({ changeForm }) => {
                     </div>
                 </div>
             </div>
-            <form className="p-4" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+            <form onSubmit={handleSubmit} className="p-4 custom-scrollbar custom-scrollbar-light" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                 <div className="text-center">
                     <PageLogo centered />
                     <h1 className="mt-4 text-2xl text-white font-bold">Registration</h1>
@@ -30,9 +72,9 @@ const RegisterForm = ({ changeForm }) => {
                             className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
                             placeholder="Name"
                             type="text"
-                            name="text"
-                        // value={}
-                        // onChange={}
+                            name="name"
+                            value={data?.name}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mx-2 my-2">
@@ -42,8 +84,8 @@ const RegisterForm = ({ changeForm }) => {
                             placeholder="email"
                             type="email"
                             name="email"
-                        // value={}
-                        // onChange={}
+                            value={data?.email}
+                            onChange={handleChange}
                         />
 
                     </div>
@@ -52,10 +94,10 @@ const RegisterForm = ({ changeForm }) => {
                         <input
                             className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
                             placeholder="Password"
-                            type="Password"
-                            name="Password"
-                        // value={}
-                        // onChange={}
+                            type="password"
+                            name="password"
+                            value={data?.password}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mx-2 my-2">
@@ -63,10 +105,10 @@ const RegisterForm = ({ changeForm }) => {
                         <input
                             className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
                             placeholder="Confirm Password"
-                            type="Password"
-                            name="Password"
-                        // value={}
-                        // onChange={}
+                            type="password"
+                            name="passwordVerification"
+                            value={data?.passwordVerification}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mx-2 my-2">
@@ -74,12 +116,11 @@ const RegisterForm = ({ changeForm }) => {
                         <input
                             className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
                             placeholder="+ 000 000 00000000"
-                            type="Password"
-                            name="Password"
-                        // value={ }
-                        // onChange={ }
+                            type="text"
+                            name="phoneNumber"
+                            value={data?.phoneNumber}
+                            onChange={handleChange}
                         />
-                        {/* <p className="flex"><AiOutlineWhatsApp className="m-1" />+ 000 000 00000000</p> */}
                     </div>
                     <div className="mx-2 my-2">
                         <p className="font-bold">User Instagram:</p>
@@ -87,11 +128,10 @@ const RegisterForm = ({ changeForm }) => {
                             className="border border-slate-100 rounded-m py-2 px-2 w-full text-black"
                             placeholder="@xxxxxxxxxxxx"
                             type="text"
-                            name="text"
-                        // value={ }
-                        // onChange={ }
+                            name="instagram"
+                            value={data?.instagram}
+                            onChange={handleChange}
                         />
-                        {/* <p className="flex"><AiOutlineInstagram className="m-1" />@xxxxxxxxxxxx</p> */}
                     </div>
                     <div className="mx-2 my-2">
                         <p className="font-bold">User PayPal:</p>
@@ -99,16 +139,22 @@ const RegisterForm = ({ changeForm }) => {
                             className="border border-slate-100 rounded-md py-2 px-2 w-full text-black"
                             placeholder="xxxxx@xxxx.xxx"
                             type="email"
-                            name="email"
-                        // value={ }
-                        // onChange={ }
+                            name="paypal"
+                            value={data?.paypal}
+                            onChange={handleChange}
                         />
-                        {/* <p className="flex"><BsPaypal className="m-1" />xxxxx@xxxx.xxx</p> */}
                     </div>
                 </div>
 
                 <div className="text-center">
-                    <button className="bg-slate-50 px-2 py-1 rounded"> sing in</button>
+                    <button className="bg-slate-50 px-2 py-1 rounded" disabled={registerLoading}>
+                        {
+                            registerLoading ?
+                                'Loading...'
+                                :
+                                'Sing in'
+                        }
+                    </button>
                     <div className="px-2 py-1 mb-2 text-white">
                         <p className="mb-2">You do not have an account? <b className="cursor-pointer text-slate-700" onClick={() => { changeForm('login') }}>Sign in</b></p>
                         <div className=" mb-2 text-center">
