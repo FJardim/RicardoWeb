@@ -18,7 +18,7 @@ const Sellers = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-2">
           <MenuLeft />
           <div className="md:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mr-10 mb-20 mt-20 ml-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 ml-10 mr-10 mb-20 mt-20 mb:ml-20">
               {[...Array(9).keys()].map((numero, i) => {
                 return <CardChef foto={banner}
                   name="Anya Taylor"
