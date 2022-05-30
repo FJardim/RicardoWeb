@@ -4,9 +4,7 @@ import { RiMessage2Fill } from "react-icons/ri";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaListAlt } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
-import {
-    IoHeart
-} from "react-icons/io5";
+import { IoHeart } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const MenuConfig = ({ changeForm, show }) => {

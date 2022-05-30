@@ -3,7 +3,7 @@ import ButtonSearch from "./ButtonSearch";
 const SearchHome = () => {
 
     return (
-        <div className='absolute flex p-8 w-3/6 h-2/3 z-10 rounded-xl' style={{ top: '12%', left: '25%', background: 'rgba(0,0,0, .4)' }}>
+        <div className='hidden md:block absolute flex p-8 w-3/6 h-2/3 z-10 rounded-xl' style={{ top: '12%', left: '25%', background: 'rgba(0,0,0, .4)' }}>
             <div className="m-auto w-full">
                 <ButtonSearch />
                 <div className="relative text-white text-center text-base">

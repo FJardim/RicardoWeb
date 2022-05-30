@@ -1,7 +1,7 @@
 const BannerPage = ({ image, title }) => {
   return (
     <div
-      className="h-96 flex justify-center items-center"
+      className="md:h-96 h-70 flex justify-center items-center"
       style={{ background: `url(${image})`, backgroundSize: "100% 100%" }}
     >
       <h1

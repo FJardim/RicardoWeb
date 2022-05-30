@@ -1,7 +1,17 @@
 import { BiMap } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
 
 const NavInfo = () => {
+
+    const [currentPath, setCurrentPath] = useState(""); //pat escucha 
+
+    const location = useLocation();
+    useEffect(() => {
+        setCurrentPath(location?.pathname);
+    }, [location]);
+
     return (
         <div className="bg-main text-black py-4">
             <div className="container relative font-semibold text-base">
@@ -14,18 +24,33 @@ const NavInfo = () => {
                 <div className="flex items-center justify-center flex-wrap">
                     <nav className="flex items-center space-x-10  md:space-x-20">
                         <Link to={"/recipes"}>
-                            <p>Recipes</p>
+                            <p className={clsx({
+                                "text-white": currentPath === '/recipes',
+                                'text-black': currentPath !== '/recipes'
+                            })}>
+                                Recipes
+                            </p>
                         </Link>
+
                         <Link to={"/plans"}>
-                            <p>Plans</p>
+                            <p className={clsx({
+                                "text-white": currentPath === '/plans',
+                                'text-black': currentPath !== '/plans'
+                            })}>
+                                Plans
+                            </p>
                         </Link>
                         <Link to={"/combos"}>
-                            <p>Combos</p>
+                            <p className={clsx({
+                                "text-white": currentPath === '/combos',
+                                'text-black': currentPath !== '/combos'
+                            })}>
+                                Combos</p>
                         </Link>
                     </nav>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
