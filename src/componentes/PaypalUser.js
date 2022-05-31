@@ -15,7 +15,7 @@ const PaypalUser = ({ textuser, textbutton }) => {
           </label>
           <input
             type="text"
-            className="mt-6 border rounded-lg md:w-80 block"
+            className="mt-6 border rounded-lg w-20 md:w-80 block"
             id="user"
             placeholder='User'
           />
