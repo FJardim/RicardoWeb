@@ -3,7 +3,7 @@ import clsx from "clsx";
 const gridColsResolver = (colsNumber) => {
     if (colsNumber === 3) {
 
-        return 'grid-cols-3';
+        return 'md:grid-cols-3';
     }
 
     return 'grid-cols-2';

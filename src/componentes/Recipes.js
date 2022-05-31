@@ -53,8 +53,8 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
                                 <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn" ><AiOutlineCheck className="text-green-700" /></button>
                             </>
                             : <>
-                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"> Dismiss</button>
-                                <button className="bg-main hover:bg-main-dark text-white font-bold py-2 px-4 rounded"> Select</button>
+                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold md:py-2 md:px-4 py-1.5 px-2 text-base rounded"> Dismiss</button>
+                                <button className="bg-main hover:bg-main-dark text-white font-bold md:py-2 md:px-4 py-1.5 px-2 text-base rounded"> Select</button>
                             </>
                         }
                     </div>

@@ -16,7 +16,7 @@ const WeightPlan = ({ img, logo, title, text, hideCart = false }) => {
                     <p className="text-white text-center md:text-sm m-4">{text}</p>
                 </div>
             </div>
-            <div className="bg-white mb-8 rounded-b-lg overflow-hidden">
+            <div className="bg-white mb-2 rounded-b-lg overflow-hidden">
                 {!hideCart &&
                     <div className="flex justify-center">
                         <ButtonCart />

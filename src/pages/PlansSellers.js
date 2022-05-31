@@ -19,14 +19,14 @@ const PlansSellers = () => {
                 <div className="flex justify-center">
                     <ButtonItems />
                 </div>
-                <div className="md:flex justify-end">
+                <div className="md:flex md:justify-end m-2 ml-2">
                     <SelectOrder />
                 </div>
             </div>
 
-            <div className="md:flex flex-wrap md:flex-nowrap">
-                <div className="w-full md:w-[300px] md:shrink-0 p-3 bg-white mb-20 md:ml-8 rounded-lg">
-                    <div className="ml-6 mt-6">
+            <div className="md:flex p-4 flex-wrap md:flex-nowrap">
+                <div className="w-full md:w-[300px] md:shrink-0 bg-white mb-10 md:mb-20 md:ml-8 rounded-lg">
+                    <div className="p-4">
                         <InformationChef />
                         <CertificationChef />
                         <DescriptionChef />
@@ -34,7 +34,7 @@ const PlansSellers = () => {
                     </div>
                 </div>
                 <div className="md:w-full">
-                    <div className="md:grid grid-cols-1 md:grid-cols-3 mt-20 ml-20 mr-10 mb-20 ">
+                    <div className="md:grid md:grid-cols-3 md:ml-14 md:mr-4 md:mb-10">
                         {[...Array(12).keys()].map((numero, i) => {
                             return (
                                 <WeightPlan
@@ -42,10 +42,10 @@ const PlansSellers = () => {
                                     logo={LogoPlan}
                                     text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
                                     img={whPlan}
-                                    hideButtons />
+                                    hideButtons
+                                />
                             );
                         })}
-
                     </div>
                     <ButtomButton />
                 </div>
