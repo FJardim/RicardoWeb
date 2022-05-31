@@ -6,7 +6,7 @@ const LanguageConfig = ({ title, spam }) => {
   return (
     <div className="mt-6">
       <div className=" space-y-7">
-        <div className="grid grid-cols-4 ml-4">
+        <div className="grid grid-cols-2 md:-space-x-32 ml-4">
           <label
             className="form-check-label inline-block text-gray-800"
             for="flexCheckDefault"
@@ -17,7 +17,7 @@ const LanguageConfig = ({ title, spam }) => {
             <CheckboxConfig />
           </div>
         </div>
-        <div className="grid grid-cols-4 ml-4">
+        <div className="grid grid-cols-2   md:-space-x-32 ml-4">
           <label
             className="form-check-label inline-block text-gray-800"
             for="flexCheckDefault"
@@ -28,7 +28,7 @@ const LanguageConfig = ({ title, spam }) => {
             <CheckboxConfig />
           </div>
         </div>
-        <div className="flex justify-end ">
+        <div className="flex md:justify-end justify-center ">
           <ButtonChange />
         </div>
       </div>
