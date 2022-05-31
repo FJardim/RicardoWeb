@@ -9,33 +9,33 @@ import MenuLeft from "../componentes/MenuLeft";
 const Combos = () => {
   return (
     <div className="">
-    <BannerPage image={img1} title="New Recipes" />
-    <div className="container p-8">
-      {/* <ButtonSupr /> */}
-    </div>
-    <div className="p-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
-        <MenuLeft />
-        <div className="mt-10 md:mt-0 md:col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
-            {[...Array(12).keys()].map((numero, i) => {
-              return (
-                <Link to="/recipes/:slug"><CardRecipes
-                  texto="Tacos al Pastor"
-                  parrafo="Ricardo App Team"
-                  title="Dinner"
-                  foto={collage}
-                  hideCart
-                /></Link>
-              );
-            })}
+      <BannerPage image={img1} title="Combos" />
+      <div className="container md:p-8">
+        {/* <ButtonSupr /> */}
+      </div>
+      <div className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
+          <MenuLeft />
+          <div className="mt-10 md:mt-0 md:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
+              {[...Array(12).keys()].map((numero, i) => {
+                return (
+                  <Link to="/recipes/:slug"><CardRecipes
+                    texto="Tacos al Pastor"
+                    parrafo="Ricardo App Team"
+                    title="Dinner"
+                    foto={collage}
+                    hideCart
+                  /></Link>
+                );
+              })}
+            </div>
+            <br />
+            <ButtomButton />
           </div>
-          <br />
-          <ButtomButton />
         </div>
       </div>
-    </div>
-  </div >
-);
+    </div >
+  );
 };
 export default Combos;

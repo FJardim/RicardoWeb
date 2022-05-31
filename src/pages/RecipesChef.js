@@ -12,20 +12,20 @@ import ButtomButton from "../componentes/ButtomButton";
 
 const RecipesChef = () => {
   return (
-    <div className="min-w-0">
+    <div className="md:min-w-0">
       <BannerChef image={banner} title="New Recipes" />
       <div className="px-16 py-16">
         <div className="flex justify-center">
           <ButtonItems />
         </div>
-        <div className="md:flex justify-end">
+        <div className="md:flex md:justify-end m-2 ">
           <SelectOrder />
         </div>
       </div>
 
-      <div className="md:flex flex-wrap md:flex-nowrap">
-        <div className="w-full md:w-[300px] shrink-0 p-3 bg-white mb-20 ml-8 rounded-lg">
-          <div className="ml-6 mt-6">
+      <div className="md:flex p-4 flex-wrap md:flex-nowrap">
+        <div className="w-full md:w-[300px] md:shrink-0 bg-white mb-10 md:mb-20 md:ml-8 rounded-lg">
+          <div className="p-4">
             <InformationChef />
             <CertificationChef />
             <DescriptionChef />
@@ -33,7 +33,7 @@ const RecipesChef = () => {
           </div>
         </div>
         <div className="md:w-full">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 mr-10 mb-20 mt-20 ml-20">
+          <div className="grid md:grid-cols-3 md:gap-4 md:mb-20 md:ml-20 md:mt-2">
             {[...Array(12).keys()].map((numero, i) => {
               return (
                 <CardRecipes
@@ -41,8 +41,8 @@ const RecipesChef = () => {
                   parrafo="Ricardo App Team"
                   title="Dinner"
                   foto={Tacos}
-                  hideButtons />
-
+                  hideButtons
+                />
               );
             })}
           </div>

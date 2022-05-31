@@ -44,16 +44,16 @@ const PlanDetail = () => {
     return (
         <>
             <div className="p-4 md:p-16">
-                <div className="flex container space-x-6 p-2">
+                <div className="flex container p-2 md:space-x-6 md:p-2">
 
                     {/* Imagenes carousel */}
-                    <div className="w-1/2 md:flex md:flex-col">
+                    <div className="md:w-1/2 md:flex md:flex-col">
                         <ProductImagesCarousel images={productImages} />
                     </div>
 
                     {/* ProductInfo*/}
                     <ProductInfo
-                        name="Plan Coconout"
+                        name="Plan Recipes Cold Coconout"
                         ingredients={ingredients}
                         showPaypalButton
                         hideMarketButtons
@@ -61,15 +61,15 @@ const PlanDetail = () => {
                 </div>
 
                 {/* Calendar */}
-                <div className='bg-white container w-full h-full'>
+                <div className='mt-4 rounded-lg bg-white container w-full h-full grid grid-cols-2 md:grid-cols-1'>
                     <Calendar day="1" />
                     <Calendar day="2" />
                 </div>
 
                 {/* Recipes day */}
-                <h1 className='text-center m-8 text-6xl font-bold'>Day 1</h1>
-                <div className='container p-8'>
-                    <div className='grid grid-cols-2 gap-14'>
+                <h1 className='text-center m-8 md:text-6xl text-3xl font-bold'>Day 1</h1>
+                <div className='container md:p-8'>
+                    <div className='md:grid md:grid-cols-2 md:gap-14 space-y-4'>
                         <Recipes
                             title="Lasagna"
                             descsh="Space for a small product description"
@@ -118,7 +118,7 @@ const PlanDetail = () => {
                 </div>
                 <TabsProvider>
                     {/* Tabs */}
-                    <TabsContainer className="md:flex m-10">
+                    <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
                         <Tab value={0}>Preparation</Tab>
                         <Tab value={1}>Ingredients purchase List</Tab>
                         <Tab value={2}>Ingredients price Comparator</Tab>
@@ -126,21 +126,21 @@ const PlanDetail = () => {
 
                     {/* TAB PANELS */}
                     {/* Preparation */}
-                    <div className="mt-4 p-4">
+                    <div className="mt-4 md:p-4">
                         <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
                             <p className='p-4'>Open our coconut, and save the water that it brings inside, since we will not use it. Extract the meat from the coconut, cut into small cubes and set aside. Put the coconut pieces, coconut milk and condensed milk in the blender, and blend for a couple of minutes, or until thick. </p>
                             <p className='p-4'>Once we take out our cocada, we add sugar and cinnamon to taste, and serve.</p>
                         </TabPanel>
 
                         {/* Ingredients purchase List */}
-                        <TabPanel className=" bg-white rounded-lg" value={1}>
+                        <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={1}>
                             <IngredientRow >
                                 <IngredientRowDetails
                                     title={"Noodles"}
                                     subtitle={"1 kg"}
                                     imageSource={Coco}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28 '>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
@@ -150,7 +150,7 @@ const PlanDetail = () => {
                                     subtitle={"1 kg"}
                                     imageSource={Coco}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
@@ -160,14 +160,14 @@ const PlanDetail = () => {
                                     subtitle={"1 kg"}
                                     imageSource={Coco}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
                         </TabPanel>
 
                         {/* Ingredients price Comparator */}
-                        <TabPanel className="bg-white rounded-lg" value={2}>
+                        <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={2}>
                             <WaPay />
                         </TabPanel>
                     </div>

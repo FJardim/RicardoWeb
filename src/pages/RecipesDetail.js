@@ -47,10 +47,10 @@ const RecipesDetail = () => {
     return (
         <>
             <div className="p-4 md:p-16">
-                <div className="flex container space-x-6 p-2">
+                <div className="flex container p-2 md:space-x-6 md:p-2">
 
                     {/* Imagenes carousel */}
-                    <div className="w-1/2 md:flex md:flex-col">
+                    <div className="md:w-1/2 md:flex md:flex-col">
                         <ProductImagesCarousel images={productImages} />
                     </div>
 
@@ -62,7 +62,7 @@ const RecipesDetail = () => {
                 </div>
                 <TabsProvider>
                     {/* Tabs */}
-                    <TabsContainer className="md:flex m-10">
+                    <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
                         <Tab value={0}>Preparation</Tab>
                         <Tab value={1}>Ingredients purchase List</Tab>
                         <Tab value={2}>Price Comparator</Tab>
@@ -70,7 +70,7 @@ const RecipesDetail = () => {
 
                     {/* TAB PANELS */}
                     {/* Preparation */}
-                    <div className="mt-4 p-4">
+                    <div className="mt-4 md:p-4">
                         <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
                             <p className='p-4'>Seal ground beef and sausage in a large skillet over medium-high heat. Drain excess fat. Add water and black olives and season with basil, garlic powder, oregano, sage, pepper, fresh garlic and onion. Simmer for 15 minutes, stirring constantly. Add tomato sauce and remove from heat.</p>
                             <p className='p-4'>Preheat oven to 190 °C.</p>
@@ -79,14 +79,14 @@ const RecipesDetail = () => {
                         </TabPanel>
 
                         {/* Ingredients purchase List */}
-                        <TabPanel className=" bg-white rounded-lg" value={1}>
+                        <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={1}>
                             <IngredientRow >
                                 <IngredientRowDetails
                                     title={"Noodles"}
                                     subtitle={"1 kg"}
                                     imageSource={Pasticho}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
@@ -96,7 +96,7 @@ const RecipesDetail = () => {
                                     subtitle={"1 kg"}
                                     imageSource={Pasticho}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
@@ -106,14 +106,14 @@ const RecipesDetail = () => {
                                     subtitle={"1 kg"}
                                     imageSource={Pasticho}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
                         </TabPanel>
 
                         {/* Ingredients price Comparator */}
-                        <TabPanel className="bg-white rounded-lg" value={2}>
+                        <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={2}>
                             <WaPay />
                         </TabPanel>
                     </div>

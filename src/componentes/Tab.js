@@ -6,7 +6,7 @@ const Tab = ({ children, value }) => {
 
     return <div
         className={clsx([
-            'px-5 py-2 font-semibold text-lg cursor-pointer',
+            'px-5 py-2 md:font-semibold font-medium md:text-lg text-sm cursor-pointer',
             { 'border-b-2 border-main': value === contextValue }
         ])}
         onClick={() => setValue(value)}
