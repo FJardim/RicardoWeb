@@ -4,7 +4,7 @@ import paypal from "../assets/paypal.png"
 const PaypalUser = ({ textuser, textbutton }) => {
   return (
     <form>
-      <div className="md:flex mt-4">
+      <div className="md:flex md:mt-4">
         <img src={paypal} alt="" className="w-40 md:w-20" />
         <div className="ml-2">
           <label
@@ -15,7 +15,7 @@ const PaypalUser = ({ textuser, textbutton }) => {
           </label>
           <input
             type="text"
-            className="mt-6 border rounded-lg w-32 md:w-80 block"
+            className="mt-6 md:text-xl text-xs border rounded-lg w-32 md:w-80 block"
             id="user"
             placeholder='User'
           />
