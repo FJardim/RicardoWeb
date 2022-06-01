@@ -21,7 +21,7 @@ const PaypalModal = ({ show, onClose }) => {
       className="flex items-center justify-center h-screen w-screen bg-black bg-opacity-50 fixed z-10"
       style={{ top: 0, left: 0 }}
     >
-      <div className="max-w-xl w-full bg-white rounded p-6 animate__animated animate__fadeIn">
+      <div className="md:max-w-xs w-72 bg-white rounded p-6 animate__animated animate__fadeIn">
        <PaypalLogin
        title="Pay with PayPal"
        help="Forgot Password" 

@@ -10,30 +10,30 @@ const PaypalLogin = ({ title, help, login, create }) => {
         </div>
       </div>
 
-      <div className="container ">
-        <div className=" justify-center ml-16">
+      <div className="container ml-4 ">
+        <div className=" justify-center">
           <input
             type="text"
             placeholder="paypaluser@gmail.com"
-            className="border rounded-lg w-96 mt-6 "
+            className="border justify-center rounded-lg w-auto mt-6 "
           />
 
           <input
             type="password" id="password"
             placeholder="****************"
-            className="border rounded-lg w-96 mt-6 bg-gray-200"
+            className="border rounded-lg w-auto flex justify-center mt-6 bg-gray-200"
           />
 
           <p className="text-blue-600 font-bold cursor-pointer">{help}</p>
         </div>
       </div>
 
-      <div className="mt-8 p-2">
+      <div className="mt-6 p-2">
         <h3 className="flex items-center justify-center p-4 bg-blue-700 text-white font-semibold rounded-full shadow cursor-pointer">
           {login}
         </h3>
       </div>
-      <div className="mt-8 p-2">
+      <div className="mt-6 p-2">
         <h3 className="flex items-center justify-center p-4 bg-white border border-blue-700 text-blue-700 font-semibold rounded-full shadow cursor-pointer">
           {create}
         </h3>
