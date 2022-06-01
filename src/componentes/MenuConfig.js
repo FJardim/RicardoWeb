@@ -7,7 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { IoHeart } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const MenuConfig = ({ changeForm, show }) => {
+const MenuConfig = ({ show }) => {
     const { setAuthInfo } = useAuth();
 
     if (!show) {

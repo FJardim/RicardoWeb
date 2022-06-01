@@ -11,7 +11,7 @@ const Sellers = () => {
   return (
     <div className="">
       <BannerPage image={img1} title="Sellers" />
-      <div className="container p-8">
+      <div className="container md:p-8">
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
