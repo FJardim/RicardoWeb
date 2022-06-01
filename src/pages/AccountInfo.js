@@ -6,8 +6,8 @@ import PaypalUser from "../componentes/PaypalUser";
 
 const AccountInfo = () => {
   return (
-    <div className="container p-20 md:h-full md:w-full mb-20">
-      <p className="md:text-4xl font-bold text-black md:mb-12">My Profile</p>
+    <div className="container p-20 h-full md:w-full mb-20">
+      <p className="md:text-4xl font-bold text-black mb-12">My Profile</p>
       <CardWithTitle title="My personal Information">
         <FormAccount
           sourseimg="Añadir Imagen"
