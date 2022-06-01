@@ -9,7 +9,7 @@ import CategorySectionCard from "../componentes/CategorySectionCard";
 const Categories = () => {
   return (
     <div>
-      <BannerPage image={img1} title="Category Of Recipes" />
+      <BannerPage image={img1} title="Category" />
       <div className="grid md:grid-cols-4 mr-6 ml-6 gap-5 md:gap-10  py-20">
         <CategorySectionCard img={food} name="New Recipes" className={"py-16"} />
         <CategorySectionCard img={food2} name="Low in Calories" className={"py-16"} />

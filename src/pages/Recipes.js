@@ -1,10 +1,10 @@
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.png";
-import Tacos from "../assets/protein.jpg";
+// import Tacos from "../assets/protein.jpg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
-import ButtonSupr from "../componentes/ButtonSupr";
+// import ButtonSupr from "../componentes/ButtonSupr";
 import MenuLeft from "../componentes/MenuLeft";
 import useRecipes from "../hooks/useRecipes";
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ const Recipes = () => {
   return (
     <div className="">
       <BannerPage image={img1} title="New Recipes" />
-      <div className="container p-8">
+      <div className="container md:p-8">
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
