@@ -30,8 +30,8 @@ const MyAccountLayout = () => {
 
     return (
         <div className="flex">
-            <div className="w-2/12 md:w-[5vw] bg-gray-700  text-white text-[2vw]" >
-                <div>
+            <div className="w-2/12 md:w-[5vw] bg-gray-700 hidden md:block text-white text-[2vw]" >
+                <div className="">
                     <Link title="My Profile" to={'/accountinfo'}>
                         <IoPersonCircleSharp className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
                             'text-main': currentPath === '/accountinfo'
