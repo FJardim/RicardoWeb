@@ -1,11 +1,11 @@
 const Contactus = () => {
   return (
-    <div className="flex">
-      <div className="container p-20 h-full w-full mb-20">
-        <p className="md:text-4xl text flex justify-center md:justify-start font-bold text-black mb-12">
+    <div className="">
+      <div className="container md:p-20 p-4 h-full md:w-md mb-6 max-w-full">
+        <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black mb-6 md:mb-12">
           Contact us
         </p>
-        <div className="bg-white p-10 rounded-lg md:h-full md:w-full w-56 shadow">
+        <div className="bg-white p-4 md:p-10 rounded-lg md:h-full w-full shadow">
           <p className="md:text-xl text-base text-gray-500 font-medium">
             How can we help you?
           </p>

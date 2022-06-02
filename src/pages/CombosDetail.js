@@ -1,7 +1,4 @@
-import Pasticho from '../assets/pasticho.png';
-import Bebida from '../assets/bebida.png';
 import Combos from '../assets/combosImg.png';
-import Recipes from '../componentes/Recipes';
 import ProductImagesCarousel from '../componentes/ProductImagesCarousel';
 import ProductInfo from '../componentes/ProductInfo';
 import { TabsProvider } from "../contexts/TabsContext";
@@ -42,10 +39,10 @@ const CombosDetail = () => {
     return (
         <>
             <div className="p-4 md:p-16">
-                <div className="flex container space-x-6 p-2">
+                <div className="flex container p-2 md:space-x-6 md:p-2">
 
                     {/* Imagenes carousel */}
-                    <div className="w-1/2 md:flex md:flex-col">
+                    <div className="md:w-1/2 md:flex md:flex-col">
                         <ProductImagesCarousel images={productImages} />
                     </div>
 
@@ -60,7 +57,7 @@ const CombosDetail = () => {
 
                 <TabsProvider>
                     {/* Tabs */}
-                    <TabsContainer className="md:flex m-10">
+                    <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
                         <Tab value={0}>Descrition</Tab>
                         <Tab value={1}>Ingredients purchase List</Tab>
                         <Tab value={2}>Price Comparator</Tab>
@@ -75,14 +72,14 @@ const CombosDetail = () => {
                         </TabPanel>
 
                         {/* Ingredients purchase List */}
-                        <TabPanel className=" bg-white rounded-lg" value={1}>
+                        <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={1}>
                             <IngredientRow >
                                 <IngredientRowDetails
                                     title={"Noodles"}
                                     subtitle={"1 kg"}
                                     imageSource={Combos}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
@@ -92,7 +89,7 @@ const CombosDetail = () => {
                                     subtitle={"1 kg"}
                                     imageSource={Combos}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
@@ -102,14 +99,14 @@ const CombosDetail = () => {
                                     subtitle={"1 kg"}
                                     imageSource={Combos}
                                 />
-                                <div className='flex items-center'>
+                                <div className='flex items-center ml-28'>
                                     <Checkbox />
                                 </div>
                             </IngredientRow>
                         </TabPanel>
 
                         {/* Ingredients price Comparator */}
-                        <TabPanel className="bg-white rounded-lg" value={2}>
+                        <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={2}>
                             <WaPay />
                         </TabPanel>
                     </div>

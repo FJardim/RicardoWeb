@@ -10,20 +10,20 @@ import Collage from "../assets/ImgCombos.jpeg";
 const MyFavoritesUser = () => {
     return (
         <div className="flex">
-            <div className="container p-20 md:h-full md:w-full mb-20">
-                <p className="md:text-4xl font-bold text-black mb-12">My Favorites</p>
-                <div className="md:bg-white p-10 rounded-lg md:h-full md:w-full shadow">
+            <div className="container md:p-20 p-4 md:h-full md:w-full mb-20">
+                <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black mb-6 md:mb-12">My Favorites</p>
+                <div className="bg-white p-2 md:p-10 rounded-lg md:h-full md:w-full shadow">
                     <TabsProvider>
                         {/* Tabs */}
-                        <TabsContainer className="md:flex m-10 space-x-10">
+                        <TabsContainer className="flex md:m-10 m-4 text-center items-center space-x-4 md:space-x-10">
                             <Tab value={0}>Recipes</Tab>
                             <Tab value={1}>Plans and Combos</Tab>
                         </TabsContainer>
                         {/* TAB PANELS */}
                         {/* Recipes */}
                         <div className="mt-4 p-4">
-                            <TabPanel className="animate__animated animate__fadeInUp  md:bg-white rounded-lg" value={0}>
-                                <div className="md:grid md:grid-cols-3 gap-10">
+                            <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={0}>
+                                <div className="md:grid md:grid-cols-3 md:gap-10 grid grid-cols-1 gap-5">
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
                                         parrafo="Ricardo App Team"
@@ -59,52 +59,52 @@ const MyFavoritesUser = () => {
                                 </div>
                             </TabPanel>
                             {/* Plans and combos */}
-                            <TabPanel className=" bg-white rounded-lg" value={1}>
-                                <div className="md:grid md:grid-cols-3 gap-10">
+                            <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={1}>
+                                <div className="md:grid md:grid-cols-3 md:gap-10 grid grid-cols-1 gap-5">
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons 
+                                        hideButtons
                                         hideCart
-                                        />
+                                    />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons 
+                                        hideButtons
                                         hideCart
-                                        />
+                                    />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons 
+                                        hideButtons
                                         hideCart
-                                        />
+                                    />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons 
+                                        hideButtons
                                         hideCart
-                                        />
+                                    />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
                                         texto="Combos Pierde Peso"
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
-                                        hideButtons 
+                                        hideButtons
                                         hideCart
-                                        />
+                                    />
                                     </Link>
                                 </div>
                             </TabPanel>

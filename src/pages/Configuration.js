@@ -5,8 +5,8 @@ import Config from "../componentes/Config";
 
 const Configuration = () => {
   return (
-    <div className="container p-20 h-full md:w-full mb-20">
-      <p className="md:text-4xl font-bold text-black mb-12">Configuration</p>
+    <div className="container md:p-20 p-4 h-full md:w-md mb-6 max-w-full">
+      <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black mb-6 md:mb-12">Cofiguration</p>
       <CardWithTitle title="Language" className="md:w-32">
         <Config title="English" spam="Spanish" />
       </CardWithTitle>
@@ -19,7 +19,7 @@ const Configuration = () => {
             <div className="mt-10">
               <select
                 id="Rating"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main block md:w-60 w-40 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                className=" bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-main block md:w-60 w-52 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
               >
                 <option selected>Porciones</option>
                 <option value="">1 Porcion</option>
