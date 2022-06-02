@@ -8,14 +8,14 @@ import CardResum from "../componentes/CardResum";
 
 const PaymentMethod = () => {
   return (
-    <div className="p-8 md:flex md:mt-14 md:ml-8 mb-12">
-      <div className="md:w-1/2">
+    <div className="md:p-8 p-4  md:flex md:mt-14 md:ml-8 mb-12">
+      <div className="md:w-1/2 w-full">
         <CardPaypal title="Add Paypal" text="Modificar" />
 
-        <div className="mt-6 ">
+        <div className="mt-6 flex md:max-w-full ">
           <CardWithTitle title="Order Sellers">
             <CardOrder title="Sellers" chef="Anya Taylor" />
-            <div className="md:grid md:grid-cols-2">
+            <div className="flex md:grid md:grid-cols-2 p-2 space-x-12">
               <CardProduct title="Products" food="Lasagna" />
               <Details
                 level="Level"
@@ -32,7 +32,7 @@ const PaymentMethod = () => {
         </div>
       </div>
 
-      <div className=" md:ml-8 md:w-4/12 mt-0.5">
+      <div className=" md:ml-8 md:w-4/12 mt-6 md:mt-0">
         <CardResum title="Orden Resum" total="Total a Pagar" price="$35.23" />
       </div>
     </div>

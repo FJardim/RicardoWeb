@@ -1,7 +1,7 @@
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.png";
-import collage from "../assets/ImgCombos.jpeg";
+import Collage from "../assets/ImgCombos.jpeg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
 import MenuLeft from "../componentes/MenuLeft";
@@ -20,13 +20,15 @@ const Combos = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
               {[...Array(12).keys()].map((numero, i) => {
                 return (
-                  <Link to="/recipes/:slug"><CardRecipes
-                    texto="Tacos al Pastor"
-                    parrafo="Ricardo App Team"
-                    title="Dinner"
-                    foto={collage}
-                    hideCart
-                  /></Link>
+                  <Link to="/combos/:slug"><CardRecipes
+                  texto="Combos Pierde Peso"
+                  parrafo="Anya Taylor"
+                  title=""
+                  foto={Collage}
+                  hideButtons 
+                  hideCart
+                  />
+              </Link>
                 );
               })}
             </div>
