@@ -5,6 +5,7 @@ import CardChef from "../componentes/CardChef";
 import banner from "../assets/banner.jpg";
 import ButtomButton from "../componentes/ButtomButton";
 import MenuLeft from "../componentes/MenuLeft";
+import { Link } from "react-router-dom";
 // import ButtonSupr from "../componentes/ButtonSupr";
 
 const Sellers = () => {
@@ -18,15 +19,18 @@ const Sellers = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
               {[...Array(9).keys()].map((numero, i) => {
-                return <CardChef foto={banner}
-                  name="Anya Taylor"
-                  description="Chef, Nutrition, Specialist"
-                  recipes=" Recipes:50"
-                  plans="Plans:50"
-                  pack="Pack:10"
-                />;
+                return (
+                  <Link to="/blogchef"><CardChef foto={banner}
+                    name="Anya Taylor"
+                    description="Chef, Nutrition, Specialist"
+                    recipes=" Recipes:50"
+                    plans="Plans:50"
+                    pack="Pack:10"
+                  />
+                  </Link>
+                );
               })}
             </div>
             <ButtomButton />

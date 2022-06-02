@@ -1,10 +1,8 @@
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.png";
-// import Tacos from "../assets/protein.jpg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
-// import ButtonSupr from "../componentes/ButtonSupr";
 import MenuLeft from "../componentes/MenuLeft";
 import useRecipes from "../hooks/useRecipes";
 import { useEffect, useState } from "react";
@@ -39,7 +37,7 @@ const Recipes = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10  lg:grid-cols-3 lg:ml-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
               {currentRecipes?.map((recipe, i) => {
                 return (
                   <Link to={`/recipes/${recipe?.slug}`} key={i}>
