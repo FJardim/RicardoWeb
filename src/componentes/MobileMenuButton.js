@@ -36,7 +36,7 @@ const MobileMenuButton = () => {
             </button>
             {
                 showMenuMobile &&
-                <ul className="md:hidden absolute right-0 bg-black text-white px-2 py-2 z-10 rounded animate__animated animate__fadeIn" style={{ top: '100%' }}>
+                <ul className="md:hidden absolute right-0 bg-black text-white px-2 py-2 z-20 rounded animate__animated animate__fadeIn" style={{ top: '100%' }}>
                     {
                         user ?
 

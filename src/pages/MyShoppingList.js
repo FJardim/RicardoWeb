@@ -15,7 +15,7 @@ const MyShoppingList = () => {
         { id: 1, name: '1 pack of dried funghi' },
         { id: 2, name: '1 pack 400g butter' },
         { id: 3, name: '1 pack sliced paris mushrooms' },
-        { id: 4, name: '1 pack sliced shiltake mushrooms' },
+        { id: 4, name: '1 pack sliced shiltake mushrooms and funghi' },
         { id: 5, name: '1 pack separate shimeji mushrooms' },
         { id: 6, name: '1 galon of milk' },
         { id: 7, name: '1 packet of thyme' },
@@ -30,60 +30,64 @@ const MyShoppingList = () => {
 
     return (
         <div className="flex">
-            <div className="container p-20 h-full w-full mb-20">
-                <p className="text-4xl font-bold text-black mb-12">My Shopping List</p>
-                <div className="bg-white p-10 rounded-lg h-full w-full shadow">
+            <div className="container p-4 md:p-20 h-full w-full mb-20">
+                <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black mb-6 md:mb-12">My Shopping List</p>
+                <div className="bg-white p-8 md:p-10 rounded-lg h-full w-full shadow">
                     <TabsProvider>
                         {/* Tabs */}
-                        <TabsContainer className="md:flex m-4 space-x-40">
+                        <TabsContainer className="flex m-4 md:space-x-40">
                             <Tab value={0}>Today</Tab>
                             <Tab value={1}>Weekly</Tab>
                             <Tab value={2}>Plans</Tab>
                         </TabsContainer>
                         {/* TAB PANELS */}
                         {/* TODAY */}
-                        <div className="p-4 border-b mb-8 ">
+                        <div className="p-4 border-b md:mb-8 ">
                             <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
-                                <div className='p-2 space-y-4'>
-                                    {info.map(info => <div className="m-4 grid grid-cols-2 gap-96" key={info.id}>
+                                <div className='p-2 md:space-y-4 space-y-2'>
+                                    {info.map(info => <div className="md:m-4 md:grid md:grid-cols-2 md:gap-96" key={info.id}>
                                         {info.name}
-                                        <Checkbox className="m-auto" />
+                                        <Checkbox className="ml-2" />
                                     </div>)}
                                 </div>
                             </TabPanel>
                             {/* WEEKLY*/}
                             <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={1}>
                                 <div className='p-2 space-y-4'>
-                                    {info.map(info => <div className="m-4 grid grid-cols-2 gap-96" key={info.id}>
+                                    {info.map(info => <div className="md:m-4 md:grid md:grid-cols-2 md:gap-96" key={info.id}>
                                         {info.name}
-                                        <Checkbox className="m-auto" />
+                                        <Checkbox className="ml-2" />
                                     </div>)}
                                 </div>
                             </TabPanel>
                             {/* PLANS*/}
                             <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={2}>
                                 <div className='p-2 space-y-4'>
-                                    {info.map(info => <div className="m-4 grid grid-cols-2 gap-96" key={info.id}>
+                                    {info.map(info => <div className="md:m-4 md:grid md:grid-cols-2 md:gap-96" key={info.id}>
                                         {info.name}
-                                        <Checkbox className="m-auto" />
+                                        <Checkbox className="ml-2" />
                                     </div>)}
                                 </div>
                             </TabPanel>
                         </div>
                     </TabsProvider>
-                    <div className="grid grid-cols-4 ">
-                        <div className="p-4">
-                            <p className="ml-4 text-2xl font-bold text-gray-400">Total:</p>
+                    <div className="grid grid-cols-2 h-full md:grid-cols-1 w-full">
+                        <div className="space-y-10">
+                            <div className="p-4">
+                                <p className="ml-4 md:text-2xl text-lg font-bold text-gray-400">Total:</p>
+                            </div>
+                            <TotalShoppingPrecio price={"$ 102.00"} />
+                            <TotalShoppingPrecio price={"$ 102.00"} />
+                            <TotalShoppingPrecio price={"$ 100.00"} />
                         </div>
-                        <TotalShoppingPrecio price={"$ 102.00"} />
-                        <TotalShoppingPrecio price={"$ 102.00"} />
-                        <TotalShoppingPrecio price={"$ 100.00"} />
-                        <div className="p-4">
-                            <p className="ml-4 text-2xl font-bold text-gray-400">Enviamelo con:</p>
+                        <div className="">
+                            <div className="p-4">
+                                <p className="ml-4 md:text-2xl text-lg font-bold text-gray-400">Enviamelo con:</p>
+                            </div>
+                            <TotalShopping img={Instacart} />
+                            <TotalShopping img={AmazonF} />
+                            <TotalShopping img={Walmart} />
                         </div>
-                        <TotalShopping img={Instacart} />
-                        <TotalShopping img={AmazonF} />
-                        <TotalShopping img={Walmart} />
                     </div>
                 </div>
             </div>
