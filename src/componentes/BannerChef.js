@@ -9,19 +9,19 @@ const BannerChef = ({ image }) => {
     >
       <div>
         <Link to={"/blogchef"}>
-          <div className="md:flex justify-center items-center">
+          <div className="flex justify-center items-center p-6">
             <img src="https://5.imimg.com/data5/PD/LS/MY-21970292/women-s-chef-uniform-500x500.jpg"
-              className="md:h-40 w-40 rounded-full items-center" alt="" />
+              className="md:h-52 md:w-52 w-20 h-20 rounded-full items-center" alt="" />
           </div>
         </Link>
         <div className="text-center text-white font-sans">
-          <div className="md:flex justify-center text-center">
+          <div className="flex justify-center text-center">
             <p className="md:text-4xl text-center font-bold">Anya Taylor</p>
-            <BsPatchCheckFill className="mt-4 ml-3  text-main" />
+            <BsPatchCheckFill className="md:mt-4 md:ml-3 m-1 text-main" />
           </div>
 
           <p className="md:text-4xl">Chef, Nutrition Specialist.</p>
-          <div className="flex space-x-4 justify-center items-center mt-6 text-yellow-300	">
+          <div className="flex space-x-4 justify-center items-center md:mt-6 mb-6 text-yellow-300	">
             <BsStarFill />
             <BsStarFill />
             <BsStarFill />
