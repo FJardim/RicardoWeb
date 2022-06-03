@@ -67,7 +67,7 @@ const CombosDetail = () => {
                     {/* Preparation */}
                     <div className="mt-4 p-4">
                         <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
-                            <p className='p-4'>Quia necessitatibus cum illo nemo est repudiandae voluptatibus hic internos totam et recusandae nulla. Ut velit alias in expedita laboriosam est blanditiis consectetur aut rerum dignissimos vel veritatis nesciunt et o
+                            <p className='text-justify p-4'>Quia necessitatibus cum illo nemo est repudiandae voluptatibus hic internos totam et recusandae nulla. Ut velit alias in expedita laboriosam est blanditiis consectetur aut rerum dignissimos vel veritatis nesciunt et o
                                 dit aspernatur. At molestiae soluta et consequatur cupiditate cum omnis velit qui iusto debitis et dicta itaque.</p>
                         </TabPanel>
 

@@ -32,7 +32,7 @@ const MobileMenuButton = () => {
     return (
         <div ref={modalRef} className="relative">
             <button className="btn text-white md:hidden" onClick={() => setShowMenuMobile((oldShow) => !oldShow)}>
-                <IoMenu className="text-2xl" />
+                <IoMenu className="w-6 h-6 md:text-2xl" />
             </button>
             {
                 showMenuMobile &&
@@ -43,46 +43,46 @@ const MobileMenuButton = () => {
                             <div>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={"/accountinfo"} className="flex items-center space-x-2 hover:text-main">
-                                        <FaUserCircle />
-                                        <span>My Profile</span>
+                                        <FaUserCircle className="w-6 h-6" />
+                                        <span className="text-lg">My Profile</span>
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={"/configuration"} className="flex items-center space-x-2 hover:text-main">
-                                        <BsFillGearFill />
-                                        <span>Setting</span>
+                                        <BsFillGearFill className="w-6 h-6" />
+                                        <span className="text-lg">Setting</span>
                                     </Link>
 
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={'/overview'} className="flex items-center space-x-2 hover:text-main">
-                                        <BsFillCalendar2MinusFill />
-                                        <span>Overview</span>
+                                        <BsFillCalendar2MinusFill className="w-6 h-6" />
+                                        <span className="text-lg">Overview</span>
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={"/favorites"} className="flex items-center space-x-2 hover:text-main">
-                                        <IoHeart />
-                                        <span>My Favorites</span>
+                                        <IoHeart className="w-6 h-6" />
+                                        <span className="text-lg">My Favorites</span>
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={'/saves'} className="flex items-center space-x-2 hover:text-main">
-                                        <BsFillBookmarkHeartFill />
-                                        <span>Saved</span>
+                                        <BsFillBookmarkHeartFill className="w-6 h-6" />
+                                        <span className="text-lg">Saved</span>
 
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={'/shopping'} className="flex items-center space-x-2 hover:text-main">
-                                        <FaListAlt />
-                                        <span>My Shopping List</span>
+                                        <FaListAlt className="w-6 h-6" />
+                                        <span className="text-lg">My Shopping List</span>
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={'/contactus'} className="flex items-center space-x-2 hover:text-main">
-                                        <RiMessage2Fill />
-                                        <span>Contact</span>
+                                        <RiMessage2Fill className="w-6 h-6" />
+                                        <span className="text-lg">Contact</span>
                                     </Link>
                                 </li>
 
@@ -90,29 +90,29 @@ const MobileMenuButton = () => {
                             :
                             <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                 <Link to={`?showLogin=true`} className="flex items-center space-x-2 hover:text-main">
-                                    <IoLogIn />
-                                    <span>Log In / Registratión</span>
+                                    <IoLogIn className="w-8 h-8" />
+                                    <span className="text-lg">Log In / Registratión</span>
                                 </Link>
                             </li>
                     }
                     <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                         <Link to={'/categories'} className="flex items-center space-x-2 hover:text-main">
-                            <IoApps />
-                            <span>Categories</span>
+                            <IoApps className="w-6 h-6" />
+                            <span className="text-lg">Categories</span>
                         </Link>
                     </li>
                     <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                         <Link to={'/sellers'} className="flex items-center space-x-2 hover:text-main">
-                            <GoPerson />
-                            <span>Sellers</span>
+                            <GoPerson className="w-6 h-6" />
+                            <span className="text-lg">Sellers</span>
                         </Link>
                     </li>
                     {
                         user &&
                         <li className="py-2">
                             <button className="flex items-center space-x-2 " onClick={() => { setAuthInfo({ isAuthenticated: false, user: null, token: null }); }}>
-                                <AiOutlineLogout />
-                                <span>Log Out</span>
+                                <AiOutlineLogout className="w-6 h-6" />
+                                <span className="text-lg">Log Out</span>
                             </button>
                         </li>
                     }
