@@ -3,7 +3,7 @@ import React from "react";
 const CategoriesRecipes = () => {
   return (
     <div className="p-6">
-      <h4 className="text-xl font-semibold mt-2 mb-6">Categories</h4>
+      <h4 className="title-medium mt-2 mb-6">Categories</h4>
       <div className="font-normal cursor-pointer hover:text-main">New Recipes</div>
       <div className="font-normal cursor-pointer hover:text-main">Low in Calories </div>
       <div className="font-normal cursor-pointer hover:text-main">Paleo</div>

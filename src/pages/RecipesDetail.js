@@ -72,10 +72,10 @@ const RecipesDetail = () => {
                     {/* Preparation */}
                     <div className="mt-4 md:p-4">
                         <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
-                            <p className='p-4'>Seal ground beef and sausage in a large skillet over medium-high heat. Drain excess fat. Add water and black olives and season with basil, garlic powder, oregano, sage, pepper, fresh garlic and onion. Simmer for 15 minutes, stirring constantly. Add tomato sauce and remove from heat.</p>
-                            <p className='p-4'>Preheat oven to 190 °C.</p>
-                            <p className='p-4'>Place a layer of meat and sauce on the bottom of a 23 x 33 cm baking dish. Cover with a layer of lasagna. Spread a thin layer of cottage cheese over the pasta and sprinkle with a little mozzarella cheese. Cover with another layer of sauce and repeat the process until you finish with a layer of meat and sauce. Reserve about 1/2 cup mozzarella cheese for later use.</p>
-                            <p className='p-4'> Bake for about 45 minutes, but check after 30 minutes as cooking time may vary depending on how thick the pasta is. You’ll know it’s ready when you can easily insert a knife into it. Sprinkle the reserved mozzarella cheese and bake for another 10 minutes for a perfect gratin.</p>
+                            <p className='text-justify p-4'>Seal ground beef and sausage in a large skillet over medium-high heat. Drain excess fat. Add water and black olives and season with basil, garlic powder, oregano, sage, pepper, fresh garlic and onion. Simmer for 15 minutes, stirring constantly. Add tomato sauce and remove from heat.</p>
+                            <p className='text-justify p-4'>Preheat oven to 190 °C.</p>
+                            <p className='text-justify p-4'>Place a layer of meat and sauce on the bottom of a 23 x 33 cm baking dish. Cover with a layer of lasagna. Spread a thin layer of cottage cheese over the pasta and sprinkle with a little mozzarella cheese. Cover with another layer of sauce and repeat the process until you finish with a layer of meat and sauce. Reserve about 1/2 cup mozzarella cheese for later use.</p>
+                            <p className='text-justify p-4'> Bake for about 45 minutes, but check after 30 minutes as cooking time may vary depending on how thick the pasta is. You’ll know it’s ready when you can easily insert a knife into it. Sprinkle the reserved mozzarella cheese and bake for another 10 minutes for a perfect gratin.</p>
                         </TabPanel>
 
                         {/* Ingredients purchase List */}

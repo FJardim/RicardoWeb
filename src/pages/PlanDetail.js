@@ -127,9 +127,9 @@ const PlanDetail = () => {
                     {/* TAB PANELS */}
                     {/* Preparation */}
                     <div className="mt-4 md:p-4">
-                        <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg" value={0}>
-                            <p className='p-4'>Open our coconut, and save the water that it brings inside, since we will not use it. Extract the meat from the coconut, cut into small cubes and set aside. Put the coconut pieces, coconut milk and condensed milk in the blender, and blend for a couple of minutes, or until thick. </p>
-                            <p className='p-4'>Once we take out our cocada, we add sugar and cinnamon to taste, and serve.</p>
+                        <TabPanel className="animate__animated animate__fadeInUp  bg-white rounded-lg " value={0}>
+                            <p className='text-justify p-4'>Open our coconut, and save the water that it brings inside, since we will not use it. Extract the meat from the coconut, cut into small cubes and set aside. Put the coconut pieces, coconut milk and condensed milk in the blender, and blend for a couple of minutes, or until thick. </p>
+                            <p className='text-justify p-4'>Once we take out our cocada, we add sugar and cinnamon to taste, and serve.</p>
                         </TabPanel>
 
                         {/* Ingredients purchase List */}

@@ -36,15 +36,15 @@ const ProductInfo = ({
             </div>
 
             <div className="flex">
-                <AiFillStar className="mt-2 text-yellow-300" />
-                <AiFillStar className="mt-2 text-yellow-300" />
-                <AiFillStar className="mt-2 text-yellow-300" />
-                <AiFillStar className="mt-2 text-yellow-300" />
-                <AiOutlineStar className="mt-2 text-gray-300" />
-                <p className='text-gray-300 text-xs m-2 underline'>(1 customer review)</p>
+                <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
+                <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
+                <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
+                <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
+                <AiOutlineStar className="mt-2 text-gray-300 h-6 w-6" />
+                <p className='text-gray-300 text-lg m-2 underline'>(1 customer review)</p>
             </div>
             <div className='bg-white rounded-lg py-4'>
-                <div className="m-8">
+                <div className="m-8 text-lg">
                     {ingredients.map(ingredient => <div key={ingredient.id}>{ingredient.name}</div>)}
                 </div>
             </div>
