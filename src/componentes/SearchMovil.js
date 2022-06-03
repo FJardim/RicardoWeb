@@ -15,7 +15,7 @@ const SearchMovil = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full p-4 m-auto mt-8">
+            <div className="w-full p-2 m-auto">
                 <ButtonSearch />
                 <div className="relative text-white text-center text-base">
                     <input
