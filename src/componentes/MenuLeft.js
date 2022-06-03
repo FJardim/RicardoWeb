@@ -6,11 +6,11 @@ import SelectRank from "./SelectRank";
 const MenuLeft = () => {
     return (
         <div>
-            <div className="lg:ml-6 bg-white lg:w-64 rounded-lg shadow ">
+            <div className="lg:ml-6 bg-white lg:w-64 w-56 md:w-40 rounded-lg shadow ">
                 <CategoriesRecipes />
             </div>
             <div>
-                <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 rounded-lg shadow">
+                <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 w-56 md:w-40 rounded-lg shadow">
                     <p className="text-xl font-semibold mt-2 mb-6">Types</p>
                     <SelectCategory title="Breakfast" />
                     <SelectCategory title="Lunch" />
@@ -19,7 +19,7 @@ const MenuLeft = () => {
                 </div>
             </div>
             <div>
-                <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 rounded-lg shadow">
+                <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 w-56 md:w-40 rounded-lg shadow">
                     <h1 className="text-xl font-semibold mt-2 mb-6">Rating</h1>
                     <SelectRank />
                     <SelectRank />
