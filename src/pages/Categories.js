@@ -1,5 +1,5 @@
 import BannerPage from "../componentes/BannerPage";
-import img1 from "../assets/img1.png";
+import img1 from "../assets/img1.jpg";
 import food from "../assets/food.jfif";
 import food2 from "../assets/food2.jfif";
 import food3 from "../assets/food3.png";

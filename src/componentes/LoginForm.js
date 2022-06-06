@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Logo from "../assets/drafts.png";
-import LoginBg from "../assets/img1.png";
+import LoginBg from "../assets/img1.jpg";
 import PageLogo from "../componentes/PageLogo";
 import { useAuth } from "../contexts/AuthContext";
 import { useFeedBack } from "../contexts/FeedBackContext";

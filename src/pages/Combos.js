@@ -1,6 +1,6 @@
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
-import img1 from "../assets/img1.png";
+import img1 from "../assets/img1.jpg";
 import Collage from "../assets/ImgCombos.jpeg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";

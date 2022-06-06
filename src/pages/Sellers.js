@@ -1,6 +1,6 @@
 import React from "react";
 import BannerPage from "../componentes/BannerPage";
-import img1 from "../assets/img1.png";
+import img1 from "../assets/img1.jpg";
 import CardChef from "../componentes/CardChef";
 import banner from "../assets/banner.jpg";
 import ButtomButton from "../componentes/ButtomButton";
