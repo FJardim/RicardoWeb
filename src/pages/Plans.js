@@ -1,6 +1,6 @@
 import React from "react";
 import BannerPage from "../componentes/BannerPage";
-import img1 from "../assets/img1.png";
+import img1 from "../assets/img1.jpg";
 import CardGym from "../componentes/CardGym";
 import girltraining from "../assets/girltraining.jpg";
 import { Link } from "react-router-dom";

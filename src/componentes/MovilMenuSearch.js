@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import SearchMovil from "./SearchMovil";
 import ReactDom from "react-dom";
-import LoginBg from "../assets/img1.png";
+import LoginBg from "../assets/img1.jpg";
 
 const MovilMenuSearch = ({ show, onClose }) => {
 

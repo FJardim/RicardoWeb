@@ -4,8 +4,8 @@ import PopularSearch from '../componentes/PopularSearch';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Popular1 from '../assets/popular1.png';
-import Popular2 from '../assets/popular2.png';
+import Popular1 from '../assets/popular1.jpg';
+import Popular2 from '../assets/popular2.jpg';
 import { Navigation } from "swiper";
 
 const SwiperPopular = () => {
