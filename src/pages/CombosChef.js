@@ -14,9 +14,9 @@ const CombosChef = () => {
   return (
     <div className="md:min-w-0">
       <BannerChef image={banner} title="New Recipes" />
-      <div className="px-16 py-16">
+      <div className="px-16 py-10">
         <div className=" flex justify-center">
-          <ButtonItems />
+          <ButtonItems defaultCategory="combos" />
         </div>
         <div className="md:flex md:justify-end m-2 ">
           <SelectOrder />
@@ -47,9 +47,7 @@ const CombosChef = () => {
             })}
           </div>
           <div className="flex justify-center space-x-2 mb-6">
-
             <ButtomButton />
-
           </div>
         </div>
       </div>

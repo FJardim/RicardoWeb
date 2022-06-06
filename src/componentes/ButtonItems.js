@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ButtonSearchSelector from "./ButtonSearchSelector";
+import ButtonSellers from "./ButtonSellers";
 
-const ButtonItems = () => {
-  const [category, setCategory] = useState('ingredients');
+const ButtonItems = ({ defaultCategory = 'recipes' }) => {
+  const [category, setCategory] = useState(defaultCategory);
 
   return (
     <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex">
       <Link to={"/sellers/:slug/recipes"}>
-        <ButtonSearchSelector
+        <ButtonSellers
           onClick={() => { setCategory('recipes') }}
           name="Recipes"
           isActive={category === 'recipes'}
@@ -16,7 +16,7 @@ const ButtonItems = () => {
       </Link>
 
       <Link to={"/sellers/:slug/plans"}>
-        <ButtonSearchSelector
+        <ButtonSellers
           onClick={() => { setCategory('plans') }}
           name="Plans"
           isActive={category === 'plans'}
@@ -24,7 +24,7 @@ const ButtonItems = () => {
       </Link>
 
       <Link to={"/sellers/:slug/combos"}>
-        <ButtonSearchSelector
+        <ButtonSellers
           onClick={() => { setCategory('combos') }}
           name="Combos"
           isActive={category === 'combos'}

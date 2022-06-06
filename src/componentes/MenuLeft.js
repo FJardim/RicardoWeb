@@ -21,11 +21,11 @@ const MenuLeft = () => {
             <div>
                 <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 w-56 m-auto md:w-40 rounded-lg shadow">
                     <h1 className="title-medium mt-2 mb-6">Rating</h1>
-                    <SelectRank />
-                    <SelectRank />
-                    <SelectRank />
-                    <SelectRank />
-                    <SelectRank />
+                    <SelectRank num="2" />
+                    <SelectRank num="3" />
+                    <SelectRank num="4" />
+                    <SelectRank num="5" />
+                    <SelectRank num="6" />
                     <div className="p-3">
                         <ButtonRank />
                     </div>

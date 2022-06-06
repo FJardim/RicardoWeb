@@ -23,13 +23,13 @@ const MenuConfig = ({ show }) => {
     return (
         <ul
             style={{ top: '100%' }}
-            className="absolute space-y-2 z-20 right-0 text-white bg-gray-800 w-48 border border-slate-300 rounded-md py-4"
+            className="absolute space-y-2 z-20 right-0 text-white bg-gray-800 w-52 border border-slate-300 rounded-md py-4"
         >
             <li className="space-x-2 border-b px-4">
                 <Link to={"/accountinfo"}>
                     <div className="flex hover:text-main">
                         <FaUserCircle className="mt-1" />
-                        <p className="ml-4 mb-4">My Profile</p>
+                        <p className="text-lg ml-2.5 mb-1.5">My Profile</p>
                     </div>
                 </Link>
             </li>
@@ -37,7 +37,7 @@ const MenuConfig = ({ show }) => {
                 <Link to={"/configuration"}>
                     <div className="flex hover:text-main">
                         <BsFillGearFill className="mt-1" />
-                        <p className="ml-4 mb-4">Setting</p>
+                        <p className="text-lg ml-2.5 mb-1.5">Setting</p>
                     </div>
                 </Link>
 
@@ -46,7 +46,7 @@ const MenuConfig = ({ show }) => {
                 <Link to={'/overview'}>
                     <div className="flex hover:text-main">
                         <BsFillCalendar2MinusFill className="mt-1" />
-                        <p className="ml-4 mb-4">Overview</p>
+                        <p className="text-lg ml-2.5 mb-1.5">Overview</p>
                     </div>
 
                 </Link>
@@ -55,7 +55,7 @@ const MenuConfig = ({ show }) => {
                 <Link to={"/favorites"}>
                     <div className="flex hover:text-main">
                         <IoHeart className="mt-1" />
-                        <p className="ml-4 mb-4">My Favorites</p>
+                        <p className="text-lg ml-2.5 mb-1.5">My Favorites</p>
                     </div>
                 </Link>
             </li>
@@ -63,7 +63,7 @@ const MenuConfig = ({ show }) => {
                 <Link to={'/saves'}>
                     <div className="flex hover:text-main">
                         <BsFillBookmarkHeartFill className="mt-1" />
-                        <p className="ml-4 mb-4">Saved</p>
+                        <p className="text-lg ml-2.5 mb-1.5">Saved</p>
                     </div>
                 </Link>
             </li>
@@ -71,7 +71,7 @@ const MenuConfig = ({ show }) => {
                 <Link to={'/shopping'}>
                     <div className="flex hover:text-main">
                         <FaListAlt className="mt-1" />
-                        <p className="ml-4 mb-4">My Shopping List</p>
+                        <p className="text-lg ml-2.5 mb-1.5">My Shopping List</p>
                     </div>
 
                 </Link>
@@ -80,7 +80,7 @@ const MenuConfig = ({ show }) => {
                 <Link to={'/contactus'}>
                     <div className="flex hover:text-main">
                         <RiMessage2Fill className="mt-1" />
-                        <p className="ml-4 mb-4">Contact</p>
+                        <p className="text-lg ml-2.5 mb-1.5">Contact</p>
                     </div>
 
                 </Link>
@@ -89,7 +89,7 @@ const MenuConfig = ({ show }) => {
                 <a onClick={handleLougoutClick} href="dfdf">
                     <div className="flex hover:text-main">
                         <AiOutlineLogout className="mt-1" />
-                        <p className="ml-4 ">Log Out</p>
+                        <p className="text-lg ml-2.5">Log Out</p>
                     </div>
                 </a>
             </li>

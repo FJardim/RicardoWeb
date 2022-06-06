@@ -54,16 +54,16 @@ const NavBar = () => {
                         <div className="flex ml-auto md:space-x-10 space-x-8 items-center h-full" >
                             <Link to={"/Categories"} className="hidden md:block hover:text-main">
                                 <p className={clsx({
-                                    "text-main": currentPath === '/Categories',
-                                    'text-white': currentPath !== '/Categories'
+                                    "text-main title-medium md:text-lg": currentPath === '/Categories',
+                                    'text-white title-medium md:text-lg': currentPath !== '/Categories'
                                 })}>
                                     Categories
                                 </p>
                             </Link>
                             <Link to={"/Sellers"} className="hidden md:block hover:text-main">
                                 <p className={clsx({
-                                    "text-main": currentPath === '/Sellers',
-                                    'text-white': currentPath !== '/Sellers'
+                                    "text-main title-medium md:text-lg": currentPath === '/Sellers',
+                                    'text-white title-medium md:text-lg': currentPath !== '/Sellers'
                                 })}>
                                     Sellers
                                 </p>
@@ -79,7 +79,7 @@ const NavBar = () => {
                             </button>
                             <button onClick={user ? handleToggleMenu : handleToggleModal} className="hidden md:block relative items-center hover:text-main bg-transparent 
                                     bg-gray-800 border border-slate-300 hover:border-main rounded-md py-2 px-2.5">
-                                <div className="flex">
+                                <div className="flex text-lg">
                                     <FaUserCircle className="m-auto mr-2" />
                                     {user ? user.name : 'Log in'}
                                     <MenuConfig show={showMenu} />
