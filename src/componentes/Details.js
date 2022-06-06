@@ -6,10 +6,10 @@ const Details = ({ level, categories, fitness, time, days, ingredients, number, 
             <div className='md:flex py-2 '>
                 <p className="w-1/2">{level}</p>
                 <div className='flex mt-1'>
-                    <img className="w-8 h-8" src={Chefs} alt="chefs" />
-                    <img className="ml-2 w-8 h-8" src={Chefs} alt="chefs" />
-                    <img className="ml-2 w-8 h-8" src={Chefs} alt="chefs" />
-                    <img className="ml-2 w-8 h-8" src={Chefs} alt="chefs" />
+                    <img className="w-6 h-6" src={Chefs} alt="chefs" />
+                    <img className="ml-2 w-6 h-6" src={Chefs} alt="chefs" />
+                    <img className="ml-2 w-6 h-6" src={Chefs} alt="chefs" />
+                    <img className="ml-2 w-6 h-6" src={Chefs} alt="chefs" />
                 </div>
             </div>
             <div className='md:flex py-2 '>

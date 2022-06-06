@@ -12,9 +12,9 @@ export default function Footer() {
       <div className="container h-full">
         <div className="flex items-center justify-center mb:ml-8 mt-4 md:justify-start">
           <PageLogo />
-          <b className="ml-4 ">Ricardo APP</b>
+          <b className="ml-4 title-medium">Ricardo APP</b>
         </div>
-        <ul className="grid grid-cols-2 gap-8 p-6 md:grid-cols-4 md:mt-4 ">
+        <ul className="grid grid-cols-2 gap-8 p-6 md:px-28  md:grid-cols-4 md:mt-4 ">
           <li>
             <h1 className="font-bold my-4">
               Get in touch

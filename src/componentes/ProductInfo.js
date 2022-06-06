@@ -4,8 +4,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillEmojiLaughingFill } from "react-icons/bs";
 import { IoHeartOutline } from "react-icons/io5";
-// import { IoHeart } from "react-icons/io5";
-// import Chefs from '../assets/chef-hat.png';
 import Amazon from "../assets/Img-button/amazon-fresh.jpg";
 import Wallmart from "../assets/Img-button/wallmart.jpeg";
 import Instacart from "../assets/Img-button/instacart.jpg";
