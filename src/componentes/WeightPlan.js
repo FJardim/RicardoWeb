@@ -11,8 +11,6 @@ const WeightPlan = ({ img, precio, logo, title, text, hideCart = false }) => {
                 </div>
                 <img className="absolute right-2 top-1 rounded md:h-20 md:w-20" src={logo} alt="Logo" />
 
-
-
                 <div className="text-white text-center w-full mt-36 md:text-4xl" style={{ textShadow: "0px 0px 3px #000000" }}>
                     {title}
                     <p className="text-white my-2 text-center md:text-sm m-4">{text}</p>
