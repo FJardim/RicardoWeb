@@ -16,7 +16,7 @@ const NavInfo = () => {
         <div className="bg-main text-black py-4">
             <div className="container relative">
                 <div className="flex items-center cursor-pointer absolute -mt-4  ">
-                    <BiMap className="text-white h-12 w-12 mt-2" />
+                    <BiMap className="text-white h-10 w-10 mt-2" />
                     <div className="flex flex-col text-white ">
 
                     </div>

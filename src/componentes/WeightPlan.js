@@ -1,13 +1,15 @@
 import ButtonCart from "./ButtonCart";
 
-const WeightPlan = ({ img, logo, title, text, hideCart = false }) => {
+const WeightPlan = ({ img, precio, logo, title, text, hideCart = false }) => {
     return (
         <div className="p-4">
 
             <div className="flex relative bg-main rounded-md cursor-pointer bg-cover" style={{ backgroundImage: `url(${img})` }}>
                 <div className="absolute bg-black opacity-40 rounded-md ">
                 </div>
-
+                <div className="absolute flex left-1 top-1 bg-main-dark rounded-lg opacity-70">
+                    <p className="text-white h-6 w-15 ml-1 ">{precio}  </p>
+                </div>
                 <div className="absolute flex justify-center w-full md:h-20 md:w-20 md:right-2 mt-2">
                     <img src={logo} alt="Logo" />
                 </div>

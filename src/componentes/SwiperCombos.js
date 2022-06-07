@@ -37,6 +37,7 @@ const SwiperCombos = () => {
                         parrafo="Anya Taylor"
                         title=""
                         foto={Collage}
+                        precio="150 $"
                         hideButtons
                         hideCart />
                 </SwiperSlide>
@@ -47,6 +48,7 @@ const SwiperCombos = () => {
                         parrafo="Anya Taylor"
                         title=""
                         foto={Collage}
+                        precio="150 $"
                         hideButtons
                         hideCart />
                 </SwiperSlide>
