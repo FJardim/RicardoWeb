@@ -16,7 +16,7 @@ const Recipes = () => {
     perPage: 12
   });
 
-  const [{ recipes, total, numberOfPages, size, error, loading }, getRecipes] = useRecipes({ axiosConfig: { params: { ...recipesFilters } } });
+  const [{ recipes, total, numberOfPages, loading }, getRecipes] = useRecipes({ axiosConfig: { params: { ...recipesFilters } } });
 
   return (
     <div className="">
@@ -29,7 +29,12 @@ const Recipes = () => {
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
             {
-              recipes?.length === 0 ?
+              loading &&
+              <h1 className="text-4xl text-center">Cargando...</h1>
+            }
+
+            {
+              recipes?.length === 0 && !loading ?
                 <h1 className="text-4xl text-center text-red-500">
                   No results found.
                 </h1>
