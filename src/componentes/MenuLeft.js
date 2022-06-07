@@ -5,7 +5,7 @@ import SelectRank from "./SelectRank";
 
 const MenuLeft = () => {
     return (
-        <div>
+        <div className="hidden md:block">
             <div className="lg:ml-6 bg-white lg:w-64 w-56 m-auto md:w-40 rounded-lg shadow ">
                 <CategoriesRecipes />
             </div>

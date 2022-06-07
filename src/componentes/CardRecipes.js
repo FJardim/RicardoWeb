@@ -7,7 +7,7 @@ import BolsaCompras from "../assets/Img-button/bolsa-de-la-compra.png";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import ButtonCart from "./ButtonCart"
 
-const CardRecipes = ({ texto, precio, foto, title, hideButtons, hideCart = false }) => {
+const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false }) => {
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
       <div className="h-64 w-74 relative" style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}>
@@ -16,7 +16,7 @@ const CardRecipes = ({ texto, precio, foto, title, hideButtons, hideCart = false
             <img src={AppLogo} className="h-10 w-10 opacity-60 rounded-full" alt="AppLogo" />
           </div>
           <div className="absolute flex left-1 top-1 bg-main-dark rounded-lg opacity-70">
-            <p className="text-white h-6 w-15 ml-1 ">{precio}  </p>
+            <p className="text-white h-6 w-15 ml-1 ">{price}  </p>
           </div>
           <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
             <div className="flex mr-2">

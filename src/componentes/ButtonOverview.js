@@ -1,10 +1,8 @@
-const ButtonOverview = ({ name }) => {
+const ButtonOverview = ({ name, onClick }) => {
     return (
-        <div className="p-6">
-            <button className="w-full h-14 rounded-full bg-main-light shadow">
-                <p className="text-white Font-bold text-4xl">{name}</p>
-            </button>
-        </div>
+        <button className="w-full md:h-14 h-10 rounded-xl bg-main shadow md:hidden" onClick={onClick}>
+            <p className="text-black hover:text-white Font-bold md:text-4xl title-medium">{name}</p>
+        </button>
     );
 }
 

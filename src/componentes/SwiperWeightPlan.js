@@ -3,13 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import LogoPlan from "../assets/Premium-icon.svg";
 import WeightPlan from '../componentes/WeightPlan';
 import { Navigation } from "swiper";
-import whPlan from "../assets/girltraining.jpg"
+import usePlans from "../hooks/usePlans";
+import SystemInfo from "../util/SystemInfo";
 
 const SwiperWeightPlan = () => {
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    const [{ plans }] = usePlans();
 
     useEffect(() => {
         const resizeHandler = () => {
@@ -31,33 +33,17 @@ const SwiperWeightPlan = () => {
                 modules={[Navigation]}
                 className="mySwiper m-auto "
             >
-                <SwiperSlide>
+                {plans.map(plan => <SwiperSlide>
                     <WeightPlan
+                        key={plan.id}
+                        price={`${plan?.price}$`}
                         hideCart
-                        title="Weight loss plan"
-                        logo={LogoPlan}
-                        text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
-                        img={whPlan}
-                        precio="150 $ " />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <WeightPlan
-                        hideCart
-                        title="Weight loss plan"
-                        logo={LogoPlan}
-                        text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
-                        img={whPlan}
-                        precio="150 $ " />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <WeightPlan
-                        hideCart
-                        title="Weight loss plan"
-                        logo={LogoPlan}
-                        text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
-                        img={whPlan}
-                        precio="150 $ " />
-                </SwiperSlide>
+                        logo={`${SystemInfo.api}${plan?.seller?.logo}`}
+                        img={`${SystemInfo.api}${plan?.planImages?.[0]?.path}`}
+                        title={plan?.name}
+                        text={plan?.description}
+                    />
+                </SwiperSlide>)}
             </Swiper>
         </div>
     );
