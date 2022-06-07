@@ -38,7 +38,7 @@ const Home = () => {
 
       {/*-------- Plans --------*/}
       <div className="container p-2">
-        <Card saludo="Plans" />
+        <Card saludo="Plans" title="See All" />
       </div>
 
       <div className="container flex">
@@ -54,7 +54,7 @@ const Home = () => {
 
       {/*-------- Recipes ---------*/}
       <div className="container p-2">
-        <Card saludo="Recipes" />
+        <Card saludo="Recipes" title="See All" />
       </div>
       <div className="container">
         <SwiperRecipes />
@@ -67,7 +67,7 @@ const Home = () => {
 
       {/*-------- Combos --------*/}
       <div className="container p-2">
-        <Card saludo="Combos" />
+        <Card saludo="Combos" title="See All" />
       </div>
       <div className="p-10">
         <SwiperCombos />
