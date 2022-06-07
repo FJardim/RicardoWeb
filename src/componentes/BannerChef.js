@@ -1,4 +1,5 @@
-import { BsStarFill, BsPatchCheckFill } from "react-icons/bs";
+import { BsStarFill} from "react-icons/bs";
+import cheque from "../assets/cheque.png";
 import { Link } from "react-router-dom";
 const BannerChef = ({ image }) => {
   return (
@@ -17,7 +18,7 @@ const BannerChef = ({ image }) => {
         <div className="text-center text-white font-sans">
           <div className="flex justify-center text-center">
             <p className="md:text-4xl text-center font-bold">Anya Taylor</p>
-            <BsPatchCheckFill className="md:mt-4 md:ml-3 m-1 text-main" />
+            <img src={cheque} alt="" className="md:mt-4 md:ml-3 m-1 text-main w-5 h-5" />
           </div>
 
           <p className="md:text-4xl">Chef, Nutrition Specialist.</p>
