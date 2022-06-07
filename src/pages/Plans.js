@@ -50,6 +50,7 @@ const Sellers = () => {
                     key={i}
                     to={`/plan/${plan?.slug}`}>
                     <WeightPlan
+                      price={plan?.price}
                       hideCart
                       logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
                       img={`${SystemInfo?.api}${plan?.planImages?.[0]?.path}`}

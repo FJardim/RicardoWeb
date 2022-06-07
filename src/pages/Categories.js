@@ -2,7 +2,7 @@ import BannerPage from "../componentes/BannerPage";
 import img1 from "../assets/img1.jpg";
 import CategorySectionCard from "../componentes/CategorySectionCard";
 import useCategories from "../hooks/useCategories";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import SystemInfo from "../util/SystemInfo";
 
 const Categories = () => {
@@ -14,7 +14,27 @@ const Categories = () => {
 
   const [currentCategories, setCurrentCategories] = useState([]);
 
-  const [{ categories, numberOfPages, error, loading }, getCategories] = useCategories({ params: { ...categoriesFilters }, options: { useCache: false } });
+  const [{ categories, numberOfPages, error, loading }, getCategories] = useCategories({ axiosConfig: { params: { ...categoriesFilters } }, options: { useCache: false } });
+
+  const observer = useRef();
+
+  const lastValueRef = useCallback((value) => {
+    if (observer?.current) observer?.current?.disconnect?.();
+
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        if (numberOfPages > categoriesFilters?.page) {
+          setCategoriesFilters((oldCategories) => {
+            return {
+              ...oldCategories,
+              page: oldCategories?.page + 1
+            }
+          });
+        }
+      }
+    })
+    if (value) observer?.current?.observe?.(value)
+  }, [currentCategories]);
 
   useEffect(() => {
     if (categories?.length > 0) {
@@ -39,14 +59,19 @@ const Categories = () => {
         {
           currentCategories?.map((category, i) => {
             return (
-              <CategorySectionCard img={`${SystemInfo?.api}${category?.banner}`} name={category?.name} className={"py-16"} />
+              <CategorySectionCard
+                ref={i + 1 === currentCategories.length ? lastValueRef : null}
+                img={`${SystemInfo?.api}${category?.banner}`}
+                name={category?.name}
+                className={"py-16"}
+              />
             )
           })
         }
       </div>
       {
         loading &&
-        <h1 className="text-center text-4xl">Cargando...</h1>
+        <h1 className="text-center text-4xl mb-10">Loading...</h1>
       }
     </div>
   );
