@@ -1,33 +1,53 @@
 import BannerPage from "../componentes/BannerPage";
 import img1 from "../assets/img1.jpg";
-import food from "../assets/food.jfif";
-import food2 from "../assets/food2.jfif";
-import food3 from "../assets/food3.png";
-import food4 from "../assets/food4.jpg";
 import CategorySectionCard from "../componentes/CategorySectionCard";
+import useCategories from "../hooks/useCategories";
+import { useEffect, useState } from "react";
+import SystemInfo from "../util/SystemInfo";
 
 const Categories = () => {
+
+  const [categoriesFilters, setCategoriesFilters] = useState({
+    page: 1,
+    perPage: 8
+  });
+
+  const [currentCategories, setCurrentCategories] = useState([]);
+
+  const [{ categories, numberOfPages, error, loading }, getCategories] = useCategories({ params: { ...categoriesFilters }, options: { useCache: false } });
+
+  useEffect(() => {
+    if (categories?.length > 0) {
+      setCurrentCategories((oldCategories) => {
+        return [...oldCategories, ...categories]
+      });
+    }
+  }, [categories]);
+
   return (
     <div>
-      <BannerPage image={img1} title="Category" />
+      <BannerPage image={img1} title="Categories" />
+      {
+        !loading && currentCategories?.length === 0 ?
+          <h1 className="text-center text-red-500 text-4xl">
+            No results found.
+          </h1>
+          :
+          null
+      }
       <div className="grid md:grid-cols-4 mr-6 ml-6 gap-5 md:gap-10  py-20">
-        <CategorySectionCard img={food} name="New Recipes" className={"py-16"} />
-        <CategorySectionCard img={food2} name="Low in Calories" className={"py-16"} />
-        <CategorySectionCard img={food3} name="Paleo" className={"py-16"} />
-        <CategorySectionCard img={food4} name="Hight in Protein" className={"py-16"} />
-        <CategorySectionCard img={food} name="New Recipes" className={"py-16"} />
-        <CategorySectionCard img={food2} name="Low in Calories" className={"py-16"} />
-        <CategorySectionCard img={food3} name="Paleo" className={"py-16"} />
-        <CategorySectionCard img={food4} name="Hight in Protein" className={"py-16"} />
-        <CategorySectionCard img={food} name="New Recipes" className={"py-16"} />
-        <CategorySectionCard img={food2} name="Low in Calories" className={"py-16"} />
-        <CategorySectionCard img={food3} name="Paleo" className={"py-16"} />
-        <CategorySectionCard img={food4} name="Hight in Protein" className={"py-16"} />
-        <CategorySectionCard img={food} name="New Recipes" className={"py-16"} />
-        <CategorySectionCard img={food2} name="Low in Calories" className={"py-16"} />
-        <CategorySectionCard img={food3} name="Paleo" className={"py-16"} />
-        <CategorySectionCard img={food4} name="Hight in Protein" className={"py-16"} />
+        {
+          currentCategories?.map((category, i) => {
+            return (
+              <CategorySectionCard img={`${SystemInfo?.api}${category?.banner}`} name={category?.name} className={"py-16"} />
+            )
+          })
+        }
       </div>
+      {
+        loading &&
+        <h1 className="text-center text-4xl">Cargando...</h1>
+      }
     </div>
   );
 };

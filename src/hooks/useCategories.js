@@ -3,7 +3,7 @@ import useAxios from './useAxios';
 
 const useCategories = ({ options, ...axiosConfig } = {}) => {
 
-  const [{ data, error, loading }, getCategories] = useAxios({ url: '/Categories', ...axiosConfig }, { useCache: false, ...options });
+  const [{ data, error, loading }, getCategories] = useAxios({ url: '/categories', ...axiosConfig }, { useCache: false, ...options });
 
   const [categories, setCategories] = useState([]);
   const [total, setTotal] = useState(0);
