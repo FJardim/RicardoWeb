@@ -1,14 +1,16 @@
 import clsx from "clsx";
+import { forwardRef } from "react";
 
-const CategorySectionCard = ({
+const CategorySectionCard = forwardRef(({
     className,
     img,
     name,
     withoutPaddingY = false,
     withoutBgCover = false,
-}) => {
+}, ref) => {
     return (
         <div
+            ref={ref}
             className={clsx(`
                 flex items-center justify-center
                 relative 
@@ -32,6 +34,6 @@ const CategorySectionCard = ({
         </div>
 
     );
-}
+})
 
 export default CategorySectionCard;
