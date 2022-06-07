@@ -82,7 +82,7 @@ const NavBar = () => {
                                 <div className="flex text-lg">
                                     <FaUserCircle className="m-auto mr-2" />
                                     {user ? user.name : 'Log in'}
-                                    <MenuConfig show={showMenu} />
+                                    <MenuConfig show={showMenu} onClose={() => setShowMenu(false)} />
                                 </div>
 
                             </button>
