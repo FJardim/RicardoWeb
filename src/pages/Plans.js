@@ -43,7 +43,7 @@ const Sellers = () => {
                 :
                 null
             }
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:grid-cols-3 md:mr-5">
               {plans.map((plan, i) => {
                 return (
                   <Link

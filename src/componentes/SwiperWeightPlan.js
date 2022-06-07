@@ -23,7 +23,6 @@ const SwiperWeightPlan = () => {
 
     return (
         <div className="container px-8">
-
             <Swiper
                 slidesPerView={innerWidth > 768 ? 3 : 1}
                 spaceBetween={20}

@@ -22,7 +22,7 @@ const CategorySectionCard = ({
                 'py-10': !withoutPaddingY,
                 'bg-cover': !withoutBgCover,
             }, className)}
-            style={{ backgroundImage: `url(${img})` }}
+            style={{ backgroundImage: `url(${img})`, backgroundSize: "100% 100%" }}
         >
             <div className='rounded-md absolute bg-black h-full w-full opacity-30' >
             </div>
