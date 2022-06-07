@@ -43,13 +43,14 @@ const Sellers = () => {
                 :
                 null
             }
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:grid-cols-3 md:mr-5">
               {plans.map((plan, i) => {
                 return (
                   <Link
                     key={i}
                     to={`/plan/${plan?.slug}`}>
                     <WeightPlan
+                      hideCart
                       logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
                       img={`${SystemInfo?.api}${plan?.planImages?.[0]?.path}`}
                       title={plan?.name}
@@ -62,7 +63,7 @@ const Sellers = () => {
             <br />
             <br />
             <Pagination
-              pages={10}
+              pages={numberOfPages}
               onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
               activePage={plansFilters?.page}
             />
