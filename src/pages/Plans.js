@@ -50,6 +50,7 @@ const Sellers = () => {
                     key={i}
                     to={`/plan/${plan?.slug}`}>
                     <WeightPlan
+                      hideCart
                       logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
                       img={`${SystemInfo?.api}${plan?.planImages?.[0]?.path}`}
                       title={plan?.name}
@@ -62,7 +63,7 @@ const Sellers = () => {
             <br />
             <br />
             <Pagination
-              pages={10}
+              pages={numberOfPages}
               onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
               activePage={plansFilters?.page}
             />
