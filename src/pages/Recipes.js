@@ -57,6 +57,7 @@ const Recipes = () => {
                         title={`${recipe?.mealPeriods?.[0]?.name}`}
                         foto={`${SystemInfo?.api}${recipe?.recipeImages?.[0]?.path}`}
                         hideCart
+                        hideBag
                       />
                     </Link>
                   );

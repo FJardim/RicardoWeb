@@ -32,6 +32,7 @@ const Combos = () => {
                     foto={Collage}
                     hideButtons
                     hideCart
+                    hideClock
                   />
                   </Link>
                 );

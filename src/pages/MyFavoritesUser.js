@@ -31,6 +31,7 @@ const MyFavoritesUser = () => {
                                         foto={Tacos}
                                         hideButtons
                                         hideCart
+                                        hideBag
                                     /></Link>
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
@@ -39,6 +40,7 @@ const MyFavoritesUser = () => {
                                         foto={Tacos}
                                         hideButtons
                                         hideCart
+                                        hideBag
                                     /></Link>
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
@@ -47,6 +49,7 @@ const MyFavoritesUser = () => {
                                         foto={Tacos}
                                         hideButtons
                                         hideCart
+                                        hideBag
                                     /></Link>
                                     <Link to="/recipes/:slug"><CardRecipes
                                         texto="Tacos al Pastor"
@@ -55,6 +58,7 @@ const MyFavoritesUser = () => {
                                         foto={Tacos}
                                         hideButtons
                                         hideCart
+                                        hideBag
                                     /></Link>
                                 </div>
                             </TabPanel>
@@ -68,6 +72,7 @@ const MyFavoritesUser = () => {
                                         foto={Collage}
                                         hideButtons
                                         hideCart
+                                        hideClock
                                     />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
@@ -77,6 +82,7 @@ const MyFavoritesUser = () => {
                                         foto={Collage}
                                         hideButtons
                                         hideCart
+                                        hideClock
                                     />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
@@ -86,6 +92,7 @@ const MyFavoritesUser = () => {
                                         foto={Collage}
                                         hideButtons
                                         hideCart
+                                        hideClock
                                     />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
@@ -95,6 +102,7 @@ const MyFavoritesUser = () => {
                                         foto={Collage}
                                         hideButtons
                                         hideCart
+                                        hideClock
                                     />
                                     </Link>
                                     <Link to="/combos/:slug"><CardRecipes
@@ -104,6 +112,7 @@ const MyFavoritesUser = () => {
                                         foto={Collage}
                                         hideButtons
                                         hideCart
+                                        hideClock
                                     />
                                     </Link>
                                 </div>
