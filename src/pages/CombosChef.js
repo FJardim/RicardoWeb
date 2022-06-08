@@ -42,6 +42,7 @@ const CombosChef = () => {
                   title="Dinner"
                   foto={collage}
                   hideButtons
+                  hideClock
                 />
               );
             })}

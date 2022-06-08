@@ -17,6 +17,7 @@ const Saves = () => {
                             foto={Collage}
                             hideButtons
                             hideCart
+                            hideClock
                         />
                         </Link>
                         <Link to="/recipes/:slug"><CardRecipes
@@ -26,6 +27,7 @@ const Saves = () => {
                             foto={Tacos}
                             hideButtons
                             hideCart
+                            hideBag
                         /></Link>
                         <Link to="/combos/:slug"><CardRecipes
                             texto="Combos Pierde Peso"
@@ -34,6 +36,7 @@ const Saves = () => {
                             foto={Collage}
                             hideButtons
                             hideCart
+                            hideClock
                         />
                         </Link>
                         <Link to="/recipes/:slug"><CardRecipes
@@ -43,6 +46,7 @@ const Saves = () => {
                             foto={Tacos}
                             hideButtons
                             hideCart
+                            hideBag
                         /></Link>
                     </div>
                 </div>

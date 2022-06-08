@@ -42,6 +42,7 @@ const RecipesChef = () => {
                   title="Dinner"
                   foto={Tacos}
                   hideButtons
+                  hideBag
                 />
               );
             })}
