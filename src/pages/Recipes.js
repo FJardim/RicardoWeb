@@ -8,9 +8,13 @@ import useRecipes from "../hooks/useRecipes";
 import { useEffect, useState } from "react";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
+import ButtonOverview from "../componentes/ButtonOverview";
+import ModalFiltre from "../componentes/ModalFiltre";
+
 
 const Recipes = () => {
 
+  const [showModalMenu, setShowModalMenu] = useState(false);
   const [recipesFilters, setRecipesFilters] = useState({
     page: 1,
     perPage: 12
@@ -25,6 +29,7 @@ const Recipes = () => {
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
+      <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
@@ -66,6 +71,7 @@ const Recipes = () => {
           </div>
         </div>
       </div>
+      <ModalFiltre show={showModalMenu} onClose={() => setShowModalMenu(false)} />
     </div >
   );
 };

@@ -1,3 +1,4 @@
+import React, { useState} from "react";
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.jpg";
@@ -5,8 +6,11 @@ import Collage from "../assets/ImgCombos.jpeg";
 import { Link } from "react-router-dom";
 import ButtomButton from "../componentes/ButtomButton";
 import MenuLeft from "../componentes/MenuLeft";
+import ButtonOverview from "../componentes/ButtonOverview";
+import ModalFiltre from "../componentes/ModalFiltre";
 
 const Combos = () => {
+  const [showModalMenu, setShowModalMenu] = useState(false);
   return (
     <div className="">
       <BannerPage image={img1} title="Combos" />
@@ -14,6 +18,7 @@ const Combos = () => {
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
+      <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
@@ -37,6 +42,7 @@ const Combos = () => {
           </div>
         </div>
       </div>
+      <ModalFiltre show={showModalMenu} onClose={() => setShowModalMenu(false)} />
     </div >
   );
 };
