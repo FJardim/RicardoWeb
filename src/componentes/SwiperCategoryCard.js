@@ -9,9 +9,14 @@ import Category1 from "../assets/category1.jpg";
 import Category2 from "../assets/category2.jpg";
 import Category3 from "../assets/category3.jpg";
 import Category4 from "../assets/category4.jpg";
+import useCategories from "../hooks/useCategories";
+import SystemInfo from "../util/SystemInfo";
 
 const SwiperCategoryCard = () => {
+
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    const [{ categories, total, numberOfPages, size, error, loading }, getCategories] = useCategories();
 
     useEffect(() => {
         const resizeHandler = () => {
@@ -34,33 +39,19 @@ const SwiperCategoryCard = () => {
                 className="mySwiper"
 
             >
-                <SwiperSlide>
-                    <CategorySectionCard
-                        name="New recipes"
-                        img={Category1}
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <CategorySectionCard
-                        name="Low in calories"
-                        img={Category2}
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <CategorySectionCard
-                        name="Paleo"
-                        img={Category3}
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <CategorySectionCard
-                        name="High in protein"
-                        img={Category4}
-                    />
-                </SwiperSlide>
+                {
+                    categories?.map((category, i) => {
+                        return (
+                            <SwiperSlide>
+                                <CategorySectionCard
+                                    name={category?.name}
+                                    img={`${SystemInfo?.api}${category?.banner}`}
+                                    categoryId={category?.id}
+                                />
+                            </SwiperSlide>
+                        )
+                    })
+                }
             </Swiper>
         </>
     );
