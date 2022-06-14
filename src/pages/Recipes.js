@@ -2,10 +2,9 @@ import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.jpg";
 import { Link } from "react-router-dom";
-import ButtomButton from "../componentes/ButtomButton";
 import MenuLeft from "../componentes/MenuLeft";
 import useRecipes from "../hooks/useRecipes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 import ButtonOverview from "../componentes/ButtonOverview";
@@ -29,7 +28,7 @@ const Recipes = () => {
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
-      <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
+        <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
@@ -55,7 +54,7 @@ const Recipes = () => {
                         texto={`${recipe?.name}`}
                         parrafo="Ricardo App Team"
                         title={`${recipe?.mealPeriods?.[0]?.name}`}
-                        foto={`${SystemInfo?.api}${recipe?.recipeImages?.[0]?.path}`}
+                        foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
                         hideCart
                         hideBag
                       />

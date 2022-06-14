@@ -58,7 +58,7 @@ const Sellers = () => {
                       price={`${plan?.price}$`}
                       hideCart
                       logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
-                      img={`${SystemInfo?.api}${plan?.planImages?.[0]?.path}`}
+                      img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
                       title={plan?.name}
                       text={plan?.description}
                     />
