@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.jpg";
@@ -18,7 +18,7 @@ const Combos = () => {
         {/* <ButtonSupr /> */}
       </div>
       <div className="p-6">
-      <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
+        <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
@@ -30,6 +30,7 @@ const Combos = () => {
                     parrafo="Anya Taylor"
                     title=""
                     foto={Collage}
+                    price="150$"
                     hideButtons
                     hideCart
                     hideClock

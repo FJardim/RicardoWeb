@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import ReactDom from "react-dom";
-import LoginBg from "../assets/img1.jpg";
 import ButtonRank from "./ButtonRank";
 import CategoriesRecipes from "./CategoriesRecipes";
 import SelectCategory from "./SelectCategory";
@@ -38,8 +37,6 @@ const ModalFiltre = ({ show, onClose }) => {
                         <SelectCategory title="Lunch" />
                         <SelectCategory title="Dinner" />
                         <SelectCategory title="Snacks" />
-
-
 
                         <h1 className="title-medium mt-4 mb-6">Rating</h1>
                         <SelectRank num="2" />
