@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import Logo from "../assets/drafts.png";
 import LoginBg from "../assets/img1.jpg";
 import PageLogo from "../componentes/PageLogo";
+import { useAuth } from "../contexts/AuthContext";
 import useAxios from "../hooks/useAxios";
+import { useNavigate } from 'react-router-dom';
 
-const RegisterForm = ({ changeForm }) => {
+const RegisterForm = ({ changeForm, onClose }) => {
+
+    const navigate = useNavigate();
+
+    const { setAuthInfo } = useAuth();
 
     const [data, setData] = useState({
         name: "",
@@ -21,6 +27,12 @@ const RegisterForm = ({ changeForm }) => {
     useEffect(() => {
         if (registerData) {
             console.log(registerData);
+            setAuthInfo({
+                user: registerData?.user,
+                token: registerData?.accessToken
+            });
+            onClose(null, true);
+            navigate('/accountinfo');
         }
     }, [registerData])
 

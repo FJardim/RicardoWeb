@@ -16,7 +16,7 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
                     <div className='font-bold text-xl'>
                         {title}
                     </div>
-                    <p className="px-1 mt-2 text-gray-400 text-xs">{descsh}</p>
+                    <p className="px-1 mt-2 text-gray-400 text-xs">{descsh?.length > 25 ? `${descsh.slice?.(0, 25)}...` : descsh}</p>
                     <div className="flex">
                         <AiFillStar className="mt-2 text-yellow-300" />
                         <AiFillStar className="mt-2 text-yellow-300" />

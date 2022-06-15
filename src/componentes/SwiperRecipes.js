@@ -7,9 +7,14 @@ import "swiper/css/navigation";
 import Pasticho from '../assets/pasticho.png';
 import Bebida from '../assets/bebida.png';
 import { Navigation } from "swiper";
+import useRecipes from "../hooks/useRecipes";
+import SystemInfo from "../util/SystemInfo";
 
 const SwiperRecipes = () => {
+
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
+    const [{ recipes, total, numberOfPages, size, error, loading }, getRecipes] = useRecipes();
 
     useEffect(() => {
         const resizeHandler = () => {
@@ -31,32 +36,24 @@ const SwiperRecipes = () => {
                 modules={[Navigation]}
                 className="mySwiper m-auto"
             >
-                <SwiperSlide>
-                    <Recipes
-                        title="Lasagna"
-                        descsh="Space for a small product description"
-                        cost="$36.99"
-                        desccost="Pescription cost"
-                        level="Expert"
-                        time="60-80 Minutes"
-                        ing="5 pcs"
-                        img={Pasticho}
-                    />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <Recipes
-                        title="Margarita"
-                        descsh="Space for a small product description"
-                        cost="$6.99"
-                        desccost="Pescription cost"
-                        level="Easy"
-                        time="6-8 Minutes"
-                        ing="3 pcs"
-                        img={Bebida}
-                    />
-                </SwiperSlide>
-
+                {
+                    recipes?.map((recipe, i) => {
+                        return (
+                            <SwiperSlide>
+                                <Recipes
+                                    title={recipe?.name}
+                                    descsh={recipe?.description}
+                                    cost={`$${recipe?.price}`}
+                                    desccost="Pescription cost"
+                                    level={recipe?.recipeDifficulty?.name}
+                                    time={`${recipe?.preparationTime} Minutes`}
+                                    ing={`${recipe?.recipeIngredients?.length} pcs`}
+                                    img={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
+                                />
+                            </SwiperSlide>
+                        )
+                    })
+                }
             </Swiper>
         </div>
     );
