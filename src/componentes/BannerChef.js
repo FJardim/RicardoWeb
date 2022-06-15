@@ -1,6 +1,7 @@
-import { BsStarFill} from "react-icons/bs";
+import { BsStarFill } from "react-icons/bs";
 import cheque from "../assets/cheque.png";
 import { Link } from "react-router-dom";
+
 const BannerChef = ({ image }) => {
   return (
 

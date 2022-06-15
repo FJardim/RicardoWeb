@@ -43,7 +43,7 @@ function App() {
             <Route path="/sellers/:slug/recipes" element={<RecipesChef />} />
             <Route path="/sellers/:slug/plans" element={<PlansSellers />} />
             <Route path="/sellers/:slug/combos" element={<CombosChef />} />
-            <Route path="/blogchef" element={<BlogChef />} />
+            <Route path="/sellers/:slug/blogchef" element={<BlogChef />} />
             <Route path="/sellers" element={<Sellers />} />
             <Route path="/recipes/:slug" element={<RecipesDetail />} />
             <Route path="/combos/:slug" element={<CombosDetail />} />

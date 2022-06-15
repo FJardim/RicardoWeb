@@ -24,7 +24,7 @@ const Home = () => {
       <div className="container p-2">
         <Card saludo="Category of Recipes" />
       </div>
-      <div className="container ">
+      <div className="container">
         <div className="flex justify-center space-x-6 mx-8">
           <SwiperCategoryCard />
         </div>
@@ -38,7 +38,7 @@ const Home = () => {
 
       {/*-------- Plans --------*/}
       <div className="container p-2">
-        <Card saludo="Plans" title="See All" />
+        <Card saludo="Plans" title="See All" link="/plans" />
       </div>
 
       <div className="container flex">
@@ -53,15 +53,15 @@ const Home = () => {
       </div>
 
       {/*-------- Recipes ---------*/}
-      <div className="container p-2">
-        <Card saludo="Recipes" title="See All" />
+      <div className="container p-2 ">
+        <Card saludo="Recipes" title="See All" link="/recipes" />
       </div>
-      <div className="container">
+      <div className="container pb-2">
         <SwiperRecipes />
       </div>
 
       {/*--------- Imgs Public --------*/}
-      <div>
+      <div >
         <img className="md:w-full md:h-96 py-4" src={Public} alt="Public" />
       </div>
 

@@ -42,7 +42,7 @@ const SwiperCategoryCard = () => {
                 {
                     categories?.map((category, i) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide className="p-6">
                                 <CategorySectionCard
                                     name={category?.name}
                                     img={`${SystemInfo?.api}${category?.banner}`}
