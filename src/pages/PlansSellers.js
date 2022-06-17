@@ -8,16 +8,33 @@ import SelectOrder from "../componentes/SelectOrder";
 import WeightPlan from "../componentes/WeightPlan";
 import LogoPlan from "../assets/Premium-icon.svg";
 import whPlan from "../assets/girltraining.jpg"
-import banner from "../assets/banner.jpg";
 import ButtomButton from "../componentes/ButtomButton";
+import { useParams } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
+import { useEffect } from "react";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import usePlans from "../hooks/usePlans";
+import SystemInfo from "../util/SystemInfo";
 
 const PlansSellers = () => {
+
+    const { slug } = useParams();
+    const { setLoading } = useFeedBack();
+
+    const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
+
+    const [{ plans, total, numberOfPages, size, error, loading }, getPlans] = usePlans();
+
+    useEffect(() => {
+        setLoading({ message: 'Cargando...', show: sellerLoading });
+    }, [sellerLoading, setLoading]);
+
     return (
         <div className="md:min-w-0">
-            <BannerChef image={banner} title="New Recipes" />
+            <BannerChef seller={seller} title="New Recipes" />
             <div className="px-16 py-10">
                 <div className="flex justify-center">
-                    <ButtonItems defaultCategory="plans" />
+                    <ButtonItems defaultCategory="plans" seller={seller} />
                 </div>
                 <div className="md:flex md:justify-end m-2 ml-2">
                     <SelectOrder />
@@ -27,22 +44,24 @@ const PlansSellers = () => {
             <div className="md:flex p-4 flex-wrap md:flex-nowrap">
                 <div className="w-full md:w-[300px] md:shrink-0 bg-white mb-10 md:mb-20 md:ml-8 rounded-lg">
                     <div className="p-4">
-                        <InformationChef />
-                        <CertificationChef />
-                        <DescriptionChef />
+                        <InformationChef seller={seller} />
+                        <CertificationChef seller={seller} />
+                        <DescriptionChef seller={seller} />
                         <Post />
                     </div>
                 </div>
                 <div className="md:w-full">
                     <div className="md:grid md:grid-cols-3 md:ml-14 md:mr-4 md:mb-10">
-                        {[...Array(12).keys()].map((numero, i) => {
+                        {plans.map((plan) => {
                             return (
                                 <WeightPlan
-                                    title="Weight loss plan"
-                                    logo={LogoPlan}
-                                    text="In this plan you can find the ideal recipes to lose weight in 1 week from 2 pounds"
-                                    img={whPlan}
-                                    hideButtons
+                                    key={plan?.id}
+                                    text={plan?.name}
+                                    price={`${plan?.price}$`}
+                                    title={`${plan?.name}`}
+                                    img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
+                                    logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
+                                // hideButtons
                                 />
                             );
                         })}

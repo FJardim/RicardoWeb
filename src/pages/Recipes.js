@@ -52,7 +52,7 @@ const Recipes = () => {
                     <Link to={`/recipes/${recipe?.slug}`} key={i}>
                       <CardRecipes
                         texto={`${recipe?.name}`}
-                        parrafo="Ricardo App Team"
+                        price={`${recipe?.price}$`}
                         title={`${recipe?.mealPeriods?.[0]?.name}`}
                         foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
                         hideCart

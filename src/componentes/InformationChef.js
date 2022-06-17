@@ -1,7 +1,7 @@
 import React from 'react'
 import { TiContacts } from "react-icons/ti"
 
-const InformationChef = () => {
+const InformationChef = ({ seller }) => {
   return (
     <div className='p-2'>
       <button className="flex items-center space-x-2 text-black text-xl font-semibold">
@@ -9,10 +9,10 @@ const InformationChef = () => {
         <span>Information</span>
       </button>
       <div className="mt-6 space-y-2">
-        <p>Phone: +54 911 254 8899</p>
-        <p>Instagram: @AnyaTaylorChef</p>
-        <p>Facebook: Anya Taylor Chef</p>
-        <p>Whatsapp: +54 911 254 8899</p>
+        <p>Phone: {seller?.phoneNumber}</p>
+        <p>Instagram: {seller?.instagram}</p>
+        <p>Facebook: {seller?.facebook}</p>
+        <p>Whatsapp: {seller?.whatsapp}</p>
       </div>
     </div>
   )
