@@ -8,7 +8,7 @@ import Reloj from "../assets/clock.png"
 import { IoArrowRedoOutline } from "react-icons/io5";
 import ButtonCart from "./ButtonCart"
 
-const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false, hideClock, hideBag}) => {
+const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false, hideClock, hideBag }) => {
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
       <div className="h-64 w-74 relative" style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}>
@@ -20,23 +20,23 @@ const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false,
             <p className="text-white h-6 w-15 ml-1 ">{price}  </p>
           </div>
           <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
-          {!hideBag &&
-            <div className="flex mr-2">
-              <img src={BolsaCompras} className="h-5 w-5 text-white m-auto" alt="BolsaCompras" />
-              <p className="text-white h-5 w-15 ml-1">5</p>
-            </div>
-}
+            {!hideBag &&
+              <div className="flex mr-2">
+                <img src={BolsaCompras} className="h-5 w-5 text-white m-auto" alt="BolsaCompras" />
+                <p className="text-white h-5 w-15 ml-1">5</p>
+              </div>
+            }
             <div className="flex ">
               <img src={CestaCompras} className="h-5 w-5 m-auto" alt="CestaCompras" />
               <p className="text-white h-5 w-5 ml-1">20</p>
             </div>
-            
+
             {!hideClock &&
-            <div className="flex ">
-              <img src={Reloj} className="h-5 w-5 m-auto" alt="CestaCompras" />
-              <p className="text-white h-5 w-5 ml-1">20</p>
-            </div>
-}
+              <div className="flex ">
+                <img src={Reloj} className="h-5 w-5 m-auto" alt="CestaCompras" />
+                <p className="text-white h-5 w-5 ml-1">20</p>
+              </div>
+            }
           </div>
           <h1 className="m-auto text-2xl text-white font-semibold">{title}</h1>
           <div className="absolute w-full bottom-0 bg-black bg-opacity-30 ">
