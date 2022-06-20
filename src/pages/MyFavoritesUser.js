@@ -29,6 +29,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Ricardo App Team"
                                         title="Dinner"
                                         foto={Tacos}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideBag
@@ -38,6 +43,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Ricardo App Team"
                                         title="Dinner"
                                         foto={Tacos}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideBag
@@ -47,6 +57,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Ricardo App Team"
                                         title="Dinner"
                                         foto={Tacos}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideBag
@@ -56,6 +71,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Ricardo App Team"
                                         title="Dinner"
                                         foto={Tacos}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideBag
@@ -70,6 +90,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideClock
@@ -80,6 +105,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideClock
@@ -90,6 +120,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideClock
@@ -100,6 +135,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideClock
@@ -110,6 +150,11 @@ const MyFavoritesUser = () => {
                                         parrafo="Anya Taylor"
                                         title=""
                                         foto={Collage}
+                                        bolsaIng={"2"}
+                                        cestaIng={"2"}
+                                        timePre={"2"}
+                                        nameSellers={"hola"}
+                                        price={"120$"}
                                         hideButtons
                                         hideCart
                                         hideClock

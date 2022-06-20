@@ -68,7 +68,11 @@ const RecipesChef = () => {
                   key={recipe.id}
                   texto={recipe.name}
                   price={`${recipe?.price}$`}
-                  title={recipe.mealPeriods.map((mp) => mp.name).join(" - ")}
+                  bolsaIng={recipe.numberOfDinners}
+                  cestaIng={recipe.numberOfDinners}
+                  timePre={recipe.preparationTime}
+                  nameSellers={recipe.seller.name}
+                  title={recipe.mealPeriods.map(mp => mp.name).join(' - ')}
                   foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
                   hideButtons
                   hideBag
@@ -76,6 +80,12 @@ const RecipesChef = () => {
               );
             })}
           </div>
+          <Pagination
+            pages={numberOfPages}
+            onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+            activePage={plansFilters?.page}
+          />
+
         </div>
         <Pagination
           pages={numberOfPages}
