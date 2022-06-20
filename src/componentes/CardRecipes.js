@@ -8,7 +8,7 @@ import Reloj from "../assets/clock.png"
 import { IoArrowRedoOutline } from "react-icons/io5";
 import ButtonCart from "./ButtonCart"
 
-const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false, hideClock, hideBag }) => {
+const CardRecipes = ({ texto, price, foto, bolsaIng, cestaIng, timePre, title, nameSellers, hideButtons, hideCart = false, hideClock, hideBag }) => {
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
       <div className="h-64 w-74 relative" style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}>
@@ -17,24 +17,24 @@ const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false,
             <img src={AppLogo} className="h-10 w-10 opacity-60 rounded-full" alt="AppLogo" />
           </div>
           <div className="absolute flex left-1 top-1 bg-main-dark rounded-lg opacity-70">
-            <p className="text-white h-6 w-15 ml-1 ">{price}  </p>
+            <p className="text-white h-6 w-15 ml-1 ">{price}</p>
           </div>
           <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
             {!hideBag &&
               <div className="flex mr-2">
                 <img src={BolsaCompras} className="h-5 w-5 text-white m-auto" alt="BolsaCompras" />
-                <p className="text-white h-5 w-15 ml-1">5</p>
+                <p className="text-white h-5 w-15 ml-1">{bolsaIng}</p>
               </div>
             }
             <div className="flex ">
               <img src={CestaCompras} className="h-5 w-5 m-auto" alt="CestaCompras" />
-              <p className="text-white h-5 w-5 ml-1">20</p>
+              <p className="text-white h-5 w-5 ml-1">{cestaIng}</p>
             </div>
 
             {!hideClock &&
               <div className="flex ">
                 <img src={Reloj} className="h-5 w-5 m-auto" alt="CestaCompras" />
-                <p className="text-white h-5 w-5 ml-1">20</p>
+                <p className="text-white h-5 w-5 ml-1">{timePre}</p>
               </div>
             }
           </div>
@@ -44,7 +44,7 @@ const CardRecipes = ({ texto, price, foto, title, hideButtons, hideCart = false,
             <div className="grid grid-cols-2 gap-4">
               <div className=" flex text-bold">
                 <img className="rounded-full h-8 w-8 m-1" src={womenchef} alt="" />
-                <h1 className="p-1 text-white">Anya Taylor</h1>
+                <h1 className="p-1 text-white">{nameSellers}</h1>
               </div>
               <div className="flex justify-end text-white ">
                 <div className="flex items-center space-x-2">

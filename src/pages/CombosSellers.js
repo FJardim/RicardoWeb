@@ -23,10 +23,7 @@ const CombosChef = () => {
   });
   const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
   const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { sellerId: seller?.sellerId } });
-  const [{ data: seller, loading: sellerLoading, error: sellerError }] =
-    useAxios({ url: `/sellers/${slug}` });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] =
-    useCombos();
+
   useEffect(() => {
     setLoading({ message: "Cargando...", show: sellerLoading });
   }, [sellerLoading, setLoading]);
@@ -74,6 +71,10 @@ const CombosChef = () => {
                   key={combo?.id}
                   texto={combo?.name}
                   price={`${combo?.price}$`}
+                  bolsaIng={"2"}
+                  cestaIng={"2"}
+                  timePre={"2"}
+                  nameSellers={"sellers"}
                   title={combo?.name}
                   foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
                   hideButtons
@@ -82,6 +83,7 @@ const CombosChef = () => {
               );
             })}
           </div>
+
           <Pagination
             pages={numberOfPages}
             onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}

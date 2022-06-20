@@ -51,9 +51,14 @@ const Recipes = () => {
                   return (
                     <Link to={`/recipes/${recipe?.slug}`} key={i}>
                       <CardRecipes
-                        texto={`${recipe?.name}`}
+                        key={recipe.id}
+                        texto={recipe.name}
                         price={`${recipe?.price}$`}
-                        title={`${recipe?.mealPeriods?.[0]?.name}`}
+                        bolsaIng={recipe.numberOfDinners}
+                        cestaIng={recipe.numberOfDinners}
+                        timePre={recipe.preparationTime}
+                        nameSellers={recipe.seller.name}
+                        title={recipe.mealPeriods.map(mp => mp.name).join(' - ')}
                         foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
                         hideCart
                         hideBag

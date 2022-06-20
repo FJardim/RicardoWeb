@@ -69,7 +69,7 @@ const Home = () => {
       <div className="container p-2">
         <Card saludo="Combos" title="See All" />
       </div>
-      <div className="p-10">
+      <div className="container p-10">
         <SwiperCombos />
       </div>
 
