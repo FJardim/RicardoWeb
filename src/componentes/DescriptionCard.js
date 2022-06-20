@@ -27,21 +27,8 @@ const DescriptionCard = ({
           ingredients="Ingredients"
           number="6"
         />
-        <div className="">
-          <div className="flex items-center md:m-4 p-4 bg-white rounded-md mt-16">
-            <div className="text-main text-3xl font-semibold">
-              <div className="">
-                <p className="text-main">$36.23</p>
-                <p className="text-gray-400 text-sm">$48.56</p>
-              </div>
-            </div>
-            <div className="flex justify-end">
-              <button className=" px-4 py-4 rounded-xl ml-8 block text-white font-bold bg-main-light">
-                + Comprar
-              </button>
-            </div>
-          </div>
 
+        <div className="ml-7">
           <p className="md:w-1/2 w-4/2 mb-4">Pucharse in:</p>
 
           {!hideMarketButtons && (
@@ -51,6 +38,11 @@ const DescriptionCard = ({
               <ButtonImage image={Wallmart} />
             </div>
           )}
+          {showPaypalButton && (
+            <Link to="/payment">
+              <ButtonImage image={Paypal} />
+            </Link>
+          )}
 
           <p className="md:w-1/2 w-4/2 mb-4">Follow us:</p>
           <div className="flex space-x-3">
@@ -58,11 +50,6 @@ const DescriptionCard = ({
             <ButtonImage image={TikTok} />
             <ButtonImage image={Youtube} />
           </div>
-          {showPaypalButton && (
-            <Link to="/payment">
-              <ButtonImage image={Paypal} />
-            </Link>
-          )}
         </div>
       </div>
     </div>

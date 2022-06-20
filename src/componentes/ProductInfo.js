@@ -46,8 +46,21 @@ const ProductInfo = ({ name, ingredients }) => {
           />
         </div>
       </div>
-
-      {/*<*/}
+      <div>
+        <div className="flex items-center md:m-4 p-4 bg-white rounded-md mt-16">
+          <div className="text-main text-3xl font-semibold">
+            <div>
+              <p className="text-main">$36.23</p>
+              <p className="text-gray-400 text-sm">$48.56</p>
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <button className=" px-4 py-4 rounded-xl ml-24 block text-white font-bold bg-main-light">
+              + Comprar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

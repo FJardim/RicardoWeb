@@ -7,7 +7,7 @@ const ShowMoreButton = ({ buttonText, content, onClickButton }) => {
     <div>
       <button
         type="button"
-        className=" px-2 py-2 rounded-xl block text-white font-bold bg-main-light"
+        className="block underline text-gray-300 text-lg cursor-pointer hover:text-main"
         onClick={(e) => {
           setShowDetails((oldShow) => !oldShow);
           onClickButton?.(e);
