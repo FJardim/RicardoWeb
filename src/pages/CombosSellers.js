@@ -79,6 +79,7 @@ const CombosChef = () => {
               );
             })}
           </div>
+
           <Pagination
             pages={numberOfPages}
             onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
