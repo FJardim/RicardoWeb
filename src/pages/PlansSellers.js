@@ -6,6 +6,9 @@ import InformationChef from "../componentes/InformationChef";
 import Post from "../componentes/Post";
 import SelectOrder from "../componentes/SelectOrder";
 import WeightPlan from "../componentes/WeightPlan";
+import LogoPlan from "../assets/Premium-icon.svg";
+import whPlan from "../assets/girltraining.jpg";
+import ButtomButton from "../componentes/ButtomButton";
 import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
@@ -15,6 +18,8 @@ import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 
 const PlansSellers = () => {
+  const { slug } = useParams();
+  const { setLoading } = useFeedBack();
 
     const { slug } = useParams();
     const { setLoading } = useFeedBack();
@@ -87,8 +92,58 @@ const PlansSellers = () => {
                     />
                 </div>
             </div>
+  const [{ data: seller, loading: sellerLoading, error: sellerError }] =
+    useAxios({ url: `/sellers/${slug}` });
+
+  const [{ plans, total, numberOfPages, size, error, loading }, getPlans] =
+    usePlans();
+
+  useEffect(() => {
+    setLoading({ message: "Cargando...", show: sellerLoading });
+  }, [sellerLoading, setLoading]);
+
+  return (
+    <div className="md:min-w-0">
+      <BannerChef seller={seller} title="New Recipes" />
+      <div className="px-16 py-10">
+        <div className="flex justify-center">
+          <ButtonItems defaultCategory="plans" seller={seller} />
         </div>
-    );
+        <div className="md:flex md:justify-end m-2 ml-2">
+          <SelectOrder />
+        </div>
+      </div>
+
+      <div className="md:flex p-4 flex-wrap md:flex-nowrap">
+        <div className="w-full md:w-[300px] md:shrink-0 bg-white mb-10 md:mb-20 md:ml-8 rounded-lg">
+          <div className="p-4">
+            <InformationChef seller={seller} />
+            <CertificationChef seller={seller} />
+            <DescriptionChef seller={seller} />
+            <Post />
+          </div>
+        </div>
+        <div className="md:w-full">
+          <div className="grid md:grid-cols-3 md:gap-4 md:mb-20 md:ml-20 md:mt-2">
+            {plans.map((plan) => {
+              return (
+                <WeightPlan
+                  key={plan?.id}
+                  text={plan?.name}
+                  price={`${plan?.price}$`}
+                  title={`${plan?.name}`}
+                  img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
+                  logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
+                  // hideButtons
+                />
+              );
+            })}
+          </div>
+          <ButtomButton />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PlansSellers;

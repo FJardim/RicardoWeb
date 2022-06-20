@@ -15,7 +15,6 @@ import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 
 const CombosChef = () => {
-
   const { slug } = useParams();
   const { setLoading } = useFeedBack();
   const [plansFilters, setPlansFilters] = useState({
@@ -24,9 +23,12 @@ const CombosChef = () => {
   });
   const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
   const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { sellerId: seller?.sellerId } });
-
+  const [{ data: seller, loading: sellerLoading, error: sellerError }] =
+    useAxios({ url: `/sellers/${slug}` });
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] =
+    useCombos();
   useEffect(() => {
-    setLoading({ message: 'Cargando...', show: sellerLoading });
+    setLoading({ message: "Cargando...", show: sellerLoading });
   }, [sellerLoading, setLoading]);
 
   return (
