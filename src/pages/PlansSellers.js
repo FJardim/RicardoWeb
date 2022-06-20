@@ -6,24 +6,25 @@ import InformationChef from "../componentes/InformationChef";
 import Post from "../componentes/Post";
 import SelectOrder from "../componentes/SelectOrder";
 import WeightPlan from "../componentes/WeightPlan";
-import LogoPlan from "../assets/Premium-icon.svg";
-import whPlan from "../assets/girltraining.jpg"
-import ButtomButton from "../componentes/ButtomButton";
 import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import usePlans from "../hooks/usePlans";
 import SystemInfo from "../util/SystemInfo";
+import Pagination from "../componentes/Pagination";
 
 const PlansSellers = () => {
 
     const { slug } = useParams();
     const { setLoading } = useFeedBack();
-
+    const [plansFilters, setPlansFilters] = useState({
+        page: 1,
+        perPage: 9,
+    });
     const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
 
-    const [{ plans, total, numberOfPages, size, error, loading }, getPlans] = usePlans();
+    const [{ plans, total, numberOfPages, size, error, loading }, getPlans] = usePlans({ params: { sellerId: seller?.sellerId } });
 
     useEffect(() => {
         setLoading({ message: 'Cargando...', show: sellerLoading });
@@ -51,6 +52,20 @@ const PlansSellers = () => {
                     </div>
                 </div>
                 <div className="md:w-full">
+                    {
+                        loading &&
+                        <h1 className="text-4xl text-center">
+                            Cargando...
+                        </h1>
+                    }
+                    {
+                        plans?.length === 0 && !loading ?
+                            <h1 className="text-4xl text-center text-red-500">
+                                No results found.
+                            </h1>
+                            :
+                            null
+                    }
                     <div className="md:grid md:grid-cols-3 md:ml-14 md:mr-4 md:mb-10">
                         {plans.map((plan) => {
                             return (
@@ -61,14 +76,16 @@ const PlansSellers = () => {
                                     title={`${plan?.name}`}
                                     img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
                                     logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
-                                // hideButtons
                                 />
                             );
                         })}
                     </div>
-                    <ButtomButton />
+                    <Pagination
+                        pages={numberOfPages}
+                        onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+                        activePage={plansFilters?.page}
+                    />
                 </div>
-
             </div>
         </div>
     );

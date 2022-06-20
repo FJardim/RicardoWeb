@@ -1,27 +1,29 @@
 import BannerChef from "../componentes/BannerChef";
 import CardRecipes from "../componentes/CardRecipes";
-import collage from "../assets/collage.jpg";
 import InformationChef from "../componentes/InformationChef";
 import CertificationChef from "../componentes/CertificationChef";
 import DescriptionChef from "../componentes/DescriptionChef";
 import Post from "../componentes/Post";
 import ButtonItems from "../componentes/ButtonItems";
 import SelectOrder from "../componentes/SelectOrder";
-import ButtomButton from "../componentes/ButtomButton";
 import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import useCombos from "../hooks/useCombos";
 import SystemInfo from "../util/SystemInfo";
+import Pagination from "../componentes/Pagination";
 
 const CombosChef = () => {
 
   const { slug } = useParams();
   const { setLoading } = useFeedBack();
-
+  const [plansFilters, setPlansFilters] = useState({
+    page: 1,
+    perPage: 9,
+  });
   const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos();
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { sellerId: seller?.sellerId } });
 
   useEffect(() => {
     setLoading({ message: 'Cargando...', show: sellerLoading });
@@ -49,6 +51,20 @@ const CombosChef = () => {
           </div>
         </div>
         <div className="md:w-full">
+          {
+            loading &&
+            <h1 className="text-4xl text-center">
+              Cargando...
+            </h1>
+          }
+          {
+            combos?.length === 0 && !loading ?
+              <h1 className="text-4xl text-center text-red-500">
+                No results found.
+              </h1>
+              :
+              null
+          }
           <div className="grid md:grid-cols-3 md:gap-4 md:mb-20 md:ml-20 md:mt-2">
             {combos.map((combo) => {
               return (
@@ -64,9 +80,11 @@ const CombosChef = () => {
               );
             })}
           </div>
-          <div className="flex justify-center space-x-2 mb-6">
-            <ButtomButton />
-          </div>
+          <Pagination
+            pages={numberOfPages}
+            onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+            activePage={plansFilters?.page}
+          />
         </div>
       </div>
     </div>
