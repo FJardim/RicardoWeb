@@ -23,10 +23,7 @@ const CombosChef = () => {
   });
   const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
   const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { sellerId: seller?.sellerId } });
-  const [{ data: seller, loading: sellerLoading, error: sellerError }] =
-    useAxios({ url: `/sellers/${slug}` });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] =
-    useCombos();
+
   useEffect(() => {
     setLoading({ message: "Cargando...", show: sellerLoading });
   }, [sellerLoading, setLoading]);
