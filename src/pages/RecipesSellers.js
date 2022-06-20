@@ -82,6 +82,7 @@ const RecipesChef = () => {
               );
             })}
           </div>
+
           <Pagination
             pages={numberOfPages}
             onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
