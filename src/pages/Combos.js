@@ -2,15 +2,22 @@ import React, { useState } from "react";
 import BannerPage from "../componentes/BannerPage";
 import CardRecipes from "../componentes/CardRecipes";
 import img1 from "../assets/img1.jpg";
-import Collage from "../assets/ImgCombos.jpeg";
 import { Link } from "react-router-dom";
-import ButtomButton from "../componentes/ButtomButton";
 import MenuLeft from "../componentes/MenuLeft";
 import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
+import SystemInfo from "../util/SystemInfo";
+import useCombos from "../hooks/useCombos";
+import Pagination from "../componentes/Pagination";
 
 const Combos = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
+  const [combosFilters, setCombosFilters] = useState({
+    page: 1,
+    perPage: 12
+  });
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ axiosConfig: { params: { ...combosFilters } } });
+
   return (
     <div className="">
       <BannerPage image={img1} title="Combos" />
@@ -23,24 +30,35 @@ const Combos = () => {
           <MenuLeft />
           <div className="mt-10 md:mt-0 md:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
-              {[...Array(12).keys()].map((numero, i) => {
-                return (
-                  <Link to="/combos/:slug"><CardRecipes
-                    texto="Combos Pierde Peso"
-                    parrafo="Anya Taylor"
-                    title=""
-                    foto={Collage}
-                    price="150$"
-                    hideButtons
-                    hideCart
-                    hideClock
-                  />
-                  </Link>
-                );
-              })}
+              {
+                combos?.map((combo, i) => {
+                  return (
+                    <Link to="/combos/:slug">
+                      <CardRecipes
+                        key={combo.id}
+                        texto={combo.name}
+                        price={`${combo?.price}$`}
+                        bolsaIng={"2"}
+                        cestaIng={"2"}
+                        timePre={"2"}
+                        nameSellers={"hola"}
+                        title={combo.name}
+                        foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
+                        hideCart
+                        hideClock
+                      // hideBag
+                      //hideButtons
+                      />
+                    </Link>
+                  );
+                })}
             </div>
             <br />
-            <ButtomButton />
+            <Pagination
+              pages={numberOfPages}
+              onChange={(page) => setCombosFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+              activePage={combosFilters?.page}
+            />
           </div>
         </div>
       </div>

@@ -71,6 +71,10 @@ const CombosChef = () => {
                   key={combo?.id}
                   texto={combo?.name}
                   price={`${combo?.price}$`}
+                  bolsaIng={"2"}
+                  cestaIng={"2"}
+                  timePre={"2"}
+                  nameSellers={"sellers"}
                   title={combo?.name}
                   foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
                   hideButtons
