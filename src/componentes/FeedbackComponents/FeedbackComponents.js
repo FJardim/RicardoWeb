@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import LoadingComponent from "./LoadingComponent";
 import { ToastContainer, toast } from "react-toastify";
 import { useFeedBack } from "../../contexts/FeedBackContext";
+import ReactTooltip from "react-tooltip";
 
 const FeedbackComponents = () => {
 
@@ -67,6 +68,7 @@ const FeedbackComponents = () => {
                 draggable
                 pauseOnHover
             />
+            <ReactTooltip event="mouseenter" eventOff="mouseleave" effect="solid" />
         </>
     )
 }

@@ -6,8 +6,16 @@ import TabPanel from "../componentes/TabPanel";
 import Tab from "../componentes/Tab";
 import TabsContainer from "../componentes/TabsContainer";
 import Collage from "../assets/ImgCombos.jpeg";
+import useFavorites from "../hooks/useFavorites";
+import { useAuth } from "../contexts/AuthContext";
+import imgUrl from "../helpers/imgUrl";
 
 const MyFavoritesUser = () => {
+    const { user } = useAuth();
+    
+    const [{ favorites: favoriteRecipes }] = useFavorites({ params: { clientId: user?.id, types: 'recipe' } });
+    const [{ favorites: favoritePlanAndCombos }] = useFavorites({ params: { clientId: user?.id, types: 'plan,combo' } });
+
     return (
         <div className="flex">
             <div className="container md:p-20 p-4 md:h-full md:w-full mb-20">
@@ -24,97 +32,46 @@ const MyFavoritesUser = () => {
                         <div className="mt-4 p-4">
                             <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={0}>
                                 <div className="md:grid md:grid-cols-3 md:gap-10 grid grid-cols-1 gap-5">
-                                    <Link to="/recipes/:slug"><CardRecipes
-                                        texto="Tacos al Pastor"
-                                        parrafo="Ricardo App Team"
-                                        title="Dinner"
-                                        foto={Tacos}
-                                        hideButtons
-                                        hideCart
-                                        hideBag
-                                    /></Link>
-                                    <Link to="/recipes/:slug"><CardRecipes
-                                        texto="Tacos al Pastor"
-                                        parrafo="Ricardo App Team"
-                                        title="Dinner"
-                                        foto={Tacos}
-                                        hideButtons
-                                        hideCart
-                                        hideBag
-                                    /></Link>
-                                    <Link to="/recipes/:slug"><CardRecipes
-                                        texto="Tacos al Pastor"
-                                        parrafo="Ricardo App Team"
-                                        title="Dinner"
-                                        foto={Tacos}
-                                        hideButtons
-                                        hideCart
-                                        hideBag
-                                    /></Link>
-                                    <Link to="/recipes/:slug"><CardRecipes
-                                        texto="Tacos al Pastor"
-                                        parrafo="Ricardo App Team"
-                                        title="Dinner"
-                                        foto={Tacos}
-                                        hideButtons
-                                        hideCart
-                                        hideBag
-                                    /></Link>
+                                    {favoriteRecipes.map(({id, favoritable}) => <Link
+                                        key={id}
+                                        to={`/recipes/${favoritable.slug}`}
+                                    >
+                                        <CardRecipes
+                                            texto={favoritable.name}
+                                            price={favoritable.price}
+                                            title={favoritable.mealPeriodName}
+                                            foto={imgUrl(favoritable.imgPath)}
+                                            sellerLogo={imgUrl(favoritable.sellerLogo)}
+                                            sellerName={favoritable.sellerName}
+                                            numberOfIngredients={favoritable.numberOfIngredients}
+                                            preparationTime={favoritable.preparationTime}
+                                            hideButtons
+                                            hideCart
+                                            hideBag
+                                        />
+                                    </Link>)}
                                 </div>
                             </TabPanel>
                             {/* Plans and combos */}
                             <TabPanel className="animate__animated animate__fadeInUp bg-white rounded-lg" value={1}>
                                 <div className="md:grid md:grid-cols-3 md:gap-10 grid grid-cols-1 gap-5">
-                                    <Link to="/combos/:slug"><CardRecipes
-                                        texto="Combos Pierde Peso"
-                                        parrafo="Anya Taylor"
-                                        title=""
-                                        foto={Collage}
-                                        hideButtons
-                                        hideCart
-                                        hideClock
-                                    />
-                                    </Link>
-                                    <Link to="/combos/:slug"><CardRecipes
-                                        texto="Combos Pierde Peso"
-                                        parrafo="Anya Taylor"
-                                        title=""
-                                        foto={Collage}
-                                        hideButtons
-                                        hideCart
-                                        hideClock
-                                    />
-                                    </Link>
-                                    <Link to="/combos/:slug"><CardRecipes
-                                        texto="Combos Pierde Peso"
-                                        parrafo="Anya Taylor"
-                                        title=""
-                                        foto={Collage}
-                                        hideButtons
-                                        hideCart
-                                        hideClock
-                                    />
-                                    </Link>
-                                    <Link to="/combos/:slug"><CardRecipes
-                                        texto="Combos Pierde Peso"
-                                        parrafo="Anya Taylor"
-                                        title=""
-                                        foto={Collage}
-                                        hideButtons
-                                        hideCart
-                                        hideClock
-                                    />
-                                    </Link>
-                                    <Link to="/combos/:slug"><CardRecipes
-                                        texto="Combos Pierde Peso"
-                                        parrafo="Anya Taylor"
-                                        title=""
-                                        foto={Collage}
-                                        hideButtons
-                                        hideCart
-                                        hideClock
-                                    />
-                                    </Link>
+                                    {favoritePlanAndCombos.map(({id, type, favoritable}) => <Link
+                                        key={id}
+                                        to={`/${type}s/${favoritable.slug}`}
+                                    >
+                                        <CardRecipes
+                                            parrafo={favoritable.sellerName}
+                                            price={favoritable.price}
+                                            foto={imgUrl(favoritable.imgPath)}
+                                            sellerLogo={imgUrl(favoritable.sellerLogo)}
+                                            sellerName={favoritable.sellerName}
+                                            numberOfIngredients={favoritable.numberOfIngredients}
+                                            numberOfItems={favoritable.numberOfItems}
+                                            hideButtons
+                                            hideCart
+                                            hideClock
+                                        />
+                                    </Link>)}
                                 </div>
                             </TabPanel>
                         </div>

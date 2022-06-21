@@ -9,6 +9,10 @@ import IngredientRow from '../componentes/IngredientRow';
 import IngredientRowDetails from '../componentes/IngredientRowDetails';
 import Checkbox from '../componentes/Checkbox';
 import WaPay from '../componentes/WaPay';
+import useAxios from '../hooks/useAxios';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useFeedBack } from '../contexts/FeedBackContext';
 
 const ingredients = [
     { id: 1, name: '500 grams of sausage.' },
@@ -43,7 +47,42 @@ const productImages = [
 ]
 
 const RecipesDetail = () => {
+    const { setLoading } = useFeedBack();
+    
+    const { slug } = useParams();
 
+    const navigate = useNavigate();
+    
+    const [{ data: recipe, loading: recipeLoading }] = useAxios({ url: `/recipes/${slug}` }); 
+
+    const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
+
+    useEffect(() => {
+        setLoading({ message: 'Cargando receta', show: recipeLoading });
+    }, [recipeLoading]);
+
+    useEffect(() => {
+        setLoading({ message: 'Cargando', show: createFavoriteLoading });
+    }, [createFavoriteLoading]);
+
+    useEffect(() => {
+        if (createFavoriteData) {
+            navigate('/recipes', { replace: true });
+        }
+    }, [createFavoriteData]);
+    
+    const handleFavoriteClicked = ({ type, reaction }) => {
+        if (!recipe) {
+            return;
+        }
+        
+        createFavorite({ data: {
+            type,
+            reaction,
+            recipeId: recipe.id
+        }});
+    }
+    
     return (
         <>
             <div className="p-4 md:p-16">
@@ -58,6 +97,7 @@ const RecipesDetail = () => {
                     <ProductInfo
                         name="Lasagna"
                         ingredients={ingredients}
+                        onFavoriteClicked={handleFavoriteClicked}
                     />
                 </div>
                 <TabsProvider>
