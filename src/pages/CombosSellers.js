@@ -16,15 +16,16 @@ import useCombos from "../hooks/useCombos";
 import SystemInfo from "../util/SystemInfo";
 
 const CombosChef = () => {
-
   const { slug } = useParams();
   const { setLoading } = useFeedBack();
 
-  const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos();
+  const [{ data: seller, loading: sellerLoading, error: sellerError }] =
+    useAxios({ url: `/sellers/${slug}` });
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] =
+    useCombos();
 
   useEffect(() => {
-    setLoading({ message: 'Cargando...', show: sellerLoading });
+    setLoading({ message: "Cargando...", show: sellerLoading });
   }, [sellerLoading, setLoading]);
 
   return (
