@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonSellers from "./ButtonSellers";
 
-const ButtonItems = ({ defaultCategory = 'recipes' }) => {
+const ButtonItems = ({ defaultCategory = 'recipes', seller }) => {
+
   const [category, setCategory] = useState(defaultCategory);
 
   return (
     <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex">
-      <Link to={"/sellers/:slug/recipes"}>
+      <Link to={`/sellers/${seller?.slug}/recipes`}>
         <ButtonSellers
           onClick={() => { setCategory('recipes') }}
           name="Recipes"
@@ -15,7 +16,7 @@ const ButtonItems = ({ defaultCategory = 'recipes' }) => {
         />
       </Link>
 
-      <Link to={"/sellers/:slug/plans"}>
+      <Link to={`/sellers/${seller?.slug}/plans`}>
         <ButtonSellers
           onClick={() => { setCategory('plans') }}
           name="Plans"
@@ -23,14 +24,14 @@ const ButtonItems = ({ defaultCategory = 'recipes' }) => {
         />
       </Link>
 
-      <Link to={"/sellers/:slug/combos"}>
+      <Link to={`/sellers/${seller?.slug}/combos`}>
         <ButtonSellers
           onClick={() => { setCategory('combos') }}
           name="Combos"
           isActive={category === 'combos'}
         />
-      </Link>
-    </div>
+      </Link >
+    </div >
   );
 };
 

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CardRecipes from "../componentes/CardRecipes";
 import "swiper/css";
-import Collage from "../assets/ImgCombos.jpeg";
-import { Navigation } from "swiper";
 import "swiper/css/pagination";
-import "swiper/css/navigation";;
-
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
+import useCombos from "../hooks/useCombos";
+import SystemInfo from "../util/SystemInfo";
+import CardRecipes from "../componentes/CardRecipes";
 
 const SwiperCombos = () => {
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+    const [{ combos }] = useCombos();
 
     useEffect(() => {
         const resizeHandler = () => {
@@ -29,34 +30,28 @@ const SwiperCombos = () => {
                 navigation={true}
                 style={{ padding: innerWidth > 768 ? '0' : 10 }}
                 modules={[Navigation]}
-                className="mySwiper"
+                className="mySwiper m-auto"
             >
-                <SwiperSlide>
+                {combos.map(combo => <SwiperSlide>
                     <CardRecipes
-                        texto="Combos Pierde Peso"
-                        parrafo="Anya Taylor"
-                        title=""
-                        foto={Collage}
-                        price="150 $"
-                        hideButtons
+                        key={combo.id}
+                        texto={combo.name}
+                        price={`${combo?.price}$`}
+                        bolsaIng={"2"}
+                        cestaIng={"2"}
+                        timePre={"2"}
+                        nameSellers={"hola"}
+                        title={combo.name}
+                        foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
                         hideCart
                         hideClock
-                    />
-                </SwiperSlide>
+                        hideButtons
+                    //hideBag
 
-                <SwiperSlide>
-                    <CardRecipes
-                        texto="Combos Pierde Peso"
-                        parrafo="Anya Taylor"
-                        title=""
-                        foto={Collage}
-                        precio="150 $"
-                        hideButtons
-                        hideCart
-                        hideClock
                     />
-                </SwiperSlide>
+                </SwiperSlide>)}
             </Swiper>
+
         </>
     );
 }

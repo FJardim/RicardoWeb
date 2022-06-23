@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useAxios from './useAxios';
 
-const useRecipes = ({ options, axiosConfig } = {}) => {
+const useRecipes = ({ options, ...axiosConfig } = {}) => {
   const [{ data, error, loading }, getRecipes] = useAxios({ url: '/recipes', ...axiosConfig }, options);
 
   const [recipes, setRecipes] = useState([])

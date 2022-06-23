@@ -1,12 +1,12 @@
 import AppLogo from "../assets/drafts.png";
 import { BsBookmark } from "react-icons/bs";
-import Matches from "./Matches"
-import womenchef from "../assets/womenchef.jpg"
+import Matches from "./Matches";
+import womenchef from "../assets/womenchef.jpg";
 import CestaCompras from "../assets/Img-button/cesta-de-la-compra.png";
 import BolsaCompras from "../assets/Img-button/bolsa-de-la-compra.png";
-import Reloj from "../assets/clock.png"
+import Reloj from "../assets/clock.png";
 import { IoArrowRedoOutline } from "react-icons/io5";
-import ButtonCart from "./ButtonCart"
+import ButtonCart from "./ButtonCart";
 
 const CardRecipes = ({
   texto,
@@ -25,10 +25,17 @@ const CardRecipes = ({
 }) => {
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
-      <div className="h-64 w-74 relative" style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}>
+      <div
+        className="h-64 w-74 relative"
+        style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}
+      >
         <div className="relative h-full w-full bg-black bg-opacity-20 flex ">
           <div className="absolute left-0 top-1 w-full justify-center items-center flex">
-            <img src={AppLogo} className="h-10 w-10 opacity-60 rounded-full" alt="AppLogo" />
+            <img
+              src={AppLogo}
+              className="h-10 w-10 opacity-60 rounded-full"
+              alt="AppLogo"
+            />
           </div>
           <div className="absolute flex left-1 top-1 bg-main-dark rounded-lg opacity-70 text-sm">
             <p className="text-white h-6 w-15 ml-1 ">{price}$</p>
@@ -58,7 +65,7 @@ const CardRecipes = ({
               </div>
               <div className="flex justify-end text-white ">
                 <div className="flex items-center space-x-2">
-                  <IoArrowRedoOutline className="h-6 w-6" />
+                  {/* <IoArrowRedoOutline className="h-6 w-6" /> */}
                   <div className="flex items-center">
                     <BsBookmark />
                     <p className="text-white h-5 w-5 m-1 mr-4">8.7K</p>
@@ -69,18 +76,17 @@ const CardRecipes = ({
           </div>
         </div>
       </div>
-      <div >
-        {!hideButtons &&
+      <div>
+        {!hideButtons && (
           <div className="p-2">
             <Matches />
           </div>
-
-        }
-        {!hideCart &&
+        )}
+        {!hideCart && (
           <div className="flex justify-center">
             <ButtonCart />
           </div>
-        }
+        )}
       </div>
     </div>
   );

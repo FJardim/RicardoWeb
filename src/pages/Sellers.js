@@ -9,6 +9,7 @@ import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
 import useSellers from "../hooks/useSellers";
 import SystemInfo from "../util/SystemInfo";
+import imgUrl from "../helpers/imgUrl";
 
 const Sellers = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
@@ -24,13 +25,30 @@ const Sellers = () => {
         <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft />
+
           <div className="mt-10 md:mt-0 md:col-span-3">
+            {
+              loading &&
+              <h1 className="text-4xl text-center">
+                Cargando...
+              </h1>
+            }
+            {
+              sellers?.length === 0 && !loading ?
+                <h1 className="text-4xl text-center text-red-500">
+                  No results found.
+                </h1>
+                :
+                null
+            }
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
               {sellers?.map((seller, i) => {
                 return (
-                  <Link to="/sellers/:slug/blogchef" key={i}>
+                  <Link to={`/sellers/${seller.slug}/blog`} key={i}>
                     <CardChef foto={`${SystemInfo?.api}${seller?.banner}`}
                       name={seller?.name}
+                      logo={imgUrl(seller?.logo)}
                       description={seller?.occupations?.map(occupation => occupation?.name)?.join(', ')}
                       recipes={seller?.recipesCount}
                       plans={seller?.plansCount}
@@ -41,6 +59,7 @@ const Sellers = () => {
               })}
             </div>
             <ButtomButton />
+
           </div>
         </div>
       </div>

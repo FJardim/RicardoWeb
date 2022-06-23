@@ -6,8 +6,8 @@ import Recipes from "./pages/Recipes";
 import Categories from "./pages/Categories";
 import PlanDetail from "./pages/PlanDetail";
 import Combos from "./pages/Combos";
-import RecipesChef from "./pages/RecipesChef";
-import CombosChef from "./pages/CombosChef";
+import RecipesSellers from "./pages/RecipesSellers";
+import CombosSellers from "./pages/CombosSellers";
 import BlogChef from "./pages/BlogChef";
 import Sellers from "./pages/Sellers";
 import RecipesDetail from "./pages/RecipesDetail";
@@ -40,10 +40,10 @@ function App() {
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/plan/:slug" element={<PlanDetail />} />
             <Route path="/combos" element={<Combos />} />
-            <Route path="/sellers/:slug/recipes" element={<RecipesChef />} />
+            <Route path="/sellers/:slug/recipes" element={<RecipesSellers />} />
             <Route path="/sellers/:slug/plans" element={<PlansSellers />} />
-            <Route path="/sellers/:slug/combos" element={<CombosChef />} />
-            <Route path="/sellers/:slug/blogchef" element={<BlogChef />} />
+            <Route path="/sellers/:slug/combos" element={<CombosSellers />} />
+            <Route path="/sellers/:slug/blog" element={<BlogChef />} />
             <Route path="/sellers" element={<Sellers />} />
             <Route path="/recipes/:slug" element={<RecipesDetail />} />
             <Route path="/combos/:slug" element={<CombosDetail />} />
