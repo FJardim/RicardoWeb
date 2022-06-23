@@ -1,11 +1,9 @@
 import AppLogo from "../assets/drafts.png";
 import { BsBookmark } from "react-icons/bs";
 import Matches from "./Matches";
-import womenchef from "../assets/womenchef.jpg";
 import CestaCompras from "../assets/Img-button/cesta-de-la-compra.png";
 import BolsaCompras from "../assets/Img-button/bolsa-de-la-compra.png";
 import Reloj from "../assets/clock.png";
-import { IoArrowRedoOutline } from "react-icons/io5";
 import ButtonCart from "./ButtonCart";
 
 const CardRecipes = ({
@@ -65,7 +63,6 @@ const CardRecipes = ({
               </div>
               <div className="flex justify-end text-white ">
                 <div className="flex items-center space-x-2">
-                  {/* <IoArrowRedoOutline className="h-6 w-6" /> */}
                   <div className="flex items-center">
                     <BsBookmark />
                     <p className="text-white h-5 w-5 m-1 mr-4">8.7K</p>

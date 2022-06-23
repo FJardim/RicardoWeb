@@ -58,7 +58,7 @@ const Recipes = () => {
                         foto={imgUrl(recipe.images?.[0].path)}
                         sellerLogo={imgUrl(recipe.seller.logo)}
                         sellerName={recipe.seller.name}
-                        numberOfIngredients={recipe.numberOfIngredients}
+                        numberOfIngredients={recipe.recipeIngredients.length}
                         preparationTime={recipe.preparationTime}
                         hideButtons
                         hideCart

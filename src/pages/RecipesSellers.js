@@ -13,6 +13,7 @@ import { useFeedBack } from "../contexts/FeedBackContext";
 import useRecipes from "../hooks/useRecipes";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
+import imgUrl from "../helpers/imgUrl";
 
 const RecipesChef = () => {
   const { slug } = useParams();
@@ -22,12 +23,9 @@ const RecipesChef = () => {
     perPage: 9,
   });
 
-  const [{ data: seller, loading: sellerLoading, error: sellerError }] =
-    useAxios({ url: `/sellers/${slug}` });
+  const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
 
-  const [{ recipes, total, numberOfPages, size, error, loading }] = useRecipes({
-    params: { sellerId: seller?.sellerId },
-  });
+  const [{ recipes, numberOfPages, loading }] = useRecipes({ params: { sellerId: seller?.sellerId } });
 
   useEffect(() => {
     setLoading({ message: "Cargando...", show: sellerLoading });
@@ -67,13 +65,13 @@ const RecipesChef = () => {
                 <CardRecipes
                   key={recipe.id}
                   texto={recipe.name}
-                  price={`${recipe?.price}$`}
-                  bolsaIng={recipe.numberOfDinners}
-                  cestaIng={recipe.numberOfDinners}
-                  timePre={recipe.preparationTime}
-                  nameSellers={recipe.seller.name}
+                  price={recipe?.price}
+                  sellerLogo={imgUrl(recipe.seller.logo)}
+                  sellerName={recipe.seller.name}
                   title={recipe.mealPeriods.map(mp => mp.name).join(' - ')}
                   foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
+                  numberOfIngredients={recipe.recipeIngredients.length}
+                  preparationTime={recipe.preparationTime}
                   hideButtons
                   hideBag
                 />
