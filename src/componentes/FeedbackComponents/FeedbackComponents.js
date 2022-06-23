@@ -68,7 +68,7 @@ const FeedbackComponents = () => {
                 draggable
                 pauseOnHover
             />
-            <ReactTooltip event="mouseenter" eventOff="mouseleave" effect="solid" />
+            <ReactTooltip effect="solid" />
         </>
     )
 }
