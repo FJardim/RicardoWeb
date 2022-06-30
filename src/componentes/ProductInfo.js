@@ -8,10 +8,10 @@ import ShowMoreButton from "./ShowMoreButton";
 import favoriteReactions from "../consts/favoriteReactions"
 
 const ProductInfo = ({
-    name,
-    ingredients,
-    maxIngredientsCount = 8,
-    onFavoriteClicked,
+  name,
+  ingredients,
+  maxIngredientsCount = 8,
+  onFavoriteClicked,
 }) => {
   const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type: 'recipe', reaction });
 
@@ -21,29 +21,29 @@ const ProductInfo = ({
         <h1 className="font-bold text-2xl md:ml-1 ml-2 md:block">{name}</h1>
         <div className="md:flex space-x-4 md:m-2 md:m-auto mt-4 container flex justify-center ">
           <button
-              className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
-              onClick={handleFavoriteClicked(favoriteReactions.DISLIKE)}
-              data-tip="I don't like this!"
+            className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
+            onClick={handleFavoriteClicked(favoriteReactions.DISLIKE)}
+            data-tip="I don't like this!"
           >
-              <AiOutlineClose className="text-red-500" />
+            <AiOutlineClose className="text-red-500" />
           </button>
           <button
-              className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
-              onClick={handleFavoriteClicked(favoriteReactions.LIKE)}
-              data-tip="I like this!"
+            className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
+            onClick={handleFavoriteClicked(favoriteReactions.LIKE)}
+            data-tip="I like this!"
           >
-              <AiOutlineCheck className="text-green-700" />
+            <AiOutlineCheck className="text-green-700" />
           </button>
           <button
-              className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
-              onClick={handleFavoriteClicked(favoriteReactions.LOVE_IT)}
-              data-tip="Great!"
+            className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
+            onClick={handleFavoriteClicked(favoriteReactions.LOVE_IT)}
+            data-tip="Great!"
           >
-              <BsFillEmojiLaughingFill className="text-yellow-300" />
+            <BsFillEmojiLaughingFill className="text-yellow-300" />
           </button>
           <IoHeartOutline
-              className='text-main cursor-pointer w-10 h-10'
-              data-tip="Save"
+            className='text-main cursor-pointer w-10 h-10'
+            data-tip="Save"
           />
         </div>
       </div>
@@ -61,7 +61,7 @@ const ProductInfo = ({
       <div className="bg-white rounded-lg p-4">
         <div className="text-lg">
           <h4 className="font-semibold mb-3">Ingredients</h4>
-          
+
           {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
             <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
           ))}
