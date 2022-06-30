@@ -63,6 +63,7 @@ const Categories = () => {
                 ref={i + 1 === currentCategories.length ? lastValueRef : null}
                 img={`${SystemInfo?.api}${category?.banner}`}
                 name={category?.name}
+                categoryId={category?.id}
                 className={"py-16"}
               />
             )

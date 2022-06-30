@@ -47,7 +47,7 @@ const CardRecipes = ({
               <img src={CestaCompras} className="h-5 w-5 m-auto" alt="CestaCompras" />
               <p className="text-white h-5 w-5 ml-1">{numberOfIngredients}</p>
             </div>
-            
+
             {!hideClock && <div className="flex ">
               <img src={Reloj} className="h-5 w-5 m-auto" alt="CestaCompras" />
               <p className="text-white h-5 w-5 ml-1">{preparationTime}</p>
