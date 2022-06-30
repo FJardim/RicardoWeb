@@ -37,7 +37,7 @@ const Combos = () => {
                       <CardRecipes
                         key={combo.id}
                         texto={combo.name}
-                        price={`${combo?.price}$`}
+                        price={`${combo?.price}`}
                         bolsaIng={"2"}
                         cestaIng={"2"}
                         timePre={"2"}

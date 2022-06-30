@@ -66,6 +66,10 @@ const handleResponseError = (error) => {
       handleUnAuthorizeUser(data);
     }
 
+    if (status === 403) {
+      toast.error(`Error 403: You do not have permission to perform this action.`, defaultOpts)
+    }
+
     if (status === 404) {
       toast.error(`Error 404: The path does not exist on the server.`, defaultOpts)
     }

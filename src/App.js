@@ -54,13 +54,13 @@ function App() {
                 <MyAccountLayout />
               </RequireAuth>
             }>
+              <Route path="/accountinfo" element={<AccountInfo />} />
+              <Route path="/configuration" element={<Configuration />} />
               <Route path="/overview" element={<OverviewUser />} />
               <Route path="/favorites" element={<MyFavoritesUser />} />
               <Route path="/shopping" element={<MyShoppingList />} />
               <Route path="/contactus" element={<Contactus />} />
               <Route path="/saves" element={<Saves />} />
-              <Route path="/accountinfo" element={<AccountInfo />} />
-              <Route path="/configuration" element={<Configuration />} />
               <Route path="/meanplanoverview" element={<MealPlanOverview />} />
             </Route>
           </Routes>
