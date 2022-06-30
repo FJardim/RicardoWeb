@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import MenuLeft from "../componentes/MenuLeft";
 import useRecipes from "../hooks/useRecipes";
 import { useState } from "react";
-import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
+import imgUrl from "../helpers/imgUrl";
 
 
 const Recipes = () => {
@@ -19,7 +19,7 @@ const Recipes = () => {
     perPage: 12
   });
 
-  const [{ recipes, total, numberOfPages, loading }, getRecipes] = useRecipes({ axiosConfig: { params: { ...recipesFilters } } });
+  const [{ recipes, numberOfPages, loading }] = useRecipes({ axiosConfig: { params: { ...recipesFilters } } });
 
   return (
     <div className="">
@@ -47,19 +47,19 @@ const Recipes = () => {
             }
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
               {
-                recipes?.map((recipe, i) => {
+                recipes?.map((recipe) => {
                   return (
-                    <Link to={`/recipes/${recipe?.slug}`} key={i}>
+                    <Link to={`/recipes/${recipe.slug}`} key={recipe.id}>
                       <CardRecipes
-                        key={recipe.id}
                         texto={recipe.name}
-                        price={`${recipe?.price}$`}
-                        bolsaIng={recipe.numberOfDinners}
-                        cestaIng={recipe.numberOfDinners}
-                        timePre={recipe.preparationTime}
-                        nameSellers={recipe.seller.name}
+                        price={recipe.price}
                         title={recipe.mealPeriods.map(mp => mp.name).join(' - ')}
-                        foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
+                        foto={imgUrl(recipe.images?.[0].path)}
+                        sellerLogo={imgUrl(recipe.seller.logo)}
+                        sellerName={recipe.seller.name}
+                        numberOfIngredients={recipe.recipeIngredients.length}
+                        preparationTime={recipe.preparationTime}
+                        hideButtons
                         hideCart
                         hideBag
                       />

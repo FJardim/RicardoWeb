@@ -5,23 +5,46 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillEmojiLaughingFill } from "react-icons/bs";
 import { IoHeartOutline } from "react-icons/io5";
 import ShowMoreButton from "./ShowMoreButton";
+import favoriteReactions from "../consts/favoriteReactions"
 
-const ProductInfo = ({ name, ingredients }) => {
+const ProductInfo = ({
+    name,
+    ingredients,
+    maxIngredientsCount = 8,
+    onFavoriteClicked,
+}) => {
+  const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type: 'recipe', reaction });
+
   return (
     <div className="md:w-1/2 md:px-8">
       <div className="md:flex items-center text-3xl md:justify-between">
         <h1 className="font-bold text-2xl md:ml-1 ml-2 md:block">{name}</h1>
         <div className="md:flex space-x-4 md:m-2 md:m-auto mt-4 container flex justify-center ">
-          <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn">
-            <AiOutlineClose className="text-red-500" />
+          <button
+              className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
+              onClick={handleFavoriteClicked(favoriteReactions.DISLIKE)}
+              data-tip="I don't like this!"
+          >
+              <AiOutlineClose className="text-red-500" />
           </button>
-          <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn">
-            <AiOutlineCheck className="text-green-700" />
+          <button
+              className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
+              onClick={handleFavoriteClicked(favoriteReactions.LIKE)}
+              data-tip="I like this!"
+          >
+              <AiOutlineCheck className="text-green-700" />
           </button>
-          <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn">
-            <BsFillEmojiLaughingFill className="text-yellow-300" />
+          <button
+              className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
+              onClick={handleFavoriteClicked(favoriteReactions.LOVE_IT)}
+              data-tip="Great!"
+          >
+              <BsFillEmojiLaughingFill className="text-yellow-300" />
           </button>
-          <IoHeartOutline className="text-main cursor-pointer w-10 h-10" />
+          <IoHeartOutline
+              className='text-main cursor-pointer w-10 h-10'
+              data-tip="Save"
+          />
         </div>
       </div>
 
@@ -35,27 +58,31 @@ const ProductInfo = ({ name, ingredients }) => {
           (1 customer review)
         </p>
       </div>
-      <div className="bg-white rounded-lg py-4">
-        <div className="m-8 text-lg">
-          {ingredients.map((ingredient) => (
-            <div key={ingredient.id}>{ingredient.name}</div>
+      <div className="bg-white rounded-lg p-4">
+        <div className="text-lg">
+          <h4 className="font-semibold mb-3">Ingredients</h4>
+          
+          {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
+            <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
           ))}
           <ShowMoreButton
-            buttonText={`Mostrar mas`}
-            content={`Mas Contenido`}
+            buttonText="Show more"
+            content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
+              <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+            ))}
           />
         </div>
       </div>
       <div>
-        <div className="flex items-center md:m-4 p-4 bg-white rounded-md mt-16">
+        <div className="flex justify-between items-center md:my-4 p-4 bg-white rounded-md mt-16">
           <div className="text-main text-3xl font-semibold">
             <div>
               <p className="text-main">$36.23</p>
               <p className="text-gray-400 text-sm">$48.56</p>
             </div>
           </div>
-          <div className="flex justify-end">
-            <button className=" px-4 py-4 rounded-xl ml-24 block text-white font-bold bg-main-light">
+          <div className="flex">
+            <button className=" px-4 py-2.5 rounded-xl ml-24 block text-white font-bold bg-main hover:bg-main-dark">
               + Comprar
             </button>
           </div>
