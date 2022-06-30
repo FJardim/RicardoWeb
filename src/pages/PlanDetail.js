@@ -20,8 +20,6 @@ const ingredients = [
   { id: 2, name: "1 tablespoon ground cinnamon or cinnamon splinter." },
   { id: 3, name: "1 lirer od milk." },
   { id: 4, name: "1 can co ndenses milk." },
-  { id: 5, name: "Half a teaspoon of cloves." },
-  { id: 6, name: "Sugar to taste." },
 ];
 
 const productImages = [
