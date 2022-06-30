@@ -45,10 +45,13 @@ const CombosDetail = () => {
           </div>
 
           {/* ProductInfo*/}
-          <ProductInfo name="Combos pierde peso" ingredients={ingredients} />
+          <ProductInfo name="Combos pierde peso" ingredients={[]} />
         </div>
         {/* DescriptionCard*/}
-        <DescriptionCard hidePaypalButton showMarketButtons />
+        <DescriptionCard
+          showPaypalButton
+          hideMarketButtons
+        />
 
         <TabsProvider>
           {/* Tabs */}
