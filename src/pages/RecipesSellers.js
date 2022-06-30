@@ -23,7 +23,7 @@ const RecipesChef = () => {
     perPage: 9,
   });
 
-  const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
+  const [{ data: seller, loading: sellerLoading }] = useAxios({ url: `/sellers/${slug}` });
 
   const [{ recipes, numberOfPages, loading }] = useRecipes({ params: { sellerId: seller?.sellerId } });
 

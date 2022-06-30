@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import imgUrl from "../helpers/imgUrl";
 
-const ProductImagesCarousel = ({ images, productName }) => {
+const ProductImagesCarousel = ({ images = [], productName }) => {
   const [swiper, setSwiper] = useState(null);
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -18,7 +19,7 @@ const ProductImagesCarousel = ({ images, productName }) => {
           images?.length > 0 && images?.map(image => <SwiperSlide key={image.id} zoom={{ maxRatio: 2 }}>
             <div className="swiper-zoom-container">
               <img
-                src={image.path}
+                src={imgUrl(image.path)}
                 alt={productName}
                 className="rounded-xl w-full h-96"
               />
@@ -30,7 +31,7 @@ const ProductImagesCarousel = ({ images, productName }) => {
       {images?.length > 0 &&
         images?.map((image, i) => <img
           key={image.id}
-          src={image.path}
+          src={imgUrl(image.path)}
           alt={productName}
           className={clsx(
             'h-20 w-20 rounded-xl border border-gray-100 rounded shadow hover:shadow-md cursor-pointer',

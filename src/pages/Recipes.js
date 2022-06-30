@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import MenuLeft from "../componentes/MenuLeft";
 import useRecipes from "../hooks/useRecipes";
 import { useState } from "react";
-import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";

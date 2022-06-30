@@ -10,8 +10,7 @@ import favoriteReactions from "../consts/favoriteReactions"
 const ProductInfo = ({
     name,
     ingredients,
-    showPaypalButton = false,
-    hideMarketButtons = false,
+    maxIngredientsCount = 8,
     onFavoriteClicked,
 }) => {
   const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type: 'recipe', reaction });
@@ -59,27 +58,31 @@ const ProductInfo = ({
           (1 customer review)
         </p>
       </div>
-      <div className="bg-white rounded-lg py-4">
-        <div className="m-8 text-lg">
-          {ingredients.map((ingredient) => (
-            <div key={ingredient.id}>{ingredient.name}</div>
+      <div className="bg-white rounded-lg p-4">
+        <div className="text-lg">
+          <h4 className="font-semibold mb-3">Ingredients</h4>
+          
+          {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
+            <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
           ))}
           <ShowMoreButton
-            buttonText={`Mostrar mas`}
-            content={`Mas Contenido`}
+            buttonText="Show more"
+            content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
+              <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+            ))}
           />
         </div>
       </div>
       <div>
-        <div className="flex items-center md:m-4 p-4 bg-white rounded-md mt-16">
+        <div className="flex justify-between items-center md:my-4 p-4 bg-white rounded-md mt-16">
           <div className="text-main text-3xl font-semibold">
             <div>
               <p className="text-main">$36.23</p>
               <p className="text-gray-400 text-sm">$48.56</p>
             </div>
           </div>
-          <div className="flex justify-end">
-            <button className=" px-4 py-4 rounded-xl ml-24 block text-white font-bold bg-main-light">
+          <div className="flex">
+            <button className=" px-4 py-2.5 rounded-xl ml-24 block text-white font-bold bg-main hover:bg-main-dark">
               + Comprar
             </button>
           </div>
