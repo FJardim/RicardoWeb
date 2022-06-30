@@ -17,14 +17,6 @@ const ingredients = [
   { id: 3, name: "150 grams of black olives." },
   { id: 4, name: "1 pinch of dried basil." },
   { id: 5, name: "2 teaspoons garlic powder." },
-  { id: 6, name: "1 1 / 2 teaspoons sage." },
-  { id: 7, name: "2 teaspoons ground black pepper." },
-  { id: 8, name: "2 teaspoons finely chopped fresh garlic." },
-  { id: 9, name: "1 tablespoon of onion." },
-  { id: 10, name: "800 grams of tomato sauce." },
-  { id: 11, name: "500 grams of lasagna pasta." },
-  { id: 12, name: "225 grams of cottage cheese." },
-  { id: 13, name: "455 grams of grated mozzarella cheese." },
 ];
 
 const productImages = [
