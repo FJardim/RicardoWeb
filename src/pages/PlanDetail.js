@@ -51,11 +51,9 @@ const PlanDetail = () => {
                     <ProductInfo
                         name="Plan Recipes Cold Coconout"
                         ingredients={[]}
-                        showPaypalButton
-                        hideMarketButtons
                     />
                 </div>
-                <DescriptionCard hidePaypalButton showMarketButtons />
+                <DescriptionCard showMarketButtons />
                 {/* Calendar */}
                 <div className="mt-4 rounded-lg bg-white container w-full h-full grid grid-cols-2 md:grid-cols-1">
                     <Calendar day="1" />

@@ -17,41 +17,43 @@ import { useFeedBack } from '../contexts/FeedBackContext';
 import imgUrl from "../helpers/imgUrl";
 
 const RecipesDetail = () => {
-    const { setLoading } = useFeedBack();
-    
-    const { slug } = useParams();
+  const { setLoading } = useFeedBack();
 
-    const navigate = useNavigate();
-    
-    const [{ data: recipe, loading: recipeLoading }] = useAxios({ url: `/recipes/${slug}` }); 
+  const { slug } = useParams();
 
-    const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        setLoading({ message: 'Cargando receta', show: recipeLoading });
-    }, [recipeLoading]);
+  const [{ data: recipe, loading: recipeLoading }] = useAxios({ url: `/recipes/${slug}` });
 
-    useEffect(() => {
-        setLoading({ message: 'Cargando', show: createFavoriteLoading });
-    }, [createFavoriteLoading]);
+  const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
 
-    useEffect(() => {
-        if (createFavoriteData) {
-            navigate('/recipes', { replace: true });
-        }
-    }, [createFavoriteData]);
-    
-    const handleFavoriteClicked = ({ type, reaction }) => {
-        if (!recipe) {
-            return;
-        }
-        
-        createFavorite({ data: {
-            type,
-            reaction,
-            recipeId: recipe.id
-        }});
+  useEffect(() => {
+    setLoading({ message: 'Cargando receta', show: recipeLoading });
+  }, [recipeLoading]);
+
+  useEffect(() => {
+    setLoading({ message: 'Cargando', show: createFavoriteLoading });
+  }, [createFavoriteLoading]);
+
+  useEffect(() => {
+    if (createFavoriteData) {
+      navigate('/recipes', { replace: true });
     }
+  }, [createFavoriteData]);
+
+  const handleFavoriteClicked = ({ type, reaction }) => {
+    if (!recipe) {
+      return;
+    }
+
+    createFavorite({
+      data: {
+        type,
+        reaction,
+        recipeId: recipe.id
+      }
+    });
+  }
 
   return (
     <>
@@ -65,14 +67,14 @@ const RecipesDetail = () => {
           {/* ProductInfo*/}
           <ProductInfo
             name="Lasagna"
-            ingredients={recipe?.recipeIngredients} 
+            ingredients={recipe?.recipeIngredients}
             onFavoriteClicked={handleFavoriteClicked}
+
           />
         </div>
-        
+
         <DescriptionCard
-          showPaypalButton
-          hideMarketButtons
+          showMarketButtons
           recipe={recipe}
         />
 
