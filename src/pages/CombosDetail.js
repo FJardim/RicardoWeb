@@ -58,7 +58,7 @@ const CombosDetail = () => {
           <ProductInfo
             name={combo?.name}
             detailsLabel={"Include:"}
-            details={[...combo.recipes, ...combo.plans]}
+            details={[...combo?.recipes ?? [], ...combo?.plans ?? []]}
             ingredients={[]}
           />
         </div>
