@@ -66,7 +66,7 @@ const RecipesDetail = () => {
 
           {/* ProductInfo*/}
           <ProductInfo
-            name="Lasagna"
+            name={recipe?.name}
             ingredients={recipe?.recipeIngredients}
             onFavoriteClicked={handleFavoriteClicked}
 

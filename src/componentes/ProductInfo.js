@@ -67,7 +67,7 @@ const ProductInfo = ({
         <div className="text-lg">
           <h4 className="font-semibold mb-3">{detailsLabel}</h4>
           {details?.slice(0, maxDetailsCount).map((detail) => (
-            <a key={detail.id} href={`/recipes/${detail.slug}`}>{detail?.name}</a>
+            <a style={{ display: 'block' }} key={detail.id} href={`/recipes/${detail.slug}`}>{detail?.name}</a>
           ))}
           {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
             <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
@@ -87,20 +87,13 @@ const ProductInfo = ({
         </div>
       </div>
       <div>
-        <div className="flex justify-between items-center md:my-4 p-4 bg-white rounded-md mt-16">
-          <div className="text-main text-3xl font-semibold">
-            <div>
-              <p className="text-main">{price}</p>
-              {
-                haveDiscount &&
-                <p className="text-gray-400 text-sm">$48.56</p>
-              }
-            </div>
-          </div>
-          <div className="flex">
-            <button className=" px-4 py-2.5 rounded-xl ml-24 block text-white font-bold bg-main hover:bg-main-dark">
-              + Comprar
-            </button>
+        <div className="text-main text-3xl font-semibold">
+          <div>
+            <p className="text-main">{price}</p>
+            {
+              haveDiscount &&
+              <p className="text-gray-400 text-sm">$48.56</p>
+            }
           </div>
         </div>
       </div>
