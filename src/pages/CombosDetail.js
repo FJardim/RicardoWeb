@@ -10,6 +10,9 @@ import IngredientRowDetails from "../componentes/IngredientRowDetails";
 import Checkbox from "../componentes/Checkbox";
 import WaPay from "../componentes/WaPay";
 import DescriptionCard from "../componentes/DescriptionCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from 'react';
+import useAxios from "../hooks/useAxios";
 
 const ingredients = [
   { id: 1, name: "Plan x" },
@@ -35,18 +38,31 @@ const productImages = [
 ];
 
 const CombosDetail = () => {
+
+  const { slug } = useParams();
+
+  const [{ data: combo, loading: comboLoading }] = useAxios({ url: `/combos/${slug}` });
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="p-4 md:p-16">
         <div className="flex container p-2 md:space-x-6 md:p-2">
           {/* Imagenes carousel */}
           <div className="md:w-1/2 md:flex md:flex-col">
-            <ProductImagesCarousel images={productImages} />
+            <ProductImagesCarousel images={combo?.images} />
           </div>
 
           {/* ProductInfo*/}
-          <ProductInfo name="Combos pierde peso" ingredients={[]} />
+          <ProductInfo
+            name={combo?.name}
+            detailsLabel={"Include:"}
+            details={[...combo.recipes, ...combo.plans]}
+            ingredients={[]}
+          />
         </div>
+
         {/* DescriptionCard*/}
         <DescriptionCard
           showPaypalButton
