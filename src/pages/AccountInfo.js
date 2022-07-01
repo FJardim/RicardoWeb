@@ -3,7 +3,6 @@ import { CardWithTitle } from "../componentes/CardWithTitle";
 import PasswordUser from "../componentes/PasswordUser";
 import profile from "../assets/profile.png"
 import paypal from "../assets/paypal.png"
-import ButtonChange from "../componentes/ButtonChange";
 import { useAuth } from "../contexts/AuthContext";
 import useAxios from "../hooks/useAxios";
 
@@ -14,7 +13,7 @@ const AccountInfo = () => {
 
   const [{ data, loading, error }, getData] = useAxios({ url: `/clients/${user?.id}` }, { useCache: false });
 
-  const [{ data: updateData, loading: updateLoading, error: updateError }, update] = useAxios({ url: `/clients/${user?.id}`, method: 'put' }, { useCache: false });
+  const [{ data: updateData, loading: updateLoading, error: updateError }, update] = useAxios({ url: `/clients/${user?.id}`, method: 'put' }, { manual: true, useCache: false });
 
   const [currentUser, setCurrentUser] = useState(null);
 

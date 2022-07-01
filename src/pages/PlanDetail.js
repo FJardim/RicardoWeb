@@ -1,7 +1,4 @@
-import Pasticho from "../assets/pasticho.png";
-import Bebida from "../assets/bebida.png";
 import Coco from "../assets/coco.jpg";
-import Recipes from "../componentes/Recipes";
 import ProductImagesCarousel from "../componentes/ProductImagesCarousel";
 import ProductInfo from "../componentes/ProductInfo";
 import { TabsProvider } from "../contexts/TabsContext";
@@ -13,104 +10,156 @@ import IngredientRowDetails from "../componentes/IngredientRowDetails";
 import Checkbox from "../componentes/Checkbox";
 import Calendar from "../componentes/Calendar";
 import WaPay from "../componentes/WaPay";
-import DescriptionCard from "../componentes/DescriptionCard";
-
-const ingredients = [
-    { id: 1, name: "3 cups rice." },
-    { id: 2, name: "1 tablespoon ground cinnamon or cinnamon splinter." },
-    { id: 3, name: "1 lirer od milk." },
-    { id: 4, name: "1 can co ndenses milk." },
-];
-
-const productImages = [
-    {
-        id: 568,
-        path: Coco,
-        isPortrait: true,
-        position: 0,
-    },
-    {
-        id: 569,
-        path: Coco,
-        isPortrait: false,
-        position: 1,
-    },
-];
+import { useParams } from "react-router-dom";
+import useAxios from '../hooks/useAxios';
+import { useEffect, useState } from "react";
+import SystemInfo from "../util/SystemInfo";
+import { AiFillStar } from "react-icons/ai";
+import { AiOutlineStar } from "react-icons/ai";
+import clsx from "clsx";
 
 const PlanDetail = () => {
+
+    const { slug } = useParams();
+
+    const [{ data, loading, error }, getData] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
+
+    const [selectedDay, setSelectedDay] = useState(null);
+
+    const [selectedPeriod, setSelectedPeriod] = useState(null);
+
+    const [currentPlan, setCurrentPlan] = useState();
+
+    const [currentWeeks, setCurrentWeeks] = useState([]);
+
+    useEffect(() => {
+        if (data) {
+            setCurrentPlan(data);
+        }
+    }, [data])
+
+    useEffect(() => {
+        if (currentPlan?.fullPlanDays?.length > 0) {
+
+            var weeks = [];
+
+            var week = [];
+
+            currentPlan?.fullPlanDays?.forEach((planday, i) => {
+                if (week.length === 7) {
+                    weeks = [...weeks, {
+                        week: weeks?.length + 1,
+                        days: week
+                    }];
+
+                    week = [];
+                    week.push(planday);
+                } else {
+                    week.push(planday);
+                }
+            });
+
+            weeks = [...weeks, {
+                week: weeks?.length + 1,
+                days: week
+            }];
+            setCurrentWeeks(weeks);
+        }
+    }, [currentPlan]);
+
+    const handleDay = (e, day) => {
+        setSelectedDay(day);
+        setSelectedPeriod(day?.mealPeriods?.[0])
+    }
+
     return (
         <>
             <div className="p-4 md:p-16">
                 <div className="flex container p-2 md:space-x-6 md:p-2">
                     {/* Imagenes carousel */}
                     <div className="md:w-1/2 md:flex md:flex-col">
-                        <ProductImagesCarousel images={productImages} />
+                        <ProductImagesCarousel images={currentPlan?.images} />
                     </div>
 
                     {/* ProductInfo*/}
                     <ProductInfo
-                        name="Plan Recipes Cold Coconout"
+                        name={currentPlan?.name}
+                        details={currentPlan?.uniqueRecipes}
+                        detailsLabel={"Recipes:"}
                         ingredients={[]}
+                        price={`$${currentPlan?.price}`}
                     />
                 </div>
-                <DescriptionCard showMarketButtons />
                 {/* Calendar */}
                 <div className="mt-4 rounded-lg bg-white container w-full h-full grid grid-cols-2 md:grid-cols-1">
-                    <Calendar day="1" />
-                    <Calendar day="2" />
+                    {currentWeeks?.map((week, i) => {
+                        return <Calendar
+                            onDayClick={handleDay}
+                            key={i}
+                            week={week}
+                        />
+                    })}
                 </div>
 
                 {/* Recipes day */}
-                <h1 className="text-center m-8 md:text-6xl text-3xl font-bold">
-                    Day 1
-                </h1>
+                {
+                    selectedDay &&
+                    <h1 className="text-center mt-8 md:text-6xl text-3xl font-bold">
+                        Day {selectedDay?.day}
+                    </h1>
+                }
                 <div className="container md:p-8">
-                    <div className="md:grid md:grid-cols-2 md:gap-14 space-y-4">
-                        <Recipes
-                            title="Lasagna"
-                            descsh="Space for a small product description"
-                            cost="$36.99"
-                            desccost="Pescription cost"
-                            level="Expert"
-                            time="60-80 Minutes"
-                            ing="5 pcs"
-                            img={Pasticho}
-                            withDefaultButtons={false}
-                        />
-                        <Recipes
-                            title="Margarita"
-                            descsh="Space for a small product description"
-                            cost="$6.99"
-                            desccost="Pescription cost"
-                            level="Easy"
-                            time="6-8 Minutes"
-                            ing="3 pcs"
-                            img={Bebida}
-                            withDefaultButtons={false}
-                        />
-                        <Recipes
-                            title="Margarita"
-                            descsh="Space for a small product description"
-                            cost="$6.99"
-                            desccost="Pescription cost"
-                            level="Easy"
-                            time="6-8 Minutes"
-                            ing="3 pcs"
-                            img={Bebida}
-                            withDefaultButtons={false}
-                        />
-                        <Recipes
-                            title="Lasagna"
-                            descsh="Space for a small product description"
-                            cost="$36.99"
-                            desccost="Pescription cost"
-                            level="Expert"
-                            time="60-80 Minutes"
-                            ing="5 pcs"
-                            img={Pasticho}
-                            withDefaultButtons={false}
-                        />
-                    </div>
+                    {
+                        selectedDay ?
+                            <div className="grid grid-cols-1 justify-center space-x-4 md:flex m-auto mb-4">
+                                {
+                                    selectedDay?.mealPeriods?.map((period, i) => {
+                                        return <div
+                                            className={clsx(["cursor-pointer hover:border-b hover:border-main"], { "border-b border-main": selectedPeriod?.id === period?.id })}
+                                            key={i}
+                                            onClick={() => { setSelectedPeriod(period) }}
+                                        >
+                                            {period?.name} ({period?.recipes?.length})
+                                        </div>
+                                    })
+                                }
+                            </div>
+                            :
+                            null
+                    }
+
+                    {
+                        selectedPeriod &&
+                        <div className="md:grid md:grid-cols-2 md:gap-14 space-y-4">
+                            {
+                                selectedPeriod?.recipes?.map((recipe, i) => <div className="md:grid md:grid-cols-3 bg-white rounded">
+                                    <div style={{ minHeight: "200px", background: `url(${SystemInfo?.api}${recipe?.recipeImages[0]?.path})`, backgroundSize: 'cover', backgroundPosition: "center" }} className="rounded"></div>
+                                    <div className="p-4 text-gray-400 col-span-2 space-y-1">
+                                        <div className="md:grid md:grid-cols-3 items-center">
+                                            <h4 className="font-bold col-span-2">{recipe?.name}</h4>
+                                            <h4 className="text-black text-xl col-span-1 text-right">
+                                                {recipe?.price}$
+                                            </h4>
+                                        </div>
+                                        <p>{recipe?.shortDescription?.length > 35 ? `${recipe?.shortDescription?.slice(0, 35)}...` : recipe?.shortDescription}</p>
+                                        <div className="flex">
+                                            <AiFillStar className="mt-2 text-yellow-300" />
+                                            <AiFillStar className="mt-2 text-yellow-300" />
+                                            <AiFillStar className="mt-2 text-yellow-300" />
+                                            <AiFillStar className="mt-2 text-yellow-300" />
+                                            <AiOutlineStar className="mt-2 text-gray-300" />
+                                        </div>
+                                        <p>
+                                            <b>Level: </b> Expert
+                                        </p>
+                                        <p>
+                                            <b>Time: </b> {recipe?.preparationTime} minutes.
+                                        </p>
+                                    </div>
+                                </div>)
+                            }
+                        </div>
+                    }
                 </div>
                 <TabsProvider>
                     {/* Tabs */}
@@ -122,7 +171,7 @@ const PlanDetail = () => {
 
                     {/* TAB PANELS */}
                     {/* Preparation */}
-                    <div className="mt-4 md:p-4">
+                    < div className="mt-4 md:p-4" >
                         <TabPanel
                             className="animate__animated animate__fadeInUp  bg-white rounded-lg "
                             value={0}
@@ -141,7 +190,7 @@ const PlanDetail = () => {
                         </TabPanel>
 
                         {/* Ingredients purchase List */}
-                        <TabPanel
+                        < TabPanel
                             className="animate__animated animate__fadeInUp bg-white rounded-lg"
                             value={1}
                         >

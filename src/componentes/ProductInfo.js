@@ -12,6 +12,11 @@ const ProductInfo = ({
   ingredients,
   maxIngredientsCount = 8,
   onFavoriteClicked,
+  haveDiscount,
+  price,
+  detailsLabel,
+  details,
+  maxDetailsCount = 8
 }) => {
   const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type: 'recipe', reaction });
 
@@ -60,11 +65,19 @@ const ProductInfo = ({
       </div>
       <div className="bg-white rounded-lg p-4">
         <div className="text-lg">
-          <h4 className="font-semibold mb-3">Ingredients</h4>
-
+          <h4 className="font-semibold mb-3">{detailsLabel}</h4>
+          {details?.slice(0, maxDetailsCount).map((detail) => (
+            <a key={detail.id} href={`/recipes/${detail.slug}`}>{detail?.name}</a>
+          ))}
           {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
             <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
           ))}
+          <ShowMoreButton
+            buttonText="Show more"
+            content={details?.slice(maxDetailsCount).map((detail) => (
+              <a key={detail.id} href={`/recipes/${detail.slug}`}>{detail?.name}</a>
+            ))}
+          />
           <ShowMoreButton
             buttonText="Show more"
             content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
@@ -77,8 +90,11 @@ const ProductInfo = ({
         <div className="flex justify-between items-center md:my-4 p-4 bg-white rounded-md mt-16">
           <div className="text-main text-3xl font-semibold">
             <div>
-              <p className="text-main">$36.23</p>
-              <p className="text-gray-400 text-sm">$48.56</p>
+              <p className="text-main">{price}</p>
+              {
+                haveDiscount &&
+                <p className="text-gray-400 text-sm">$48.56</p>
+              }
             </div>
           </div>
           <div className="flex">
