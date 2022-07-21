@@ -17,6 +17,13 @@ import SystemInfo from "../util/SystemInfo";
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import clsx from "clsx";
+import Amazon from "../assets/Img-button/amazon-fresh.jpg";
+import Wallmart from "../assets/Img-button/wallmart.jpeg";
+import Instacart from "../assets/Img-button/instacart.jpg";
+import ButtonImage from "../componentes/ButtonImage";
+import Instagram from "../assets/Img-button/insta.jfif";
+import Youtube from "../assets/Img-button/Youtube.webp";
+import TikTok from "../assets/Img-button/tiktok.png";
 
 const PlanDetail = () => {
 
@@ -81,6 +88,7 @@ const PlanDetail = () => {
                         <ProductImagesCarousel images={currentPlan?.images} />
                     </div>
 
+
                     {/* ProductInfo*/}
                     <ProductInfo
                         name={currentPlan?.name}
@@ -90,6 +98,36 @@ const PlanDetail = () => {
                         price={`$${currentPlan?.price}`}
                     />
                 </div>
+
+                <div className="md:flex justify-between my-4">
+                    <div className="col-md-6 space-y-4">
+                        <p>
+                            <b>Categories: </b> {currentPlan?.categories?.map(category => category?.name).join(', ')}
+                        </p>
+                        <p>
+                            <b>Numero de Dias: </b> {currentPlan?.fullPlanDays?.length}
+                        </p>
+                        <p>
+                            <b>Numero de Recetas: </b> {currentPlan?.uniqueRecipes?.length}
+                        </p>
+                    </div>
+                    <div className="col-md-6">
+                        <p className="md:w-1/2 w-4/2 mb-4">Pucharse In:</p>
+                        <div className="flex space-x-3">
+                            <ButtonImage image={Instacart} />
+                            <ButtonImage image={Amazon} />
+                            <ButtonImage image={Wallmart} />
+                        </div>
+
+                        <p className="md:w-1/2 w-4/2 mb-4">Follow us:</p>
+                        <div className="flex space-x-3">
+                            <ButtonImage image={Instagram} />
+                            <ButtonImage image={TikTok} />
+                            <ButtonImage image={Youtube} />
+                        </div>
+                    </div>
+                </div>
+
                 {/* Calendar */}
                 <div className="mt-4 rounded-lg bg-white container w-full h-full grid grid-cols-2 md:grid-cols-1">
                     {currentWeeks?.map((week, i) => {
@@ -132,31 +170,33 @@ const PlanDetail = () => {
                         selectedPeriod &&
                         <div className="md:grid md:grid-cols-2 md:gap-14 space-y-4">
                             {
-                                selectedPeriod?.recipes?.map((recipe, i) => <div className="md:grid md:grid-cols-3 bg-white rounded">
-                                    <div style={{ minHeight: "200px", background: `url(${SystemInfo?.api}${recipe?.recipeImages[0]?.path})`, backgroundSize: 'cover', backgroundPosition: "center" }} className="rounded"></div>
-                                    <div className="p-4 text-gray-400 col-span-2 space-y-1">
-                                        <div className="md:grid md:grid-cols-3 items-center">
-                                            <h4 className="font-bold col-span-2">{recipe?.name}</h4>
-                                            <h4 className="text-black text-xl col-span-1 text-right">
-                                                {recipe?.price}$
-                                            </h4>
+                                selectedPeriod?.recipes?.map((recipe, i) => <a href={`/recipes/${recipe?.slug}`} key={i}>
+                                    <div className="md:grid md:grid-cols-3 bg-white rounded transition duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+                                        <div style={{ minHeight: "200px", background: `url(${SystemInfo?.api}${recipe?.recipeImages[0]?.path})`, backgroundSize: 'cover', backgroundPosition: "center" }} className="rounded"></div>
+                                        <div className="p-4 text-gray-400 col-span-2 space-y-1">
+                                            <div className="md:grid md:grid-cols-3 items-center">
+                                                <h4 className="font-bold col-span-2">{recipe?.name}</h4>
+                                                <h4 className="text-black text-xl col-span-1 text-right">
+                                                    {recipe?.price}$
+                                                </h4>
+                                            </div>
+                                            <p>{recipe?.shortDescription?.length > 35 ? `${recipe?.shortDescription?.slice(0, 35)}...` : recipe?.shortDescription}</p>
+                                            <div className="flex">
+                                                <AiFillStar className="mt-2 text-yellow-300" />
+                                                <AiFillStar className="mt-2 text-yellow-300" />
+                                                <AiFillStar className="mt-2 text-yellow-300" />
+                                                <AiFillStar className="mt-2 text-yellow-300" />
+                                                <AiOutlineStar className="mt-2 text-gray-300" />
+                                            </div>
+                                            <p>
+                                                <b>Level: </b> Expert
+                                            </p>
+                                            <p>
+                                                <b>Time: </b> {recipe?.preparationTime} minutes.
+                                            </p>
                                         </div>
-                                        <p>{recipe?.shortDescription?.length > 35 ? `${recipe?.shortDescription?.slice(0, 35)}...` : recipe?.shortDescription}</p>
-                                        <div className="flex">
-                                            <AiFillStar className="mt-2 text-yellow-300" />
-                                            <AiFillStar className="mt-2 text-yellow-300" />
-                                            <AiFillStar className="mt-2 text-yellow-300" />
-                                            <AiFillStar className="mt-2 text-yellow-300" />
-                                            <AiOutlineStar className="mt-2 text-gray-300" />
-                                        </div>
-                                        <p>
-                                            <b>Level: </b> Expert
-                                        </p>
-                                        <p>
-                                            <b>Time: </b> {recipe?.preparationTime} minutes.
-                                        </p>
                                     </div>
-                                </div>)
+                                </a>)
                             }
                         </div>
                     }
