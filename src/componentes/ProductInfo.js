@@ -3,7 +3,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsFillEmojiLaughingFill } from "react-icons/bs";
-import { IoHeartOutline } from "react-icons/io5";
+import { IoHeartOutline, IoHeart } from "react-icons/io5";
 import ShowMoreButton from "./ShowMoreButton";
 import favoriteReactions from "../consts/favoriteReactions"
 
@@ -12,13 +12,17 @@ const ProductInfo = ({
   ingredients,
   maxIngredientsCount = 8,
   onFavoriteClicked,
+  onSaveClicked,
   haveDiscount,
   price,
   detailsLabel,
   details,
-  maxDetailsCount = 8
+  maxDetailsCount = 8,
+  saved = false,
 }) => {
   const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type: 'recipe', reaction });
+
+  const handleSaveClicked = () => onSaveClicked?.({ type: 'recipe' });
 
   return (
     <div className="md:w-1/2 md:px-8">
@@ -46,10 +50,18 @@ const ProductInfo = ({
           >
             <BsFillEmojiLaughingFill className="text-yellow-300" />
           </button>
-          <IoHeartOutline
+          {saved
+            ? <IoHeart
+              className='text-main cursor-pointer w-10 h-10'
+              data-tip="Save"
+              onClick={handleSaveClicked}
+            />
+            : <IoHeartOutline
             className='text-main cursor-pointer w-10 h-10'
             data-tip="Save"
+            onClick={handleSaveClicked}
           />
+          }
         </div>
       </div>
 
