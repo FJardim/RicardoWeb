@@ -57,9 +57,12 @@ const CombosDetail = () => {
           {/* ProductInfo*/}
           <ProductInfo
             name={combo?.name}
-            detailsLabel={"Include:"}
-            details={[...combo.recipes, ...combo.plans]}
-            ingredients={[]}
+            price={`$${combo?.price}`}
+            detailsLabel={"Includes:"}
+            details={[
+              ...combo?.recipes.map(recipe => ({...recipe, uri: `/recipes/${recipe.slug}`})) ?? [],
+              ...combo?.plans.map(plan => ({...plan, uri: `/plans/${plan.slug}`})) ?? []
+            ]}
           />
         </div>
 

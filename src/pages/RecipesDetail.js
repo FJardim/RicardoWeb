@@ -94,6 +94,7 @@ const RecipesDetail = () => {
           {/* ProductInfo*/}
           <ProductInfo
             name={recipe?.name}
+            price={`$${recipe?.price}`}
             ingredients={recipe?.recipeIngredients}
             onFavoriteClicked={handleFavoriteClicked}
             onSaveClicked={handleSavedClicked}

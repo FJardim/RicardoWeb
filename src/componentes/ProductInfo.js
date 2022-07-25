@@ -9,7 +9,7 @@ import favoriteReactions from "../consts/favoriteReactions"
 
 const ProductInfo = ({
   name,
-  ingredients,
+  ingredients = [],
   maxIngredientsCount = 8,
   onFavoriteClicked,
   onSaveClicked,
@@ -79,7 +79,7 @@ const ProductInfo = ({
         <div className="text-lg">
           <h4 className="font-semibold mb-3">{detailsLabel}</h4>
           {details?.slice(0, maxDetailsCount).map((detail) => (
-            <a style={{ display: 'block' }} key={detail.id} href={`/recipes/${detail.slug}`}>{detail?.name}</a>
+            <a key={detail.id} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
           ))}
           {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
             <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
@@ -87,7 +87,7 @@ const ProductInfo = ({
           <ShowMoreButton
             buttonText="Show more"
             content={details?.slice(maxDetailsCount).map((detail) => (
-              <a key={detail.id} href={`/recipes/${detail.slug}`}>{detail?.name}</a>
+              <a key={detail.id} href={detail.uri}>{detail?.name}</a>
             ))}
           />
           <ShowMoreButton
@@ -100,7 +100,7 @@ const ProductInfo = ({
       </div>
       <div>
         <div className="text-main text-3xl font-semibold">
-          <div>
+          <div className="mt-2">
             <p className="text-main">{price}</p>
             {
               haveDiscount &&
