@@ -17,12 +17,17 @@ import SystemInfo from "../util/SystemInfo";
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import clsx from "clsx";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import favoriteTypes from "../consts/favoriteTypes";
 
 const PlanDetail = () => {
+    const { setLoading } = useFeedBack();
 
     const { slug } = useParams();
 
-    const [{ data, loading, error }, getData] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
+    const [{ data }] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
+
+    const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
 
     const [selectedDay, setSelectedDay] = useState(null);
 
@@ -36,7 +41,11 @@ const PlanDetail = () => {
         if (data) {
             setCurrentPlan(data);
         }
-    }, [data])
+    }, [data]);
+
+    useEffect(() => {
+        setLoading({ message: 'Guardando', show: toggleSavedLoading });
+    }, [toggleSavedLoading]);
 
     useEffect(() => {
         if (currentPlan?.fullPlanDays?.length > 0) {
@@ -67,6 +76,26 @@ const PlanDetail = () => {
         }
     }, [currentPlan]);
 
+    useEffect(() => {
+        if (typeof toggleSavedData !== 'undefined') {
+            setCurrentPlan(prevData => ({
+                ...prevData,
+                saved: toggleSavedData,
+            }));
+        }
+      }, [toggleSavedData]);
+    
+    const handleSavedClicked = ({ type }) => {
+        if (!currentPlan) {
+            return;
+        }
+        
+        toggleSaved({ data: {
+            type,
+            planId: currentPlan.id,
+        }});
+    }
+
     const handleDay = (e, day) => {
         setSelectedDay(day);
         setSelectedPeriod(day?.mealPeriods?.[0])
@@ -88,6 +117,9 @@ const PlanDetail = () => {
                         detailsLabel={"Recipes:"}
                         ingredients={[]}
                         price={`$${currentPlan?.price}`}
+                        saved={currentPlan?.saved}
+                        onSaveClicked={handleSavedClicked}
+                        type={favoriteTypes.PLAN}
                     />
                 </div>
                 {/* Calendar */}
