@@ -19,10 +19,11 @@ const ProductInfo = ({
   details,
   maxDetailsCount = 8,
   saved = false,
+  type,
 }) => {
-  const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type: 'recipe', reaction });
+  const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type, reaction });
 
-  const handleSaveClicked = () => onSaveClicked?.({ type: 'recipe' });
+  const handleSaveClicked = () => onSaveClicked?.({ type });
 
   return (
     <div className="w-full md:w-1/2 md:px-8">

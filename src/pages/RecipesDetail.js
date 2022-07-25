@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import { useFeedBack } from '../contexts/FeedBackContext';
 import imgUrl from "../helpers/imgUrl";
 import useRecipe from "../hooks/useRecipe";
+import favoriteTypes from "../consts/favoriteTypes";
 
 const RecipesDetail = () => {
   const { setLoading } = useFeedBack();
@@ -99,6 +100,7 @@ const RecipesDetail = () => {
             onFavoriteClicked={handleFavoriteClicked}
             onSaveClicked={handleSavedClicked}
             saved={recipe?.saved}
+            type={favoriteTypes.RECIPE}
           />
         </div>
 

@@ -10,9 +10,12 @@ import IngredientRowDetails from "../componentes/IngredientRowDetails";
 import Checkbox from "../componentes/Checkbox";
 import WaPay from "../componentes/WaPay";
 import DescriptionCard from "../componentes/DescriptionCard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from 'react';
 import useAxios from "../hooks/useAxios";
+import favoriteTypes from "../consts/favoriteTypes";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import useCombo from "../hooks/useCombo";
 
 const ingredients = [
   { id: 1, name: "Plan x" },
@@ -38,12 +41,41 @@ const productImages = [
 ];
 
 const CombosDetail = () => {
+  const { setLoading } = useFeedBack();
 
   const { slug } = useParams();
 
-  const [{ data: combo, loading: comboLoading }] = useAxios({ url: `/combos/${slug}` });
+  const [{ combo, comboLoading, setCombo }] = useCombo(slug);
 
-  const navigate = useNavigate();
+  const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
+
+  useEffect(() => {
+    setLoading({ message: 'Cargando combo', show: comboLoading });
+  }, [comboLoading]);
+
+  useEffect(() => {
+    setLoading({ message: 'Guardando', show: toggleSavedLoading });
+  }, [toggleSavedLoading]);
+
+  useEffect(() => {
+    if (typeof toggleSavedData !== 'undefined') {
+      setCombo(prevData => ({
+        ...prevData,
+        saved: toggleSavedData,
+      }));
+    }
+  }, [toggleSavedData]);
+
+  const handleSavedClicked = ({ type }) => {
+    if (!combo) {
+      return;
+    }
+    
+    toggleSaved({ data: {
+      type,
+      comboId: combo.id,
+    }});
+  }
 
   return (
     <>
@@ -63,6 +95,9 @@ const CombosDetail = () => {
               ...combo?.recipes.map(recipe => ({...recipe, uri: `/recipes/${recipe.slug}`})) ?? [],
               ...combo?.plans.map(plan => ({...plan, uri: `/plans/${plan.slug}`})) ?? []
             ]}
+            type={favoriteTypes.COMBO}
+            onSaveClicked={handleSavedClicked}
+            saved={combo?.saved}
           />
         </div>
 
