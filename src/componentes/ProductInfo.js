@@ -25,10 +25,10 @@ const ProductInfo = ({
   const handleSaveClicked = () => onSaveClicked?.({ type: 'recipe' });
 
   return (
-    <div className="md:w-1/2 md:px-8">
+    <div className="w-full md:w-1/2 md:px-8">
       <div className="md:flex items-center text-3xl md:justify-between">
-        <h1 className="font-bold text-2xl md:ml-1 ml-2 md:block">{name}</h1>
-        <div className="md:flex space-x-4 md:m-2 md:m-auto mt-4 container flex justify-center ">
+        <h1 className="font-bold text-2xl md:ml-1 md:block w-full text-center md:text-left">{name}</h1>
+        <div className="md:flex space-x-4 md:m-2 md:m-auto mt-4 flex justify-center ">
           <button
             className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"
             onClick={handleFavoriteClicked(favoriteReactions.DISLIKE)}
