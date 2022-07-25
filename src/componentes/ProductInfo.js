@@ -55,12 +55,12 @@ const ProductInfo = ({
               className='text-main cursor-pointer w-10 h-10'
               data-tip="Save"
               onClick={handleSaveClicked}
-            />
+              />
             : <IoHeartOutline
-            className='text-main cursor-pointer w-10 h-10'
-            data-tip="Save"
-            onClick={handleSaveClicked}
-          />
+              className='text-main cursor-pointer w-10 h-10'
+              data-tip="Save"
+              onClick={handleSaveClicked}
+            />
           }
         </div>
       </div>
