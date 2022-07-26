@@ -15,6 +15,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFeedBack } from '../contexts/FeedBackContext';
 import imgUrl from "../helpers/imgUrl";
+import useRecipe from "../hooks/useRecipe";
+import favoriteTypes from "../consts/favoriteTypes";
 
 const RecipesDetail = () => {
   const { setLoading } = useFeedBack();
@@ -23,9 +25,11 @@ const RecipesDetail = () => {
 
   const navigate = useNavigate();
 
-  const [{ data: recipe, loading: recipeLoading }] = useAxios({ url: `/recipes/${slug}` });
+  const [{ recipe, recipeLoading, setRecipe }] = useRecipe(slug);
 
   const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
+
+  const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
 
   useEffect(() => {
     setLoading({ message: 'Cargando receta', show: recipeLoading });
@@ -36,10 +40,23 @@ const RecipesDetail = () => {
   }, [createFavoriteLoading]);
 
   useEffect(() => {
+    setLoading({ message: 'Guardando', show: toggleSavedLoading });
+  }, [toggleSavedLoading]);
+
+  useEffect(() => {
     if (createFavoriteData) {
-      navigate('/recipes', { replace: true });
+      navigate(createFavoriteData.nextSlug ? `/recipes/${createFavoriteData.nextSlug}` : '/recipes', { replace: true });
     }
   }, [createFavoriteData]);
+
+  useEffect(() => {
+    if (typeof toggleSavedData !== 'undefined') {
+      setRecipe(prevData => ({
+        ...prevData,
+        saved: toggleSavedData,
+      }));
+    }
+  }, [toggleSavedData]);
 
   const handleFavoriteClicked = ({ type, reaction }) => {
     if (!recipe) {
@@ -55,6 +72,17 @@ const RecipesDetail = () => {
     });
   }
 
+  const handleSavedClicked = ({ type }) => {
+    if (!recipe) {
+      return;
+    }
+    
+    toggleSaved({ data: {
+      type,
+      recipeId: recipe.id,
+    }});
+  }
+
   return (
     <>
       <div className="p-4 md:p-16">
@@ -67,9 +95,12 @@ const RecipesDetail = () => {
           {/* ProductInfo*/}
           <ProductInfo
             name={recipe?.name}
+            price={`$${recipe?.price}`}
             ingredients={recipe?.recipeIngredients}
             onFavoriteClicked={handleFavoriteClicked}
-
+            onSaveClicked={handleSavedClicked}
+            saved={recipe?.saved}
+            type={favoriteTypes.RECIPE}
           />
         </div>
 

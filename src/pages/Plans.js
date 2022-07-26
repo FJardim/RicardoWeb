@@ -19,7 +19,7 @@ const Sellers = () => {
     perPage: 9,
   });
 
-  const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ axiosConfig: { params: { ...plansFilters } } });
+  const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } } );
 
   return (
     <div className="">

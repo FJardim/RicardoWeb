@@ -10,19 +10,28 @@ import IngredientRowDetails from "../componentes/IngredientRowDetails";
 import Checkbox from "../componentes/Checkbox";
 import Calendar from "../componentes/Calendar";
 import WaPay from "../componentes/WaPay";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useAxios from '../hooks/useAxios';
 import { useEffect, useState } from "react";
 import SystemInfo from "../util/SystemInfo";
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import clsx from "clsx";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import favoriteTypes from "../consts/favoriteTypes";
 
 const PlanDetail = () => {
+    const { setLoading } = useFeedBack();
 
     const { slug } = useParams();
 
-    const [{ data, loading, error }, getData] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
+    const navigate = useNavigate();
+
+    const [{ data }] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
+
+    const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
+
+    const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
 
     const [selectedDay, setSelectedDay] = useState(null);
 
@@ -36,7 +45,21 @@ const PlanDetail = () => {
         if (data) {
             setCurrentPlan(data);
         }
-    }, [data])
+    }, [data]);
+
+    useEffect(() => {
+        setLoading({ message: 'Cargando', show: createFavoriteLoading });
+    }, [createFavoriteLoading]);
+
+    useEffect(() => {
+        setLoading({ message: 'Guardando', show: toggleSavedLoading });
+    }, [toggleSavedLoading]);
+
+    useEffect(() => {
+        if (createFavoriteData) {
+          navigate(createFavoriteData.nextSlug ? `/plans/${createFavoriteData.nextSlug}` : '/plans', { replace: true });
+        }
+    }, [createFavoriteData]);
 
     useEffect(() => {
         if (currentPlan?.fullPlanDays?.length > 0) {
@@ -67,6 +90,40 @@ const PlanDetail = () => {
         }
     }, [currentPlan]);
 
+    useEffect(() => {
+        if (typeof toggleSavedData !== 'undefined') {
+            setCurrentPlan(prevData => ({
+                ...prevData,
+                saved: toggleSavedData,
+            }));
+        }
+    }, [toggleSavedData]);
+
+    const handleFavoriteClicked = ({ type, reaction }) => {
+        if (!currentPlan) {
+            return;
+        }
+    
+        createFavorite({
+            data: {
+                type,
+                reaction,
+                planId: currentPlan.id
+            }
+        });
+    }
+    
+    const handleSavedClicked = ({ type }) => {
+        if (!currentPlan) {
+            return;
+        }
+        
+        toggleSaved({ data: {
+            type,
+            planId: currentPlan.id,
+        }});
+    }
+
     const handleDay = (e, day) => {
         setSelectedDay(day);
         setSelectedPeriod(day?.mealPeriods?.[0])
@@ -88,6 +145,10 @@ const PlanDetail = () => {
                         detailsLabel={"Recipes:"}
                         ingredients={[]}
                         price={`$${currentPlan?.price}`}
+                        saved={currentPlan?.saved}
+                        onSaveClicked={handleSavedClicked}
+                        onFavoriteClicked={handleFavoriteClicked}
+                        type={favoriteTypes.PLAN}
                     />
                 </div>
                 {/* Calendar */}
