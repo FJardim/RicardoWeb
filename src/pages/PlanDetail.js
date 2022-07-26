@@ -10,7 +10,7 @@ import IngredientRowDetails from "../componentes/IngredientRowDetails";
 import Checkbox from "../componentes/Checkbox";
 import Calendar from "../componentes/Calendar";
 import WaPay from "../componentes/WaPay";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useAxios from '../hooks/useAxios';
 import { useEffect, useState } from "react";
 import SystemInfo from "../util/SystemInfo";
@@ -25,7 +25,11 @@ const PlanDetail = () => {
 
     const { slug } = useParams();
 
+    const navigate = useNavigate();
+
     const [{ data }] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
+
+    const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
 
     const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
 
@@ -44,8 +48,18 @@ const PlanDetail = () => {
     }, [data]);
 
     useEffect(() => {
+        setLoading({ message: 'Cargando', show: createFavoriteLoading });
+    }, [createFavoriteLoading]);
+
+    useEffect(() => {
         setLoading({ message: 'Guardando', show: toggleSavedLoading });
     }, [toggleSavedLoading]);
+
+    useEffect(() => {
+        if (createFavoriteData) {
+          navigate(createFavoriteData.nextSlug ? `/plans/${createFavoriteData.nextSlug}` : '/plans', { replace: true });
+        }
+    }, [createFavoriteData]);
 
     useEffect(() => {
         if (currentPlan?.fullPlanDays?.length > 0) {
@@ -83,7 +97,21 @@ const PlanDetail = () => {
                 saved: toggleSavedData,
             }));
         }
-      }, [toggleSavedData]);
+    }, [toggleSavedData]);
+
+    const handleFavoriteClicked = ({ type, reaction }) => {
+        if (!currentPlan) {
+            return;
+        }
+    
+        createFavorite({
+            data: {
+                type,
+                reaction,
+                planId: currentPlan.id
+            }
+        });
+    }
     
     const handleSavedClicked = ({ type }) => {
         if (!currentPlan) {
@@ -119,6 +147,7 @@ const PlanDetail = () => {
                         price={`$${currentPlan?.price}`}
                         saved={currentPlan?.saved}
                         onSaveClicked={handleSavedClicked}
+                        onFavoriteClicked={handleFavoriteClicked}
                         type={favoriteTypes.PLAN}
                     />
                 </div>

@@ -45,7 +45,7 @@ const RecipesDetail = () => {
 
   useEffect(() => {
     if (createFavoriteData) {
-      navigate('/recipes', { replace: true });
+      navigate(createFavoriteData.nextSlug ? `/recipes/${createFavoriteData.nextSlug}` : '/recipes', { replace: true });
     }
   }, [createFavoriteData]);
 

@@ -17,7 +17,7 @@ const Combos = () => {
     page: 1,
     perPage: 12
   });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ axiosConfig: { params: { ...combosFilters } } });
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { ...combosFilters }, options: { useCache: false } } );
 
   return (
     <div className="">
