@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import ButtonCart from "./ButtonCart";
 
-const WeightPlan = ({ img, price, logo, title, text, hideCart = false }) => {
+const WeightPlan = ({ img, price, logo, title, text, hideCart = false, className }) => {
   return (
-    <div className="p-4">
+    <div className={clsx("p-4", className)}>
       <div
         className="relative h-64 w-full flex bg-main rounded-md cursor-pointer bg-cover "
         style={{ backgroundImage: `url(${img})` }}
