@@ -66,14 +66,18 @@ const Saves = () => {
 
                             if (type === saveTypes.PLAN) {
                                 return <Link key={id} to={`/plan/${saveable.slug}`}>
-                                    <WeightPlan
-                                        className="p-0"
-                                        price={`${saveable.price}$`}
-                                        hideCart
-                                        logo={imgUrl(saveable.sellerLogo)}
-                                        img={imgUrl(saveable.imgPath)}
+                                    <CardRecipes
                                         title={saveable.name}
-                                        text={saveable.description}
+                                        texto={saveable.sellerName}
+                                        price={saveable.price}
+                                        foto={imgUrl(saveable.imgPath)}
+                                        sellerLogo={imgUrl(saveable.sellerLogo)}
+                                        sellerName={saveable.sellerName}
+                                        numberOfIngredients={saveable.numberOfIngredients}
+                                        numberOfItems={saveable.numberOfItems}
+                                        hideButtons
+                                        hideCart
+                                        hideClock
                                     />
                               </Link>;
                             }
