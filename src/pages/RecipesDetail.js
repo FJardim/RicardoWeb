@@ -76,11 +76,13 @@ const RecipesDetail = () => {
     if (!recipe) {
       return;
     }
-    
-    toggleSaved({ data: {
-      type,
-      recipeId: recipe.id,
-    }});
+
+    toggleSaved({
+      data: {
+        type,
+        recipeId: recipe.id,
+      }
+    });
   }
 
   return (
@@ -105,7 +107,7 @@ const RecipesDetail = () => {
         </div>
 
         <DescriptionCard
-          showMarketButtons
+          hideMarketButtons={true}
           recipe={recipe}
         />
 
