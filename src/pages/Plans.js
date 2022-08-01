@@ -10,7 +10,7 @@ import WeightPlan from "../componentes/WeightPlan";
 import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
 
-const Sellers = () => {
+const Plans = () => {
 
   const [showModalMenu, setShowModalMenu] = useState(false);
 
@@ -81,4 +81,4 @@ const Sellers = () => {
   );
 };
 
-export default Sellers;
+export default Plans;

@@ -32,9 +32,7 @@ const NavigationButton = ({ icon, color, className, onClick, canNext, hidden }) 
 };
 
 
-const Pagination = (props) => {
-
-  const { pages, onChange, activePage, className } = props;
+const Pagination = ({ pages, onChange, activePage, className }) => {
 
   const [canNext, setCanNext] = useState(true);
   const [canBack, setCanBack] = useState(false);
