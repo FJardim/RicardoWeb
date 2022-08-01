@@ -6,7 +6,7 @@ import DescriptionChef from "../componentes/DescriptionChef";
 import Post from "../componentes/Post";
 import ButtonItems from "../componentes/ButtonItems";
 import SelectOrder from "../componentes/SelectOrder";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import { useFeedBack } from "../contexts/FeedBackContext";
@@ -67,19 +67,21 @@ const CombosChef = () => {
           <div className="grid md:grid-cols-3 md:gap-4 md:mb-20 md:ml-20 md:mt-2">
             {combos.map((combo) => {
               return (
-                <CardRecipes
-                  key={combo?.id}
-                  texto={combo?.name}
-                  price={`${combo?.price}$`}
-                  bolsaIng={"2"}
-                  cestaIng={"2"}
-                  timePre={"2"}
-                  nameSellers={"sellers"}
-                  title={combo?.name}
-                  foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
-                  hideButtons
-                  hideClock
-                />
+                <Link to={`/combos/${combo.slug}`} key={combo.id}>
+                  <CardRecipes
+                    key={combo?.id}
+                    texto={combo?.name}
+                    price={`${combo?.price}$`}
+                    bolsaIng={"2"}
+                    cestaIng={"2"}
+                    timePre={"2"}
+                    nameSellers={"sellers"}
+                    title={combo?.name}
+                    foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
+                    hideButtons
+                    hideClock
+                  />
+                </Link>
               );
             })}
           </div>

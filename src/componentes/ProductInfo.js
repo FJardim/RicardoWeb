@@ -20,6 +20,7 @@ const ProductInfo = ({
   details,
   maxDetailsCount = 8,
   saved = false,
+  isPremiun,
   type,
 }) => {
   const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type, reaction });
@@ -52,18 +53,18 @@ const ProductInfo = ({
           >
             <BsFillEmojiLaughingFill className="text-yellow-300" />
           </button>
-          {saved
+          {/* {saved
             ? <IoHeart
               className='text-main cursor-pointer w-10 h-10'
               data-tip="Save"
               onClick={handleSaveClicked}
-              />
+            />
             : <IoHeartOutline
               className='text-main cursor-pointer w-10 h-10'
               data-tip="Save"
               onClick={handleSaveClicked}
             />
-          }
+          } */}
         </div>
       </div>
 
@@ -85,27 +86,27 @@ const ProductInfo = ({
             </>
             : <>
               <h4 className="font-semibold mb-3">{detailsLabel}</h4>
-                {details?.slice(0, maxDetailsCount).map((detail) => (
-                  <a key={detail.id} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
+              {details?.slice(0, maxDetailsCount).map((detail) => (
+                <a key={detail.id} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
+              ))}
+              {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
+                <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+              ))}
+              <ShowMoreButton
+                buttonText="Show more"
+                content={details?.slice(maxDetailsCount).map((detail) => (
+                  <a key={detail.id} href={detail.uri}>{detail?.name}</a>
                 ))}
-                {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
+              />
+              <ShowMoreButton
+                buttonText="Show more"
+                content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
                   <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
                 ))}
-                <ShowMoreButton
-                  buttonText="Show more"
-                  content={details?.slice(maxDetailsCount).map((detail) => (
-                    <a key={detail.id} href={detail.uri}>{detail?.name}</a>
-                  ))}
-                />
-                <ShowMoreButton
-                  buttonText="Show more"
-                  content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
-                    <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
-                  ))}
-                />
+              />
             </>
           }
-          
+
         </div>
       </div>
       <div>
@@ -116,6 +117,18 @@ const ProductInfo = ({
               haveDiscount &&
               <p className="text-gray-400 text-sm">$48.56</p>
             }
+            <div className="text-right">
+              {
+                isPremiun ?
+                  <button className="mt-2 bg-main px-4 py-1 text-white rounded">
+                    Buy
+                  </button>
+                  :
+                  <button className="mt-2 bg-main px-4 py-1 text-white rounded">
+                    Add to my pocket
+                  </button>
+              }
+            </div>
           </div>
         </div>
       </div>
