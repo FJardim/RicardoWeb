@@ -1,14 +1,9 @@
-import Pasticho from "../assets/pasticho.png";
 import ProductImagesCarousel from "../componentes/ProductImagesCarousel";
 import ProductInfo from "../componentes/ProductInfo";
 import { TabsProvider } from "../contexts/TabsContext";
 import Tab from "../componentes/Tab";
 import TabsContainer from "../componentes/TabsContainer";
 import TabPanel from '../componentes/TabPanel';
-import IngredientRow from '../componentes/IngredientRow';
-import IngredientRowDetails from '../componentes/IngredientRowDetails';
-import Checkbox from '../componentes/Checkbox';
-import WaPay from '../componentes/WaPay';
 import DescriptionCard from "../componentes/DescriptionCard";
 import useAxios from '../hooks/useAxios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -17,6 +12,7 @@ import { useFeedBack } from '../contexts/FeedBackContext';
 import imgUrl from "../helpers/imgUrl";
 import useRecipe from "../hooks/useRecipe";
 import favoriteTypes from "../consts/favoriteTypes";
+import { BsTelephone } from "react-icons/bs";
 
 const RecipesDetail = () => {
   const { setLoading } = useFeedBack();
@@ -103,57 +99,58 @@ const RecipesDetail = () => {
             onSaveClicked={handleSavedClicked}
             saved={recipe?.saved}
             type={favoriteTypes.RECIPE}
+            description={recipe?.shortDescription}
           />
         </div>
 
         <DescriptionCard
-          hideMarketButtons={true}
+          showMarketButtons
+          hideMarketButtons
           recipe={recipe}
         />
 
         <TabsProvider>
           {/* Tabs */}
           <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
-            <Tab value={0}>Preparation</Tab>
-            <Tab value={1}>Ingredients purchase List</Tab>
-            <Tab value={2}>Price Comparator</Tab>
+            <Tab value={0}>Vendedor</Tab>
+            <Tab value={1}>Descripción</Tab>
           </TabsContainer>
 
           {/* TAB PANELS */}
-          {/* Preparation */}
+          {/* Vendedor */}
           <div className="mt-4 md:p-4">
             <TabPanel
-              className="animate__animated animate__fadeInUp  bg-white rounded-lg p-4"
+              className="animate__animated animate__fadeInUp  bg-white rounded-lg"
               value={0}
             >
-              <ul className="space-y-4 pl-4 list-disc">
-                {recipe?.recipeSteps.map(recipeStep => <li key={recipeStep.id}>{recipeStep.content}</li>)}
+              <ul className="space-y-4">
+                <li>
+                  <img
+                    className="w-full h-48 object-cover"
+                    src={imgUrl(recipe?.seller.banner)}
+                    alt=""
+                  />
+                </li>
+                <li className="flex justify-between items-center p-4">
+                  <div className="flex items-center space-x-2">
+                    <img
+                      className="w-12 h-12 rounded-full"
+                      src={imgUrl(recipe?.seller.logo)}
+                      alt=""
+                    />
+                    <b>{recipe?.seller?.name}</b>
+                  </div>
+                  <p className="flex items-center space-x-1"><BsTelephone /> <span>{recipe?.seller.phoneNumber}</span></p>
+                </li>
               </ul>
             </TabPanel>
 
-            {/* Ingredients purchase List */}
+            {/* Descripción */}
             <TabPanel
-              className="animate__animated animate__fadeInUp bg-white rounded-lg"
+              className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
               value={1}
             >
-              {recipe?.recipeIngredients.map(recipeIngredient => <IngredientRow key={recipeIngredient.id}>
-                <IngredientRowDetails
-                  title={recipeIngredient.ingredient.name}
-                  subtitle={`${recipeIngredient.value} ${recipeIngredient.measurementUnit.name}`}
-                  imageSource={imgUrl(recipeIngredient.ingredient.icon)}
-                />
-                <div className="flex items-center ml-28">
-                  <Checkbox />
-                </div>
-              </IngredientRow>)}
-            </TabPanel>
-
-            {/* Ingredients price Comparator */}
-            <TabPanel
-              className="animate__animated animate__fadeInUp bg-white rounded-lg"
-              value={2}
-            >
-              <WaPay />
+              {recipe?.description}
             </TabPanel>
           </div>
         </TabsProvider>

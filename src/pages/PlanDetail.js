@@ -57,7 +57,7 @@ const PlanDetail = () => {
 
     useEffect(() => {
         if (createFavoriteData) {
-          navigate(createFavoriteData.nextSlug ? `/plans/${createFavoriteData.nextSlug}` : '/plans', { replace: true });
+            navigate(createFavoriteData.nextSlug ? `/plan/${createFavoriteData.nextSlug}` : '/plans', { replace: true });
         }
     }, [createFavoriteData]);
 

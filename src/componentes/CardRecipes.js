@@ -36,7 +36,7 @@ const CardRecipes = ({
             />
           </div>
           <div className="absolute flex left-2 top-2 bg-main-dark rounded-lg bg-opacity-70 text-sm leading-none">
-            <p className="text-white py-1 px-1.5">{price}$</p>
+            <p className="text-white py-1 px-1.5">${price}</p>
           </div>
           <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
             {!hideBag && <div className="flex mr-2">

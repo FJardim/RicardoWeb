@@ -9,6 +9,7 @@ import favoriteReactions from "../consts/favoriteReactions"
 
 const ProductInfo = ({
   name,
+  description,
   ingredients = [],
   maxIngredientsCount = 8,
   onFavoriteClicked,
@@ -78,25 +79,33 @@ const ProductInfo = ({
       </div>
       <div className="bg-white rounded-lg p-4">
         <div className="text-lg">
-          <h4 className="font-semibold mb-3">{detailsLabel}</h4>
-          {details?.slice(0, maxDetailsCount).map((detail) => (
-            <a key={detail.id} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
-          ))}
-          {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
-            <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
-          ))}
-          <ShowMoreButton
-            buttonText="Show more"
-            content={details?.slice(maxDetailsCount).map((detail) => (
-              <a key={detail.id} href={detail.uri}>{detail?.name}</a>
-            ))}
-          />
-          <ShowMoreButton
-            buttonText="Show more"
-            content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
-              <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
-            ))}
-          />
+          {description
+            ? <>
+              <p>{description}</p>
+            </>
+            : <>
+              <h4 className="font-semibold mb-3">{detailsLabel}</h4>
+                {details?.slice(0, maxDetailsCount).map((detail) => (
+                  <a key={detail.id} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
+                ))}
+                {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
+                  <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+                ))}
+                <ShowMoreButton
+                  buttonText="Show more"
+                  content={details?.slice(maxDetailsCount).map((detail) => (
+                    <a key={detail.id} href={detail.uri}>{detail?.name}</a>
+                  ))}
+                />
+                <ShowMoreButton
+                  buttonText="Show more"
+                  content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
+                    <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+                  ))}
+                />
+            </>
+          }
+          
         </div>
       </div>
       <div>

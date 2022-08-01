@@ -21,16 +21,15 @@ const DescriptionCard = ({
         <RecipeFeatures recipe={recipe} />
 
         <div className="ml-7">
-          {!hideMarketButtons && (
-            <>
-              <p className="md:w-1/2 w-4/2 mb-4">Pucharse in:</p>
-              <div className="flex space-x-3">
-                <ButtonImage image={Instacart} />
-                <ButtonImage image={Amazon} />
-                <ButtonImage image={Wallmart} />
-              </div>
-            </>
-          )}
+          {!hideMarketButtons && <>
+            <p className="md:w-1/2 w-4/2 mb-4">Pucharse in:</p>
+
+            <div className="flex space-x-3">
+              <ButtonImage image={Instacart} />
+              <ButtonImage image={Amazon} />
+              <ButtonImage image={Wallmart} />
+            </div>
+          </>}
           {showPaypalButton && (
             <Link to="/payment">
               <ButtonImage image={Paypal} />
