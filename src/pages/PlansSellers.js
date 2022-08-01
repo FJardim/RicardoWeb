@@ -85,7 +85,7 @@ const PlansSellers = () => {
                     </div>
                     <div className="flex justify-center">
                         <Pagination
-                            pages={10}
+                            pages={numberOfPages}
                             onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
                             activePage={plansFilters?.page}
                         />

@@ -5,6 +5,7 @@ import profile from "../assets/profile.png"
 import paypal from "../assets/paypal.png"
 import { useAuth } from "../contexts/AuthContext";
 import useAxios from "../hooks/useAxios";
+import imgUrl from "../helpers/imgUrl";
 
 
 const AccountInfo = () => {
@@ -85,7 +86,7 @@ const AccountInfo = () => {
         <CardWithTitle title="My personal Information">
           <div className="p-2 md:grid md:grid-cols-2 gap-4 mt-6">
             <div className="flex items-center space-x-4">
-              <img src={currentUser?.imgPath || profile} alt="" className="w-20" />
+              <img src={currentUser?.imgPath ? imgUrl(currentUser?.imgPath) : profile} alt="" className="w-20" />
               <label
                 htmlFor="inputfile"
                 className="bg-main md:flex justify-center items-center hover:bg-main-light text-white font-semibold text-center px-3 py-2 rounded-lg cursor-pointer"

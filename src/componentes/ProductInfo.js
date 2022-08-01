@@ -117,18 +117,6 @@ const ProductInfo = ({
               haveDiscount &&
               <p className="text-gray-400 text-sm">$48.56</p>
             }
-            <div className="text-right">
-              {
-                isPremiun ?
-                  <button className="mt-2 bg-main px-4 py-1 text-white rounded">
-                    Buy
-                  </button>
-                  :
-                  <button className="mt-2 bg-main px-4 py-1 text-white rounded">
-                    Add to my pocket
-                  </button>
-              }
-            </div>
           </div>
         </div>
       </div>
