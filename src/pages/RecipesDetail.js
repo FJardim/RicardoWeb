@@ -6,7 +6,7 @@ import TabsContainer from "../componentes/TabsContainer";
 import TabPanel from '../componentes/TabPanel';
 import DescriptionCard from "../componentes/DescriptionCard";
 import useAxios from '../hooks/useAxios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFeedBack } from '../contexts/FeedBackContext';
 import imgUrl from "../helpers/imgUrl";
@@ -125,26 +125,28 @@ const RecipesDetail = () => {
               className="animate__animated animate__fadeInUp  bg-white rounded-lg"
               value={0}
             >
-              <ul className="space-y-4">
-                <li>
-                  <img
-                    className="w-full h-48 object-cover"
-                    src={imgUrl(recipe?.seller.banner)}
-                    alt=""
-                  />
-                </li>
-                <li className="flex justify-between items-center p-4">
-                  <div className="flex items-center space-x-2">
+              <Link to={`/sellers/${recipe?.seller?.slug}/recipes`}>
+                <ul className="space-y-4">
+                  <li>
                     <img
-                      className="w-12 h-12 rounded-full"
-                      src={imgUrl(recipe?.seller.logo)}
+                      className="w-full h-48 object-cover"
+                      src={imgUrl(recipe?.seller.banner)}
                       alt=""
                     />
-                    <b>{recipe?.seller?.name}</b>
-                  </div>
-                  <p className="flex items-center space-x-1"><BsTelephone /> <span>{recipe?.seller.phoneNumber}</span></p>
-                </li>
-              </ul>
+                  </li>
+                  <li className="flex justify-between items-center p-4">
+                    <div className="flex items-center space-x-2">
+                      <img
+                        className="w-12 h-12 rounded-full"
+                        src={imgUrl(recipe?.seller.logo)}
+                        alt=""
+                      />
+                      <b>{recipe?.seller?.name}</b>
+                    </div>
+                    <p className="flex items-center space-x-1"><BsTelephone /> <span>{recipe?.seller.phoneNumber}</span></p>
+                  </li>
+                </ul>
+              </Link>
             </TabPanel>
 
             {/* Descripción */}
@@ -166,6 +168,14 @@ const RecipesDetail = () => {
             </TabPanel>
           </div>
         </TabsProvider>
+      </div>
+      <div className="text-center">
+        <h3 className="text-4xl text-gray-500 font-bold ">
+          Related Recipes
+        </h3>
+        <div>
+          here are going to be related recipes... 😊
+        </div>
       </div>
     </>
   );

@@ -13,8 +13,6 @@ const MyAccountLayout = () => {
 
     const [currentPath, setCurrentPath] = useState("");
 
-    // const [show, setShow] = useState(false);
-
     const location = useLocation();
 
     useEffect(() => {
