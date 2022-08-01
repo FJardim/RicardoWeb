@@ -24,7 +24,7 @@ const PlansSellers = () => {
     });
     const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
 
-    const [{ plans, total, numberOfPages, size, error, loading }, getPlans] = usePlans({ params: { sellerId: seller?.sellerId } });
+    const [{ plans, total, numberOfPages, size, error, loading }, getPlans] = usePlans({ params: { sellerId: seller?.sellerId, ...plansFilters } });
 
     useEffect(() => {
         setLoading({ message: 'Cargando...', show: sellerLoading });
@@ -77,17 +77,20 @@ const PlansSellers = () => {
                                         title={`${plan?.name}`}
                                         img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
                                         logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
+                                        hideCart
                                     />
                                 </Link>
                             );
                         })}
                     </div>
+                    <div className="flex justify-center">
+                        <Pagination
+                            pages={10}
+                            onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+                            activePage={plansFilters?.page}
+                        />
+                    </div>
                 </div>
-                <Pagination
-                    pages={numberOfPages}
-                    onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
-                    activePage={plansFilters?.page}
-                />
             </div>
         </div>
     );

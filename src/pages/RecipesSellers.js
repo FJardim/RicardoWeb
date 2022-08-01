@@ -75,6 +75,7 @@ const RecipesChef = () => {
                     preparationTime={recipe.preparationTime}
                     hideButtons
                     hideBag
+                    hideCart
                   />
                 </Link>
               );

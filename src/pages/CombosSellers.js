@@ -13,16 +13,20 @@ import { useFeedBack } from "../contexts/FeedBackContext";
 import useCombos from "../hooks/useCombos";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
+import imgUrl from "../helpers/imgUrl";
 
 const CombosChef = () => {
   const { slug } = useParams();
   const { setLoading } = useFeedBack();
-  const [plansFilters, setPlansFilters] = useState({
+
+  const [combosFilters, setCombosFilters] = useState({
     page: 1,
     perPage: 9,
   });
+
   const [{ data: seller, loading: sellerLoading, error: sellerError }] = useAxios({ url: `/sellers/${slug}` });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { sellerId: seller?.sellerId } });
+
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { sellerId: seller?.sellerId, ...combosFilters } });
 
   useEffect(() => {
     setLoading({ message: "Cargando...", show: sellerLoading });
@@ -78,19 +82,22 @@ const CombosChef = () => {
                     nameSellers={"sellers"}
                     title={combo?.name}
                     foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
+                    sellerLogo={imgUrl(combo.seller.logo)}
                     hideButtons
                     hideClock
+                    hideCart
                   />
                 </Link>
               );
             })}
           </div>
-
-          <Pagination
-            pages={numberOfPages}
-            onChange={(page) => setPlansFilters((oldFilters) => { return { ...oldFilters, page: page } })}
-            activePage={plansFilters?.page}
-          />
+          <div className="flex justify-center">
+            <Pagination
+              pages={numberOfPages}
+              onChange={(page) => setCombosFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+              activePage={combosFilters?.page}
+            />
+          </div>
         </div>
       </div>
     </div>
