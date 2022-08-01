@@ -35,8 +35,8 @@ const CardRecipes = ({
               alt="AppLogo"
             />
           </div>
-          <div className="absolute flex left-1 top-1 bg-main-dark rounded-lg opacity-70 text-sm">
-            <p className="text-white h-6 w-15 ml-1 ">{price}$</p>
+          <div className="absolute flex left-2 top-2 bg-main-dark rounded-lg bg-opacity-70 text-sm leading-none">
+            <p className="text-white py-1 px-1.5">{price}$</p>
           </div>
           <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
             {!hideBag && <div className="flex mr-2">
@@ -53,20 +53,20 @@ const CardRecipes = ({
               <p className="text-white h-5 w-5 ml-1">{preparationTime}</p>
             </div>}
           </div>
+
           <h1 className="m-auto text-2xl text-white font-semibold">{title}</h1>
-          <div className="absolute w-full bottom-0 bg-black bg-opacity-30 ">
-            <h1 className="ml-4 text-white font-semibold">{texto}</h1>
-            <div className="grid grid-cols-2 gap-4">
-              <div className=" flex text-bold">
-                <img className="rounded-full h-8 w-8 m-1" src={sellerLogo} alt="" />
+          <div className="absolute w-full p-2 bottom-0 bg-black bg-opacity-30 ">
+            <h1 className="text-white font-semibold truncate mb-1" title={texto}>{texto}</h1>
+
+            <div className="flex">
+              <div className="flex text-bold">
+                <img className="rounded-full h-8 w-8" src={sellerLogo} alt="" />
                 <h1 className="p-1 text-white">{sellerName}</h1>
               </div>
-              <div className="flex justify-end text-white ">
+              <div className="flex justify-end text-white ml-auto">
                 <div className="flex items-center space-x-2">
-                  <div className="flex items-center">
-                    <BsBookmark />
-                    <p className="text-white h-5 w-5 m-1 mr-4">8.7K</p>
-                  </div>
+                  <BsBookmark />
+                  <p className="text-white">8.7K</p>
                 </div>
               </div>
             </div>

@@ -9,6 +9,7 @@ import ModalFiltre from "../componentes/ModalFiltre";
 import SystemInfo from "../util/SystemInfo";
 import useCombos from "../hooks/useCombos";
 import Pagination from "../componentes/Pagination";
+import imgUrl from "../helpers/imgUrl";
 
 const Combos = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
@@ -16,7 +17,7 @@ const Combos = () => {
     page: 1,
     perPage: 12
   });
-  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ axiosConfig: { params: { ...combosFilters } } });
+  const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { ...combosFilters }, options: { useCache: false } } );
 
   return (
     <div className="">
@@ -33,17 +34,17 @@ const Combos = () => {
               {
                 combos?.map((combo, i) => {
                   return (
-                    <Link to="/combos/:slug">
+                    <Link to={`/combos/${combo.slug}`} key={combos.id}>
                       <CardRecipes
                         key={combo.id}
                         texto={combo.name}
-                        price={`${combo?.price}`}
-                        bolsaIng={"2"}
-                        cestaIng={"2"}
-                        timePre={"2"}
-                        nameSellers={"hola"}
-                        title={combo.name}
+                        price={combo.price}
+                        numberOfIngredients={combo.numberOfIngredients}
+                        numberOfItems={combo.numberOfItems}
+                        sellerName={combo.seller.name}
+                        sellerLogo={imgUrl(combo.seller.logo)}
                         foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
+                        title={combo.name}
                         hideCart
                         hideClock
                       // hideBag

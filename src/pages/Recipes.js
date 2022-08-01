@@ -19,7 +19,7 @@ const Recipes = () => {
     perPage: 12
   });
 
-  const [{ recipes, numberOfPages, loading }] = useRecipes({ axiosConfig: { params: { ...recipesFilters } } });
+  const [{ recipes, numberOfPages, loading }] = useRecipes({ params: { ...recipesFilters }, options: { useCache: false } });
 
   return (
     <div className="">

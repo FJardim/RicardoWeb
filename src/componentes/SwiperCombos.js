@@ -7,6 +7,7 @@ import { Navigation } from "swiper";
 import useCombos from "../hooks/useCombos";
 import SystemInfo from "../util/SystemInfo";
 import CardRecipes from "../componentes/CardRecipes";
+import imgUrl from "../helpers/imgUrl";
 
 const SwiperCombos = () => {
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -36,18 +37,17 @@ const SwiperCombos = () => {
                     <CardRecipes
                         key={combo.id}
                         texto={combo.name}
-                        price={`${combo?.price}$`}
-                        bolsaIng={"2"}
-                        cestaIng={"2"}
-                        timePre={"2"}
-                        nameSellers={"hola"}
-                        title={combo.name}
+                        price={combo.price}
+                        numberOfIngredients={combo.numberOfIngredients}
+                        numberOfItems={combo.numberOfItems}
+                        sellerName={combo.seller.name}
+                        sellerLogo={imgUrl(combo.seller.logo)}
                         foto={`${SystemInfo?.api}${combo?.images?.[0]?.path}`}
+                        title={combo.name}
                         hideCart
                         hideClock
                         hideButtons
                     //hideBag
-
                     />
                 </SwiperSlide>)}
             </Swiper>
