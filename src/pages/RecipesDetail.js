@@ -72,11 +72,13 @@ const RecipesDetail = () => {
     if (!recipe) {
       return;
     }
-    
-    toggleSaved({ data: {
-      type,
-      recipeId: recipe.id,
-    }});
+
+    toggleSaved({
+      data: {
+        type,
+        recipeId: recipe.id,
+      }
+    });
   }
 
   return (
