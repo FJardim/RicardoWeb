@@ -6,7 +6,7 @@ import InformationChef from "../componentes/InformationChef";
 import Post from "../componentes/Post";
 import SelectOrder from "../componentes/SelectOrder";
 import WeightPlan from "../componentes/WeightPlan";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import { useFeedBack } from "../contexts/FeedBackContext";
@@ -69,14 +69,16 @@ const PlansSellers = () => {
                     <div className="md:grid md:grid-cols-3 md:ml-14 md:mr-4 md:mb-10">
                         {plans.map((plan) => {
                             return (
-                                <WeightPlan
-                                    key={plan?.id}
-                                    text={plan?.name}
-                                    price={`${plan?.price}$`}
-                                    title={`${plan?.name}`}
-                                    img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
-                                    logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
-                                />
+                                <Link to={`/plan/${plan.slug}`} key={plan.id}>
+                                    <WeightPlan
+                                        key={plan?.id}
+                                        text={plan?.name}
+                                        price={`${plan?.price}$`}
+                                        title={`${plan?.name}`}
+                                        img={`${SystemInfo?.api}${plan?.images?.[0]?.path}`}
+                                        logo={`${SystemInfo?.api}${plan?.seller?.logo}`}
+                                    />
+                                </Link>
                             );
                         })}
                     </div>

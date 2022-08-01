@@ -10,11 +10,25 @@ import ModalFiltre from "../componentes/ModalFiltre";
 import useSellers from "../hooks/useSellers";
 import SystemInfo from "../util/SystemInfo";
 import imgUrl from "../helpers/imgUrl";
+import Pagination from "../componentes/Pagination";
 
 const Sellers = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
 
-  const [{ sellers, loading }, getSellers] = useSellers();
+  const [sellersFilters, setSellersFilters] = useState({
+    page: 1,
+    perPage: 10,
+    name: '',
+    categoriesIds: [],
+    mealPeriodsIds: [],
+    rating: ''
+  })
+
+  const [{ sellers, total, size, numberOfPages, error, loading }, getSellers] = useSellers({ params: { ...sellersFilters } });
+
+  const handleFiltersChange = (e) => {
+
+  }
 
   return (
     <div className="">
@@ -58,8 +72,14 @@ const Sellers = () => {
                 );
               })}
             </div>
-            <ButtomButton />
-
+            <br />
+            <div className="flex justify-center">
+              <Pagination
+                pages={10}
+                onChange={(page) => setSellersFilters((oldFilters) => { return { ...oldFilters, page: page } })}
+                activePage={sellersFilters?.page}
+              />
+            </div>
           </div>
         </div>
       </div>

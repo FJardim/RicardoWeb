@@ -93,13 +93,14 @@ const RecipesDetail = () => {
           {/* ProductInfo*/}
           <ProductInfo
             name={recipe?.name}
-            price={`$${recipe?.price}`}
+            price={recipe?.price > 0 ? `$${recipe?.price}` : 'Free'}
             ingredients={recipe?.recipeIngredients}
             onFavoriteClicked={handleFavoriteClicked}
             onSaveClicked={handleSavedClicked}
             saved={recipe?.saved}
             type={favoriteTypes.RECIPE}
             description={recipe?.shortDescription}
+            isPremiun={recipe?.isPremiun}
           />
         </div>
 
@@ -112,8 +113,9 @@ const RecipesDetail = () => {
         <TabsProvider>
           {/* Tabs */}
           <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
-            <Tab value={0}>Vendedor</Tab>
-            <Tab value={1}>Descripción</Tab>
+            <Tab value={0}>Seller</Tab>
+            <Tab value={1}>Description</Tab>
+            <Tab value={2}>Comments</Tab>
           </TabsContainer>
 
           {/* TAB PANELS */}
@@ -151,6 +153,16 @@ const RecipesDetail = () => {
               value={1}
             >
               {recipe?.description}
+            </TabPanel>
+
+            {/* Comments */}
+            <TabPanel
+              className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
+              value={2}
+            >
+              <div>
+                Here are going to be the comments.
+              </div>
             </TabPanel>
           </div>
         </TabsProvider>

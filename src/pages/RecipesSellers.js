@@ -6,7 +6,7 @@ import DescriptionChef from "../componentes/DescriptionChef";
 import Post from "../componentes/Post";
 import ButtonItems from "../componentes/ButtonItems";
 import SelectOrder from "../componentes/SelectOrder";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import { useFeedBack } from "../contexts/FeedBackContext";
@@ -62,19 +62,21 @@ const RecipesChef = () => {
           <div className="grid md:grid-cols-3 md:gap-4 md:mb-20 md:ml-20 md:mt-2">
             {recipes.map((recipe) => {
               return (
-                <CardRecipes
-                  key={recipe.id}
-                  texto={recipe.name}
-                  price={recipe?.price}
-                  sellerLogo={imgUrl(recipe.seller.logo)}
-                  sellerName={recipe.seller.name}
-                  title={recipe.mealPeriods.map(mp => mp.name).join(' - ')}
-                  foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
-                  numberOfIngredients={recipe.recipeIngredients.length}
-                  preparationTime={recipe.preparationTime}
-                  hideButtons
-                  hideBag
-                />
+                <Link to={`/recipes/${recipe.slug}`} key={recipe.id}>
+                  <CardRecipes
+                    key={recipe.id}
+                    texto={recipe.name}
+                    price={recipe?.price}
+                    sellerLogo={imgUrl(recipe.seller.logo)}
+                    sellerName={recipe.seller.name}
+                    title={recipe.mealPeriods.map(mp => mp.name).join(' - ')}
+                    foto={`${SystemInfo?.api}${recipe?.images?.[0]?.path}`}
+                    numberOfIngredients={recipe.recipeIngredients.length}
+                    preparationTime={recipe.preparationTime}
+                    hideButtons
+                    hideBag
+                  />
+                </Link>
               );
             })}
           </div>
