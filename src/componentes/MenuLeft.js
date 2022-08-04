@@ -3,11 +3,11 @@ import CategoriesRecipes from "./CategoriesRecipes";
 import SelectCategory from "./SelectCategory";
 import SelectRank from "./SelectRank";
 
-const MenuLeft = () => {
+const MenuLeft = ({ filters, onClickCategory }) => {
     return (
         <div className="hidden md:block">
             <div className="lg:ml-6 bg-white lg:w-64 w-56 m-auto md:w-40 rounded-lg shadow ">
-                <CategoriesRecipes />
+                <CategoriesRecipes onClickCategory={onClickCategory} values={filters?.categoryIds} />
             </div>
             <div>
                 <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 m-auto w-56 md:w-40 rounded-lg shadow">
