@@ -13,6 +13,7 @@ import { useFeedBack } from "../contexts/FeedBackContext";
 import usePlans from "../hooks/usePlans";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
+import ContactSeller from "../componentes/Sellers/ContactSeller";
 
 const PlansSellers = () => {
 
@@ -49,6 +50,7 @@ const PlansSellers = () => {
                         <CertificationChef seller={seller} />
                         <DescriptionChef seller={seller} />
                         <Post />
+                        <ContactSeller seller={seller} />
                     </div>
                 </div>
                 <div className="md:w-full">
