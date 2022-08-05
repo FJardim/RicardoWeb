@@ -1,29 +1,30 @@
 import { useState } from "react";
 import ButtonSearchSelector from "./ButtonSearchSelector";
 
-const ButtonSearch = () => {
-    const [category, setCategory] = useState('ingredients');
+const ButtonSearch = ({ category, onClickCategory }) => {
+
+
 
     return (
         <div className="text-base m-0 rounded-tl-lg h-12 rounded-t-lg flex overflow-x-auto">
+            <ButtonSearchSelector
+                onClick={() => onClickCategory?.('sellers')}
+                name="Sellers"
+                isActive={category === 'sellers'}
+            />
 
             <ButtonSearchSelector
-                onClick={() => setCategory('ingredients')}
-                name="Ingredients"
-                isActive={category === 'ingredients'}
-            />
-            <ButtonSearchSelector
-                onClick={() => setCategory('recipes')}
+                onClick={() => onClickCategory?.('recipes')}
                 name="Recipes"
                 isActive={category === 'recipes'}
             />
             <ButtonSearchSelector
-                onClick={() => setCategory('plans')}
+                onClick={() => onClickCategory?.('plans')}
                 name="Plans"
                 isActive={category === 'plans'}
             />
             <ButtonSearchSelector
-                onClick={() => setCategory('combos')}
+                onClick={() => onClickCategory?.('combos')}
                 name="Combos"
                 isActive={category === 'combos'}
             />
