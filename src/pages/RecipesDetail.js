@@ -13,6 +13,7 @@ import imgUrl from "../helpers/imgUrl";
 import useRecipe from "../hooks/useRecipe";
 import favoriteTypes from "../consts/favoriteTypes";
 import { BsTelephone } from "react-icons/bs";
+import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
 
 const RecipesDetail = () => {
   const { setLoading } = useFeedBack();
@@ -125,28 +126,7 @@ const RecipesDetail = () => {
               className="animate__animated animate__fadeInUp  bg-white rounded-lg"
               value={0}
             >
-              <Link to={`/sellers/${recipe?.seller?.slug}/recipes`}>
-                <ul className="space-y-4">
-                  <li>
-                    <img
-                      className="w-full h-48 object-cover"
-                      src={imgUrl(recipe?.seller.banner)}
-                      alt=""
-                    />
-                  </li>
-                  <li className="flex justify-between items-center p-4">
-                    <div className="flex items-center space-x-2">
-                      <img
-                        className="w-12 h-12 rounded-full"
-                        src={imgUrl(recipe?.seller.logo)}
-                        alt=""
-                      />
-                      <b>{recipe?.seller?.name}</b>
-                    </div>
-                    <p className="flex items-center space-x-1"><BsTelephone /> <span>{recipe?.seller.phoneNumber}</span></p>
-                  </li>
-                </ul>
-              </Link>
+              <SellerPresentCard seller={recipe?.seller} />
             </TabPanel>
 
             {/* Descripción */}

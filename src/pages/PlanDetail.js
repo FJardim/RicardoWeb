@@ -1,16 +1,12 @@
-import Coco from "../assets/coco.jpg";
 import ProductImagesCarousel from "../componentes/ProductImagesCarousel";
 import ProductInfo from "../componentes/ProductInfo";
 import { TabsProvider } from "../contexts/TabsContext";
 import Tab from "../componentes/Tab";
 import TabsContainer from "../componentes/TabsContainer";
 import TabPanel from "../componentes/TabPanel";
-import IngredientRow from "../componentes/IngredientRow";
-import IngredientRowDetails from "../componentes/IngredientRowDetails";
-import Checkbox from "../componentes/Checkbox";
 import Calendar from "../componentes/Calendar";
 import WaPay from "../componentes/WaPay";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import useAxios from '../hooks/useAxios';
 import { useEffect, useState } from "react";
 import SystemInfo from "../util/SystemInfo";
@@ -19,6 +15,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import clsx from "clsx";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import favoriteTypes from "../consts/favoriteTypes";
+import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
 
 const PlanDetail = () => {
     const { setLoading } = useFeedBack();
@@ -103,7 +100,7 @@ const PlanDetail = () => {
         if (!currentPlan) {
             return;
         }
-    
+
         createFavorite({
             data: {
                 type,
@@ -112,16 +109,18 @@ const PlanDetail = () => {
             }
         });
     }
-    
+
     const handleSavedClicked = ({ type }) => {
         if (!currentPlan) {
             return;
         }
-        
-        toggleSaved({ data: {
-            type,
-            planId: currentPlan.id,
-        }});
+
+        toggleSaved({
+            data: {
+                type,
+                planId: currentPlan.id,
+            }
+        });
     }
 
     const handleDay = (e, day) => {
@@ -142,7 +141,7 @@ const PlanDetail = () => {
                     <ProductInfo
                         name={currentPlan?.name}
                         details={currentPlan?.uniqueRecipes}
-                        detailsLabel={"Recipes:"}
+                        detailsLabel={"Recipes included:"}
                         ingredients={[]}
                         price={`$${currentPlan?.price}`}
                         saved={currentPlan?.saved}
@@ -225,9 +224,9 @@ const PlanDetail = () => {
                 <TabsProvider>
                     {/* Tabs */}
                     <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
-                        <Tab value={0}>Preparation</Tab>
-                        <Tab value={1}>Ingredients purchase List</Tab>
-                        <Tab value={2}>Ingredients price Comparator</Tab>
+                        <Tab value={0}>Seller</Tab>
+                        <Tab value={1}>Description</Tab>
+                        <Tab value={2}>Comments</Tab>
                     </TabsContainer>
 
                     {/* TAB PANELS */}
@@ -237,54 +236,15 @@ const PlanDetail = () => {
                             className="animate__animated animate__fadeInUp  bg-white rounded-lg "
                             value={0}
                         >
-                            <p className="text-justify p-4">
-                                Open our coconut, and save the water that it brings inside,
-                                since we will not use it. Extract the meat from the coconut, cut
-                                into small cubes and set aside. Put the coconut pieces, coconut
-                                milk and condensed milk in the blender, and blend for a couple
-                                of minutes, or until thick.{" "}
-                            </p>
-                            <p className="text-justify p-4">
-                                Once we take out our cocada, we add sugar and cinnamon to taste,
-                                and serve.
-                            </p>
+                            <SellerPresentCard seller={currentPlan?.seller} />
                         </TabPanel>
 
-                        {/* Ingredients purchase List */}
-                        < TabPanel
-                            className="animate__animated animate__fadeInUp bg-white rounded-lg"
+                        {/* Descripción */}
+                        <TabPanel
+                            className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
                             value={1}
                         >
-                            <IngredientRow>
-                                <IngredientRowDetails
-                                    title={"Noodles"}
-                                    subtitle={"1 kg"}
-                                    imageSource={Coco}
-                                />
-                                <div className="flex items-center ml-28 ">
-                                    <Checkbox />
-                                </div>
-                            </IngredientRow>
-                            <IngredientRow>
-                                <IngredientRowDetails
-                                    title={"Noodles"}
-                                    subtitle={"1 kg"}
-                                    imageSource={Coco}
-                                />
-                                <div className="flex items-center ml-28">
-                                    <Checkbox />
-                                </div>
-                            </IngredientRow>
-                            <IngredientRow>
-                                <IngredientRowDetails
-                                    title={"Noodles"}
-                                    subtitle={"1 kg"}
-                                    imageSource={Coco}
-                                />
-                                <div className="flex items-center ml-28">
-                                    <Checkbox />
-                                </div>
-                            </IngredientRow>
+                            {currentPlan?.description}
                         </TabPanel>
 
                         {/* Ingredients price Comparator */}
