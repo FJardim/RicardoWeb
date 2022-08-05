@@ -14,9 +14,11 @@ import imgUrl from "../helpers/imgUrl";
 const Recipes = () => {
 
   const [showModalMenu, setShowModalMenu] = useState(false);
+
   const [recipesFilters, setRecipesFilters] = useState({
     page: 1,
     perPage: 12,
+    name: '',
     categoryIds: []
   });
 
@@ -29,11 +31,23 @@ const Recipes = () => {
   useEffect(() => {
     const categoryId = searchParams?.get('categoryId');
 
+    const name = searchParams?.get('name');
+
     if (categoryId) {
       setRecipesFilters((oldFilters) => {
         return {
           ...oldFilters,
           categoryIds: [categoryId],
+          page: 1
+        }
+      });
+    }
+
+    if (name) {
+      setRecipesFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          name: name,
           page: 1
         }
       });
@@ -62,6 +76,12 @@ const Recipes = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
           <MenuLeft filters={recipesFilters} onClickCategory={handleCategory} />
           <div className="mt-10 md:mt-0 md:col-span-3">
+            {
+              recipesFilters?.name &&
+              <div className="text-center text-4xl mb-16">
+                Results for "{recipesFilters?.name}..."
+              </div>
+            }
             {
               loading &&
               <h1 className="text-4xl text-center">Cargando...</h1>
