@@ -100,7 +100,7 @@ const Sellers = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 md:mr-5">
               {sellers?.map((seller, i) => {
                 return (
-                  <Link to={`/sellers/${seller.slug}/blog`} key={i}>
+                  <Link to={`/sellers/${seller.slug}/recipes`} key={i}>
                     <CardChef foto={`${SystemInfo?.api}${seller?.banner}`}
                       name={seller?.name}
                       logo={imgUrl(seller?.logo)}

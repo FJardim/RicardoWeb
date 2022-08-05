@@ -252,10 +252,20 @@ const PlanDetail = () => {
                             className="animate__animated animate__fadeInUp bg-white rounded-lg"
                             value={2}
                         >
-                            <WaPay />
+                            <div>
+                                Here are going to be the comments.
+                            </div>
                         </TabPanel>
                     </div>
                 </TabsProvider>
+            </div>
+            <div className="text-center">
+                <h3 className="text-4xl text-gray-500 font-bold ">
+                    Related Plans
+                </h3>
+                <div>
+                    here are going to be related plans... 😊
+                </div>
             </div>
         </>
     );

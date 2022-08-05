@@ -16,6 +16,7 @@ import useAxios from "../hooks/useAxios";
 import favoriteTypes from "../consts/favoriteTypes";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import useCombo from "../hooks/useCombo";
+import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
 
 const CombosDetail = () => {
   const { setLoading } = useFeedBack();
@@ -75,11 +76,13 @@ const CombosDetail = () => {
     if (!combo) {
       return;
     }
-    
-    toggleSaved({ data: {
-      type,
-      comboId: combo.id,
-    }});
+
+    toggleSaved({
+      data: {
+        type,
+        comboId: combo.id,
+      }
+    });
   }
 
   return (
@@ -97,8 +100,8 @@ const CombosDetail = () => {
             price={`$${combo?.price}`}
             detailsLabel={"Includes:"}
             details={[
-              ...combo?.recipes.map(recipe => ({...recipe, uri: `/recipes/${recipe.slug}`})) ?? [],
-              ...combo?.plans.map(plan => ({...plan, uri: `/plans/${plan.slug}`})) ?? []
+              ...combo?.recipes.map(recipe => ({ ...recipe, uri: `/recipes/${recipe.slug}` })) ?? [],
+              ...combo?.plans.map(plan => ({ ...plan, uri: `/plans/${plan.slug}` })) ?? []
             ]}
             type={favoriteTypes.COMBO}
             onSaveClicked={handleSavedClicked}
@@ -116,63 +119,27 @@ const CombosDetail = () => {
         <TabsProvider>
           {/* Tabs */}
           <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
-            <Tab value={0}>Descrition</Tab>
-            <Tab value={1}>Ingredients purchase List</Tab>
-            <Tab value={2}>Price Comparator</Tab>
+            <Tab value={0}>Seller</Tab>
+            <Tab value={1}>Description</Tab>
+            <Tab value={2}>Comments</Tab>
           </TabsContainer>
 
           {/* TAB PANELS */}
           {/* Preparation */}
-          <div className="mt-4 p-4">
+          < div className="mt-4 md:p-4" >
             <TabPanel
-              className="animate__animated animate__fadeInUp  bg-white rounded-lg"
+              className="animate__animated animate__fadeInUp  bg-white rounded-lg "
               value={0}
             >
-              <p className="text-justify p-4">
-                Quia necessitatibus cum illo nemo est repudiandae voluptatibus
-                hic internos totam et recusandae nulla. Ut velit alias in
-                expedita laboriosam est blanditiis consectetur aut rerum
-                dignissimos vel veritatis nesciunt et o dit aspernatur. At
-                molestiae soluta et consequatur cupiditate cum omnis velit qui
-                iusto debitis et dicta itaque.
-              </p>
+              <SellerPresentCard seller={combo?.seller} />
             </TabPanel>
 
-            {/* Ingredients purchase List */}
+            {/* Descripción */}
             <TabPanel
-              className="animate__animated animate__fadeInUp bg-white rounded-lg"
+              className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
               value={1}
             >
-              <IngredientRow>
-                <IngredientRowDetails
-                  title={"Noodles"}
-                  subtitle={"1 kg"}
-                  imageSource={Combos}
-                />
-                <div className="flex items-center ml-28">
-                  <Checkbox />
-                </div>
-              </IngredientRow>
-              <IngredientRow>
-                <IngredientRowDetails
-                  title={"Noodles"}
-                  subtitle={"1 kg"}
-                  imageSource={Combos}
-                />
-                <div className="flex items-center ml-28">
-                  <Checkbox />
-                </div>
-              </IngredientRow>
-              <IngredientRow>
-                <IngredientRowDetails
-                  title={"Noodles"}
-                  subtitle={"1 kg"}
-                  imageSource={Combos}
-                />
-                <div className="flex items-center ml-28">
-                  <Checkbox />
-                </div>
-              </IngredientRow>
+              {combo?.description}
             </TabPanel>
 
             {/* Ingredients price Comparator */}
@@ -180,10 +147,20 @@ const CombosDetail = () => {
               className="animate__animated animate__fadeInUp bg-white rounded-lg"
               value={2}
             >
-              <WaPay />
+              <div>
+                Here are going to be the comments.
+              </div>
             </TabPanel>
           </div>
         </TabsProvider>
+      </div>
+      <div className="text-center">
+        <h3 className="text-4xl text-gray-500 font-bold ">
+          Related Combos
+        </h3>
+        <div>
+          here are going to be related combos... 😊
+        </div>
       </div>
     </>
   );

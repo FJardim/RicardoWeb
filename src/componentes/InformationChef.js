@@ -9,10 +9,22 @@ const InformationChef = ({ seller }) => {
         <span>Information</span>
       </button>
       <div className="mt-6 space-y-2">
-        <p>Phone: {seller?.phoneNumber}</p>
-        <p>Instagram: {seller?.instagram}</p>
-        <p>Facebook: {seller?.facebook}</p>
-        <p>Whatsapp: {seller?.whatsapp}</p>
+        {
+          seller?.phoneNumber &&
+          <p>Phone: {seller?.phoneNumber}</p>
+        }
+        {
+          seller?.instagram &&
+          <p>Instagram: {seller?.instagram}</p>
+        }
+        {
+          seller?.facebook &&
+          <p>Facebook: {seller?.facebook}</p>
+        }
+        {
+          seller?.whatsapp &&
+          <p>Whatsapp: {seller?.whatsapp}</p>
+        }
       </div>
     </div>
   )
