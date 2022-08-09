@@ -1,22 +1,21 @@
-import Combos from "../assets/combosImg.png";
 import ProductImagesCarousel from "../componentes/ProductImagesCarousel";
 import ProductInfo from "../componentes/ProductInfo";
 import { TabsProvider } from "../contexts/TabsContext";
 import Tab from "../componentes/Tab";
 import TabsContainer from "../componentes/TabsContainer";
 import TabPanel from "../componentes/TabPanel";
-import IngredientRow from "../componentes/IngredientRow";
-import IngredientRowDetails from "../componentes/IngredientRowDetails";
-import Checkbox from "../componentes/Checkbox";
-import WaPay from "../componentes/WaPay";
 import DescriptionCard from "../componentes/DescriptionCard";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useAxios from "../hooks/useAxios";
 import favoriteTypes from "../consts/favoriteTypes";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import useCombo from "../hooks/useCombo";
 import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
+import Button from "../componentes/Button";
+import DateFormatter from "../componentes/DateFormatter";
+import imgUrl from "../helpers/imgUrl";
+import profile from "../assets/profile.png";
 
 const CombosDetail = () => {
   const { setLoading } = useFeedBack();
@@ -25,11 +24,15 @@ const CombosDetail = () => {
 
   const navigate = useNavigate();
 
+  const [comment, setComment] = useState('');
+
   const [{ combo, comboLoading, setCombo }] = useCombo(slug);
 
   const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
 
   const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
+
+  const [{ data: commentData, loading: commentLoading }, addComment] = useAxios({ url: '/comments', method: 'POST' }, { manual: true });
 
   useEffect(() => {
     setLoading({ message: 'Cargando combo', show: comboLoading });
@@ -58,6 +61,17 @@ const CombosDetail = () => {
     }
   }, [toggleSavedData]);
 
+  useEffect(() => {
+    if (commentData) {
+      setCombo(prevData => ({
+        ...prevData,
+        comments: [...prevData.comments, commentData],
+      }));
+
+      setComment('');
+    }
+  }, [commentData]);
+
   const handleFavoriteClicked = ({ type, reaction }) => {
     if (!combo) {
       return;
@@ -83,6 +97,19 @@ const CombosDetail = () => {
         comboId: combo.id,
       }
     });
+  }
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+
+    if (commentLoading) {
+      return;
+    }
+
+    addComment({ data: {
+      comboId: combo?.id,
+      comment
+    }});
   }
 
   return (
@@ -119,37 +146,65 @@ const CombosDetail = () => {
         <TabsProvider>
           {/* Tabs */}
           <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
-            <Tab value={0}>Seller</Tab>
-            <Tab value={1}>Description</Tab>
+            <Tab value={0}>Description</Tab>
+            <Tab value={1}>Seller</Tab>
             <Tab value={2}>Comments</Tab>
           </TabsContainer>
 
           {/* TAB PANELS */}
-          {/* Preparation */}
           < div className="mt-4 md:p-4" >
-            <TabPanel
-              className="animate__animated animate__fadeInUp  bg-white rounded-lg "
-              value={0}
-            >
-              <SellerPresentCard seller={combo?.seller} />
-            </TabPanel>
-
             {/* Descripción */}
             <TabPanel
               className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
-              value={1}
+              value={0}
             >
               {combo?.description}
             </TabPanel>
 
+            {/* Preparation */}
+            <TabPanel
+              className="animate__animated animate__fadeInUp  bg-white rounded-lg "
+              value={1}
+            >
+              <SellerPresentCard seller={combo?.seller} />
+            </TabPanel>
+
             {/* Ingredients price Comparator */}
             <TabPanel
-              className="animate__animated animate__fadeInUp bg-white rounded-lg"
+              className="animate__animated animate__fadeInUp"
               value={2}
             >
-              <div>
-                Here are going to be the comments.
-              </div>
+              <form onSubmit={handleCommentSubmit}>
+                <textarea
+                  className="
+                    mt-1
+                    block
+                    w-full
+                    rounded-md
+                    border-gray-300
+                    shadow-sm
+                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+                  "
+                  rows="4"
+                  placeholder="Leave a comment..."
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+                <div className="text-right mt-2">
+                  <Button type="submit">Send</Button>
+                </div>
+              </form>
+
+              <ul>
+                {combo?.comments?.map(comment => <li key={comment.id} className="bg-white rounded p-3 mt-2">
+                  <p className="mb-1">{comment.comment}</p>
+                  <div className="flex items-center justify-end text-xs space-x-2 italic">
+                    <img src={imgUrl(comment.imgPath, profile)} alt="" className="inline-block w-6 h-6 rounded-full" />
+                    <span>{comment.name ?? 'Guest'}</span>
+                    <span><DateFormatter value={comment.createdAt} /></span>
+                  </div>
+                </li>)}
+              </ul>
             </TabPanel>
           </div>
         </TabsProvider>
