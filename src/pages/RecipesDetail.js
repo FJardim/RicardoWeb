@@ -131,7 +131,11 @@ const RecipesDetail = () => {
             onSaveClicked={handleSavedClicked}
             saved={recipe?.saved}
             type={favoriteTypes.RECIPE}
-            description={recipe?.shortDescription}
+            // description={recipe?.shortDescription}
+            detailsLabel={"Ingredients:"}
+            details={[
+              ...recipe?.recipeIngredients.map(({ingredient, measurementUnit, value}) => `${ingredient.name} ${value} ${measurementUnit.name}`) ?? [],
+            ]}
             isPremiun={recipe?.isPremiun}
           />
         </div>
