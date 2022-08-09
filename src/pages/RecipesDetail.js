@@ -175,7 +175,7 @@ const RecipesDetail = () => {
             >
               <form onSubmit={handleCommentSubmit}>
                 <textarea
-                  class="
+                  className="
                     mt-1
                     block
                     w-full
