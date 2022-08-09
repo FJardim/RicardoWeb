@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BannerPage from "../componentes/BannerPage";
 import img1 from "../assets/img1.jpg";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import MenuLeft from "../componentes/MenuLeft";
 import usePlans from "../hooks/usePlans";
 import SystemInfo from "../util/SystemInfo";
@@ -14,12 +14,53 @@ const Plans = () => {
 
   const [showModalMenu, setShowModalMenu] = useState(false);
 
+  const [searchParams] = useSearchParams();
+
   const [plansFilters, setPlansFilters] = useState({
     page: 1,
     perPage: 9,
+    name: '',
+    categoryIds: []
   });
 
-  const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } } );
+  const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } });
+
+  useEffect(() => {
+    const categoryId = searchParams?.get('categoryId');
+
+    const name = searchParams?.get('name');
+
+    if (categoryId) {
+      setPlansFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          categoryIds: [categoryId],
+          page: 1
+        }
+      });
+    }
+
+    if (name) {
+      setPlansFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          name: name,
+          page: 1
+        }
+      });
+    }
+
+  }, [searchParams]);
+
+  const handleCategory = (category) => {
+    setPlansFilters((oldPlansFilters) => {
+      return {
+        ...oldPlansFilters,
+        page: 1,
+        categoryIds: [category?.id]
+      }
+    });
+  }
 
   return (
     <div className="">
@@ -31,13 +72,19 @@ const Plans = () => {
         <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
-          <MenuLeft />
+          <MenuLeft filters={plansFilters} onClickCategory={handleCategory} />
 
           <div className="mt-10 md:mt-0 md:col-span-3">
             {
+              plansFilters?.name &&
+              <div className="text-center text-4xl mb-16">
+                Results for "{plansFilters?.name}..."
+              </div>
+            }
+            {
               loading &&
               <h1 className="text-4xl text-center">
-                Cargando...
+                loading...
               </h1>
             }
             {
