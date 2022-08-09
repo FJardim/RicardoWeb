@@ -6,14 +6,17 @@ import TabsContainer from "../componentes/TabsContainer";
 import TabPanel from '../componentes/TabPanel';
 import DescriptionCard from "../componentes/DescriptionCard";
 import useAxios from '../hooks/useAxios';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFeedBack } from '../contexts/FeedBackContext';
-import imgUrl from "../helpers/imgUrl";
 import useRecipe from "../hooks/useRecipe";
 import favoriteTypes from "../consts/favoriteTypes";
-import { BsTelephone } from "react-icons/bs";
 import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
+import DateFormatter from "../componentes/DateFormatter";
+import Button from "../componentes/Button";
+import imgUrl from "../helpers/imgUrl";
+import profile from "../assets/profile.png";
+import { useState } from "react";
 
 const RecipesDetail = () => {
   const { setLoading } = useFeedBack();
@@ -22,11 +25,15 @@ const RecipesDetail = () => {
 
   const navigate = useNavigate();
 
+  const [comment, setComment] = useState('');
+
   const [{ recipe, recipeLoading, setRecipe }] = useRecipe(slug);
 
   const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
 
   const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
+
+  const [{ data: commentData, loading: commentLoading }, addComment] = useAxios({ url: '/comments', method: 'POST' }, { manual: true });
 
   useEffect(() => {
     setLoading({ message: 'Cargando receta', show: recipeLoading });
@@ -55,6 +62,17 @@ const RecipesDetail = () => {
     }
   }, [toggleSavedData]);
 
+  useEffect(() => {
+    if (commentData) {
+      setRecipe(prevData => ({
+        ...prevData,
+        comments: [...prevData.comments, commentData],
+      }));
+
+      setComment('');
+    }
+  }, [commentData]);
+
   const handleFavoriteClicked = ({ type, reaction }) => {
     if (!recipe) {
       return;
@@ -80,6 +98,19 @@ const RecipesDetail = () => {
         recipeId: recipe.id,
       }
     });
+  }
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+
+    if (commentLoading) {
+      return;
+    }
+
+    addComment({ data: {
+      recipeId: recipe?.id,
+      comment
+    }});
   }
 
   return (
@@ -114,37 +145,65 @@ const RecipesDetail = () => {
         <TabsProvider>
           {/* Tabs */}
           <TabsContainer className="md:flex flex md:m-10 m-2 mt-6 text-center">
-            <Tab value={0}>Seller</Tab>
-            <Tab value={1}>Description</Tab>
+            <Tab value={0}>Description</Tab>
+            <Tab value={1}>Seller</Tab>
             <Tab value={2}>Comments</Tab>
           </TabsContainer>
 
           {/* TAB PANELS */}
-          {/* Vendedor */}
           <div className="mt-4 md:p-4">
-            <TabPanel
-              className="animate__animated animate__fadeInUp  bg-white rounded-lg"
-              value={0}
-            >
-              <SellerPresentCard seller={recipe?.seller} />
-            </TabPanel>
-
             {/* Descripción */}
             <TabPanel
               className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
-              value={1}
+              value={0}
             >
               {recipe?.description}
             </TabPanel>
 
+            {/* Vendedor */}
+            <TabPanel
+              className="animate__animated animate__fadeInUp  bg-white rounded-lg"
+              value={1}
+            >
+              <SellerPresentCard seller={recipe?.seller} />
+            </TabPanel>
+
             {/* Comments */}
             <TabPanel
-              className="animate__animated animate__fadeInUp bg-white rounded-lg p-4"
+              className="animate__animated animate__fadeInUp p-4"
               value={2}
             >
-              <div>
-                Here are going to be the comments.
-              </div>
+              <form onSubmit={handleCommentSubmit}>
+                <textarea
+                  class="
+                    mt-1
+                    block
+                    w-full
+                    rounded-md
+                    border-gray-300
+                    shadow-sm
+                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+                  "
+                  rows="4"
+                  placeholder="Leave a comment..."
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+                <div className="text-right mt-2">
+                  <Button type="submit">Send</Button>
+                </div>
+              </form>
+
+              <ul>
+                {recipe?.comments?.map(comment => <li key={comment.id} className="bg-white rounded p-3 mt-2">
+                  <p className="mb-1">{comment.comment}</p>
+                  <div className="flex items-center justify-end text-xs space-x-2 italic">
+                    <img src={imgUrl(comment.imgPath, profile)} alt="" className="inline-block w-6 h-6 rounded-full" />
+                    <span>{comment.name ?? 'Guest'}</span>
+                    <span><DateFormatter value={comment.createdAt} /></span>
+                  </div>
+                </li>)}
+              </ul>
             </TabPanel>
           </div>
         </TabsProvider>
