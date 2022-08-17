@@ -14,6 +14,7 @@ import useRecipes from "../hooks/useRecipes";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 import imgUrl from "../helpers/imgUrl";
+import ContactSeller from "../componentes/Sellers/ContactSeller";
 
 const RecipesChef = () => {
   const { slug } = useParams();
@@ -50,6 +51,7 @@ const RecipesChef = () => {
             <CertificationChef seller={seller} />
             <DescriptionChef seller={seller} />
             <Post />
+            <ContactSeller seller={seller} />
           </div>
         </div>
         <div className="md:w-full">

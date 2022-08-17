@@ -14,6 +14,7 @@ import useCombos from "../hooks/useCombos";
 import SystemInfo from "../util/SystemInfo";
 import Pagination from "../componentes/Pagination";
 import imgUrl from "../helpers/imgUrl";
+import ContactSeller from "../componentes/Sellers/ContactSeller";
 
 const CombosChef = () => {
   const { slug } = useParams();
@@ -51,6 +52,7 @@ const CombosChef = () => {
             <CertificationChef seller={seller} />
             <DescriptionChef seller={seller} />
             <Post />
+            <ContactSeller seller={seller} />
           </div>
         </div>
         <div className="md:w-full">
