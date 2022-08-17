@@ -27,6 +27,7 @@ import RequireAuth from "./componentes/RequireAuth";
 import { FeedBackProvider } from "./contexts/FeedBackContext";
 import FeedbackComponents from "./componentes/FeedbackComponents/FeedbackComponents";
 import PlansSellers from "./pages/PlansSellers";
+import Comments from "./pages/Comments";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
               <Route path="/contactus" element={<Contactus />} />
               <Route path="/saves" element={<Saves />} />
               <Route path="/meanplanoverview" element={<MealPlanOverview />} />
+              <Route path="/comments" element={<Comments />} />
             </Route>
           </Routes>
         </AppLayout>
