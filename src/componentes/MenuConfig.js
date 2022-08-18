@@ -5,7 +5,7 @@ import { RiMessage2Fill } from "react-icons/ri";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FaListAlt } from "react-icons/fa";
 import { useAuth } from "../contexts/AuthContext";
-import { IoHeart } from "react-icons/io5";
+import { IoHeart, IoHelpCircleOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const MenuConfig = ({ show, onClose }) => {
@@ -93,9 +93,27 @@ const MenuConfig = ({ show, onClose }) => {
                     </Link>
                 </li>
                 <li className="space-x-2 border-b px-4">
-                    <Link to={'/contactus'}>
+                    <Link to={'/comments'}>
+                        <div className="flex hover:text-main">
+                            <IoChatbubbleEllipsesOutline className="mt-1" />
+                            <p className="text-lg ml-2.5 mb-1.5">Chats</p>
+                        </div>
+
+                    </Link>
+                </li>
+                <li className="space-x-2 border-b px-4">
+                    <Link to={'/comments'}>
                         <div className="flex hover:text-main">
                             <RiMessage2Fill className="mt-1" />
+                            <p className="text-lg ml-2.5 mb-1.5">Commets</p>
+                        </div>
+
+                    </Link>
+                </li>
+                <li className="space-x-2 border-b px-4">
+                    <Link to={'/contactus'}>
+                        <div className="flex hover:text-main">
+                            <IoHelpCircleOutline className="mt-1" />
                             <p className="text-lg ml-2.5 mb-1.5">Contact</p>
                         </div>
 

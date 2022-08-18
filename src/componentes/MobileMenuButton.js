@@ -8,7 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { BsFillBookmarkHeartFill, BsFillGearFill, BsFillCalendar2MinusFill } from "react-icons/bs";
 import { RiMessage2Fill } from "react-icons/ri";
 import { FaListAlt } from "react-icons/fa";
-import { IoHeart } from "react-icons/io5";
+import { IoHeart, IoHelpCircleOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const MobileMenuButton = () => {
 
@@ -80,12 +80,23 @@ const MobileMenuButton = () => {
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>
+                                    <Link to={'/chats'} className="flex items-center space-x-2 hover:text-main">
+                                        <IoChatbubbleEllipsesOutline className="w-6 h-6" />
+                                        <span className="text-lg">Chats</span>
+                                    </Link>
+                                </li>
+                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                     <Link to={'/contactus'} className="flex items-center space-x-2 hover:text-main">
                                         <RiMessage2Fill className="w-6 h-6" />
+                                        <span className="text-lg">Comments</span>
+                                    </Link>
+                                </li>
+                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
+                                    <Link to={'/contactus'} className="flex items-center space-x-2 hover:text-main">
+                                        <IoHelpCircleOutline className="w-6 h-6" />
                                         <span className="text-lg">Contact</span>
                                     </Link>
                                 </li>
-
                             </div>
                             :
                             <li className="py-2 border-b" style={{ minWidth: '180px' }}>
