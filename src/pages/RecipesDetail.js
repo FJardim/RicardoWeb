@@ -12,7 +12,7 @@ import { useFeedBack } from '../contexts/FeedBackContext';
 import useRecipe from "../hooks/useRecipe";
 import favoriteTypes from "../consts/favoriteTypes";
 import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
-import DateFormatter from "../componentes/DateFormatter";
+import Comment from "../componentes/Comment";
 import Button from "../componentes/Button";
 import imgUrl from "../helpers/imgUrl";
 import profile from "../assets/profile.png";
@@ -200,12 +200,12 @@ const RecipesDetail = () => {
 
               <ul>
                 {recipe?.comments?.map(comment => <li key={comment.id} className="bg-white rounded p-3 mt-2">
-                  <p className="mb-1">{comment.comment}</p>
-                  <div className="flex items-center justify-end text-xs space-x-2 italic">
-                    <img src={imgUrl(comment.imgPath, profile)} alt="" className="inline-block w-6 h-6 rounded-full" />
-                    <span>{comment.name ?? 'Guest'}</span>
-                    <span><DateFormatter value={comment.createdAt} /></span>
-                  </div>
+                  <Comment
+                    comment={comment.comment}
+                    name={comment.name}
+                    createdAt={comment.createdAt}
+                    imgPath={imgUrl(comment.imgPath, profile)}
+                  />
                 </li>)}
               </ul>
             </TabPanel>

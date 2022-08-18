@@ -1,13 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactDom from "react-dom";
 import { AiFillStar } from "react-icons/ai";
 import { AiOutlineStar } from "react-icons/ai";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { useFeedBack } from "../../contexts/FeedBackContext";
+import useAxios from "../../hooks/useAxios";
 
 const ContactSellerModal = ({ show, onClose, seller }) => {
 
     const { user } = useAuth();
+
+    const { setCustomToast } = useFeedBack();
 
     const modalRef = useRef();
 
@@ -16,6 +20,16 @@ const ContactSellerModal = ({ show, onClose, seller }) => {
     const [searchParams] = useSearchParams();
 
     const [message, setMessage] = useState('');
+
+    const [{data: messageData}, sendMessage] = useAxios({ url: `/chats`, method: 'POST' }, { manual: true });
+
+    useEffect(() => {
+        if (messageData) {
+            setCustomToast({ message: 'Message sent successfully!', severity: 'success', show: true, position: 'top-right' })
+            onClose();
+            setMessage('');
+        }
+    }, [messageData]);
 
     if (!show) {
         return null;
@@ -35,6 +49,11 @@ const ContactSellerModal = ({ show, onClose, seller }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault?.();
+
+        sendMessage({ data: {
+            content: message,
+            sellerId: seller.sellerId,
+        }});
     }
 
     const handleAuth = () => {
