@@ -17,11 +17,33 @@ const ChatsDetails = () => {
 
     const [message, setMessage] = useState('');
 
+    const [pages, setPages] = useState('');
+
+    const [filters, setFilters] = useState({
+        page: 1,
+        orderBy: 'createdAt,DESC'
+    });
+
     const [currentMessages, setCurrentMessages] = useState([]);
 
     const [{ data: newMessage, loading: newMessageLoading }, sendMessage] = useAxios({ url: `/chats/${id}/messages`, method: 'POST' }, { manual: true, useCache: false });
 
     const [{ data, loading, error }, getChat] = useAxios({ url: `/chats/${id}` }, { useCache: false });
+
+    const [{ data: chatMessages, loading: chatMessagesLoading }, getChatMessages] = useAxios({ url: `/chats/${id}/messages`, params: { ...filters } }, { useCache: false });
+
+    useEffect(() => {
+        if (chatMessages?.results?.length > 0) {
+            console.log(chatMessages);
+            setCurrentMessages((oldCurrentMessages) => {
+                return [...oldCurrentMessages, ...chatMessages?.results]
+            })
+        }
+
+        if (chatMessages) {
+            setPages(chatMessages?.numberOfPages);
+        }
+    }, [chatMessages]);
 
     useEffect(() => {
         if (newMessage) {
@@ -30,20 +52,7 @@ const ChatsDetails = () => {
             });
             setMessage('');
         }
-    }, [newMessage])
-
-    useEffect(() => {
-        console.log(currentMessages);
-    }, [currentMessages])
-
-    useEffect(() => {
-        if (data) {
-            console.log(data);
-            setCurrentMessages((oldMessages) => {
-                return [...oldMessages, ...data?.messages]
-            });
-        }
-    }, [data])
+    }, [newMessage]);
 
     const handleSubmit = (e) => {
         e?.preventDefault?.();
@@ -58,15 +67,26 @@ const ChatsDetails = () => {
         });
     }
 
+    const handleMore = () => {
+        if (pages > filters?.page) {
+            setFilters((oldFilters) => {
+                return {
+                    ...oldFilters,
+                    page: oldFilters?.page + 1
+                }
+            });
+        }
+    }
+
     return (
         <div className="container p-4 h-full w-full mb-20">
             <div className="flex items-center justify-between border-b pb-2">
-                <div className="flex items-center space-x-4">
+                <Link to={`/sellers/${data?.seller?.slug}/recipes`} className="flex items-center space-x-4">
                     <img className="h-20 w-20 rounded-full" src={imgUrl(data?.seller?.logo)} alt="" />
                     <p>
                         {data?.seller?.name}
                     </p>
-                </div>
+                </Link>
                 <Link className="bg-main px-4 py-2 rounded-full text-white hover:shadow-xl" to={'/chats'}>
                     Back
                 </Link>
@@ -90,6 +110,23 @@ const ChatsDetails = () => {
                             </div>
                         )
                     })
+                }
+                {
+                    chatMessagesLoading ?
+                        <div className="text-center my-4">
+                            Loading more messages...
+                        </div>
+                        :
+                        pages > filters?.page ?
+                            <div className="text-center">
+                                <button onClick={handleMore} className="bg-white px-8 py-2 rounded-full shadow mt-4">
+                                    Load More
+                                </button>
+                            </div>
+                            :
+                            <div className="text-center my-4">
+                                No more messages.
+                            </div>
                 }
             </div>
             <form onSubmit={handleSubmit} className="flex items-center space-x-4 py-8">
