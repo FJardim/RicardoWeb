@@ -93,7 +93,7 @@ const MenuConfig = ({ show, onClose }) => {
                     </Link>
                 </li>
                 <li className="space-x-2 border-b px-4">
-                    <Link to={'/comments'}>
+                    <Link to={'/chats'}>
                         <div className="flex hover:text-main">
                             <IoChatbubbleEllipsesOutline className="mt-1" />
                             <p className="text-lg ml-2.5 mb-1.5">Chats</p>

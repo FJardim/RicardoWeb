@@ -28,6 +28,8 @@ import { FeedBackProvider } from "./contexts/FeedBackContext";
 import FeedbackComponents from "./componentes/FeedbackComponents/FeedbackComponents";
 import PlansSellers from "./pages/PlansSellers";
 import Comments from "./pages/Comments";
+import Chats from "./pages/Chats";
+import ChatsDetails from "./pages/ChatsDetails";
 
 function App() {
   return (
@@ -60,10 +62,12 @@ function App() {
               <Route path="/overview" element={<OverviewUser />} />
               <Route path="/favorites" element={<MyFavoritesUser />} />
               <Route path="/shopping" element={<MyShoppingList />} />
+              <Route path="/chats" element={<Chats />} />
+              <Route path="/chats/:id" element={<ChatsDetails />} />
+              <Route path="/comments" element={<Comments />} />
               <Route path="/contactus" element={<Contactus />} />
               <Route path="/saves" element={<Saves />} />
               <Route path="/meanplanoverview" element={<MealPlanOverview />} />
-              <Route path="/comments" element={<Comments />} />
             </Route>
           </Routes>
         </AppLayout>
