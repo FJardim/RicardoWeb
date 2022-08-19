@@ -7,7 +7,7 @@ import { RiMessage2Fill } from "react-icons/ri";
 import { AiOutlineLogout } from "react-icons/ai";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { IoHelpCircleOutline } from "react-icons/io5";
+import { IoHelpCircleOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const MyAccountLayout = () => {
     const { setAuthInfo } = useAuth();
@@ -75,7 +75,14 @@ const MyAccountLayout = () => {
                     </Link>
                 </div>
                 <div>
-                    <Link title="Contact" to={'/comments'}>
+                    <Link title="Chats" to={'/chats'}>
+                        <IoChatbubbleEllipsesOutline className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
+                            'text-main': currentPath === '/chats'
+                        })}></IoChatbubbleEllipsesOutline>
+                    </Link>
+                </div>
+                <div>
+                    <Link title="Comments" to={'/comments'}>
                         <RiMessage2Fill className={clsx(["mx-auto my-6 cursor-pointer transform hover:text-main hover:scale-150 transition duration-500 text-3xl md:text-2xl"], {
                             'text-main': currentPath === '/comments'
                         })}></RiMessage2Fill>
