@@ -2,22 +2,26 @@ import { useState } from "react";
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
-import Modal from "../componentes/Modal/Modal";
 import usePlans from "../hooks/usePlans";
 import useRecipes from "../hooks/useRecipes";
-import AsyncSelect from 'react-select/async';
 import { useEffect } from "react";
 import { format } from "date-fns";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import useAxios from "../hooks/useAxios";
 import useEvents from "../hooks/useEvents";
 import { useAuth } from "../contexts/AuthContext";
+import Modal from "../componentes/Modal/Modal";
+import DateFormatter from "../componentes/DateFormatter";
+import imgUrl from "../helpers/imgUrl";
+import { Link } from 'react-router-dom';
 
 const OverviewUser = () => {
 
     const { user } = useAuth();
 
     const { setLoading } = useFeedBack();
+
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     const [eventsFilters, setEventsFilters] = useState({
         page: 1,
@@ -49,9 +53,13 @@ const OverviewUser = () => {
 
     const [{ data: addEventData, loading: addEventLoading }, addEvent] = useAxios({ url: `/events`, method: 'POST' }, { manual: true, useCache: false });
 
+    const [{ data: removeEventData, loading: removeEventLoading }, removeEvent] = useAxios({ url: ``, method: 'DELETE' }, { manual: true, useCache: false });
+
+    const [{ data: eventableData, loading: eventableLoading }, getEventable] = useAxios({ url: `` }, { manual: true, useCache: false });
+
     const [{ events, loading: eventsLoading }, getEvents] = useEvents({ params: { ...eventsFilters }, options: { manual: true } });
 
-    const [currentEvents, setCurrentEvents] = useState([])
+    const [currentEvents, setCurrentEvents] = useState([]);    
 
     useEffect(() => {
         if (eventsFilters?.start && eventsFilters?.end) {
@@ -149,6 +157,37 @@ const OverviewUser = () => {
 
     }
 
+    const handleEventClick = async (e) => {
+        console.log(e);
+
+        setLoading({
+            show: true,
+            message: 'Loading'
+        });
+
+        const eventableId = e?.event?._def?.extendedProps?.plan?.id || e?.event?._def?.extendedProps?.recipe?.id;
+
+        const eventableType = e?.event?._def?.extendedProps?.plan ? 'plans' : 'recipes';
+
+        const clickedEventAble = await getEventable({ url: `/${eventableType}/${eventableId}` });
+
+        setLoading({
+            show: false,
+            message: 'Loading'
+        });
+
+
+        const clickedEvent = {
+            ...clickedEventAble?.data,
+            start: e?.event?.start,
+            end: e?.event?.end,
+            isPlan: e?.event?._def?.extendedProps?.plan ? true : false,
+            eventId: e?.event?._def?.publicId
+        };
+        setSelectedEvent(clickedEvent);
+    }
+
+
     const handleDateInfo = (dateInfo) => {
         setEventsFilters((oldEventsFilters) => {
             return {
@@ -157,11 +196,21 @@ const OverviewUser = () => {
                 end: dateInfo?.end
             }
         });
+    }
 
+    const handleRemove = () => {
+        removeEvent?.({ url: `/events/${selectedEvent?.eventId}` }).then((response) => {
+            setSelectedEvent(null);
+            getEvents({
+                params: {
+                    ...eventsFilters
+                }
+            });
+        });
     }
 
     return (
-        <div className="container p-20 w-full mb-20">
+        <div className="container p-4 md:p-20 w-full mb-20">
             <p className="text-4xl font-bold text-black mb-8">Overview</p>
 
             <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
@@ -219,8 +268,9 @@ const OverviewUser = () => {
                         }
                     </div>
                 </div>
-                <div className="md:col-span-3">
+                <div className="md:col-span-3 md:mt-0 mt-8">
                     <FullCalendar
+                        eventClick={handleEventClick}
                         datesSet={handleDateInfo}
                         dateClick={handleDateClick}
                         plugins={[dayGridPlugin, interactionPlugin]}
@@ -231,7 +281,85 @@ const OverviewUser = () => {
                     />
                 </div>
             </div>
-        </div >
+            <Modal show={selectedEvent} onClose={() => setSelectedEvent(null)}>
+                <h1 className="text-center font-bold text-xl mb-4">
+                    {selectedEvent?.name}
+                </h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
+                    <div className="text-center">
+                        <h1 className="mb-4 font-semibold">Start:</h1>
+                        <div className="bg-main text-white px-8 py-2 rounded-xl">
+                            <DateFormatter dateFormat="dd/MM/yyyy" value={selectedEvent?.start} />
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <h1 className="mb-4 font-semibold">End:</h1>
+                        <div className="bg-main text-white px-8 py-2 rounded-xl">
+                            <DateFormatter dateFormat="dd/MM/yyyy" value={selectedEvent?.end || selectedEvent?.start} />
+                        </div>
+                    </div>
+                </div>
+                {
+                    selectedEvent?.isPlan ?
+                        <div className="mt-8">
+                            <h1 className="mb-4 font-semibold">
+                                Included Recipes:
+                            </h1>
+                            <div className="flex w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
+                                {selectedEvent?.uniqueRecipes?.map?.((recipe, i) => {
+                                    return (
+                                        <Link to={`/recipes/${recipe?.slug}`} style={{ maxWidth: '60px', overflow: 'hidden' }} title={recipe?.name} key={i}>
+                                            <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(recipe?.images?.[0]?.path)} alt="" srcset="" />
+                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{recipe?.name}</small>
+                                        </Link>
+                                    )
+                                })}
+                            </div>
+                            <h1 className="mt-8 mb-4 font-semibold">
+                                Plan´s ingredients:
+                            </h1>
+                            <div className="flex space-x-4 w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
+                                {selectedEvent?.uniqueIngredients?.map?.((ingredient, i) => {
+                                    return (
+                                        <div className="text-center" style={{ maxWidth: '60px', overflow: 'hidden' }} title={ingredient?.name} key={i}>
+                                            <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(ingredient?.icon)} alt="" srcset="" />
+                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.name}</small>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        :
+                        <div className="mt-8">
+                            <h1 className="mt-8 mb-4 font-semibold">
+                                Recipe´s ingredients:
+                            </h1>
+                            <div className="flex space-x-4 w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
+                                {selectedEvent?.recipeIngredients?.map?.((ingredient, i) => {
+                                    return (
+                                        <div className="text-center" title={ingredient?.ingredient?.name} key={i}>
+                                            <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(ingredient?.ingredient?.icon)} alt="" srcset="" />
+                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.ingredient?.name}</small>
+                                            <br />
+                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.value} {ingredient?.measurementUnit?.name}</small>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                }
+                <div className="text-center">
+                    <button onClick={handleRemove} disabled={removeEventLoading} className="bg-red-500 text-white mt-8 px-8 py-2 rounded-xl transition duration-500 hover:bg-white hover:text-main">
+                        {
+                            removeEventLoading ?
+                                'Loading'
+                                :
+                                'Remove from calendar'
+                        }
+                    </button>
+                </div>
+            </Modal>
+        </div>
     );
 }
 
