@@ -1,21 +1,30 @@
 import { useState } from "react";
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import Modal from "../componentes/Modal/Modal";
 import usePlans from "../hooks/usePlans";
 import useRecipes from "../hooks/useRecipes";
 import AsyncSelect from 'react-select/async';
+import { useEffect } from "react";
+import { format } from "date-fns";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import useAxios from "../hooks/useAxios";
+import useEvents from "../hooks/useEvents";
+import { useAuth } from "../contexts/AuthContext";
 
 const OverviewUser = () => {
 
-    const [addPlanData, setAddPlanData] = useState({
-        start: '',
-        planId: ''
-    });
+    const { user } = useAuth();
 
-    const [addRecipeData, setAddRecipeData] = useState({
-        day: '',
-        planId: ''
+    const { setLoading } = useFeedBack();
+
+    const [eventsFilters, setEventsFilters] = useState({
+        page: 1,
+        start: '',
+        end: '',
+        perPage: 100,
+        clientId: user?.id
     });
 
     const [showPlansModal, setShowPlansModal] = useState(false);
@@ -24,12 +33,12 @@ const OverviewUser = () => {
 
     const [plansFilters, setPlansFilters] = useState({
         page: 1,
-        perPage: 10
+        perPage: 100
     });
 
     const [recipesFilters, setRecipesFilters] = useState({
         page: 1,
-        perPage: 10,
+        perPage: 100,
         name: '',
         categoryIds: []
     });
@@ -38,163 +47,191 @@ const OverviewUser = () => {
 
     const [{ recipes, total, numberOfPages: recipesPages, loading: loadingRecipes }, getRecipes] = useRecipes({ params: { ...recipesFilters }, options: { useCache: false } });
 
-    const [currentEvents, setCurrentEvents] = useState([
-        { start: '2022-07-05', end: '2022-07-12', title: 'Adelgaza en 12 dias' },
-        { start: '2022-07-05', end: '2022-07-12', title: 'Adelgaza en 5 dias' },
-        { start: '2022-07-07 07:00:00', end: '2022-07-07 10:00:00', title: 'Arepa Frita' },
-        { start: '2022-07-07 18:00:00', end: '2022-07-07 21:00:00', title: 'Tacos al pastor' },
-        { start: '2022-07-01 12:00:00', end: '2022-07-01 15:00:00', title: 'Arroz Chino' },
-        { start: '2022-07-02 00:00:00', end: '2022-07-02 02:00:00', title: 'Arepa Frita' },
-    ])
+    const [{ data: addEventData, loading: addEventLoading }, addEvent] = useAxios({ url: `/events`, method: 'POST' }, { manual: true, useCache: false });
 
-    const handleLoadPlansOptions = async (e) => {
-        const getDataPlans = await getPlans({ params: { name: e, perPage: 100, page: 1 } });
-        console.log(getDataPlans);
-        const plansMapped = getDataPlans?.data?.results?.map((currentPlan) => {
-            return {
-                label: `${currentPlan?.name} - ${currentPlan?.seller?.name}`,
-                value: currentPlan?.id
+    const [{ events, loading: eventsLoading }, getEvents] = useEvents({ params: { ...eventsFilters }, options: { manual: true } });
+
+    const [currentEvents, setCurrentEvents] = useState([])
+
+    useEffect(() => {
+        if (eventsFilters?.start && eventsFilters?.end) {
+            getEvents({
+                params: {
+                    ...eventsFilters
+                }
+            });
+        }
+    }, [eventsFilters])
+
+    useEffect(() => {
+        if (events?.length > 0) {
+            setCurrentEvents(events);
+        }
+    }, [events])
+
+    useEffect(() => {
+        setLoading({
+            show: addEventLoading,
+            message: 'Loading'
+        });
+    }, [addEventLoading]);
+
+    useEffect(() => {
+        setLoading({
+            show: eventsLoading,
+            message: 'Loading'
+        });
+    }, [eventsLoading])
+
+    useEffect(() => {
+        if (addEventData) {
+            setCurrentEvents((oldEvents) => {
+                return [...oldEvents, addEventData];
+            })
+        }
+    }, [addEventData]);
+
+
+    useEffect(() => {
+        console.log('me ejecute');
+        let draggableEl = document.getElementById("external-events");
+        new Draggable(draggableEl, {
+            itemSelector: ".custom-event"
+        });
+    }, [])
+
+    const handleDateClick = (date) => {
+        console.log(date);
+    }
+
+    const handleChange = (e, entity) => {
+        if (entity === 'recipes') {
+            setRecipesFilters((oldFilters) => {
+                return {
+                    ...oldFilters,
+                    [e.target.name]: e.target.value,
+                    page: 1
+                }
+            })
+        }
+
+        if (entity === 'plans') {
+            setPlansFilters((oldFilters) => {
+                return {
+                    ...oldFilters,
+                    [e.target.name]: e.target.value,
+                    page: 1
+                }
+            })
+        }
+    }
+
+    const handleDrop = (dropInfo) => {
+
+        const eventableId = dropInfo?.draggedEl?.dataset?.recipeid || dropInfo?.draggedEl?.dataset?.planid;
+
+        const eventType = dropInfo?.draggedEl?.dataset?.recipeid ? 'recipeId' : 'planId';
+
+        const start = format(new Date(dropInfo?.date), 'yyyy-MM-dd');
+
+        console.log({
+            start,
+            eventType,
+            eventableId
+        });
+
+        addEvent({
+            data: {
+                [eventType]: eventableId,
+                start
             }
         });
-        return plansMapped;
+
     }
 
-    const handleLoadRecipesOptions = async (e) => {
-        const getDataRecipes = await getRecipes({ params: { name: e, perPage: 100, page: 1 } });
-        console.log(getDataRecipes);
-        const recipesMapped = getDataRecipes?.data?.results?.map((currentRecipe) => {
+    const handleDateInfo = (dateInfo) => {
+        setEventsFilters((oldEventsFilters) => {
             return {
-                label: `${currentRecipe?.name} - ${currentRecipe?.seller?.name}`,
-                value: currentRecipe?.id
+                ...oldEventsFilters,
+                start: dateInfo?.start,
+                end: dateInfo?.end
             }
         });
-        return recipesMapped;
-    }
 
-    const handleChangePlan = (e) => {
-        setAddPlanData((oldPlanData) => {
-            return {
-                ...oldPlanData,
-                [e.target.name]: e.target.value
-            }
-        });
-    }
-
-    const handleChangeRecipe = (e) => {
-        setAddRecipeData((oldRecipeData) => {
-            return {
-                ...oldRecipeData,
-                [e.target.name]: e.target.value
-            }
-        });
-    }
-
-    const handleSubmitPlan = (e) => {
-        e?.preventDefault();
-        console.log(addPlanData);
-    }
-
-    const handleSubmitRecipe = (e) => {
-        e?.preventDefault();
-        console.log(addRecipeData);
     }
 
     return (
-        <div className="container p-20 h-full w-full mb-20">
-            <p className="text-4xl font-bold text-black ">Overview</p>
-            <div className="flex justify-end space-x-8">
-                <button onClick={() => setShowPlansModal(true)} className="bg-main px-5 py-2 rounded text-white mb-2">
-                    Add Plan
-                </button>
-                <button onClick={() => setShowRecipesModal(true)} className="bg-main px-5 py-2 rounded text-white mb-2">
-                    Add Recipe
-                </button>
-            </div>
-            <FullCalendar
-                plugins={[dayGridPlugin]}
-                initialView="dayGridMonth"
-                events={currentEvents}
-            />
-            <Modal show={showPlansModal} onClose={() => setShowPlansModal(false)}>
-                <h1 className="text-center text-4xl font-semibold mb-4">Plans</h1>
-                <form onSubmit={handleSubmitPlan}>
-                    <div className="md:flex">
-                        <div className="w-full mb-4 md:mr-8 md:w-1/2">
-                            <p>Select the plan:</p>
-                            <AsyncSelect
-                                defaultOptions={plans?.map((plan) => {
-                                    return {
-                                        value: plan?.id,
-                                        label: `${plan?.name} - ${plan?.seller?.name}`
-                                    }
-                                })}
-                                onChange={(e) => { handleChangePlan({ target: { value: e?.value, name: 'planId' } }) }}
-                                loadOptions={handleLoadPlansOptions}
-                                placeholder='Name of the plan...'
-                            />
-                        </div>
-                        <div className="w-full md:ml-8 md:w-1/2">
-                            <p>Start from:</p>
-                            <input
-                                value={addPlanData?.start}
-                                onChange={handleChangePlan}
-                                name="start"
-                                type="date"
-                                className="rounded-lg border-gray-300 w-full p-0 h-9"
-                            />
-                        </div>
-                    </div>
-                    <div className="text-center mt-8 space-y-4 space-x-4 text-center">
-                        <button type="button" onClick={() => setShowPlansModal(false)} className="px-8 bg-main rounded py-2 hover:text-white">
-                            Cancel
-                        </button>
-                        <button className="px-8 bg-main rounded py-2 hover:text-white">
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </Modal>
+        <div className="container p-20 w-full mb-20">
+            <p className="text-4xl font-bold text-black mb-8">Overview</p>
 
-            <Modal show={showRecipesModal} onClose={() => setShowRecipesModal(false)}>
-                <h1 className="text-center text-4xl font-semibold mb-4">Recipes</h1>
-                <form onSubmit={handleSubmitRecipe}>
-                    <div className="md:flex">
-                        <div className="w-full mb-4 md:mr-8 md:w-1/2">
-                            <p>Select the recipe:</p>
-                            <AsyncSelect
-                                defaultOptions={recipes?.map((recipe) => {
-                                    return {
-                                        value: recipe?.id,
-                                        label: `${recipe?.name} - ${recipe?.seller?.name}`
-                                    }
-                                })}
-                                onChange={(e) => { handleChangePlan({ target: { value: e?.value, name: 'recipeId' } }) }}
-                                loadOptions={handleLoadRecipesOptions}
-                                placeholder='Name of the recipe...'
-                            />
-                        </div>
-                        <div className="w-full md:ml-8 md:w-1/2">
-                            <p>Select the day:</p>
-                            <input
-                                value={addRecipeData?.start}
-                                onChange={handleChangeRecipe}
-                                name="start"
-                                type="date"
-                                className="rounded-lg border-gray-300 w-full p-0 h-9"
-                            />
-                        </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
+                <div id="external-events" className="shadow bg-white p-4 rounded-xl">
+                    <h3 className="mb-4 text-2xl font-bold">
+                        Recipes
+                    </h3>
+                    <input style={{ backgroundColor: '#F0F0F0', border: 'none', outline: 'none' }}
+                        type="text"
+                        name="name"
+                        onChange={(e) => { handleChange(e, 'recipes') }}
+                        placeholder="Recipe name..."
+                        className="w-full mb-4 rounded-xl focus:outline-none focus:ring-main"
+                    />
+                    <div style={{ height: '300px', overflowY: 'auto', backgroundColor: '#F0F0F0' }} className="custom-scrollbar custom-scrollbar-main p-4 rounded">
+                        {recipes?.map((recipe, i) => {
+                            return (
+                                <div data-recipeid={recipe?.id} data-recipename={recipe?.name} key={i} className="custom-event py-2 px-4 my-2 bg-main rounded-xl text-white" style={{ cursor: 'pointer' }}>
+                                    {recipe?.name}
+                                </div>
+                            )
+                        })}
+                        {
+                            loadingRecipes &&
+                            <p className="text-center">
+                                Loading...
+                            </p>
+                        }
                     </div>
-                    <div className="text-center mt-8 space-y-4 space-x-4 text-center">
-                        <button type="button" onClick={() => setShowRecipesModal(false)} className="px-8 bg-main rounded py-2 hover:text-white">
-                            Cancel
-                        </button>
-                        <button className="px-8 bg-main rounded py-2 hover:text-white">
-                            Submit
-                        </button>
+
+                    <h3 className="my-4 text-2xl font-bold">
+                        Plans
+                    </h3>
+                    <input style={{ backgroundColor: '#F0F0F0', border: 'none', outline: 'none' }}
+                        type="text"
+                        name="name"
+                        onChange={(e) => { handleChange(e, 'plans') }}
+                        placeholder="Plan name..."
+                        className="w-full mb-4 rounded-xl focus:outline-none focus:ring-main"
+                    />
+
+                    <div style={{ height: '300px', overflowY: 'auto', backgroundColor: '#F0F0F0' }} className="custom-scrollbar custom-scrollbar-main p-4 rounded">
+                        {plans?.map((plan, i) => {
+                            return (
+                                <div data-planid={plan?.id} data-planname={plan?.name} key={i} className="custom-event py-2 px-4 my-2 bg-main rounded-xl text-white" style={{ cursor: 'pointer' }}>
+                                    {plan?.name}
+                                </div>
+                            )
+                        })}
+                        {
+                            loadingPlans &&
+                            <p className="text-center">
+                                Loading...
+                            </p>
+                        }
                     </div>
-                </form>
-            </Modal>
-        </div>
+                </div>
+                <div className="md:col-span-3">
+                    <FullCalendar
+                        datesSet={handleDateInfo}
+                        dateClick={handleDateClick}
+                        plugins={[dayGridPlugin, interactionPlugin]}
+                        initialView="dayGridMonth"
+                        droppable
+                        drop={handleDrop}
+                        events={currentEvents}
+                    />
+                </div>
+            </div>
+        </div >
     );
 }
 
