@@ -10,8 +10,12 @@ import SystemInfo from "../util/SystemInfo";
 import useCombos from "../hooks/useCombos";
 import Pagination from "../componentes/Pagination";
 import imgUrl from "../helpers/imgUrl";
+import { useAuth } from "../contexts/AuthContext";
 
 const Combos = () => {
+
+  const { user } = useAuth();
+
   const [showModalMenu, setShowModalMenu] = useState(false);
 
   const [searchParams] = useSearchParams();
@@ -20,7 +24,8 @@ const Combos = () => {
     page: 1,
     perPage: 12,
     name: '',
-    categoryIds: []
+    categoryIds: [],
+    hideFavoritedForClientId: user?.id,
   });
 
   const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { ...combosFilters }, options: { useCache: false } });
