@@ -9,17 +9,21 @@ import Pagination from "../componentes/Pagination";
 import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
 import imgUrl from "../helpers/imgUrl";
+import { useAuth } from "../contexts/AuthContext";
 
 
 const Recipes = () => {
 
+  const { user } = useAuth();
+  
   const [showModalMenu, setShowModalMenu] = useState(false);
 
   const [recipesFilters, setRecipesFilters] = useState({
     page: 1,
     perPage: 12,
     name: '',
-    categoryIds: []
+    categoryIds: [],
+    hideFavoritedForClientId: user?.id,
   });
 
 
