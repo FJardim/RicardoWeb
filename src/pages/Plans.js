@@ -9,8 +9,11 @@ import Pagination from "../componentes/Pagination";
 import WeightPlan from "../componentes/WeightPlan";
 import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
+import { useAuth } from "../contexts/AuthContext";
 
 const Plans = () => {
+
+  const { user } = useAuth();
 
   const [showModalMenu, setShowModalMenu] = useState(false);
 
@@ -20,7 +23,8 @@ const Plans = () => {
     page: 1,
     perPage: 9,
     name: '',
-    categoryIds: []
+    categoryIds: [],
+    hideFavoritedForClientId: user?.id,
   });
 
   const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } });
