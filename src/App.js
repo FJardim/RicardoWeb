@@ -30,6 +30,8 @@ import PlansSellers from "./pages/PlansSellers";
 import Comments from "./pages/Comments";
 import Chats from "./pages/Chats";
 import ChatsDetails from "./pages/ChatsDetails";
+import MyPlans from "./pages/MyPlans";
+import MyPlansCreate from "./pages/MyPlansCreate";
 
 function App() {
   return (
@@ -68,6 +70,8 @@ function App() {
               <Route path="/contactus" element={<Contactus />} />
               <Route path="/saves" element={<Saves />} />
               <Route path="/meanplanoverview" element={<MealPlanOverview />} />
+              <Route path="/my-plans" element={<MyPlans />} />
+              <Route path="/my-plans/create" element={<MyPlansCreate />} />
             </Route>
           </Routes>
         </AppLayout>

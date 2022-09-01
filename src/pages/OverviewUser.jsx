@@ -14,6 +14,9 @@ import Modal from "../componentes/Modal/Modal";
 import DateFormatter from "../componentes/DateFormatter";
 import imgUrl from "../helpers/imgUrl";
 import { Link } from 'react-router-dom';
+import ShowRecipeRow from "../componentes/ShowRecipeRow";
+import ModalOverlay from "../componentes/Modal/ModalOverlay";
+import ModalContainer from "../componentes/Modal/ModalContainer";
 
 const OverviewUser = () => {
 
@@ -23,6 +26,8 @@ const OverviewUser = () => {
 
     const [selectedEvent, setSelectedEvent] = useState(null);
 
+    const [showPreparation, setShowPreparation] = useState(false);
+
     const [eventsFilters, setEventsFilters] = useState({
         page: 1,
         start: '',
@@ -31,20 +36,18 @@ const OverviewUser = () => {
         clientId: user?.id
     });
 
-    const [showPlansModal, setShowPlansModal] = useState(false);
-
-    const [showRecipesModal, setShowRecipesModal] = useState(false);
-
     const [plansFilters, setPlansFilters] = useState({
         page: 1,
-        perPage: 100
+        perPage: 100,
+        name: ''
     });
+
+    const [selectedDayEvents, setSelectedDayEvents] = useState(null);
 
     const [recipesFilters, setRecipesFilters] = useState({
         page: 1,
         perPage: 100,
-        name: '',
-        categoryIds: []
+        name: ''
     });
 
     const [{ plans, numberOfPages: plansPages, loading: loadingPlans }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } });
@@ -53,13 +56,15 @@ const OverviewUser = () => {
 
     const [{ data: addEventData, loading: addEventLoading }, addEvent] = useAxios({ url: `/events`, method: 'POST' }, { manual: true, useCache: false });
 
-    const [{ data: removeEventData, loading: removeEventLoading }, removeEvent] = useAxios({ url: ``, method: 'DELETE' }, { manual: true, useCache: false });
+    const [{ loading: removeEventLoading }, removeEvent] = useAxios({ url: ``, method: 'DELETE' }, { manual: true, useCache: false });
 
-    const [{ data: eventableData, loading: eventableLoading }, getEventable] = useAxios({ url: `` }, { manual: true, useCache: false });
+    const [{ }, getEventable] = useAxios({ url: `` }, { manual: true, useCache: false });
+
+    const [{ }, getDayEvents] = useAxios({ url: `` }, { manual: true, useCache: false });
 
     const [{ events, loading: eventsLoading }, getEvents] = useEvents({ params: { ...eventsFilters }, options: { manual: true } });
 
-    const [currentEvents, setCurrentEvents] = useState([]);    
+    const [currentEvents, setCurrentEvents] = useState([]);
 
     useEffect(() => {
         if (eventsFilters?.start && eventsFilters?.end) {
@@ -108,8 +113,23 @@ const OverviewUser = () => {
         });
     }, [])
 
-    const handleDateClick = (date) => {
-        console.log(date);
+    const handleDateClick = async (dateInfo) => {
+        setLoading({
+            show: true,
+            message: 'Loading'
+        });
+        const response = await getDayEvents({ url: `/events/recipes?date=${dateInfo?.dateStr}` });
+
+        setLoading({
+            show: false,
+            message: 'Loading'
+        });
+
+        setSelectedDayEvents({
+            recipes: response?.data,
+            date: dateInfo?.date
+        });
+
     }
 
     const handleChange = (e, entity) => {
@@ -158,7 +178,6 @@ const OverviewUser = () => {
     }
 
     const handleEventClick = async (e) => {
-        console.log(e);
 
         setLoading({
             show: true,
@@ -184,6 +203,7 @@ const OverviewUser = () => {
             isPlan: e?.event?._def?.extendedProps?.plan ? true : false,
             eventId: e?.event?._def?.publicId
         };
+        console.log(clickedEvent);
         setSelectedEvent(clickedEvent);
     }
 
@@ -281,85 +301,163 @@ const OverviewUser = () => {
                     />
                 </div>
             </div>
-            <Modal show={selectedEvent} onClose={() => setSelectedEvent(null)}>
-                <h1 className="text-center font-bold text-xl mb-4">
-                    {selectedEvent?.name}
-                </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-                    <div className="text-center">
-                        <h1 className="mb-4 font-semibold">Start:</h1>
-                        <div className="bg-main text-white px-8 py-2 rounded-xl">
-                            <DateFormatter dateFormat="dd/MM/yyyy" value={selectedEvent?.start} />
+            <ModalOverlay
+                show={selectedEvent}
+                onClose={() => {
+                    setSelectedEvent(null);
+                    setShowPreparation(false);
+                }}
+            >
+                <ModalContainer
+                    widthClass={showPreparation ? 'w-11/12 md:w-4/12' : `w-11/12 md:w-1/2`}
+                    style={{
+                        transition: 'all .3s'
+                    }}
+                    onClose={() => {
+                        setSelectedEvent(null);
+                        setShowPreparation(false);
+                    }}
+                >
+                    <h1 className="text-center font-bold text-xl mb-4">
+                        {selectedEvent?.name}
+                    </h1>
+                    <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
+                        <div className="text-center">
+                            <h1 className="mb-4 font-semibold">Start:</h1>
+                            <div className="bg-main text-white px-8 py-2 rounded-xl">
+                                <DateFormatter dateFormat="dd/MM/yyyy" value={selectedEvent?.start} />
+                            </div>
+                        </div>
+                        <div className="text-center">
+                            <h1 className="mb-4 font-semibold">End:</h1>
+                            <div className="bg-main text-white px-8 py-2 rounded-xl">
+                                <DateFormatter dateFormat="dd/MM/yyyy" value={selectedEvent?.end || selectedEvent?.start} />
+                            </div>
                         </div>
                     </div>
-                    <div className="text-center">
-                        <h1 className="mb-4 font-semibold">End:</h1>
-                        <div className="bg-main text-white px-8 py-2 rounded-xl">
-                            <DateFormatter dateFormat="dd/MM/yyyy" value={selectedEvent?.end || selectedEvent?.start} />
-                        </div>
-                    </div>
-                </div>
-                {
-                    selectedEvent?.isPlan ?
-                        <div className="mt-8">
-                            <h1 className="mb-4 font-semibold">
-                                Included Recipes:
-                            </h1>
-                            <div className="flex w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
-                                {selectedEvent?.uniqueRecipes?.map?.((recipe, i) => {
-                                    return (
-                                        <Link to={`/recipes/${recipe?.slug}`} style={{ maxWidth: '60px', overflow: 'hidden' }} title={recipe?.name} key={i}>
-                                            <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(recipe?.images?.[0]?.path)} alt="" srcset="" />
-                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{recipe?.name}</small>
-                                        </Link>
-                                    )
-                                })}
+                    {
+                        selectedEvent?.isPlan ?
+                            <div className="mt-8">
+                                <h1 className="mb-4 font-semibold">
+                                    Included Recipes:
+                                </h1>
+                                <div className="flex w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
+                                    {selectedEvent?.uniqueRecipes?.map?.((recipe, i) => {
+                                        return (
+                                            <Link to={`/recipes/${recipe?.slug}`} style={{ maxWidth: '60px', overflow: 'hidden' }} title={recipe?.name} key={i}>
+                                                <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(recipe?.images?.[0]?.path)} alt="" srcset="" />
+                                                <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{recipe?.name}</small>
+                                            </Link>
+                                        )
+                                    })}
+                                </div>
+                                <h1 className="mt-8 mb-4 font-semibold">
+                                    Plan´s ingredients:
+                                </h1>
+                                <div className="flex space-x-4 w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
+                                    {selectedEvent?.uniqueIngredients?.map?.((ingredient, i) => {
+                                        return (
+                                            <div className="text-center" style={{ maxWidth: '60px', overflow: 'hidden' }} title={ingredient?.name} key={i}>
+                                                <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(ingredient?.icon)} alt="" srcset="" />
+                                                <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.name}</small>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
-                            <h1 className="mt-8 mb-4 font-semibold">
-                                Plan´s ingredients:
-                            </h1>
-                            <div className="flex space-x-4 w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
-                                {selectedEvent?.uniqueIngredients?.map?.((ingredient, i) => {
-                                    return (
-                                        <div className="text-center" style={{ maxWidth: '60px', overflow: 'hidden' }} title={ingredient?.name} key={i}>
-                                            <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(ingredient?.icon)} alt="" srcset="" />
-                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.name}</small>
-                                        </div>
-                                    )
-                                })}
+                            :
+                            <div className="mt-8">
+                                <h1 className="mt-8 mb-4 font-semibold">
+                                    Recipe´s ingredients:
+                                </h1>
+                                <div className="flex space-x-4 w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
+                                    {selectedEvent?.recipeIngredients?.map?.((ingredient, i) => {
+                                        return (
+                                            <div className="text-center" title={ingredient?.ingredient?.name} key={i}>
+                                                <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(ingredient?.ingredient?.icon)} alt="" srcset="" />
+                                                <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.ingredient?.name}</small>
+                                                <br />
+                                                <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.value} {ingredient?.measurementUnit?.name}</small>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                        :
-                        <div className="mt-8">
-                            <h1 className="mt-8 mb-4 font-semibold">
-                                Recipe´s ingredients:
-                            </h1>
-                            <div className="flex space-x-4 w-full items-center custom-scrollbar custom-scrollbar-main" style={{ overflowX: 'auto' }}>
-                                {selectedEvent?.recipeIngredients?.map?.((ingredient, i) => {
-                                    return (
-                                        <div className="text-center" title={ingredient?.ingredient?.name} key={i}>
-                                            <img className="rounded-full m-auto" style={{ height: '40px', width: '40px' }} src={imgUrl(ingredient?.ingredient?.icon)} alt="" srcset="" />
-                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.ingredient?.name}</small>
-                                            <br />
-                                            <small className="m-auto text-center" style={{ whiteSpace: 'nowrap' }}>{ingredient?.value} {ingredient?.measurementUnit?.name}</small>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                }
-                <div className="text-center">
-                    <button onClick={handleRemove} disabled={removeEventLoading} className="bg-red-500 text-white mt-8 px-8 py-2 rounded-xl transition duration-500 hover:bg-white hover:text-main">
+                    }
+                    <div className="text-center space-x-4">
+                        <button onClick={handleRemove} disabled={removeEventLoading} className="bg-red-500 text-white mt-8 px-8 py-2 rounded-xl transition duration-500 hover:bg-white hover:text-main">
+                            {
+                                removeEventLoading ?
+                                    'Loading'
+                                    :
+                                    'Remove from calendar'
+                            }
+                        </button>
                         {
-                            removeEventLoading ?
-                                'Loading'
-                                :
-                                'Remove from calendar'
+                            !selectedEvent?.isPlan &&
+                            <button
+                                onClick={() => setShowPreparation((old) => !old)}
+                                className="bg-main text-white mt-8 px-8 py-2 rounded-xl transition duration-500 hover:bg-white hover:text-main">
+                                {
+                                    showPreparation ?
+                                        'Hide Preparation'
+                                        :
+                                        'Show Preparation'
+                                }
+                            </button>
                         }
-                    </button>
+                    </div>
+                </ModalContainer>
+                <ModalContainer
+                    onClose={() => setShowPreparation(false)}
+                    widthClass='mt-8 md:mt-auto w-full md:w-7/12 custom-scrollbar  custom-scrollbar-main'
+                    animation="animate__fadeInDown"
+                    style={{
+                        display: showPreparation ? 'block' : 'none',
+                        transition: 'all .3s'
+                    }}
+                >
+                    <h1 className="text-2xl font-bold">
+                        Preparation
+                    </h1>
+                    {
+                        selectedEvent?.recipeSteps?.map((step, i) => {
+                            return (
+                                <div key={i} className="my-4">
+                                    <h1 className="text-xl">
+                                        Step: {i + 1}
+                                    </h1>
+                                    <p className="text-gray-400">
+                                        {step?.content}
+                                    </p>
+                                </div>
+                            )
+                        })
+                    }
+                </ModalContainer>
+            </ModalOverlay>
+
+            <Modal show={selectedDayEvents} onClose={() => setSelectedDayEvents(null)}>
+                <div style={{ maxHeight: '70vh', overflowY: 'auto' }} className="custom-scrollbar custom-scrollbar-main">
+                    <h1 className="text-center font-bold text-xl mb-4">
+                        Summary of the day:
+                    </h1>
+                    <p className="text-center">
+                        <DateFormatter value={selectedDayEvents?.date} dateFormat='dd/MM/yyyy' />
+                    </p>
+                    <div className="mt-8">
+                        <h1 className="mt-8 mb-4 font-semibold">
+                            Day´s Recipes:
+                        </h1>
+                        {selectedDayEvents?.recipes?.map?.((recipe, i) => {
+                            return (
+                                <ShowRecipeRow recipe={recipe} key={i} />
+                            )
+                        })}
+                    </div>
                 </div>
             </Modal>
-        </div>
+        </div >
     );
 }
 
