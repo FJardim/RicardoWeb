@@ -18,7 +18,6 @@ const MyAccountLayout = () => {
 
     useEffect(() => {
         setCurrentPath(location?.pathname);
-        console.log(location);
     }, [location]);
 
     const handleLougoutClick = (e) => {

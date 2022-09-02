@@ -25,7 +25,6 @@
     "react-select": "^5.4.0",
     "react-toastify": "^9.0.1",
     "react-tooltip": "^4.2.21",
-    "react-twitch-embed-video": "^3.0.2",
     "swiper": "^8.1.4",
     "web-vitals": "^2.1.4"
   },
