@@ -8,7 +8,9 @@ export const CreatePlanProvider = ({ children }) => {
   const [data, setData] = useState({
     name: '',
     description: '',
-    categoryIds: []
+    categoryIds: [],
+    weekDays: [],
+    images: []
   });
 
   return <CreatePlanContext.Provider value={{

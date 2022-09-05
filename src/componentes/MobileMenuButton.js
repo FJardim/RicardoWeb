@@ -8,7 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { BsFillBookmarkHeartFill, BsFillGearFill, BsFillCalendar2MinusFill } from "react-icons/bs";
 import { RiMessage2Fill } from "react-icons/ri";
 import { FaListAlt } from "react-icons/fa";
-import { IoHeart, IoHelpCircleOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { IoHeart, IoHelpCircleOutline, IoChatbubbleEllipsesOutline, IoBookmarksSharp } from "react-icons/io5";
 
 const MobileMenuButton = () => {
 
@@ -89,6 +89,12 @@ const MobileMenuButton = () => {
                                     <Link to={'/contactus'} className="flex items-center space-x-2 hover:text-main">
                                         <RiMessage2Fill className="w-6 h-6" />
                                         <span className="text-lg">Comments</span>
+                                    </Link>
+                                </li>
+                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
+                                    <Link to={'/my-plans'} className="flex items-center space-x-2 hover:text-main">
+                                        <IoBookmarksSharp className="w-6 h-6" />
+                                        <span className="text-lg">My Plans</span>
                                     </Link>
                                 </li>
                                 <li className="py-2 border-b" style={{ minWidth: '180px' }}>

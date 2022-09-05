@@ -49,10 +49,10 @@ const Pagination = ({ pages, onChange, activePage, className }) => {
   }
 
   useEffect(() => {
-    if (activePage === pages) {
-      setCanNext(false);
-    } else {
+    if (activePage < pages) {
       setCanNext(true);
+    } else {
+      setCanNext(false);
     }
 
     if (activePage > 1) {
@@ -60,7 +60,7 @@ const Pagination = ({ pages, onChange, activePage, className }) => {
     } else {
       setCanBack(false);
     }
-  }, [activePage, setCanNext, setCanBack, pages])
+  }, [activePage, pages])
 
   if (pages === 1) {
     return null;
@@ -69,7 +69,14 @@ const Pagination = ({ pages, onChange, activePage, className }) => {
   return <ul className={`hidden-scrollbar flex items-center space-x-2 ${className}`} style={{ maxWidth: '100%', overflowX: 'auto', scrollBehavior: 'none' }}>
     <li>
       <p>
-        <NavigationButton hidden={!canBack} disable={!canBack} onClick={() => { backPage(activePage - 1) }} color="main" className="text-xl hover:text-gray-500 transition duraion-500 transform hover:scale-150" icon={<IoChevronBack />}></NavigationButton>
+        <NavigationButton
+          hidden={!canBack}
+          disable={!canBack}
+          onClick={() => { backPage(activePage - 1) }}
+          color="main"
+          className="text-xl hover:text-gray-500 transition duraion-500 transform hover:scale-150"
+          icon={<IoChevronBack />}
+        />
       </p>
     </li>
     {pages
