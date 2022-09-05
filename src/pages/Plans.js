@@ -25,6 +25,7 @@ const Plans = () => {
     name: '',
     categoryIds: [],
     hideFavoritedForClientId: user?.id,
+    hideClientPlans: 'true',
   });
 
   const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } });
