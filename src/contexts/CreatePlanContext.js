@@ -9,7 +9,8 @@ export const CreatePlanProvider = ({ children }) => {
     name: '',
     description: '',
     categoryIds: [],
-    weekDays: []
+    weekDays: [],
+    images: []
   });
 
   return <CreatePlanContext.Provider value={{

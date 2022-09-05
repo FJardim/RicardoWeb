@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useTabs } from "../contexts/TabsContext";
 
-const Tab = ({ children, value, onClick }) => {
+const Tab = ({ children, value, onClick, canContinue = true }) => {
     const { value: contextValue, setValue } = useTabs();
 
     return <div
@@ -10,8 +10,10 @@ const Tab = ({ children, value, onClick }) => {
             { 'border-b-2 border-main': value === contextValue }
         ])}
         onClick={() => {
-            setValue(value);
-            onClick?.(value);
+            if (canContinue) {
+                setValue(value);
+                onClick?.(value);
+            }
         }}
     >
         {children}

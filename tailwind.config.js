@@ -1,5 +1,11 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{html,js,jsx}"],
+  screens: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px'
+  },
   theme: {
     backgroundSize: {
       auto: 'auto',
