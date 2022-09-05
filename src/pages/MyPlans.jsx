@@ -6,6 +6,7 @@ import { IoCreate, IoTrashBinSharp } from "react-icons/io5";
 import Pagination from "../componentes/Pagination";
 import useAxios from "../hooks/useAxios";
 import Modal from "../componentes/Modal/Modal";
+import { format } from "date-fns";
 
 const MyPlans = () => {
 
@@ -18,7 +19,7 @@ const MyPlans = () => {
         clientId: user?.id
     });
 
-    const [{ plans, total, numberOfPages, size, error, loading: plansLoading }, getPlans] = usePlans({ params: { ...plansFilters, clientId: user?.id } });
+    const [{ plans, total, numberOfPages, size, error, loading }, getPlans] = usePlans({ params: { ...plansFilters, clientId: user?.id } });
 
     const [{ loading: deletePlanLoading }, deletePlan] = useAxios({ method: 'DELETE' }, { manual: true, useCache: false });
 
@@ -41,50 +42,73 @@ const MyPlans = () => {
                     Create Plan
                 </Link>
             </div>
-            <table className="w-full bg-white rounded shadow">
-                <thead>
-                    <tr>
-                        <th className="py-4">id</th>
-                        <th className="py-4">name</th>
-                        <th className="py-4">Categories</th>
-                        <th className="py-4">Actions</th>
-                    </tr>
-                </thead>
-                <tbody className="text-center">
-                    {
-                        plansLoading ?
-                            <tr>
-                                <td colSpan={4} className="text-center py-8">
-                                    Loading...
-                                </td>
-                            </tr>
-                            :
-                            plans?.map((plan, i) => {
-                                return (
-                                    <tr key={i}>
-                                        <td className="py-8">
-                                            {plan?.id}
-                                        </td>
-                                        <td className="py-8">
-                                            {plan?.name}
-                                        </td>
-                                        <td className="py-8">
-                                            {plan?.categories?.map(category => category?.name).join(', ')}
-                                        </td>
-                                        <td className="py-8 flex items-center justify-center space-x-4">
-                                            <Link to={`/my-plans/${plan?.id}`} title="Edit">
-                                                <IoCreate className="text-4xl text-main" />
-                                            </Link>
-                                            <button onClick={() => setPlanIdToDelete(plan?.id)} type="button" title="Delete">
-                                                <IoTrashBinSharp className="text-4xl text-red-500" />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                    }
-                </tbody>
-            </table>
+            <div className="flex flex-col">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="py-2 inline-block w-full">
+                        <table className="w-full">
+                            <thead className="border-b">
+                                <tr>
+                                    <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                        #
+                                    </th>
+                                    <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                        Name
+                                    </th>
+                                    <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                        Categories
+                                    </th>
+                                    <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    loading ?
+                                        <tr>
+                                            <td colSpan={5} className="text-4xl text-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                Loading...
+                                            </td>
+                                        </tr>
+                                        :
+                                        plans?.length > 0 ?
+                                            plans?.map((plan, i) => {
+                                                return (
+                                                    <tr className="border-b text-center" key={i}>
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                            {plan?.id}
+                                                        </td>
+                                                        <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
+                                                            <Link className="font-bold text-main hover:text-gray-400" to={`/my-plans/${plan?.id}`}>
+                                                                {plan?.name}
+                                                            </Link>
+                                                        </td>
+                                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                            {plan?.categories?.map?.(category => category?.name)?.join(', ')}
+                                                        </td>
+                                                        <td className="text-sm font-light px-6 py-4 whitespace-nowrap space-x-4">
+                                                            <Link className="font-bold text-main hover:text-gray-400" to={`/my-plans/${plan?.id}`}>
+                                                                Edit
+                                                            </Link>
+                                                            <button type="button" onClick={() => setPlanIdToDelete(plan?.id)} className="text-red-500 font-bold text-main hover:text-gray-400">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                            :
+                                            <tr className="border-b">
+                                                <td colSpan={4} className="text-center text-red-500 px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    No results found. 😔
+                                                </td>
+                                            </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <br />
             <br />
             <div className="flex w-full justify-center">

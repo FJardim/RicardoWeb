@@ -95,10 +95,10 @@ const ChatsDetails = () => {
                 {
                     currentMessages?.map?.((message, i) => {
                         return (
-                            <div key={i} className={clsx(["flex my-2 w-2/3"], {
+                            <div key={i} className={clsx(["flex my-2 w-full"], {
                                 "justify-end": user?.id === message?.userId
                             })}>
-                                <div className={clsx(["shadow py-2 px-8 rounded-full"], {
+                                <div className={clsx(["shadow py-2 px-8 rounded-full text-sm md:text-md"], {
                                     "bg-white": user?.id !== message?.userId,
                                     "bg-main text-white text-right": user?.id == message?.userId
                                 })}>
