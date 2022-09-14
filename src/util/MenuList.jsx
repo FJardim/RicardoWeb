@@ -1,6 +1,6 @@
 import { BsFillBookmarkHeartFill, BsFillCalendar2MinusFill, BsFillGearFill, BsFillHeartFill } from "react-icons/bs";
 import { FaListAlt } from "react-icons/fa";
-import { IoHelpCircleOutline, IoChatbubbleEllipsesOutline, IoBookmarksSharp, IoPersonCircleSharp } from "react-icons/io5";
+import { IoHelpCircleOutline, IoChatbubbleEllipsesOutline, IoBookmarksSharp, IoPersonCircleSharp, IoDocument } from "react-icons/io5";
 import { RiMessage2Fill } from "react-icons/ri";
 
 const MenuList = [
@@ -33,6 +33,11 @@ const MenuList = [
         name: 'My Shopping List',
         url: '/shopping',
         Icon: ({ className }) => <FaListAlt className={className} />
+    },
+    {
+        name: 'My Orders',
+        url: '/orders',
+        Icon: ({ className }) => <IoDocument className={className} />
     },
     {
         name: 'Chats',
