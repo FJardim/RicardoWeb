@@ -54,6 +54,9 @@ const Orders = () => {
                                             Total
                                         </th>
                                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                            Status
+                                        </th>
+                                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                             Created At
                                         </th>
                                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -65,7 +68,7 @@ const Orders = () => {
                                     {
                                         loading ?
                                             <tr>
-                                                <td colSpan={4} className="text-4xl text-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                <td colSpan={6} className="text-4xl text-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     Loading...
                                                 </td>
                                             </tr>
@@ -84,6 +87,11 @@ const Orders = () => {
                                                             </td>
                                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                                 {order?.total ? `$${order?.total}` : 'Free'}
+                                                            </td>
+                                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                                <p style={{ color: order?.orderStatus?.color }} className="capitalize font-bold">
+                                                                    {order?.orderStatus?.name}
+                                                                </p>
                                                             </td>
                                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                                 {order?.createdAt && format(new Date(order?.createdAt), 'dd-MM-yyyy')}

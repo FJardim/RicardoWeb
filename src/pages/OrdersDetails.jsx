@@ -52,6 +52,9 @@ const OrdersDetails = () => {
                                             <h1>
                                                 <b>Payment Method</b>
                                             </h1>
+                                            {
+                                                currentOrder?.payment?.paymentMethod?.name || '--'
+                                            }
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             <h1>
