@@ -4,7 +4,7 @@ import useAxios from './useAxios';
 const useOrders = ({ options, axiosConfig } = {}) => {
   const [{ data, error, loading }, getOrders] = useAxios({ url: '/orders', ...axiosConfig }, options);
 
-  const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState([]);
 
   const [total, setTotal] = useState(0);
 
@@ -15,9 +15,9 @@ const useOrders = ({ options, axiosConfig } = {}) => {
   useEffect(() => {
     if (data) {
       setOrders(data.results);
-      setTotal(data.total);
-      setSize(data.size);
-      setNumberOfPages(data.numberOfPages);
+      setTotal(data?.total);
+      setSize(data?.size);
+      setNumberOfPages(data?.numberOfPages);
     }
 
   }, [data, loading, error]);

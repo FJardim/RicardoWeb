@@ -107,10 +107,12 @@ const RecipesDetail = () => {
       return;
     }
 
-    addComment({ data: {
-      recipeId: recipe?.id,
-      comment
-    }});
+    addComment({
+      data: {
+        recipeId: recipe?.id,
+        comment
+      }
+    });
   }
 
   return (
@@ -131,12 +133,15 @@ const RecipesDetail = () => {
             onSaveClicked={handleSavedClicked}
             saved={recipe?.saved}
             type={favoriteTypes.RECIPE}
-            // description={recipe?.shortDescription}
+            // description={recipe?.shortDescription}            
             detailsLabel={"Ingredients:"}
             details={[
-              ...recipe?.recipeIngredients.map(({ingredient, measurementUnit, value}) => `${ingredient.name} ${value} ${measurementUnit.name}`) ?? [],
+              ...recipe?.recipeIngredients.map(({ ingredient, measurementUnit, value }) => `${ingredient.name} ${value} ${measurementUnit.name}`) ?? [],
             ]}
-            isPremiun={recipe?.isPremiun}
+            isPremiun={recipe?.isPremium}
+            sellerId={recipe?.seller?.id}
+            productId={recipe?.id}
+            productType="recipe"
           />
         </div>
 

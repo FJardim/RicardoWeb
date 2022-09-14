@@ -33,6 +33,9 @@ import ChatsDetails from "./pages/ChatsDetails";
 import MyPlans from "./pages/MyPlans";
 import MyPlansCreate from "./pages/MyPlansCreate";
 import MyPlansUpdate from "./pages/MyPlansUpdate";
+import OrdersCapture from "./pages/OrdersCapture";
+import Orders from "./pages/Orders";
+import OrdersDetails from "./pages/OrdersDetails";
 
 function App() {
   return (
@@ -74,6 +77,9 @@ function App() {
               <Route path="/my-plans" element={<MyPlans />} />
               <Route path="/my-plans/create" element={<MyPlansCreate />} />
               <Route path="/my-plans/:id" element={<MyPlansUpdate />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/orders/:id" element={<OrdersDetails />} />
+              <Route path="/orders/capture-order" element={<OrdersCapture />} />
             </Route>
           </Routes>
         </AppLayout>
