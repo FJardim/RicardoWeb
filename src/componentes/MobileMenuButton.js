@@ -9,6 +9,7 @@ import { BsFillBookmarkHeartFill, BsFillGearFill, BsFillCalendar2MinusFill } fro
 import { RiMessage2Fill } from "react-icons/ri";
 import { FaListAlt } from "react-icons/fa";
 import { IoHeart, IoHelpCircleOutline, IoChatbubbleEllipsesOutline, IoBookmarksSharp } from "react-icons/io5";
+import MenuList from "../util/MenuList";
 
 const MobileMenuButton = () => {
 
@@ -39,71 +40,16 @@ const MobileMenuButton = () => {
                 <ul className="md:hidden absolute right-0 bg-black text-white px-2 py-2 z-20 rounded animate__animated animate__fadeIn" style={{ top: '100%' }}>
                     {
                         user ?
-
-                            <div>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={"/accountinfo"} className="flex items-center space-x-2 hover:text-main">
-                                        <FaUserCircle className="w-6 h-6" />
-                                        <span className="text-lg">My Profile</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={"/configuration"} className="flex items-center space-x-2 hover:text-main">
-                                        <BsFillGearFill className="w-6 h-6" />
-                                        <span className="text-lg">Setting</span>
-                                    </Link>
-
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/overview'} className="flex items-center space-x-2 hover:text-main">
-                                        <BsFillCalendar2MinusFill className="w-6 h-6" />
-                                        <span className="text-lg">Overview</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={"/favorites"} className="flex items-center space-x-2 hover:text-main">
-                                        <IoHeart className="w-6 h-6" />
-                                        <span className="text-lg">My Favorites</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/saves'} className="flex items-center space-x-2 hover:text-main">
-                                        <BsFillBookmarkHeartFill className="w-6 h-6" />
-                                        <span className="text-lg">Saved</span>
-
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/shopping'} className="flex items-center space-x-2 hover:text-main">
-                                        <FaListAlt className="w-6 h-6" />
-                                        <span className="text-lg">My Shopping List</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/chats'} className="flex items-center space-x-2 hover:text-main">
-                                        <IoChatbubbleEllipsesOutline className="w-6 h-6" />
-                                        <span className="text-lg">Chats</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/contactus'} className="flex items-center space-x-2 hover:text-main">
-                                        <RiMessage2Fill className="w-6 h-6" />
-                                        <span className="text-lg">Comments</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/my-plans'} className="flex items-center space-x-2 hover:text-main">
-                                        <IoBookmarksSharp className="w-6 h-6" />
-                                        <span className="text-lg">My Plans</span>
-                                    </Link>
-                                </li>
-                                <li className="py-2 border-b" style={{ minWidth: '180px' }}>
-                                    <Link to={'/contactus'} className="flex items-center space-x-2 hover:text-main">
-                                        <IoHelpCircleOutline className="w-6 h-6" />
-                                        <span className="text-lg">Contact</span>
-                                    </Link>
-                                </li>
-                            </div>
+                            MenuList?.map(({ name, Icon, url }, i) => {
+                                return (
+                                    <li className="py-2 border-b" style={{ minWidth: '180px' }} key={i}>
+                                        <Link to={url} className="flex items-center space-x-2 hover:text-main">
+                                            <Icon className="w-6 h-6" />
+                                            <span className="text-lg">{name}</span>
+                                        </Link>
+                                    </li>
+                                )
+                            })
                             :
                             <li className="py-2 border-b" style={{ minWidth: '180px' }}>
                                 <Link to={`?showLogin=true`} className="flex items-center space-x-2 hover:text-main">

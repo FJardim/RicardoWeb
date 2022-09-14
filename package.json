@@ -1,33 +1,31 @@
 {
-  "name": "drafts",
+  "name": "my-react-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fullcalendar/daygrid": "^5.11.0",
-    "@fullcalendar/interaction": "^5.11.0",
-    "@fullcalendar/react": "^5.11.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
-    "axios-hooks": "^3.0.4",
-    "clsx": "^1.1.1",
-    "date-fns": "^2.29.1",
+    "axios-hooks": "^3.1.5",
+    "clsx": "^1.2.1",
+    "date-fns": "^2.29.3",
     "immutability-helper": "^3.1.1",
-    "mdb-ui-kit": "^4.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.2",
-    "react-hook-form": "^7.30.0",
-    "react-icons": "^4.3.1",
+    "react-icons": "^4.4.0",
     "react-player": "^2.10.1",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
-    "react-select": "^5.4.0",
-    "react-toastify": "^9.0.1",
+    "react-toastify": "^9.0.8",
     "react-tooltip": "^4.2.21",
-    "swiper": "^8.1.4",
+    "swiper": "^8.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -53,9 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.1",
-    "tailwindcss": "^3.0.24"
   }
 }
