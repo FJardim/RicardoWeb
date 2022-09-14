@@ -6,6 +6,10 @@ import { BsFillEmojiLaughingFill } from "react-icons/bs";
 import { IoHeartOutline, IoHeart } from "react-icons/io5";
 import ShowMoreButton from "./ShowMoreButton";
 import favoriteReactions from "../consts/favoriteReactions"
+import useAxios from "../hooks/useAxios";
+import { useEffect } from "react";
+import usePaymentMethods from "../hooks/usePaymentMethods";
+import imgUrl from "../helpers/imgUrl";
 
 const ProductInfo = ({
   name,
@@ -22,10 +26,41 @@ const ProductInfo = ({
   saved = false,
   isPremiun,
   type,
+  sellerId,
+  productId,
+  productType,
 }) => {
+
+  const [{ data: createOrderData, loading: createOrderLoading }, createOrder] = useAxios({ method: 'POST', url: `/orders` }, { manual: true, useCache: false });
+
+  const [{ paymentMethods, total, numberOfPages, size, error, loading }, getPaymentMethods] = usePaymentMethods();
+
+  useEffect(() => {
+    if (paymentMethods) {
+      console.log(paymentMethods);
+    }
+  }, [paymentMethods])
+
+  useEffect(() => {
+    if (createOrderData) {
+      window.open(createOrderData?.url, "_blank");
+    }
+  }, [createOrderData])
+
   const handleFavoriteClicked = (reaction) => () => onFavoriteClicked?.({ type, reaction });
 
   const handleSaveClicked = () => onSaveClicked?.({ type });
+
+  const handleBuy = (paymentMethodCode) => {
+    createOrder({
+      data: {
+        sellerId,
+        productId,
+        type: productType,
+        paymentMethodCode: paymentMethodCode || null
+      }
+    });
+  }
 
   return (
     <div className="w-full md:w-1/2 md:px-8">
@@ -53,18 +88,6 @@ const ProductInfo = ({
           >
             <BsFillEmojiLaughingFill className="text-yellow-300" />
           </button>
-          {/* {saved
-            ? <IoHeart
-              className='text-main cursor-pointer w-10 h-10'
-              data-tip="Save"
-              onClick={handleSaveClicked}
-            />
-            : <IoHeartOutline
-              className='text-main cursor-pointer w-10 h-10'
-              data-tip="Save"
-              onClick={handleSaveClicked}
-            />
-          } */}
         </div>
       </div>
 
@@ -86,33 +109,61 @@ const ProductInfo = ({
             </>
             : <>
               <h4 className="font-semibold mb-3">{detailsLabel}</h4>
-              {details?.slice(0, maxDetailsCount).map((detail) => (
-                <a key={detail.id} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
+              {details?.slice(0, maxDetailsCount).map((detail, i) => (
+                <a key={i} style={{ display: 'block' }} href={detail.uri}>{detail?.name}</a>
               ))}
-              {ingredients?.slice(0, maxIngredientsCount).map((ingredient) => (
-                <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+              {ingredients?.slice(0, maxIngredientsCount).map((ingredient, i) => (
+                <div key={i}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
               ))}
               <ShowMoreButton
                 buttonText="Show more"
-                content={details?.slice(maxDetailsCount).map((detail) => (
-                  <a key={detail.id} href={detail.uri}>{detail?.name}</a>
+                content={details?.slice(maxDetailsCount).map((detail, i) => (
+                  <a key={i} href={detail.uri}>{detail?.name}</a>
                 ))}
               />
               <ShowMoreButton
                 buttonText="Show more"
-                content={ingredients?.slice(maxIngredientsCount).map((ingredient) => (
-                  <div key={ingredient.id}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+                content={ingredients?.slice(maxIngredientsCount).map((ingredient, i) => (
+                  <div key={i}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
                 ))}
               />
             </>
           }
-
         </div>
       </div>
       <div>
         <div className="text-main text-3xl font-semibold">
-          <div className="mt-2">
+          <div className="mt-8 flex items-center justify-between">
             <p className="text-main">{price}</p>
+            {
+              isPremiun ?
+                <div className="w-1/2">
+                  <h1 className="text-xl text-gray-500 mb-4">
+                    Pay with:
+                  </h1>
+                  <div className="grid grid-cols-1 md:grid-cols-2 md:gap-2 justify-center">
+                    {
+                      paymentMethods?.map((payment, i) => {
+                        return (
+                          <button key={i} className="py-2 rounded-xl text-center text-white capitalize" onClick={() => handleBuy(payment?.code)}>
+                            <img src={imgUrl(payment?.image)} alt="" style={{ maxWidth: '100%' }} />
+                          </button>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
+                :
+                <button className="bg-main px-8 py-2 rounded-xl text-white" onClick={handleBuy}>
+                  {
+                    createOrderLoading ?
+                      'Loading'
+                      :
+                      'Add free'
+                  }
+                </button>
+            }
+
             {
               haveDiscount &&
               <p className="text-gray-400 text-sm">$48.56</p>

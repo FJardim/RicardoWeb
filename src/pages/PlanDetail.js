@@ -47,6 +47,7 @@ const PlanDetail = () => {
 
     useEffect(() => {
         if (data) {
+            console.log(data);
             setCurrentPlan(data);
         }
     }, [data]);
@@ -148,15 +149,17 @@ const PlanDetail = () => {
 
     const handleCommentSubmit = (e) => {
         e.preventDefault();
-    
+
         if (commentLoading) {
             return;
         }
-    
-        addComment({ data: {
-            planId: currentPlan?.id,
-            comment
-        }});
+
+        addComment({
+            data: {
+                planId: currentPlan?.id,
+                comment
+            }
+        });
     }
 
     return (
@@ -179,6 +182,10 @@ const PlanDetail = () => {
                         onSaveClicked={handleSavedClicked}
                         onFavoriteClicked={handleFavoriteClicked}
                         type={favoriteTypes.PLAN}
+                        sellerId={currentPlan?.seller?.id}
+                        productId={currentPlan?.id}
+                        productType="plan"
+                        isPremiun
                     />
                 </div>
                 {/* Calendar */}

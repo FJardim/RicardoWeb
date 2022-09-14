@@ -106,10 +106,12 @@ const CombosDetail = () => {
       return;
     }
 
-    addComment({ data: {
-      comboId: combo?.id,
-      comment
-    }});
+    addComment({
+      data: {
+        comboId: combo?.id,
+        comment
+      }
+    });
   }
 
   return (
@@ -134,6 +136,10 @@ const CombosDetail = () => {
             onSaveClicked={handleSavedClicked}
             onFavoriteClicked={handleFavoriteClicked}
             saved={combo?.saved}
+            sellerId={combo?.seller?.id}
+            productId={combo?.id}
+            productType="combo"
+            isPremiun
           />
         </div>
 
