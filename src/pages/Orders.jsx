@@ -3,18 +3,38 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../componentes/Pagination";
 import { useAuth } from "../contexts/AuthContext";
+import { useFeedBack } from "../contexts/FeedBackContext";
+import useAxios from "../hooks/useAxios";
 import useOrders from "../hooks/useOrders"
 
 const Orders = () => {
 
     const { user } = useAuth();
 
+    const { setLoading } = useFeedBack();
+
     const [filters, setFilters] = useState({
         page: 1,
-        clientId: user?.id
+        clientId: user?.id,
+        perPage: 10
     });
 
     const [{ orders, numberOfPages, loading }, getOrders] = useOrders({ params: { ...filters } }, { useCache: false, manual: true });
+
+    const [{ data: payData, loading: payLoading }, payOrder] = useAxios({ method: 'POST' }, { manual: true, useCache: false });
+
+    useEffect(() => {
+        setLoading({
+            show: payLoading,
+            message: 'Loading...'
+        })
+    }, [payLoading])
+
+    useEffect(() => {
+        if (payData) {
+            window.open(payData?.url, "_blank");
+        }
+    }, [payData])
 
     useEffect(() => {
         getOrders({
@@ -32,6 +52,10 @@ const Orders = () => {
                 page: 1
             }
         })
+    }
+
+    const handlePay = (orderId) => {
+        payOrder({ url: `/orders/${orderId}/pay` });
     }
 
     return (
@@ -54,6 +78,9 @@ const Orders = () => {
                                             Total
                                         </th>
                                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                            Status
+                                        </th>
+                                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                             Created At
                                         </th>
                                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -65,7 +92,7 @@ const Orders = () => {
                                     {
                                         loading ?
                                             <tr>
-                                                <td colSpan={4} className="text-4xl text-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                <td colSpan={6} className="text-4xl text-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                     Loading...
                                                 </td>
                                             </tr>
@@ -86,20 +113,30 @@ const Orders = () => {
                                                                 {order?.total ? `$${order?.total}` : 'Free'}
                                                             </td>
                                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                                <p style={{ color: order?.orderStatus?.color }} className="capitalize font-bold">
+                                                                    {order?.orderStatus?.name}
+                                                                </p>
+                                                            </td>
+                                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                                 {order?.createdAt && format(new Date(order?.createdAt), 'dd-MM-yyyy')}
                                                             </td>
-                                                            <td className="text-sm font-light px-6 py-4 whitespace-nowrap">
-                                                                <Link className="font-bold text-main hover:text-gray-400" to={`/orders/${order?.id}`}>
+                                                            <td className=" space-x-4 text-sm font-light px-6 py-4 whitespace-nowrap">
+                                                                {
+                                                                    order?.orderStatus?.code === 'ors-001' &&
+                                                                    <button onClick={() => handlePay(order?.id)} className="font-bold text-main hover:text-gray-400">
+                                                                        Pay
+                                                                    </button>
+                                                                }
+                                                                <Link className="font-bold text-yellow-500 hover:text-gray-400" to={`/orders/${order?.id}`}>
                                                                     View Details
                                                                 </Link>
-
                                                             </td>
                                                         </tr>
                                                     )
                                                 })
                                                 :
                                                 <tr className="border-b">
-                                                    <td colSpan={4} className="text-center text-red-500 px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <td colSpan={6} className="text-center text-red-500 px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                         No results found. 😔
                                                     </td>
                                                 </tr>

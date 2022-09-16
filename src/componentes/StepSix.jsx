@@ -35,7 +35,7 @@ const StepSix = () => {
             });
         });
 
-        const dataToSend = {
+        var dataToSend = {
             name: data?.name,
             description: data?.description,
             planDays: planDays,
@@ -44,7 +44,7 @@ const StepSix = () => {
         };
 
         if (!data?.id) {
-            const dataToSend = new FormData();
+            dataToSend = new FormData();
 
             dataToSend.append('name', data?.name);
 
