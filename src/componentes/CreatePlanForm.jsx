@@ -20,6 +20,7 @@ const CreatePlanForm = ({ defaultData }) => {
         if (defaultData) {
             console.log(defaultData);
             const { name, id, fullPlanDays, images, categories, description, ...rest } = defaultData;
+            console.log(defaultData);
             setData((oldData) => {
                 return {
                     ...oldData,

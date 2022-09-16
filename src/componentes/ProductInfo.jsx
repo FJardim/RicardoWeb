@@ -10,6 +10,7 @@ import useAxios from "../hooks/useAxios";
 import { useEffect } from "react";
 import usePaymentMethods from "../hooks/usePaymentMethods";
 import imgUrl from "../helpers/imgUrl";
+import { useFeedBack } from "../contexts/FeedBackContext";
 
 const ProductInfo = ({
   name,
@@ -31,9 +32,18 @@ const ProductInfo = ({
   productType,
 }) => {
 
+  const { setLoading } = useFeedBack();
+
   const [{ data: createOrderData, loading: createOrderLoading }, createOrder] = useAxios({ method: 'POST', url: `/orders` }, { manual: true, useCache: false });
 
   const [{ paymentMethods, total, numberOfPages, size, error, loading }, getPaymentMethods] = usePaymentMethods();
+
+  useEffect(() => {
+    setLoading({
+      show: createOrderLoading,
+      message: 'Loading'
+    })
+  }, [createOrderLoading])
 
   useEffect(() => {
     if (paymentMethods) {

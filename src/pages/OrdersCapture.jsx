@@ -9,6 +9,12 @@ const OrdersCapture = () => {
     const [{ data, loading, error }, sendOrderToken] = useAxios({ method: 'GET' }, { manual: true, useCache: false });
 
     useEffect(() => {
+        if (data) {
+            console.log(data);
+        }
+    }, [data])
+
+    useEffect(() => {
         const token = searchParams?.get('token');
 
         const PayerID = searchParams?.get('PayerID');
