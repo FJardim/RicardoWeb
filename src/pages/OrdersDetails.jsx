@@ -114,7 +114,7 @@ const OrdersDetails = () => {
                                     {
                                         currentOrder?.orderItems?.map((item, i) => {
                                             return (
-                                                <OrderItemRow item={item} key={i} />
+                                                <OrderItemRow orderStatus={currentOrder?.orderStatus} item={item} key={i} />
                                             )
                                         })
                                     }

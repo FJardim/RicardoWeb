@@ -5,6 +5,7 @@ import CestaCompras from "../assets/Img-button/cesta-de-la-compra.png";
 import BolsaCompras from "../assets/Img-button/bolsa-de-la-compra.png";
 import Reloj from "../assets/clock.png";
 import ButtonCart from "./ButtonCart";
+import { FaStar } from "react-icons/fa";
 
 const CardRecipes = ({
   texto,
@@ -19,7 +20,8 @@ const CardRecipes = ({
   hideButtons,
   hideCart = false,
   hideClock,
-  hideBag
+  hideBag,
+  rating
 }) => {
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
@@ -65,8 +67,8 @@ const CardRecipes = ({
               </div>
               <div className="flex justify-end text-white ml-auto">
                 <div className="flex items-center space-x-2">
-                  <BsBookmark />
-                  <p className="text-white">8.7K</p>
+                  <FaStar color="#FFBA5A" />
+                  <p className="text-white">{rating || '0'}</p>
                 </div>
               </div>
             </div>

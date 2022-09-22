@@ -11,6 +11,10 @@ import { useEffect } from "react";
 import usePaymentMethods from "../hooks/usePaymentMethods";
 import imgUrl from "../helpers/imgUrl";
 import { useFeedBack } from "../contexts/FeedBackContext";
+import RatingComponent from "./RatingComponent";
+import { useState } from "react";
+import Modal from "./Modal/Modal";
+import useRatings from "../hooks/useRatings";
 
 const ProductInfo = ({
   name,
@@ -30,13 +34,58 @@ const ProductInfo = ({
   sellerId,
   productId,
   productType,
+  rating,
 }) => {
 
   const { setLoading } = useFeedBack();
 
+  const [filters, setFilters] = useState({
+    page: 1,
+    orderBy: 'createdAt,DESC',
+    itemId: productId,
+    itemType: productType
+  });
+
+  const [showCustomersReviews, setShowCustomersReviews] = useState(false);
+
+  const [currentReviews, setCurrentReviews] = useState([]);
+
   const [{ data: createOrderData, loading: createOrderLoading }, createOrder] = useAxios({ method: 'POST', url: `/orders` }, { manual: true, useCache: false });
 
   const [{ paymentMethods, total, numberOfPages, size, error, loading }, getPaymentMethods] = usePaymentMethods();
+
+  const [{ ratings, numberOfPages: ratingPages, total: totalReviews, loading: loadingRatings }, getRatings] = useRatings({ params: { ...filters }, options: { manual: true, useCache: false } });
+
+  useEffect(() => {
+    if (filters?.itemId && filters?.itemType) {
+      getRatings({
+        params: {
+          ...filters
+        }
+      });
+    }
+  }, [filters])
+
+  useEffect(() => {
+    console.log(productId, productType);
+    if (productId && productType) {
+      setFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          itemId: productId,
+          itemType: productType
+        }
+      })
+    }
+  }, [productId, productType])
+
+  useEffect(() => {
+    if (ratings?.length > 0) {
+      setCurrentReviews((oldReviews) => {
+        return [...oldReviews, ...ratings];
+      });
+    }
+  }, [ratings]);
 
   useEffect(() => {
     setLoading({
@@ -72,6 +121,17 @@ const ProductInfo = ({
     });
   }
 
+  const handleMore = () => {
+    if (ratingPages > filters?.page) {
+      setFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          page: oldFilters?.page + 1
+        }
+      });
+    }
+  }
+
   return (
     <div className="w-full md:w-1/2 md:px-8">
       <div className="md:flex items-center text-3xl md:justify-between">
@@ -101,14 +161,13 @@ const ProductInfo = ({
         </div>
       </div>
 
-      <div className="flex">
-        <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
-        <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
-        <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
-        <AiFillStar className="mt-2 text-yellow-300 h-6 w-6" />
-        <AiOutlineStar className="mt-2 text-gray-300 h-6 w-6" />
-        <p className="text-gray-300 text-lg m-2 underline">
-          (1 customer review)
+      <div className="flex items-center">
+        <RatingComponent
+          disabled
+          value={rating}
+        />
+        <p className="text-gray-300 text-lg m-2 underline cursor-pointer" onClick={() => { setShowCustomersReviews(true) }} >
+          ({totalReviews} customer review)
         </p>
       </div>
       <div className="bg-white rounded-lg p-4">
@@ -181,6 +240,58 @@ const ProductInfo = ({
           </div>
         </div>
       </div>
+      <Modal show={showCustomersReviews} onClose={() => setShowCustomersReviews(false)}>
+        <div style={{ maxHeight: '70vh', overflowY: 'auto' }} className="custom-scrollbar custom-scrollbar-main">
+          <h1 className="text-center text-xl font-bold">
+            Customers Reviews ({totalReviews})
+          </h1>
+          {
+            currentReviews?.length > 0 ?
+              currentReviews?.map((review, i) => {
+                return (
+                  <div key={i} className="py-4 border-b border-main">
+                    <div className="flex items-center space-x-4">
+                      <img src={imgUrl(review?.client?.imgPath)} style={{ height: 50, width: 50 }} className="rounded-full" />
+                      <p className="text-gray-500 font-bold">
+                        {review?.client?.name}
+                        <RatingComponent
+                          disabled
+                          value={review?.value}
+                          size="sm"
+                        />
+                      </p>
+                    </div>
+                    <br />
+                    <p className="text-gray-500">
+                      {review?.comment}
+                    </p>
+                  </div>
+                )
+              })
+              :
+              <div className="text-center text-red-500 text-xl">
+                No results found.
+              </div>
+          }
+          {
+            loadingRatings ?
+              <div className="text-center my-4">
+                Loading more reviews...
+              </div>
+              :
+              ratingPages > filters?.page ?
+                <div className="text-center">
+                  <button onClick={handleMore} className="bg-white px-8 py-2 rounded-full shadow mt-4 mb-4">
+                    Load More
+                  </button>
+                </div>
+                :
+                <div className="text-center my-4">
+                  No more reviews.
+                </div>
+          }
+        </div>
+      </Modal>
     </div>
   );
 };

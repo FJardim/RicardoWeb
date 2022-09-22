@@ -30,8 +30,8 @@ const MenuList = [
         Icon: ({ className }) => <BsFillBookmarkHeartFill className={className} />
     },
     {
-        name: 'My Shopping List',
-        url: '/shopping',
+        name: 'My purchases',
+        url: '/purchases-products',
         Icon: ({ className }) => <FaListAlt className={className} />
     },
     {

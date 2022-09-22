@@ -18,7 +18,10 @@ const DescriptionCard = ({
   return (
     <div className="container flex justify-center">
       <div className="w-full py-6 ml-2 grid grid-cols-2 gap-2 md:gap-12 text-xl text-gray-400">
-        <RecipeFeatures recipe={recipe} />
+        {
+          recipe &&
+          <RecipeFeatures recipe={recipe} />
+        }
 
         <div className="ml-7">
           {!hideMarketButtons && <>

@@ -49,6 +49,7 @@ const CategoriesRecipes = ({ onClickCategory, values }) => {
           currentCategories?.map((category, i) => {
             return (
               <div
+                key={i}
                 onClick={() => { onClickCategory?.(category) }}
                 ref={i + 1 === currentCategories.length ? lastValueRef : null}
                 className={clsx(["font-normal cursor-pointer hover:text-main m-2"], {
