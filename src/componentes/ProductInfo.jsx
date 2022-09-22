@@ -67,7 +67,6 @@ const ProductInfo = ({
   }, [filters])
 
   useEffect(() => {
-    console.log(productId, productType);
     if (productId && productType) {
       setFilters((oldFilters) => {
         return {
