@@ -210,6 +210,8 @@ const RecipesDetail = () => {
                     comment={comment.comment}
                     name={comment.name}
                     createdAt={comment.createdAt}
+                    answer={comment?.answer}
+                    answeredAt={comment?.answeredAt}
                     imgPath={imgUrl(comment.imgPath, profile)}
                   />
                 </li>)}
