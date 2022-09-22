@@ -1,11 +1,16 @@
 import ButtonRank from "./ButtonRank";
 import CategoriesRecipes from "./CategoriesRecipes";
+import RatingComponent from "./RatingComponent";
 import SelectCategory from "./SelectCategory";
 import SelectRank from "./SelectRank";
 
-const MenuLeft = ({ filters, onClickCategory }) => {
+const MenuLeft = ({ filters, onClickCategory, onChangeRating, className, style }) => {
     return (
-        <div className="hidden md:block">
+        <div
+            style={style}
+            className={`hidden md:block ${className || ''}`}
+        >
+
             <div className="lg:ml-6 bg-white lg:w-64 w-56 m-auto md:w-40 rounded-lg shadow ">
                 <CategoriesRecipes onClickCategory={onClickCategory} values={filters?.categoryIds} />
             </div>
@@ -21,13 +26,17 @@ const MenuLeft = ({ filters, onClickCategory }) => {
             <div>
                 <div className="p-4 mt-6 lg:ml-6 bg-white lg:w-64 w-56 m-auto md:w-40 rounded-lg shadow">
                     <h1 className="title-medium mt-2 mb-6">Rating</h1>
-                    <SelectRank num="2" />
-                    <SelectRank num="3" />
-                    <SelectRank num="4" />
-                    <SelectRank num="5" />
-                    <SelectRank num="6" />
-                    <div className="p-3">
-                        <ButtonRank />
+                    <div className="flex items-center space-between">
+                        <RatingComponent
+                            onClickStar={onChangeRating}
+                            value={filters?.rating}
+                        />
+                        {
+                            filters?.rating &&
+                            <button className="bg-main rounded-xl text-white px-4 py-1" onClick={() => onChangeRating('')}>
+                                Clear
+                            </button>
+                        }
                     </div>
                 </div>
             </div>

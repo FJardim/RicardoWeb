@@ -140,12 +140,12 @@ const CombosDetail = () => {
             productId={combo?.id}
             productType="combo"
             isPremiun
+            rating={combo?.rating}
           />
         </div>
 
         {/* DescriptionCard*/}
         <DescriptionCard
-          showPaypalButton
           hideMarketButtons
         />
 

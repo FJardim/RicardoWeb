@@ -11,7 +11,17 @@ import SystemInfo from "../util/SystemInfo";
 const SwiperWeightPlan = () => {
     const [innerWidth, setInnerWidth] = useState(window.innerWidth);
 
-    const [{ plans }] = usePlans();
+    const [filters, setFilters] = useState({
+        page: 1,
+        perPage: 10,
+        hideClientPlans: 'true'
+    })
+
+    const [{ plans }] = usePlans({
+        params: {
+            ...filters
+        }
+    });
 
     useEffect(() => {
         const resizeHandler = () => {

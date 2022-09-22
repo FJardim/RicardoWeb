@@ -17,7 +17,6 @@ import MyAccountLayout from "./componentes/MyAccountLayout";
 import OverviewUser from "./pages/OverviewUser";
 import MyFavoritesUser from "./pages/MyFavoritesUser";
 import Contactus from "./pages/Contactus";
-import MyShoppingList from "./pages/MyShoppingList";
 import Saves from "./pages/Saves";
 import AccountInfo from "./pages/AccountInfo";
 import Configuration from "./pages/Configuration"
@@ -36,6 +35,7 @@ import MyPlansUpdate from "./pages/MyPlansUpdate";
 import OrdersCapture from "./pages/OrdersCapture";
 import Orders from "./pages/Orders";
 import OrdersDetails from "./pages/OrdersDetails";
+import PurchasedProducts from "./pages/PurchasedProducts";
 
 function App() {
   return (
@@ -67,7 +67,7 @@ function App() {
               <Route path="/configuration" element={<Configuration />} />
               <Route path="/overview" element={<OverviewUser />} />
               <Route path="/favorites" element={<MyFavoritesUser />} />
-              <Route path="/shopping" element={<MyShoppingList />} />
+              <Route path="/purchases-products" element={<PurchasedProducts />} />
               <Route path="/chats" element={<Chats />} />
               <Route path="/chats/:id" element={<ChatsDetails />} />
               <Route path="/comments" element={<Comments />} />

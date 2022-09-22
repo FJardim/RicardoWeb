@@ -10,12 +10,16 @@ import ButtonOverview from "../componentes/ButtonOverview";
 import ModalFiltre from "../componentes/ModalFiltre";
 import imgUrl from "../helpers/imgUrl";
 import { useAuth } from "../contexts/AuthContext";
+import ModalOverlay from "../componentes/Modal/ModalOverlay";
+import ModalContainer from "../componentes/Modal/ModalContainer";
+import CategoriesRecipes from "../componentes/CategoriesRecipes";
+import RatingComponent from "../componentes/RatingComponent";
 
 
 const Recipes = () => {
 
   const { user } = useAuth();
-  
+
   const [showModalMenu, setShowModalMenu] = useState(false);
 
   const [recipesFilters, setRecipesFilters] = useState({
@@ -24,6 +28,7 @@ const Recipes = () => {
     name: '',
     categoryIds: [],
     hideFavoritedForClientId: user?.id,
+    rating: ''
   });
 
 
@@ -77,8 +82,29 @@ const Recipes = () => {
       </div>
       <div className="p-6">
         <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
+        <p className="my-4"></p>
+        <ButtonOverview name="Clear Filters" onClick={() => setRecipesFilters({
+          page: 1,
+          perPage: 12,
+          name: '',
+          categoryIds: [],
+          hideFavoritedForClientId: user?.id,
+          rating: ''
+        })} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
-          <MenuLeft filters={recipesFilters} onClickCategory={handleCategory} />
+          <MenuLeft
+            filters={recipesFilters}
+            onClickCategory={handleCategory}
+            onChangeRating={(rating) => {
+              setRecipesFilters((oldRecipesFilters) => {
+                return {
+                  ...oldRecipesFilters,
+                  rating: rating,
+                  page: 1
+                }
+              })
+            }}
+          />
           <div className="mt-10 md:mt-0 md:col-span-3">
             {
               recipesFilters?.name &&
@@ -116,6 +142,7 @@ const Recipes = () => {
                         hideButtons
                         hideCart
                         hideBag
+                        rating={recipe?.rating}
                       />
                     </Link>
                   );
@@ -130,7 +157,46 @@ const Recipes = () => {
           </div>
         </div>
       </div>
-      <ModalFiltre show={showModalMenu} onClose={() => setShowModalMenu(false)} />
+      <ModalOverlay onClose={() => setShowModalMenu(false)} show={showModalMenu}  >
+        <ModalContainer onClose={() => setShowModalMenu(false)}>
+          <div className="rounded-lg shadow">
+            <CategoriesRecipes onClickCategory={handleCategory} values={recipesFilters?.categoryIds} />
+          </div>
+          <div className="p-4 mt-6 bg-white m-auto md:w-40 rounded-lg shadow">
+            <h1 className="title-medium mt-2 mb-6">Rating</h1>
+            <div className="flex items-center space-between flex-wrap">
+              <RatingComponent
+                onClickStar={(rating) => {
+                  setRecipesFilters((oldRecipesFilters) => {
+                    return {
+                      ...oldRecipesFilters,
+                      rating: rating,
+                      page: 1
+                    }
+                  })
+                }}
+                value={recipesFilters?.rating}
+              />
+              {
+                recipesFilters?.rating &&
+                <button className="bg-main rounded-xl text-white px-4 py-1"
+                  onClick={() => {
+                    setRecipesFilters((oldRecipesFilters) => {
+                      return {
+                        ...oldRecipesFilters,
+                        rating: '',
+                        page: 1
+                      }
+                    })
+                  }}
+                >
+                  Clear
+                </button>
+              }
+            </div>
+          </div>
+        </ModalContainer>
+      </ModalOverlay>
     </div >
   );
 };

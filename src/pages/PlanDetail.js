@@ -186,6 +186,7 @@ const PlanDetail = () => {
                         productId={currentPlan?.id}
                         productType="plan"
                         isPremiun
+                        rating={currentPlan?.rating}
                     />
                 </div>
                 {/* Calendar */}

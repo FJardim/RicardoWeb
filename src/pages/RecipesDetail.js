@@ -142,6 +142,7 @@ const RecipesDetail = () => {
             sellerId={recipe?.seller?.id}
             productId={recipe?.id}
             productType="recipe"
+            rating={recipe?.rating}
           />
         </div>
 

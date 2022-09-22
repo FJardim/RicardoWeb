@@ -11,6 +11,12 @@ import useCombos from "../hooks/useCombos";
 import Pagination from "../componentes/Pagination";
 import imgUrl from "../helpers/imgUrl";
 import { useAuth } from "../contexts/AuthContext";
+import Modal from "../componentes/Modal/Modal";
+import CategoriesRecipes from "../componentes/CategoriesRecipes";
+import RatingComponent from "../componentes/RatingComponent";
+import ButtonRank from "../componentes/ButtonRank";
+import ModalContainer from "../componentes/Modal/ModalContainer";
+import ModalOverlay from "../componentes/Modal/ModalOverlay";
 
 const Combos = () => {
 
@@ -26,6 +32,7 @@ const Combos = () => {
     name: '',
     categoryIds: [],
     hideFavoritedForClientId: user?.id,
+    rating: ''
   });
 
   const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { ...combosFilters }, options: { useCache: false } });
@@ -75,8 +82,29 @@ const Combos = () => {
       </div>
       <div className="p-6">
         <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
+        <p className="my-4"></p>
+        <ButtonOverview name="Clear Filters" onClick={() => setCombosFilters({
+          page: 1,
+          perPage: 12,
+          name: '',
+          categoryIds: [],
+          hideFavoritedForClientId: user?.id,
+          rating: ''
+        })} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
-          <MenuLeft filters={combosFilters} onClickCategory={handleCategory} />
+          <MenuLeft
+            filters={combosFilters}
+            onClickCategory={handleCategory}
+            onChangeRating={(rating) => {
+              setCombosFilters((oldCombosFilters) => {
+                return {
+                  ...oldCombosFilters,
+                  rating: rating,
+                  page: 1
+                }
+              })
+            }}
+          />
           <div className="mt-10 md:mt-0 md:col-span-3">
             {
               combosFilters?.name &&
@@ -115,8 +143,9 @@ const Combos = () => {
                         title={combo.name}
                         hideCart
                         hideClock
-                      // hideBag
-                      //hideButtons
+                        rating={combo?.rating}
+                        // hideBag
+                        hideButtons
                       />
                     </Link>
                   );
@@ -131,7 +160,46 @@ const Combos = () => {
           </div>
         </div>
       </div>
-      <ModalFiltre show={showModalMenu} onClose={() => setShowModalMenu(false)} />
+      <ModalOverlay onClose={() => setShowModalMenu(false)} show={showModalMenu}  >
+        <ModalContainer onClose={() => setShowModalMenu(false)}>
+          <div className="rounded-lg shadow">
+            <CategoriesRecipes onClickCategory={handleCategory} values={combosFilters?.categoryIds} />
+          </div>
+          <div className="p-4 mt-6 bg-white m-auto md:w-40 rounded-lg shadow">
+            <h1 className="title-medium mt-2 mb-6">Rating</h1>
+            <div className="flex items-center space-between flex-wrap">
+              <RatingComponent
+                onClickStar={(rating) => {
+                  setCombosFilters((oldCombosFilters) => {
+                    return {
+                      ...oldCombosFilters,
+                      rating: rating,
+                      page: 1
+                    }
+                  })
+                }}
+                value={combosFilters?.rating}
+              />
+              {
+                combosFilters?.rating &&
+                <button className="bg-main rounded-xl text-white px-4 py-1"
+                  onClick={() => {
+                    setCombosFilters((oldCombosFilters) => {
+                      return {
+                        ...oldCombosFilters,
+                        rating: '',
+                        page: 1
+                      }
+                    })
+                  }}
+                >
+                  Clear
+                </button>
+              }
+            </div>
+          </div>
+        </ModalContainer>
+      </ModalOverlay>
     </div >
   );
 };
