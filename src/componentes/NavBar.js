@@ -10,6 +10,7 @@ import MenuConfig from "./MenuConfig";
 import MobileMenuButton from "./MobileMenuButton";
 import clsx from "clsx";
 import MovilMenuSearch from "./MovilMenuSearch";
+import NotificationComponent from "./Notifications/NotificationComponent";
 
 
 const NavBar = () => {
@@ -68,9 +69,7 @@ const NavBar = () => {
                                     Sellers
                                 </p>
                             </Link>
-                            <button className="hover:text-main">
-                                <BsBell className="h-6 w-6 ml-18" />
-                            </button>
+                            <NotificationComponent />
                             <button
                                 className="md:hidden hover:text-main"
                                 onClick={() => setShowModalMenu(true)}

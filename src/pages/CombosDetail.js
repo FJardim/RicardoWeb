@@ -141,6 +141,7 @@ const CombosDetail = () => {
             productType="combo"
             isPremiun
             rating={combo?.rating}
+            alreadyAcquired={combo?.alreadyAcquired}
           />
         </div>
 

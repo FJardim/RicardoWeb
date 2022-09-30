@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../componentes/Pagination";
+import RenderActionsButtons from "../componentes/RenderActionsButtons";
 import usePurchasedProducts from "../hooks/usePurchasedProducts"
 
 const PurchasedProducts = () => {
@@ -70,6 +71,9 @@ const PurchasedProducts = () => {
                                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                                             Created At
                                         </th>
+                                        <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                                            Actions
+                                        </th>
                                     </tr>
                                     <tr>
                                         <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center">
@@ -100,6 +104,7 @@ const PurchasedProducts = () => {
                                                 value={filters?.type}
                                                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                             >
+                                                <option value="">Seleccione...</option>
                                                 <option value="plan">Plan</option>
                                                 <option value="recipe">Recipe</option>
                                                 <option value="combo">Combo</option>
@@ -143,6 +148,9 @@ const PurchasedProducts = () => {
                                                             </td>
                                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                                 {product?.createdAt && format(new Date(product?.createdAt), 'dd-MM-yyyy')}
+                                                            </td>
+                                                            <td className="text-sm space-x-4 text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                                <RenderActionsButtons product={product} />
                                                             </td>
                                                         </tr>
                                                     )

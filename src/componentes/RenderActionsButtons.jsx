@@ -1,13 +1,15 @@
 import { useEffect } from "react";
-import { useState } from "react";
-import imgUrl from "../helpers/imgUrl";
+import { useState } from "react"
+import { Link } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import Modal from "./Modal/Modal";
 import RatingComponent from "./RatingComponent";
 
-const OrderItemRow = ({ item, orderStatus }) => {
+const RenderActionsButtons = ({ product }) => {
 
-    const [currentItem, setCurrentItem] = useState(null);
+    const [currentProduct, setCurrentProduct] = useState(null);
+
+    const [productType, setProductType] = useState('');
 
     const [showRatingModal, setShowRatingModal] = useState(false);
 
@@ -16,40 +18,16 @@ const OrderItemRow = ({ item, orderStatus }) => {
         comment: ''
     });
 
-    const [showRatingMessage, setShowRatingMessage] = useState(false)
+    const [showRatingMessage, setShowRatingMessage] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const [{ data: rating, error: ratingError, loading: ratingLoading }, sendRating] = useAxios({ url: `/ratings`, method: 'POST' }, { manual: true, useCache: false });
-
-    useEffect(() => {
-        if (rating) {
-            setCurrentItem((oldItem) => {
-                return {
-                    ...oldItem,
-                    rating: rating
-                }
-            });
-        }
-
-        if (rating || ratingError) setShowRatingMessage(true);
-    }, [rating, ratingError]);
+    const [{ data: rating, loading: ratingLoading, error }, sendRating] = useAxios({ url: `/ratings`, method: 'POST' }, { manual: true, useCache: false });
 
     useEffect(() => {
-        if (item) {
-            setCurrentItem(item);
+        if (error) {
+            setShowErrorMessage(true);
         }
-    }, [item]);
-
-    useEffect(() => {
-        if (currentItem?.rating) {
-            setRatingData((oldRatingData) => {
-                return {
-                    ...oldRatingData,
-                    comment: currentItem?.rating?.comment,
-                    value: currentItem?.rating?.value
-                }
-            })
-        }
-    }, [currentItem])
+    }, [error])
 
     useEffect(() => {
         if (showRatingMessage) {
@@ -57,7 +35,44 @@ const OrderItemRow = ({ item, orderStatus }) => {
                 setShowRatingMessage(false);
             }, 3000);
         }
-    }, [showRatingMessage])
+
+        if (showErrorMessage) {
+            setTimeout(() => {
+                setShowErrorMessage(false);
+            }, 3000);
+        }
+
+    }, [showRatingMessage, showErrorMessage])
+
+    useEffect(() => {
+        if (rating) {
+            setCurrentProduct((oldItem) => {
+                return {
+                    ...oldItem,
+                    clientRating: rating
+                }
+            });
+            setShowRatingMessage(true);
+        }
+    }, [rating]);
+
+    useEffect(() => {
+        if (product) {
+            if (product?.recipe) {
+                setCurrentProduct(product?.recipe);
+                setProductType('recipe');
+            }
+            if (product?.combo) {
+                setCurrentProduct(product?.combo);
+                setProductType('combo');
+            }
+
+            if (product?.plan) {
+                setCurrentProduct(product?.plan);
+                setProductType('plan');
+            }
+        }
+    }, [product])
 
     const handleRating = (rating) => {
         setRatingData((oldRating) => {
@@ -73,50 +88,32 @@ const OrderItemRow = ({ item, orderStatus }) => {
 
         sendRating({
             data: {
-                type: item?.type,
-                "productId": item?.productId,
+                type: productType,
+                "productId": currentProduct?.id,
                 "value": ratingData?.value,
                 "comment": ratingData?.comment
             }
         });
     }
-    return (
-        <tr className="border-b">
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <img src={imgUrl(item?.image)} style={{ width: 60, height: 60 }} className="rounded-xl" />
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <h1>
-                    <b>
-                        <span className="capitalize">
-                            {currentItem?.type}
-                        </span>:
-                        {` ${currentItem?.name}`}
-                    </b>
-                </h1>
 
+    return (
+        <>
+            <button className="font-bold text-main hover:text-gray-400" onClick={() => setShowRatingModal(true)}>
                 {
-                    orderStatus?.code === 'ors-003' &&
-                    <button onClick={() => setShowRatingModal(true)} className="text-main hover:text-gray-500 transform transition duration-500 hover:translate-x-2">
-                        {
-                            !currentItem?.rating ?
-                                'Send Rating'
-                                :
-                                'Show Rating'
-                        }
-                    </button>
+                    currentProduct?.clientRating ?
+                        'Show Rating'
+                        :
+                        'Send Rating'
                 }
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                Qty {currentItem?.quantity}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium text-gray-900">
-                {currentItem?.total ? `$${currentItem?.total}` : 'Free'}
-            </td>
+            </button>
+            <Link className="font-bold text-yellow-500 hover:text-gray-400" to={`#`}>
+                View Details
+            </Link>
+
             <Modal onClose={() => setShowRatingModal(false)} show={showRatingModal}>
                 <h1 className="text-xl text-gray-500 font-bold">
                     {
-                        currentItem?.rating ?
+                        currentProduct?.clientRating ?
                             'Your Rating'
                             :
                             'Add Rating:'
@@ -153,9 +150,13 @@ const OrderItemRow = ({ item, orderStatus }) => {
                 {
                     showRatingMessage &&
                     <div className="text-center">
-                        {
-                            ratingError?.response?.data?.message || 'Your rating is send.'
-                        }
+                        Your rating is send.
+                    </div>
+                }
+                {
+                    showErrorMessage &&
+                    <div className="text-center text-red-500">
+                        {error?.response?.data?.message}.
                     </div>
                 }
                 <div className="text-center space-x-8">
@@ -172,8 +173,8 @@ const OrderItemRow = ({ item, orderStatus }) => {
                     </button>
                 </div>
             </Modal>
-        </tr>
+        </>
     )
 }
 
-export default OrderItemRow;
+export default RenderActionsButtons

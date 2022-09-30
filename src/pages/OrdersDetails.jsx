@@ -1,7 +1,9 @@
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Modal from "../componentes/Modal/Modal";
 import OrderItemRow from "../componentes/OrderItemRow";
+import RatingComponent from "../componentes/RatingComponent";
 import { useAuth } from "../contexts/AuthContext";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import imgUrl from "../helpers/imgUrl";
@@ -18,11 +20,57 @@ const OrdersDetails = () => {
 
     const [currentOrder, setCurrentOrder] = useState(null);
 
+    const [showRatingMessage, setShowRatingMessage] = useState(false)
+
+    const [showSellerRatingModal, setShowSellerRatingModal] = useState(false);
+
+    const [ratingData, setRatingData] = useState({
+        value: 1,
+        comment: ''
+    });
+
     const [{ data, loading, error }, getOrder] = useAxios({ url: `/orders/${id}` }, { useCache: false });
 
     const [{ paymentMethods, total, numberOfPages, size, loading: loadingPayments }, getPaymentMethods] = usePaymentMethods();
 
     const [{ data: payData, loading: payLoading }, payOrder] = useAxios({ method: 'POST' }, { manual: true, useCache: false });
+
+    const [{ data: rating, error: ratingError, loading: ratingLoading }, sendRating] = useAxios({ url: `/seller-ratings`, method: 'POST' }, { manual: true, useCache: false });
+
+    useEffect(() => {
+        if (currentOrder?.seller?.clientRating) {
+            setRatingData((oldRatingData) => {
+                return {
+                    ...oldRatingData,
+                    value: currentOrder?.seller?.clientRating?.value || 1,
+                    comment: currentOrder?.seller?.clientRating?.comment || '',
+                }
+            })
+        }
+    }, [currentOrder?.seller?.clientRating])
+
+    useEffect(() => {
+        if (showRatingMessage) {
+            setTimeout(() => {
+                setShowRatingMessage(false);
+            }, 3000);
+        }
+    }, [showRatingMessage])
+
+    useEffect(() => {
+        if (rating) {
+            setCurrentOrder((oldOrder) => {
+                return {
+                    ...oldOrder,
+                    seller: {
+                        ...oldOrder?.seller,
+                        clientRating: rating
+                    }
+                }
+            });
+        }
+        if (rating || ratingError) setShowRatingMessage(true);
+    }, [rating, ratingError]);
 
     useEffect(() => {
         setLoading({
@@ -40,6 +88,28 @@ const OrdersDetails = () => {
 
     const handlePay = (paymentMethod) => {
         payOrder({ url: `/orders/${currentOrder?.id}/pay` });
+    }
+
+    const handleRating = (rating) => {
+        setRatingData((oldRating) => {
+            return {
+                ...oldRating,
+                value: rating
+            }
+        });
+    }
+
+    const handleSubmitRating = () => {
+        if (ratingLoading) return;
+
+        sendRating({
+            data: {
+                "sellerId": currentOrder?.seller?.sellerId,
+                "orderId": currentOrder?.id,
+                "value": ratingData?.value,
+                "comment": ratingData?.comment
+            }
+        });
     }
 
     return (
@@ -103,12 +173,26 @@ const OrdersDetails = () => {
                                             }
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <h1>
-                                                <b>Order Seller</b>
-                                            </h1>
-                                            <Link className="font-bold text-main hover:text-gray-400" to={`/ sellers / ${currentOrder?.seller?.slug} / recipes`}>
-                                                {currentOrder?.seller?.name}
-                                            </Link>
+                                            <div className="flex items-center space-x-4">
+                                                <div>
+                                                    <h1>
+                                                        <b>Order Seller</b>
+                                                    </h1>
+                                                    <Link className="font-bold text-main hover:text-gray-400" to={`/sellers/${currentOrder?.seller?.slug}/recipes`}>
+                                                        {currentOrder?.seller?.name}
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <button onClick={() => setShowSellerRatingModal(true)} className="bg-yellow-500 text-white rounded-xl px-4 py-2">
+                                                        {
+                                                            currentOrder?.seller?.clientRating ?
+                                                                'Show Rating'
+                                                                :
+                                                                'Send Rating to the seller'
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     {
@@ -172,6 +256,65 @@ const OrdersDetails = () => {
                     </div>
                 </div>
             </div>
+            <Modal show={showSellerRatingModal} onClose={() => setShowSellerRatingModal(false)}>
+                <h1 className="text-xl text-gray-500 font-bold">
+                    {
+                        currentOrder?.seller?.clientRating ?
+                            `Your Rating ${currentOrder?.seller?.clientRating?.isEdited && '(Updated)'}`
+                            :
+                            'Add Rating:'
+                    }
+                </h1>
+                <br />
+                <RatingComponent
+                    onClickStar={handleRating}
+                    value={ratingData?.value}
+                />
+
+                <textarea
+                    name="comment"
+                    className="w-full"
+                    placeholder="What's your experience?"
+                    style={{
+                        border: "1px solid #a9a9a9",
+                        borderRadius: 5,
+                        padding: 10,
+                        margin: "20px 0",
+                        minHeight: 100,
+                    }}
+                    onChange={(e) => {
+                        setRatingData((oldRatingData) => {
+                            return {
+                                ...oldRatingData,
+                                comment: e.target.value
+                            }
+                        })
+                    }}
+                    value={ratingData?.comment}
+                >
+                </textarea>
+                {
+                    showRatingMessage &&
+                    <div className="text-center">
+                        {
+                            ratingError?.response?.data?.message || 'Your rating is send.'
+                        }
+                    </div>
+                }
+                <div className="text-center space-x-8">
+                    <button onClick={() => setShowSellerRatingModal(false)} type="button" className="bg-red-500 text-white mt-8 px-8 py-2 rounded-xl transition duration-500 hover:bg-white hover:text-main">
+                        Cancel
+                    </button>
+                    <button disabled={ratingLoading} onClick={handleSubmitRating} type="submit" className="bg-main text-white mt-8 px-8 py-2 rounded-xl transition duration-500 hover:bg-white hover:text-main">
+                        {
+                            ratingLoading ?
+                                'Loading'
+                                :
+                                'Send Rating'
+                        }
+                    </button>
+                </div>
+            </Modal>
         </div>
     )
 }
