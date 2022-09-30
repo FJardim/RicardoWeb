@@ -143,6 +143,7 @@ const RecipesDetail = () => {
             productId={recipe?.id}
             productType="recipe"
             rating={recipe?.rating}
+            alreadyAcquired={recipe?.alreadyAcquired}
           />
         </div>
 

@@ -15,6 +15,7 @@ import RatingComponent from "./RatingComponent";
 import { useState } from "react";
 import Modal from "./Modal/Modal";
 import useRatings from "../hooks/useRatings";
+import { Link } from "react-router-dom";
 
 const ProductInfo = ({
   name,
@@ -35,6 +36,7 @@ const ProductInfo = ({
   productId,
   productType,
   rating,
+  alreadyAcquired
 }) => {
 
   const { setLoading } = useFeedBack();
@@ -94,14 +96,12 @@ const ProductInfo = ({
   }, [createOrderLoading])
 
   useEffect(() => {
-    if (paymentMethods) {
-      console.log(paymentMethods);
-    }
-  }, [paymentMethods])
-
-  useEffect(() => {
     if (createOrderData) {
-      window.open(createOrderData?.url, "_blank");
+      if (createOrderData?.url) {
+        window.open(createOrderData?.url, "_blank");
+      } else {
+        console.log(createOrderData);
+      }
     }
   }, [createOrderData])
 
@@ -110,14 +110,16 @@ const ProductInfo = ({
   const handleSaveClicked = () => onSaveClicked?.({ type });
 
   const handleBuy = (paymentMethodCode) => {
-    createOrder({
-      data: {
-        sellerId,
-        productId,
-        type: productType,
-        paymentMethodCode: paymentMethodCode || null
-      }
-    });
+    if (!alreadyAcquired) {
+      createOrder({
+        data: {
+          sellerId,
+          productId,
+          type: productType,
+          paymentMethodCode: paymentMethodCode || null
+        }
+      });
+    }
   }
 
   const handleMore = () => {
@@ -183,60 +185,94 @@ const ProductInfo = ({
               {ingredients?.slice(0, maxIngredientsCount).map((ingredient, i) => (
                 <div key={i}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
               ))}
-              <ShowMoreButton
-                buttonText="Show more"
-                content={details?.slice(maxDetailsCount).map((detail, i) => (
-                  <a key={i} href={detail.uri}>{detail?.name}</a>
-                ))}
-              />
-              <ShowMoreButton
-                buttonText="Show more"
-                content={ingredients?.slice(maxIngredientsCount).map((ingredient, i) => (
-                  <div key={i}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
-                ))}
-              />
+              {
+                productType === 'plan' || productType === 'combo' ?
+                  <ShowMoreButton
+                    buttonText="Show more"
+                    content={details?.slice(maxDetailsCount).map((detail, i) => (
+                      <a key={i} href={detail.uri}>{detail?.name}</a>
+                    ))}
+                  />
+                  :
+                  null
+              }
+              {
+                productType === 'recipe' ?
+                  <ShowMoreButton
+                    buttonText="Show more"
+                    content={ingredients?.slice(maxIngredientsCount).map((ingredient, i) => (
+                      <div key={i}>{ingredient.value} {ingredient.measurementUnit.name.toLowerCase()} of {ingredient.ingredient.name}</div>
+                    ))}
+                  />
+                  :
+                  null
+              }
             </>
           }
         </div>
       </div>
       <div>
         <div className="text-main text-3xl font-semibold">
-          <div className="mt-8 flex items-center justify-between">
-            <p className="text-main">{price}</p>
-            {
-              isPremiun ?
-                <div className="w-1/2">
-                  <h1 className="text-xl text-gray-500 mb-4">
-                    Pay with:
-                  </h1>
-                  <div className="grid grid-cols-1 md:grid-cols-2 md:gap-2 justify-center">
-                    {
-                      paymentMethods?.map((payment, i) => {
-                        return (
-                          <button key={i} className="py-2 rounded-xl text-center text-white capitalize" onClick={() => handleBuy(payment?.code)}>
-                            <img src={imgUrl(payment?.image)} alt="" style={{ maxWidth: '100%' }} />
-                          </button>
-                        )
-                      })
-                    }
-                  </div>
+          {
+            alreadyAcquired ?
+              <div className="text-center mt-8">
+                You already have this product.
+                <br />
+                <br />
+                <div className="flex items-center justify-center">
+                  <Link to={`/purchases-products`} className="bg-main text-white px-8 py-2 rounded-xl">
+                    Go to my Inventory
+                  </Link>
                 </div>
-                :
-                <button className="bg-main px-8 py-2 rounded-xl text-white" onClick={handleBuy}>
-                  {
-                    createOrderLoading ?
-                      'Loading'
-                      :
-                      'Add free'
-                  }
-                </button>
-            }
+              </div>
+              :
+              <div className="mt-8 flex items-center justify-between">
 
-            {
-              haveDiscount &&
-              <p className="text-gray-400 text-sm">$48.56</p>
-            }
-          </div>
+                <p className="text-main">{price}</p>
+                {
+                  isPremiun ?
+                    <div className="w-1/2">
+                      <h1 className="text-xl text-gray-500 mb-4">
+                        Pay with:
+                      </h1>
+                      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-2 justify-center">
+                        {
+                          paymentMethods?.map((payment, i) => {
+                            return (
+                              <button key={i} className="py-2 rounded-xl text-center text-white capitalize" onClick={() => handleBuy(payment?.code)}>
+                                <img src={imgUrl(payment?.image)} alt="" style={{ maxWidth: '100%' }} />
+                              </button>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+                    :
+                    <button className="bg-main px-8 py-2 rounded-xl text-white" onClick={() => {
+                      if (!createOrderData) {
+                        handleBuy(null)
+                      } else {
+                        window.open(`/orders/${createOrderData?.order?.id}`);
+                      }
+                    }}>
+                      {
+                        createOrderLoading ?
+                          'Loading'
+                          :
+                          createOrderData ?
+                            'View Details'
+                            :
+                            'Add free'
+                      }
+                    </button>
+                }
+
+                {
+                  haveDiscount &&
+                  <p className="text-gray-400 text-sm">$48.56</p>
+                }
+              </div>
+          }
         </div>
       </div>
       <Modal show={showCustomersReviews} onClose={() => setShowCustomersReviews(false)}>

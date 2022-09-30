@@ -69,7 +69,7 @@ const Recipes = () => {
       return {
         ...oldRecipesFilters,
         page: 1,
-        categoryIds: [category?.id]
+        categoryIds: category?.id ? [category?.id] : []
       }
     });
   }

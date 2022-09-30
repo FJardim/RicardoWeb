@@ -44,6 +44,14 @@ const CategoriesRecipes = ({ onClickCategory, values }) => {
   return (
     <div className="mb-4 md:p-6">
       <h4 className="title-medium mt-2 mb-6">Categories</h4>
+      {
+        values?.length > 0 &&
+        <div className="text-end">
+          <button className="bg-main rounded-xl text-white px-4 py-1" onClick={() => onClickCategory('')}>
+            Clear
+          </button>
+        </div>
+      }
       <div style={{ maxHeight: '300px', overflowY: 'auto' }} className="custom-scrollbar custom-scrollbar-main">
         {
           currentCategories?.map((category, i) => {

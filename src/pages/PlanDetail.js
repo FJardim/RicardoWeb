@@ -187,6 +187,7 @@ const PlanDetail = () => {
                         productType="plan"
                         isPremiun
                         rating={currentPlan?.rating}
+                        alreadyAcquired={currentPlan?.alreadyAcquired}
                     />
                 </div>
                 {/* Calendar */}
