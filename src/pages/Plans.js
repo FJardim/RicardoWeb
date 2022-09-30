@@ -67,7 +67,7 @@ const Plans = () => {
       return {
         ...oldPlansFilters,
         page: 1,
-        categoryIds: [category?.id]
+        categoryIds: category?.id ? [category?.id] : []
       }
     });
   }

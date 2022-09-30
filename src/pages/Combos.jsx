@@ -69,7 +69,7 @@ const Combos = () => {
       return {
         ...oldCombosFilters,
         page: 1,
-        categoryIds: [category?.id]
+        categoryIds: category?.id ? [category?.id] : []
       }
     });
   }

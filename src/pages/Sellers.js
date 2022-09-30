@@ -11,6 +11,10 @@ import useSellers from "../hooks/useSellers";
 import SystemInfo from "../util/SystemInfo";
 import imgUrl from "../helpers/imgUrl";
 import Pagination from "../componentes/Pagination";
+import ModalOverlay from "../componentes/Modal/ModalOverlay";
+import ModalContainer from "../componentes/Modal/ModalContainer";
+import CategoriesRecipes from "../componentes/CategoriesRecipes";
+import RatingComponent from "../componentes/RatingComponent";
 
 const Sellers = () => {
   const [showModalMenu, setShowModalMenu] = useState(false);
@@ -60,7 +64,7 @@ const Sellers = () => {
       return {
         ...oldSellersFilters,
         page: 1,
-        categoryIds: [category?.id]
+        categoryIds: category?.id ? [category?.id] : []
       }
     });
   }
@@ -72,8 +76,29 @@ const Sellers = () => {
       </div>
       <div className="p-6">
         <ButtonOverview name="Filter" onClick={() => setShowModalMenu(true)} />
+        <p className="my-4"></p>
+        <ButtonOverview name="Clear Filters" onClick={() => setSellersFilters({
+          page: 1,
+          perPage: 10,
+          name: '',
+          categoryIds: [],
+          mealPeriodsIds: [],
+          rating: ''
+        })} />
         <div className="grid grid-cols-1 md:grid-cols-4 md:gap-2">
-          <MenuLeft filters={sellersFilters} onClickCategory={handleCategory} />
+          <MenuLeft
+            filters={sellersFilters}
+            onClickCategory={handleCategory}
+            onChangeRating={(rating) => {
+              setSellersFilters((oldSellersFilters) => {
+                return {
+                  ...oldSellersFilters,
+                  rating: rating,
+                  page: 1
+                }
+              })
+            }}
+          />
 
           <div className="mt-10 md:mt-0 md:col-span-3">
             {
@@ -124,7 +149,46 @@ const Sellers = () => {
           </div>
         </div>
       </div>
-      <ModalFiltre show={showModalMenu} onClose={() => setShowModalMenu(false)} />
+      <ModalOverlay onClose={() => setShowModalMenu(false)} show={showModalMenu}  >
+        <ModalContainer onClose={() => setShowModalMenu(false)}>
+          <div className="rounded-lg shadow">
+            <CategoriesRecipes onClickCategory={handleCategory} values={sellersFilters?.categoryIds} />
+          </div>
+          <div className="p-4 mt-6 bg-white m-auto md:w-40 rounded-lg shadow">
+            <h1 className="title-medium mt-2 mb-6">Rating</h1>
+            <div className="flex items-center space-between flex-wrap">
+              <RatingComponent
+                onClickStar={(rating) => {
+                  setSellersFilters((oldSellersFilters) => {
+                    return {
+                      ...oldSellersFilters,
+                      rating: rating,
+                      page: 1
+                    }
+                  })
+                }}
+                value={sellersFilters?.rating}
+              />
+              {
+                sellersFilters?.rating &&
+                <button className="bg-main rounded-xl text-white px-4 py-1"
+                  onClick={() => {
+                    setSellersFilters((oldSellersFilters) => {
+                      return {
+                        ...oldSellersFilters,
+                        rating: '',
+                        page: 1
+                      }
+                    })
+                  }}
+                >
+                  Clear
+                </button>
+              }
+            </div>
+          </div>
+        </ModalContainer>
+      </ModalOverlay>
     </div>
   );
 };
