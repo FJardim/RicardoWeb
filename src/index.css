@@ -9,6 +9,7 @@
 .title-medium {
     @apply text-xl font-semibold;
 }
+
 .title-button {
     @apply text-base font-semibold;
 }

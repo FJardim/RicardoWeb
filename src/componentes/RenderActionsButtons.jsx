@@ -19,30 +19,20 @@ const RenderActionsButtons = ({ product }) => {
     });
 
     const [showRatingMessage, setShowRatingMessage] = useState(false);
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const [{ data: rating, loading: ratingLoading, error }, sendRating] = useAxios({ url: `/ratings`, method: 'POST' }, { manual: true, useCache: false });
-
-    useEffect(() => {
-        if (error) {
-            setShowErrorMessage(true);
-        }
-    }, [error])
+    const [{ data: rating, error: ratingError, loading: ratingLoading }, sendRating] = useAxios({ url: `/ratings`, method: 'POST' }, { manual: true, useCache: false });
 
     useEffect(() => {
-        if (showRatingMessage) {
-            setTimeout(() => {
-                setShowRatingMessage(false);
-            }, 3000);
+        if (currentProduct?.clientRating) {
+            setRatingData((oldData) => {
+                return {
+                    ...oldData,
+                    value: currentProduct?.clientRating?.value,
+                    comment: currentProduct?.clientRating?.comment
+                }
+            })
         }
-
-        if (showErrorMessage) {
-            setTimeout(() => {
-                setShowErrorMessage(false);
-            }, 3000);
-        }
-
-    }, [showRatingMessage, showErrorMessage])
+    }, [currentProduct?.clientRating])
 
     useEffect(() => {
         if (rating) {
@@ -52,9 +42,10 @@ const RenderActionsButtons = ({ product }) => {
                     clientRating: rating
                 }
             });
-            setShowRatingMessage(true);
         }
-    }, [rating]);
+
+        if (rating || ratingError) setShowRatingMessage(true);
+    }, [rating, ratingError]);
 
     useEffect(() => {
         if (product) {
@@ -114,7 +105,7 @@ const RenderActionsButtons = ({ product }) => {
                 <h1 className="text-xl text-gray-500 font-bold">
                     {
                         currentProduct?.clientRating ?
-                            'Your Rating'
+                            `Your Rating ${currentProduct?.clientRating?.isEdited ? '(Edited)' : ''}`
                             :
                             'Add Rating:'
                     }
@@ -150,13 +141,9 @@ const RenderActionsButtons = ({ product }) => {
                 {
                     showRatingMessage &&
                     <div className="text-center">
-                        Your rating is send.
-                    </div>
-                }
-                {
-                    showErrorMessage &&
-                    <div className="text-center text-red-500">
-                        {error?.response?.data?.message}.
+                        {
+                            ratingError?.response?.data?.message || 'Your rating is send.'
+                        }
                     </div>
                 }
                 <div className="text-center space-x-8">

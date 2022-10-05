@@ -29,6 +29,9 @@ const NotificationComponent = () => {
                     "text-main": showNotifications
                 })}
             >
+                <div className="absolute bg-red-500 text-white rounded-full h-6 w-6 flex" style={{ top: '-10px', right: '-10px' }}>
+                    <p className="m-auto">10</p>
+                </div>
                 <BsBell className="h-6 w-6" />
             </button>
             {

@@ -6,17 +6,16 @@ import useMeasurementUnits from "../hooks/useMeasurementUnits";
 
 const Configuration = () => {
 
-
   return (
     <div className="container md:p-20 p-4 h-full md:w-md mb-6 max-w-full">
       <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black mb-6 md:mb-12">Cofiguration</p>
-      <CardWithTitle title="Language" className="md:w-32">
-        <Config title="English" spam="Spanish" />
-      </CardWithTitle>
+      {/* <CardWithTitle title="Language" className="md:w-32">
+
+      </CardWithTitle> */}
       <div className="mt-6">
-        <CardWithTitle title="Measurement units">
+        {/* <CardWithTitle title="Measurement units">
           <Config title="Metricas (Gramos)" spam="US (Onzas)" />
-        </CardWithTitle>
+        </CardWithTitle> */}
         <div className="mt-6">
           <CardWithTitle title="My servings">
             <div className="mt-10">

@@ -15,10 +15,7 @@ import clsx from "clsx";
 import { useFeedBack } from "../contexts/FeedBackContext";
 import favoriteTypes from "../consts/favoriteTypes";
 import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
-import Button from "../componentes/Button";
-import imgUrl from "../helpers/imgUrl";
-import profile from "../assets/profile.png";
-import Comment from "../componentes/Comment";
+import CommentsComponent from "../componentes/CommentsComponent";
 
 const PlanDetail = () => {
     const { setLoading } = useFeedBack();
@@ -27,15 +24,11 @@ const PlanDetail = () => {
 
     const navigate = useNavigate();
 
-    const [comment, setComment] = useState('');
-
     const [{ data }] = useAxios({ url: `/plans/${slug}` }, { useCache: false });
 
     const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
 
     const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
-
-    const [{ data: commentData, loading: commentLoading }, addComment] = useAxios({ url: '/comments', method: 'POST' }, { manual: true });
 
     const [selectedDay, setSelectedDay] = useState(null);
 
@@ -104,17 +97,6 @@ const PlanDetail = () => {
         }
     }, [toggleSavedData]);
 
-    useEffect(() => {
-        if (commentData) {
-            setCurrentPlan(prevData => ({
-                ...prevData,
-                comments: [...prevData.comments, commentData],
-            }));
-
-            setComment('');
-        }
-    }, [commentData]);
-
     const handleFavoriteClicked = ({ type, reaction }) => {
         if (!currentPlan) {
             return;
@@ -145,21 +127,6 @@ const PlanDetail = () => {
     const handleDay = (e, day) => {
         setSelectedDay(day);
         setSelectedPeriod(day?.mealPeriods?.[0])
-    }
-
-    const handleCommentSubmit = (e) => {
-        e.preventDefault();
-
-        if (commentLoading) {
-            return;
-        }
-
-        addComment({
-            data: {
-                planId: currentPlan?.id,
-                comment
-            }
-        });
     }
 
     return (
@@ -292,39 +259,10 @@ const PlanDetail = () => {
                             className="animate__animated animate__fadeInUp"
                             value={2}
                         >
-                            <form onSubmit={handleCommentSubmit}>
-                                <textarea
-                                    className="
-                                        mt-1
-                                        block
-                                        w-full
-                                        rounded-md
-                                        border-gray-300
-                                        shadow-sm
-                                        focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                                    "
-                                    rows="4"
-                                    placeholder="Leave a comment..."
-                                    value={comment}
-                                    onChange={(e) => setComment(e.target.value)}
-                                ></textarea>
-                                <div className="text-right mt-2">
-                                    <Button type="submit">Send</Button>
-                                </div>
-                            </form>
-
-                            <ul>
-                                {currentPlan?.comments?.map(comment => <li key={comment.id} className="bg-white rounded p-3 mt-2">
-                                    <Comment
-                                        comment={comment.comment}
-                                        name={comment.name}
-                                        createdAt={comment.createdAt}
-                                        answer={comment?.answer}
-                                        answeredAt={comment?.answeredAt}
-                                        imgPath={imgUrl(comment.imgPath, profile)}
-                                    />
-                                </li>)}
-                            </ul>
+                            <CommentsComponent
+                                type={'plan'}
+                                productId={currentPlan?.id}
+                            />
                         </TabPanel>
                     </div>
                 </TabsProvider>

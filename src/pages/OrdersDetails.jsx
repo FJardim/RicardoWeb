@@ -260,7 +260,7 @@ const OrdersDetails = () => {
                 <h1 className="text-xl text-gray-500 font-bold">
                     {
                         currentOrder?.seller?.clientRating ?
-                            `Your Rating ${currentOrder?.seller?.clientRating?.isEdited && '(Updated)'}`
+                            `Your Rating ${currentOrder?.seller?.clientRating?.isEdited ? '(Updated)' : ''}`
                             :
                             'Add Rating:'
                     }

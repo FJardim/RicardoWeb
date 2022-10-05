@@ -9,7 +9,7 @@ const LanguageConfig = ({ title, spam }) => {
         <div className="grid grid-cols-2 md:-space-x-32 ml-4">
           <label
             className="form-check-label inline-block text-gray-800"
-            for="flexCheckDefault"
+            htmlFor="flexCheckDefault"
           >
             {title}
           </label>
@@ -20,7 +20,7 @@ const LanguageConfig = ({ title, spam }) => {
         <div className="grid grid-cols-2   md:-space-x-32 ml-4">
           <label
             className="form-check-label inline-block text-gray-800"
-            for="flexCheckDefault"
+            htmlFor="flexCheckDefault"
           >
             {spam}
           </label>
