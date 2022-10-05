@@ -12,11 +12,7 @@ import { useFeedBack } from '../contexts/FeedBackContext';
 import useRecipe from "../hooks/useRecipe";
 import favoriteTypes from "../consts/favoriteTypes";
 import SellerPresentCard from "../componentes/Sellers/SellerPresentCard";
-import Comment from "../componentes/Comment";
-import Button from "../componentes/Button";
-import imgUrl from "../helpers/imgUrl";
-import profile from "../assets/profile.png";
-import { useState } from "react";
+import CommentsComponent from "../componentes/CommentsComponent";
 
 const RecipesDetail = () => {
   const { setLoading } = useFeedBack();
@@ -25,15 +21,11 @@ const RecipesDetail = () => {
 
   const navigate = useNavigate();
 
-  const [comment, setComment] = useState('');
-
   const [{ recipe, recipeLoading, setRecipe }] = useRecipe(slug);
 
   const [{ data: createFavoriteData, loading: createFavoriteLoading }, createFavorite] = useAxios({ url: '/favorites', method: 'POST' }, { manual: true });
 
   const [{ data: toggleSavedData, loading: toggleSavedLoading }, toggleSaved] = useAxios({ url: '/saved/toggle', method: 'POST' }, { manual: true });
-
-  const [{ data: commentData, loading: commentLoading }, addComment] = useAxios({ url: '/comments', method: 'POST' }, { manual: true });
 
   useEffect(() => {
     setLoading({ message: 'Cargando receta', show: recipeLoading });
@@ -62,17 +54,6 @@ const RecipesDetail = () => {
     }
   }, [toggleSavedData]);
 
-  useEffect(() => {
-    if (commentData) {
-      setRecipe(prevData => ({
-        ...prevData,
-        comments: [...prevData.comments, commentData],
-      }));
-
-      setComment('');
-    }
-  }, [commentData]);
-
   const handleFavoriteClicked = ({ type, reaction }) => {
     if (!recipe) {
       return;
@@ -96,21 +77,6 @@ const RecipesDetail = () => {
       data: {
         type,
         recipeId: recipe.id,
-      }
-    });
-  }
-
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-
-    if (commentLoading) {
-      return;
-    }
-
-    addComment({
-      data: {
-        recipeId: recipe?.id,
-        comment
       }
     });
   }
@@ -184,39 +150,10 @@ const RecipesDetail = () => {
               className="animate__animated animate__fadeInUp p-4"
               value={2}
             >
-              <form onSubmit={handleCommentSubmit}>
-                <textarea
-                  className="
-                    mt-1
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
-                  rows="4"
-                  placeholder="Leave a comment..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                ></textarea>
-                <div className="text-right mt-2">
-                  <Button type="submit">Send</Button>
-                </div>
-              </form>
-
-              <ul>
-                {recipe?.comments?.map(comment => <li key={comment.id} className="bg-white rounded p-3 mt-2">
-                  <Comment
-                    comment={comment.comment}
-                    name={comment.name}
-                    createdAt={comment.createdAt}
-                    answer={comment?.answer}
-                    answeredAt={comment?.answeredAt}
-                    imgPath={imgUrl(comment.imgPath, profile)}
-                  />
-                </li>)}
-              </ul>
+              <CommentsComponent
+                type={'recipe'}
+                productId={recipe?.id}
+              />
             </TabPanel>
           </div>
         </TabsProvider>
