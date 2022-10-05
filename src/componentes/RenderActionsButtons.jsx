@@ -105,7 +105,7 @@ const RenderActionsButtons = ({ product }) => {
                 <h1 className="text-xl text-gray-500 font-bold">
                     {
                         currentProduct?.clientRating ?
-                            `Your Rating ${currentProduct?.clientRating?.isEdited && '(Edited)'}`
+                            `Your Rating ${currentProduct?.clientRating?.isEdited ? '(Edited)' : ''}`
                             :
                             'Add Rating:'
                     }
