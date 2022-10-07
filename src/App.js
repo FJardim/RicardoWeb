@@ -36,6 +36,7 @@ import OrdersCapture from "./pages/OrdersCapture";
 import Orders from "./pages/Orders";
 import OrdersDetails from "./pages/OrdersDetails";
 import PurchasedProducts from "./pages/PurchasedProducts";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             <Route path="/combos/:slug" element={<CombosDetail />} />
             <Route path="/plans" element={<Plans />} />
             <Route path="/payment" element={<PaymentMethod />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route element={
               <RequireAuth>
                 <MyAccountLayout />

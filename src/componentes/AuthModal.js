@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import ReactDom from "react-dom";
+import ForgotPasswordForm from "./ForgotPasswordForm";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
@@ -34,6 +35,11 @@ const AuthModal = ({ show, onClose }) => {
             {
                 showForm === 'login' &&
                 <LoginForm changeForm={handleForm} onClose={onClose} />
+            }
+
+            {
+                showForm === 'forgot-password' &&
+                <ForgotPasswordForm changeForm={handleForm} onClose={onClose} />
             }
 
             {
