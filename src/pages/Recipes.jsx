@@ -31,11 +31,11 @@ const Recipes = () => {
     rating: ''
   });
 
+  const [searchParams] = useSearchParams();
 
 
   const [{ recipes, numberOfPages, loading }] = useRecipes({ params: { ...recipesFilters }, options: { useCache: false } });
 
-  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const categoryId = searchParams?.get('categoryId');
