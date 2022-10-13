@@ -33,9 +33,8 @@ const SwiperCombos = () => {
                 modules={[Navigation]}
                 className="mySwiper m-auto"
             >
-                {combos.map(combo => <SwiperSlide>
+                {combos.map((combo, i) => <SwiperSlide key={i}>
                     <CardRecipes
-                        key={combo.id}
                         texto={combo.name}
                         price={combo.price}
                         numberOfIngredients={combo.numberOfIngredients}
