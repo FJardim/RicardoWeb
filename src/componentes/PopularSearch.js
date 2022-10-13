@@ -7,7 +7,7 @@ const PopularSearch = ({ title, img }) => {
                 <div className='text-3xl px-4 py-3 font-bold'>
                     {title}
                 </div>
-                <button class="bg-main text-white py-2 px-3 rounded my-4 mx-4">
+                <button className="bg-main text-white py-2 px-3 rounded my-4 mx-4">
                     See more
                 </button>
             </div>

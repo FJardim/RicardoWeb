@@ -39,7 +39,7 @@ const SwiperRecipes = () => {
                 {
                     recipes?.map((recipe, i) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={i}>
                                 <Recipes
                                     title={recipe?.name}
                                     descsh={recipe?.description}

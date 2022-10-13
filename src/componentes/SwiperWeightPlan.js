@@ -43,9 +43,8 @@ const SwiperWeightPlan = () => {
                 modules={[Navigation]}
                 className="mySwiper m-auto "
             >
-                {plans.map(plan => <SwiperSlide>
+                {plans.map(plan => <SwiperSlide key={plan.id}>
                     <WeightPlan
-                        key={plan.id}
                         price={`${plan?.price}$`}
                         hideCart
                         logo={`${SystemInfo.api}${plan?.seller?.logo}`}
