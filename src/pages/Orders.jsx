@@ -19,9 +19,13 @@ const Orders = () => {
         perPage: 10
     });
 
+    const [orderId, setOrderId] = useState(null);
+
     const [{ orders, numberOfPages, loading }, getOrders] = useOrders({ params: { ...filters } }, { useCache: false, manual: true });
 
     const [{ data: payData, loading: payLoading }, payOrder] = useAxios({ method: 'POST' }, { manual: true, useCache: false });
+
+    const [{ loading: printLoading }, printOrder] = useAxios({ responseType: 'blob' }, { manual: true, useCache: false });
 
     useEffect(() => {
         setLoading({
@@ -58,8 +62,25 @@ const Orders = () => {
         payOrder({ url: `/orders/${orderId}/pay` });
     }
 
+    const handleBlobResponse = (blobResponse) => {
+        const fileBlobUrl = URL.createObjectURL(blobResponse);
+        const aToDownload = document.getElementById('downloadLink');
+        aToDownload.href = fileBlobUrl;
+        aToDownload?.click();
+        window.URL.revokeObjectURL(fileBlobUrl);
+    }
+
+    const handlePrint = (orderId) => {
+        setOrderId(orderId);
+        printOrder({ url: `/orders/${orderId}/pdf` }).then((response) => {
+            handleBlobResponse(response?.data);
+            setOrderId(null);
+        });
+    }
+
     return (
         <div className="container p-4 md:p-20 h-full w-full mb-20">
+            <a id="downloadLink" style={{ display: 'none' }} download={`order-${orderId}`}></a>
             <p className="text-4xl font-bold text-black ">My Orders</p>
             <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -127,6 +148,14 @@ const Orders = () => {
                                                                         Pay
                                                                     </button>
                                                                 }
+                                                                <button disabled={printLoading && orderId === order?.id} onClick={() => handlePrint(order?.id)} className="font-bold rounded text-white text-red-500">
+                                                                    {
+                                                                        printLoading && orderId === order?.id ?
+                                                                            'Loading...'
+                                                                            :
+                                                                            'Print'
+                                                                    }
+                                                                </button>
                                                                 <Link className="font-bold text-yellow-500 hover:text-gray-400" to={`/orders/${order?.id}`}>
                                                                     View Details
                                                                 </Link>
