@@ -37,6 +37,8 @@ const OrdersDetails = () => {
 
     const [{ data: rating, error: ratingError, loading: ratingLoading }, sendRating] = useAxios({ url: `/seller-ratings`, method: 'POST' }, { manual: true, useCache: false });
 
+    const [{ error: printError, loading: printLoading }, printOrder] = useAxios({ url: `/orders/${id}/pdf`, responseType: 'blob' }, { manual: true, useCache: false });
+
     useEffect(() => {
         if (currentOrder?.seller?.clientRating) {
             setRatingData((oldRatingData) => {
@@ -112,8 +114,24 @@ const OrdersDetails = () => {
         });
     }
 
+    const handleBlobResponse = (blobResponse) => {
+        const fileBlobUrl = URL.createObjectURL(blobResponse);
+        const aToDownload = document.getElementById('downloadLink');
+        aToDownload.href = fileBlobUrl;
+        aToDownload?.click();
+        window.URL.revokeObjectURL(fileBlobUrl);
+    }
+
+    const handlePrint = () => {
+        printOrder().then((response) => {
+            console.log(response)
+            handleBlobResponse(response?.data);
+        });
+    }
+
     return (
         <div className="container p-4 md:p-20 h-full w-full mb-20">
+            <a id="downloadLink" style={{ display: 'none' }} download={`order-${currentOrder?.id}`}></a>
             <div className="flex items-center justify-between w-full">
                 <div className="w-8/12">
                     <p className="text-4xl font-bold text-black ">Orders Details</p>
@@ -123,6 +141,16 @@ const OrdersDetails = () => {
                     </p>
                 </div>
                 <div className="w-4/12">
+                    <div className="text-right">
+                        <button disabled={printLoading} onClick={handlePrint} className="px-12 py-2 rounded text-white bg-red-500">
+                            {
+                                printLoading ?
+                                    'Loading...'
+                                    :
+                                    'Print'
+                            }
+                        </button>
+                    </div>
                     {
                         currentOrder?.orderStatus?.code === 'ors-001' &&
                         <div>
