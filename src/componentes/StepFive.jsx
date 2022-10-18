@@ -6,13 +6,17 @@ import { Swiper, SwiperSlide } from "swiper/react";// Import Swiper React compon
 import TabsContainer from "./TabsContainer";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
-import useRecipes from "../hooks/useRecipes";
 import Modal from "./Modal/Modal";
-import { useRef } from "react";
 import update from 'immutability-helper';
-import { IoCloseCircle } from "react-icons/io5";
+import { IoCloseCircle, IoGridOutline, IoList } from "react-icons/io5";
 import imgUrl from "../helpers/imgUrl";
 import clsx from "clsx";
+import usePurchasedProducts from "../hooks/usePurchasedProducts";
+import { useEffect } from "react";
+import ModalOverlay from "./Modal/ModalOverlay";
+import ModalContainer from "./Modal/ModalContainer";
+import ListComponent from "./ListComponent";
+import GridComponent from "./GridComponent";
 
 const StepFive = () => {
 
@@ -28,12 +32,25 @@ const StepFive = () => {
 
     const [currentPeriod, setCurrentPeriod] = useState(null);
 
+    const [currentRecipes, setCurrentRecipes] = useState([]);
+
+    const [viewType, setViewType] = useState('list');
+
     const [filters, setFilters] = useState({
         name: '',
-        page: 1
+        page: 1,
+        type: 'recipe'
     });
 
-    const [{ recipes, numberOfPages, loading: recipeLoading }, getRecipes] = useRecipes({ axiosConfig: { params: { ...filters } } });
+    const [{ purchasedProducts: recipes, numberOfPages, loading: recipeLoading, total }, getRecipes] = usePurchasedProducts({ axiosConfig: { params: { ...filters } }, options: { useCache: false } });
+
+    useEffect(() => {
+        if (recipes?.length > 0) {
+            setCurrentRecipes((oldRecipes) => {
+                return [...oldRecipes, ...recipes?.map(recipe => recipe?.recipe)]
+            });
+        }
+    }, [recipes])
 
     const handleAddRecipe = (recipe) => {
         const newData = update(data, {
@@ -82,6 +99,17 @@ const StepFive = () => {
     const handleSlideChange = (e) => {
         setIsEnd(e?.isEnd);
         setCurrentDayIndex(e?.realIndex);
+    }
+
+    const handleChange = (e) => {
+        setCurrentRecipes([]);
+        setFilters((oldFilters) => {
+            return {
+                ...oldFilters,
+                [e.target.name]: e.target.value,
+                page: 1
+            }
+        })
     }
 
     return (
@@ -192,60 +220,89 @@ const StepFive = () => {
                 </button>
             </div>
 
-            <Modal show={showModal} onClose={() => setShowModal(false)}>
-                <h1 className="text-center text-gray-400 font-semibold text-xl">
-                    Recipes
-                </h1>
-                {
-                    recipes?.length === 0 ?
-                        <div className="text-center text-2xl font-semibold text-red-500">
-                            No recipes found
+            <ModalOverlay show={showModal} onClose={() => setShowModal(false)}>
+                <ModalContainer onClose={() => setShowModal(false)} className="custom-scrollbar custom-scrollbar-main w-full md:w-8/12">
+                    <h1 className="text-center text-gray-400 font-semibold text-xl">
+                        Recipes
+                    </h1>
+                    <br />
+                    <div className="flex items-center justify-center md:justify-between mb-4">
+                        <div className="hidden md:block">
+                            Filters:
                         </div>
-                        :
-                        <ul>
-                            {
-                                recipes?.map((recipe, i) => {
-                                    return (
-                                        <li key={i} className="bg-gray-200 rounded-xl my-4 flex items-center justify-between">
-                                            <img style={{
-                                                height: '60px',
-                                                width: '60px',
-                                                borderRadius: '10px 10px 10px 10px',
-                                                border: '2px solid white'
-                                            }} src={imgUrl(recipe?.images?.[0]?.path)} alt="" />
-                                            <p className="py-4 px-2">
-                                                {recipe?.name}
-                                            </p>
-                                            <div className="flex items-center py-4 px-2">
-                                                <button onClick={() => handleAddRecipe(recipe)} className="text-main">
-                                                    Add
-                                                </button>
-                                            </div>
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
-                }
-                {
-
-                    recipeLoading ?
-                        <div className="text-center text-xl">
-                            Loading Recipes...
+                        <div className="flex items-center space-x-4">
+                            <div className="hidden md:block">
+                                Results: {total}
+                            </div>
+                            <div>
+                                <input type="text"
+                                    style={{ width: '100%' }}
+                                    placeholder="Search..."
+                                    onChange={handleChange}
+                                    value={filters?.name}
+                                    name="name"
+                                    className="block m-auto appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                />
+                            </div>
+                            <div className="flex items-center space-x-4 text-2xl">
+                                <IoGridOutline onClick={() => setViewType('grid')} className={clsx("cursor-pointer", {
+                                    "text-main": viewType === 'grid'
+                                })} />
+                                <IoList onClick={() => setViewType('list')} className={clsx("cursor-pointer", {
+                                    "text-main": viewType === 'list'
+                                })} />
+                            </div>
                         </div>
-                        :
-                        numberOfPages > filters?.page ?
-                            <div className="text-center">
-                                <button onClick={handleMore} className="bg-white px-8 py-2 rounded-full shadow mt-4">
-                                    Load More
-                                </button>
+                    </div>
+                    <div className="text-center mb-4 md:hidden">
+                        Results: {total}
+                    </div>
+                    {
+                        currentRecipes?.length === 0 && !recipeLoading ?
+                            <div className="text-center text-2xl font-semibold text-red-500">
+                                No recipes found
                             </div>
                             :
-                            <div className="text-center my-4">
-                                No more recipes.
+                            <ul className={clsx({
+                                "grid grid-cols-1 md:grid-cols-2 gap-4": viewType === 'list',
+                                "grid grid-cols-2 sm:grid-cols-3 items-end justify-center lg:grid-cols-4 gap-4": viewType === 'grid'
+                            })}>
+                                {
+                                    currentRecipes?.map((recipe, i) => {
+                                        if (viewType === 'grid') return <GridComponent
+                                            recipe={recipe}
+                                            key={i}
+                                            onHandleRecipe={handleAddRecipe}
+                                        />
+                                        if (viewType === 'list') return <ListComponent
+                                            recipe={recipe}
+                                            key={i}
+                                            onHandleRecipe={handleAddRecipe}
+                                        />
+                                    })
+                                }
+                            </ul>
+                    }
+                    {
+
+                        recipeLoading ?
+                            <div className="text-center text-xl">
+                                Loading Recipes...
                             </div>
-                }
-            </Modal>
+                            :
+                            numberOfPages > filters?.page ?
+                                <div className="text-center">
+                                    <button onClick={handleMore} className="bg-white px-8 py-2 rounded-full shadow mt-4">
+                                        Load More
+                                    </button>
+                                </div>
+                                :
+                                <div className="text-center my-4">
+                                    No more recipes.
+                                </div>
+                    }
+                </ModalContainer>
+            </ModalOverlay>
         </div>
     )
 }

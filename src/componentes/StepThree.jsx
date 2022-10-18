@@ -90,16 +90,20 @@ const StepThree = ({ defaultImages }) => {
                     :
                     <>
                         <br />
-                        <div className="grid w-full md:grid-cols-3 items-center lg:grid-cols-6 grid-cols-2 gap-10">
+                        <div className="grid w-full md:grid-cols-3 items-center lg:grid-cols-6 sm:grid-cols-2 grid-cols-1 gap-10">
                             {
                                 data?.images?.map((image, i) => {
                                     return (
                                         <div key={i} className="text-center space-y-4">
                                             {
                                                 image ?
-                                                    <p className="text-center my-4">
-                                                        {image?.name}
-                                                    </p>
+                                                    <ImgUploadInput
+                                                        previewImage={URL.createObjectURL(image)}
+                                                        className="h-44 w-44"
+                                                        description="drag or click"
+                                                        name="images"
+                                                        change={(e) => { handleArrayChange(e, i, 'images') }}
+                                                    />
                                                     :
                                                     <ImgUploadInput
                                                         previewImage={image?.path && imgUrl(image?.path)}

@@ -69,7 +69,10 @@ const NavBar = () => {
                                     Sellers
                                 </p>
                             </Link>
-                            <NotificationComponent />
+                            {
+                                user &&
+                                <NotificationComponent />
+                            }
                             <button
                                 className="md:hidden hover:text-main"
                                 onClick={() => setShowModalMenu(true)}
