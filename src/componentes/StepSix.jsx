@@ -113,7 +113,7 @@ const StepSix = () => {
                             </>
                         :
                         <a href="/my-plans" className="bg-main animate__animated animate__fadeInUp px-8 py-2 rounded-xl text-white">
-                            The plan has been {data?.id ? "updated" : "created"} successfully
+                            The plan has been {data?.id ? "updated" : "created"}.
                         </a>
                 }
             </div>
