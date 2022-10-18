@@ -84,7 +84,7 @@ const StepFour = () => {
                     Please add the number of weeks that you want
                 </h1>
                 <p className="text-center text-gray-400">
-                    The min of days is 14
+                    The min of days is 7
                 </p>
                 <br />
                 <div className="grid w-full grid-cols-3 sm:grid-cols-4  md:grid-cols-5 lg:grid-cols-7 gap-4">
@@ -101,7 +101,7 @@ const StepFour = () => {
                     }
                 </div>
                 <br />
-                <div className="text-center space-x-4">
+                <div className="flex items-center justify-center space-x-4 text-center space-x-4">
                     <button onClick={handleRemoveWeek} className="px-8 py-2 rounded bg-red-500 text-white">
                         Remove Week
                     </button>
@@ -113,7 +113,7 @@ const StepFour = () => {
                 <button onClick={(e) => setValue(value - 1)} type="button" className="bg-main px-8 py-2 rounded text-white">
                     Back
                 </button>
-                <button disabled={data?.weekDays?.length < 14} onClick={(e) => setValue(value + 1)} type="button" className="bg-main px-8 py-2 rounded text-white">
+                <button disabled={data?.weekDays?.length < 7} onClick={(e) => setValue(value + 1)} type="button" className="bg-main px-8 py-2 rounded text-white">
                     Next
                 </button>
             </div>

@@ -13,19 +13,14 @@ const NavInfo = () => {
     }, [location]);
 
     return (
-        <div className="bg-main text-black py-4">
-            <div className="container relative">
-                <div className="flex items-center cursor-pointer absolute -mt-4  ">
-                    <BiMap className="text-white h-10 w-10 mt-2" />
-                    <div className="flex flex-col text-white ">
-
-                    </div>
-                </div>
+        <div className="bg-main text-black py-1">
+            <div className="relative flex items-center justify-center">
+                <BiMap className="text-white text-xl absolute left-5" />
                 <div className="flex items-center justify-center flex-wrap">
                     <nav className="flex items-center space-x-10  md:space-x-20">
 
                         <Link to={"/combos"}>
-                            <p className={clsx({
+                            <p className={clsx("hover:text-white", {
                                 "text-white title-medium md:text-lg": currentPath === '/combos',
                                 "text-black title-medium md:text-lg": currentPath !== '/combos'
                             })}>
@@ -33,7 +28,7 @@ const NavInfo = () => {
                         </Link>
 
                         <Link to={"/plans"}>
-                            <p className={clsx({
+                            <p className={clsx("hover:text-white", {
                                 "text-white title-medium md:text-lg": currentPath === '/plans',
                                 "text-black title-medium md:text-lg": currentPath !== '/plans'
                             })}>
@@ -42,7 +37,7 @@ const NavInfo = () => {
                         </Link>
 
                         <Link to={"/recipes"}>
-                            <p className={clsx({
+                            <p className={clsx("hover:text-white", {
                                 "text-white title-medium md:text-lg": currentPath === '/recipes',
                                 "text-black title-medium md:text-lg": currentPath !== '/recipes'
                             })}>
