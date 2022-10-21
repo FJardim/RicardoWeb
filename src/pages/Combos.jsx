@@ -32,7 +32,8 @@ const Combos = () => {
     name: '',
     categoryIds: [],
     hideFavoritedForClientId: user?.id,
-    rating: ''
+    rating: '',
+    orderByMostPurchased: ''
   });
 
   const [{ combos, total, numberOfPages, size, error, loading }, getCombos] = useCombos({ params: { ...combosFilters }, options: { useCache: false } });
@@ -41,6 +42,8 @@ const Combos = () => {
     const categoryId = searchParams?.get('categoryId');
 
     const name = searchParams?.get('name');
+
+    const orderByMostPurchased = searchParams?.get('orderByMostPurchased');
 
     if (categoryId) {
       setCombosFilters((oldFilters) => {
@@ -57,6 +60,16 @@ const Combos = () => {
         return {
           ...oldFilters,
           name: name,
+          page: 1
+        }
+      });
+    }
+
+    if (orderByMostPurchased) {
+      setCombosFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          orderByMostPurchased: true,
           page: 1
         }
       });
@@ -106,6 +119,12 @@ const Combos = () => {
             }}
           />
           <div className="mt-10 md:mt-0 md:col-span-3">
+            {
+              combosFilters?.orderByMostPurchased &&
+              <div className="text-center text-4xl mb-16">
+                ⭐ Most Popular Combos ⭐
+              </div>
+            }
             {
               combosFilters?.name &&
               <div className="text-center text-4xl mb-16">

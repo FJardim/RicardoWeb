@@ -33,11 +33,19 @@ const SwiperPopular = () => {
                 className="mySwiper "
             >
                 <SwiperSlide>
-                    <PopularSearch title="Popular Recipes" img={Popular1} />
+                    <PopularSearch
+                        url={`/recipes?orderByMostPurchased=true`}
+                        title="Popular Recipes"
+                        img={Popular1}
+                    />
                 </SwiperSlide>
 
                 <SwiperSlide>
-                    <PopularSearch title="Popular Meal Planners" img={Popular2} />
+                    <PopularSearch
+                        url={`/plans?orderByMostPurchased=true`}
+                        title="Popular Meal Planners"
+                        img={Popular2}
+                    />
                 </SwiperSlide>
             </Swiper>
         </div>

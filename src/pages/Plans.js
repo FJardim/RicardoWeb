@@ -30,7 +30,8 @@ const Plans = () => {
     categoryIds: [],
     hideFavoritedForClientId: user?.id,
     hideClientPlans: 'true',
-    rating: ''
+    rating: '',
+    orderByMostPurchased: ''
   });
 
   const [{ plans, numberOfPages, loading }, getPlans] = usePlans({ params: { ...plansFilters }, options: { useCache: false } });
@@ -39,6 +40,8 @@ const Plans = () => {
     const categoryId = searchParams?.get('categoryId');
 
     const name = searchParams?.get('name');
+
+    const orderByMostPurchased = searchParams?.get('orderByMostPurchased');
 
     if (categoryId) {
       setPlansFilters((oldFilters) => {
@@ -55,6 +58,16 @@ const Plans = () => {
         return {
           ...oldFilters,
           name: name,
+          page: 1
+        }
+      });
+    }
+
+    if (orderByMostPurchased) {
+      setPlansFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          orderByMostPurchased: true,
           page: 1
         }
       });
@@ -107,6 +120,12 @@ const Plans = () => {
           />
 
           <div className="mt-10 md:mt-0 md:col-span-3">
+            {
+              plansFilters?.orderByMostPurchased &&
+              <div className="text-center text-4xl mb-16">
+                ⭐ Most Popular Plans ⭐
+              </div>
+            }
             {
               plansFilters?.name &&
               <div className="text-center text-4xl mb-16">
