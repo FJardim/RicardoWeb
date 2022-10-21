@@ -17,6 +17,7 @@ import ModalOverlay from "./Modal/ModalOverlay";
 import ModalContainer from "./Modal/ModalContainer";
 import ListComponent from "./ListComponent";
 import GridComponent from "./GridComponent";
+import usePlanRecipes from "../hooks/usePlanRecipes";
 
 const StepFive = () => {
 
@@ -38,16 +39,15 @@ const StepFive = () => {
 
     const [filters, setFilters] = useState({
         name: '',
-        page: 1,
-        type: 'recipe'
+        page: 1
     });
 
-    const [{ purchasedProducts: recipes, numberOfPages, loading: recipeLoading, total }, getRecipes] = usePurchasedProducts({ axiosConfig: { params: { ...filters } }, options: { useCache: false } });
+    const [{ planRecipes: recipes, numberOfPages, loading: recipeLoading, total }, getRecipes] = usePlanRecipes({ axiosConfig: { params: { ...filters } }, options: { useCache: false } });
 
     useEffect(() => {
         if (recipes?.length > 0) {
             setCurrentRecipes((oldRecipes) => {
-                return [...oldRecipes, ...recipes?.map(recipe => recipe?.recipe)]
+                return [...oldRecipes, ...recipes]
             });
         }
     }, [recipes])
