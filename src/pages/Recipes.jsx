@@ -7,7 +7,6 @@ import useRecipes from "../hooks/useRecipes";
 import { useEffect, useState } from "react";
 import Pagination from "../componentes/Pagination";
 import ButtonOverview from "../componentes/ButtonOverview";
-import ModalFiltre from "../componentes/ModalFiltre";
 import imgUrl from "../helpers/imgUrl";
 import { useAuth } from "../contexts/AuthContext";
 import ModalOverlay from "../componentes/Modal/ModalOverlay";
@@ -28,7 +27,8 @@ const Recipes = () => {
     name: '',
     categoryIds: [],
     hideFavoritedForClientId: user?.id,
-    rating: ''
+    rating: '',
+    orderByMostPurchased: ''
   });
 
   const [searchParams] = useSearchParams();
@@ -41,6 +41,8 @@ const Recipes = () => {
     const categoryId = searchParams?.get('categoryId');
 
     const name = searchParams?.get('name');
+
+    const orderByMostPurchased = searchParams?.get('orderByMostPurchased');
 
     if (categoryId) {
       setRecipesFilters((oldFilters) => {
@@ -57,6 +59,16 @@ const Recipes = () => {
         return {
           ...oldFilters,
           name: name,
+          page: 1
+        }
+      });
+    }
+
+    if (orderByMostPurchased) {
+      setRecipesFilters((oldFilters) => {
+        return {
+          ...oldFilters,
+          orderByMostPurchased: true,
           page: 1
         }
       });
@@ -106,6 +118,12 @@ const Recipes = () => {
             }}
           />
           <div className="mt-10 md:mt-0 md:col-span-3">
+            {
+              recipesFilters?.orderByMostPurchased &&
+              <div className="text-center text-4xl mb-16">
+                ⭐ Most Popular Recipes ⭐
+              </div>
+            }
             {
               recipesFilters?.name &&
               <div className="text-center text-4xl mb-16">
