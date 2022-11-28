@@ -5,7 +5,6 @@ import ImgUploadInput from "./ImgeUploadInput";
 import { useEffect } from "react";
 import imgUrl from "../helpers/imgUrl";
 import ImageCrudComponent from "./ImageCrudComponent";
-import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 
 const StepThree = ({ defaultImages }) => {

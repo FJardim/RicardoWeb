@@ -26,7 +26,6 @@ const RegisterForm = ({ changeForm, onClose }) => {
 
     useEffect(() => {
         if (registerData) {
-            console.log(registerData);
             setAuthInfo({
                 user: registerData?.user,
                 token: registerData?.accessToken
