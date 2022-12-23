@@ -1,4 +1,4 @@
-import { BsFillBookmarkHeartFill, BsFillCalendar2MinusFill, BsFillGearFill, BsFillHeartFill } from "react-icons/bs";
+import { BsFillCalendar2MinusFill, BsFillGearFill, BsFillHeartFill, BsBookFill } from "react-icons/bs";
 import { FaListAlt } from "react-icons/fa";
 import { IoHelpCircleOutline, IoChatbubbleEllipsesOutline, IoBookmarksSharp, IoPersonCircleSharp, IoDocument } from "react-icons/io5";
 import { RiMessage2Fill } from "react-icons/ri";
@@ -10,7 +10,7 @@ const MenuList = [
         Icon: ({ className }) => <IoPersonCircleSharp className={className} />
     },
     {
-        name: 'Setting',
+        name: 'Settings',
         url: '/configuration',
         Icon: ({ className }) => <BsFillGearFill className={className} />
     },
@@ -25,9 +25,9 @@ const MenuList = [
         Icon: ({ className }) => <BsFillHeartFill className={className} />
     },
     {
-        name: 'Saved',
-        url: '/saves',
-        Icon: ({ className }) => <BsFillBookmarkHeartFill className={className} />
+        name: 'My recipe book',
+        url: '/recipe-book',
+        Icon: ({ className }) => <BsBookFill className={className} />
     },
     {
         name: 'My purchases',

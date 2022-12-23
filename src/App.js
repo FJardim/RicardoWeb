@@ -37,6 +37,7 @@ import Orders from "./pages/Orders";
 import OrdersDetails from "./pages/OrdersDetails";
 import PurchasedProducts from "./pages/PurchasedProducts";
 import ResetPassword from "./pages/ResetPassword";
+import RecipeBook from "./pages/RecipeBook";
 
 function App() {
   return (
@@ -82,6 +83,7 @@ function App() {
               <Route path="/orders" element={<Orders />} />
               <Route path="/orders/:id" element={<OrdersDetails />} />
               <Route path="/orders/capture-order" element={<OrdersCapture />} />
+              <Route path="/recipe-book" element={<RecipeBook />} />
             </Route>
           </Routes>
         </AppLayout>
