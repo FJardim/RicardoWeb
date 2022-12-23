@@ -19,12 +19,13 @@ const NavInfo = () => {
                 <div className="flex items-center justify-center flex-wrap">
                     <nav className="flex items-center space-x-10  md:space-x-20">
 
-                        <Link to={"/combos"}>
+                        <Link to={"/recipes"}>
                             <p className={clsx("hover:text-white", {
-                                "text-white title-medium md:text-lg": currentPath === '/combos',
-                                "text-black title-medium md:text-lg": currentPath !== '/combos'
+                                "text-white title-medium md:text-lg": currentPath === '/recipes',
+                                "text-black title-medium md:text-lg": currentPath !== '/recipes'
                             })}>
-                                Combos</p>
+                                Recipes
+                            </p>
                         </Link>
 
                         <Link to={"/plans"}>
@@ -36,13 +37,12 @@ const NavInfo = () => {
                             </p>
                         </Link>
 
-                        <Link to={"/recipes"}>
+                        <Link to={"/combos"}>
                             <p className={clsx("hover:text-white", {
-                                "text-white title-medium md:text-lg": currentPath === '/recipes',
-                                "text-black title-medium md:text-lg": currentPath !== '/recipes'
+                                "text-white title-medium md:text-lg": currentPath === '/combos',
+                                "text-black title-medium md:text-lg": currentPath !== '/combos'
                             })}>
-                                Recipes
-                            </p>
+                                Combos</p>
                         </Link>
                     </nav>
                 </div>
