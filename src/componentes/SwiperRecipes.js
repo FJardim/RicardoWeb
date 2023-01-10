@@ -29,7 +29,7 @@ const SwiperRecipes = () => {
     return (
         <div className="p-8">
             <Swiper
-                slidesPerView={innerWidth > 768 ? 2 : 1}
+                slidesPerView={innerWidth > 600 ? 2 : 1}
                 spaceBetween={40}
                 loop={true}
                 navigation={true}

@@ -7,14 +7,14 @@ import { BsFillEmojiLaughingFill } from "react-icons/bs";
 const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDefaultButtons = true }) => {
 
     return (
-        <div className="flex bg-white h-full rounded-md overflow-hidden shadow-md">
-            <div className="md:w-5/12 ">
-                <img className='md:h-full md:block hidden rounded-md' src={img} alt="Recipes" />
+        <div className="lg:flex bg-white rounded-md overflow-hidden shadow-md">
+            <div className="lg:w-5/12">
+                <img className='md:h-full w-full md:block rounded-md' src={img} alt="Recipes" />
             </div>
-            <div className="flex py-4 px-4 md:h-full md:w-7/12">
+            <div className="xl:flex py-4 px-4 md:h-full lg:w-7/12">
                 <div className='mr-4 md:m-0 w-4/5'>
                     <div className='font-bold text-xl'>
-                        {title}
+                        {title?.length > 15 ? `${title.slice?.(0, 15)}...` : title}
                     </div>
                     <p className="px-1 mt-2 text-gray-400 text-xs">{descsh?.length > 25 ? `${descsh.slice?.(0, 25)}...` : descsh}</p>
                     <div className="flex">
@@ -39,13 +39,13 @@ const Recipes = ({ title, descsh, desccost, cost, img, level, time, ing, withDef
                         </div>
                     </div>
                 </div>
-                <div className="w-2/5 flex flex-col">
+                <div className="lg:w-2/5 justify-between lg:justify-start items-center flex lg:flex-col">
                     <div className='px-1 py-1 font-bold text-base'>
                         {cost}
                     </div>
                     <p className="px-1 py-1 text-gray-400 text-xs">{desccost}</p>
 
-                    <div className="bottom-0 right-0 space-x-3 flex justify-end items-center mt-auto">
+                    <div className="bottom-0 right-0 space-x-3 flex lg:justify-end items-center mt-auto">
                         {withDefaultButtons
                             ? <>
                                 <button className="bg-white rounded-full py-1 px-1 shadow-2xl recipe-btn"><AiOutlineClose className="text-red-500" /></button>
