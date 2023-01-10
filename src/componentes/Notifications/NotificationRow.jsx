@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import {
     SELLER_REGISTERED,
-    COMMENT_CREATED,
     COMMENT_ANSWERED,
-    PRODUCT_RATED,
 } from "../../util/NotificationsTypes";
 import { Link } from "react-router-dom";
 
