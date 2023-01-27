@@ -106,7 +106,6 @@ const OverviewUser = () => {
 
 
     useEffect(() => {
-        console.log('me ejecute');
         let draggableEl = document.getElementById("external-events");
         new Draggable(draggableEl, {
             itemSelector: ".custom-event"
@@ -162,12 +161,6 @@ const OverviewUser = () => {
 
         const start = format(new Date(dropInfo?.date), 'yyyy-MM-dd');
 
-        console.log({
-            start,
-            eventType,
-            eventableId
-        });
-
         addEvent({
             data: {
                 [eventType]: eventableId,
@@ -203,7 +196,6 @@ const OverviewUser = () => {
             isPlan: e?.event?._def?.extendedProps?.plan ? true : false,
             eventId: e?.event?._def?.publicId
         };
-        console.log(clickedEvent);
         setSelectedEvent(clickedEvent);
     }
 
