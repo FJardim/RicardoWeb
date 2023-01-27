@@ -17,6 +17,8 @@ const ChatsDetails = () => {
 
     const [message, setMessage] = useState('');
 
+    const [attachments, setAttachments] = useState([]);
+
     const [pages, setPages] = useState('');
 
     const [filters, setFilters] = useState({
@@ -34,7 +36,6 @@ const ChatsDetails = () => {
 
     useEffect(() => {
         if (chatMessages?.results?.length > 0) {
-            console.log(chatMessages);
             setCurrentMessages((oldCurrentMessages) => {
                 return [...oldCurrentMessages, ...chatMessages?.results]
             })
@@ -50,6 +51,7 @@ const ChatsDetails = () => {
             setCurrentMessages((oldMessages) => {
                 return [newMessage, ...oldMessages]
             });
+            setAttachments([]);
             setMessage('');
         }
     }, [newMessage]);
@@ -60,11 +62,15 @@ const ChatsDetails = () => {
             return;
         }
 
-        sendMessage({
-            data: {
-                content: message
-            }
+        const data = new FormData();
+
+        data.append('content', message);
+
+        attachments.forEach((attachment, i) => {
+            data.append(`attachments`, attachment, attachment.name);
         });
+
+        sendMessage({ data });
     }
 
     const handleMore = () => {
@@ -76,6 +82,20 @@ const ChatsDetails = () => {
                 }
             });
         }
+    }
+
+    const handleAttachments = (e) => {
+        setAttachments((oldAttachments) => {
+            return [...oldAttachments, ...e.target.files];
+        });
+    }
+
+    const removeFromArray = (index) => {
+        attachments?.splice(index, 1);
+
+        setAttachments((olddata) => {
+            return [...attachments];
+        });
     }
 
     return (
@@ -98,10 +118,24 @@ const ChatsDetails = () => {
                             <div key={i} className={clsx(["flex my-2 w-full"], {
                                 "justify-end": user?.id === message?.userId
                             })}>
-                                <div className={clsx(["shadow py-2 px-8 rounded-full text-sm md:text-md"], {
+                                <div className={clsx(["shadow py-2 px-8 rounded-xl text-sm md:text-md"], {
                                     "bg-white": user?.id !== message?.userId,
                                     "bg-main text-white text-right": user?.id == message?.userId
                                 })}>
+                                    {
+                                        message?.attachments?.length > 0 &&
+                                        <div>
+                                            {
+                                                message?.attachments?.map((attachment, i2) => {
+                                                    return (
+                                                        <a href={imgUrl(attachment.path)} download target="_blank" className="mb-1 p-2 rounded-xl block" style={{ backgroundColor: `rgba(255,255,255, .3)` }}>
+                                                            {attachment.name}
+                                                        </a>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    }
                                     <b>{message?.content}</b>
                                     <p>
                                         <small><DateFormatter value={message?.createdAt} dateFormat={'dd-MM-yyyy hh:mm:ss'} /></small>
@@ -129,31 +163,51 @@ const ChatsDetails = () => {
                             </div>
                 }
             </div>
-            <form onSubmit={handleSubmit} className="flex items-center space-x-4 py-8">
-                <input type="text"
-                    placeholder="Write your message..."
-                    className="focus:border-none focus:ring-none focus:ring-gray-200 w-full h-16"
-                    value={message}
-                    onChange={(e) => setMessage(e?.target?.value)}
-                    autoFocus
-                    style={{
-                        border: 'none',
-                        borderBottom: '1px solid #d1d1d1',
-                        background: 'transparent'
-                    }}
-                />
-                <div className="w-4/12 md:w-2/12 flex justify-around">
-                    <button type="button" style={{ backgroundColor: '#f59e0b' }} className="text-white px-6 py-4 rounded-full">
-                        <IoAttachOutline />
-                    </button>
-                    <button disabled={newMessageLoading} className="bg-main text-white px-6 py-4 rounded-full">
+            <form onSubmit={handleSubmit} className="py-8">
+                {
+                    attachments.length > 0 &&
+                    <div className="flex items-center space-x-4">
                         {
-                            newMessageLoading ?
-                                'sending...'
-                                :
-                                <IoSendSharp />
+                            attachments.map((file, i) => {
+                                return (
+                                    <div className="relative">
+                                        <button onClick={() => removeFromArray(i)} type="button" style={{ right: -8, top: -8 }} className="absolute rounded bg-red-500 p-2 h-4 w-4 flex items-center justify-center text-white">
+                                            X
+                                        </button>
+                                        <img src={URL.createObjectURL(file)} className="h-16 w-16 rounded" />
+                                    </div>
+                                )
+                            })
                         }
-                    </button>
+                    </div>
+                }
+                <div className="flex items-center space-x-4">
+                    <input type="text"
+                        placeholder="Write your message..."
+                        className="focus:border-none focus:ring-none focus:ring-gray-200 w-full h-16"
+                        value={message}
+                        onChange={(e) => setMessage(e?.target?.value)}
+                        autoFocus
+                        style={{
+                            border: 'none',
+                            borderBottom: '1px solid #d1d1d1',
+                            background: 'transparent'
+                        }}
+                    />
+                    <div className="w-4/12 md:w-2/12 flex justify-around">
+                        <label htmlFor="files" style={{ backgroundColor: '#f59e0b' }} className="cursor-pointer text-white px-6 py-4 rounded-full">
+                            <IoAttachOutline />
+                            <input multiple onChange={handleAttachments} type="file" id="files" style={{ display: 'none' }} accept="image/png, image/jpeg" />
+                        </label>
+                        <button disabled={newMessageLoading} className="bg-main text-white px-6 py-4 rounded-full">
+                            {
+                                newMessageLoading ?
+                                    'sending...'
+                                    :
+                                    <IoSendSharp />
+                            }
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
