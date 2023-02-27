@@ -5,6 +5,7 @@ import { SiInstagram } from "react-icons/si";
 import { SiTwitter } from "react-icons/si";
 import { IoLogoYoutube } from "react-icons/io";
 import { FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -20,6 +21,7 @@ export default function Footer() {
               Get in touch
             </h1>
             <ul>
+              <Link className="md:my-4" to={"/contact"}>Contact</Link>
               <li className="md:my-4">About Us</li>
               <li className="md:my-4">Careers</li>
               <li className="md:my-4">Press Releases</li>

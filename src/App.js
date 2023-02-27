@@ -61,6 +61,7 @@ function App() {
             <Route path="/plans" element={<Plans />} />
             <Route path="/payment" element={<PaymentMethod />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/contact" element={<Contactus />} />
             <Route element={
               <RequireAuth>
                 <MyAccountLayout />
@@ -74,7 +75,6 @@ function App() {
               <Route path="/chats" element={<Chats />} />
               <Route path="/chats/:id" element={<ChatsDetails />} />
               <Route path="/comments" element={<Comments />} />
-              <Route path="/contactus" element={<Contactus />} />
               <Route path="/saves" element={<Saves />} />
               <Route path="/meanplanoverview" element={<MealPlanOverview />} />
               <Route path="/my-plans" element={<MyPlans />} />
