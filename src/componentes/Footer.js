@@ -20,7 +20,11 @@ export default function Footer() {
               Get in touch
             </h1>
             <ul>
-              <li className="md:my-4">About Us</li>
+              <li className="md:my-4">
+                <a href="/legal/privacy-policy">
+                  Privacy Policies
+                </a>
+              </li>
               <li className="md:my-4">Careers</li>
               <li className="md:my-4">Press Releases</li>
               <li className="md:my-4">Blog</li>
