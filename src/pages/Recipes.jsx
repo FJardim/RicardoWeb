@@ -142,11 +142,11 @@ const Recipes = () => {
                 return (
                   <Link to={`/recipes/${recipe.slug}`} key={recipe.id}>
                     <CardRecipes
-                      texto={recipe.name}
-                      price={recipe.price}
-                      title={recipe.mealPeriods
+                      texto={recipe.mealPeriods
                         .map((mp) => mp.name)
                         .join(" - ")}
+                      price={recipe.price}
+                      title={recipe.name}
                       foto={imgUrl(recipe.images?.[0].path)}
                       sellerLogo={imgUrl(recipe.seller.logo)}
                       sellerName={recipe.seller.name}
