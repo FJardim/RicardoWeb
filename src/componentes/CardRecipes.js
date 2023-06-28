@@ -21,7 +21,7 @@ const CardRecipes = ({
   hideCart = false,
   hideClock,
   hideBag,
-  rating
+  rating,
 }) => {
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
@@ -41,24 +41,47 @@ const CardRecipes = ({
             <p className="text-white py-1 px-1.5">${price}</p>
           </div>
           <div className="absolute flex z-10 top-3 right-3 justify-end text-white">
-            {!hideBag && <div className="flex mr-2">
-              <img src={BolsaCompras} className="h-5 w-5 text-white m-auto" alt="BolsaCompras" />
-              <p className="text-white h-5 w-15 ml-1">{numberOfItems}</p>
-            </div>}
+            {!hideBag && (
+              <div className="flex mr-2">
+                <img
+                  src={BolsaCompras}
+                  className="h-5 w-5 text-white m-auto"
+                  alt="BolsaCompras"
+                />
+                <p className="text-white h-5 w-15 ml-1">{numberOfItems}</p>
+              </div>
+            )}
             <div className="flex ">
-              <img src={CestaCompras} className="h-5 w-5 m-auto" alt="CestaCompras" />
+              <img
+                src={CestaCompras}
+                className="h-5 w-5 m-auto"
+                alt="CestaCompras"
+              />
               <p className="text-white h-5 w-5 ml-1">{numberOfIngredients}</p>
             </div>
 
-            {!hideClock && <div className="flex ">
-              <img src={Reloj} className="h-5 w-5 m-auto" alt="CestaCompras" />
-              <p className="text-white h-5 w-5 ml-1">{preparationTime}</p>
-            </div>}
+            {!hideClock && (
+              <div className="flex ">
+                <img
+                  src={Reloj}
+                  className="h-5 w-5 m-auto"
+                  alt="CestaCompras"
+                />
+                <p className="text-white h-5 w-5 ml-1">{preparationTime}</p>
+              </div>
+            )}
           </div>
 
-          <h1 className="m-auto text-2xl text-white font-semibold">{title}</h1>
+          <h2 className="m-auto text-2xl text-white text-center font-semibold">
+            {title}
+          </h2>
           <div className="absolute w-full p-2 bottom-0 bg-black bg-opacity-30 ">
-            <h1 className="text-white font-semibold truncate mb-1" title={texto}>{texto}</h1>
+            <h1
+              className="text-white font-semibold truncate mb-1"
+              title={texto}
+            >
+              {texto}
+            </h1>
 
             <div className="flex">
               <div className="flex text-bold">
@@ -68,7 +91,7 @@ const CardRecipes = ({
               <div className="flex justify-end text-white ml-auto">
                 <div className="flex items-center space-x-2">
                   <FaStar color="#FFBA5A" />
-                  <p className="text-white">{rating || '0'}</p>
+                  <p className="text-white">{rating || "0"}</p>
                 </div>
               </div>
             </div>
