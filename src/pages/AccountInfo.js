@@ -6,6 +6,7 @@ import paypal from "../assets/paypal.png"
 import { useAuth } from "../contexts/AuthContext";
 import useAxios from "../hooks/useAxios";
 import imgUrl from "../helpers/imgUrl";
+import { Link } from "react-router-dom";
 
 
 const AccountInfo = () => {
@@ -81,7 +82,12 @@ const AccountInfo = () => {
 
   return (
     <div className="container md:p-20 p-4 h-full md:w-md mb-6 max-w-full">
-      <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black mb-6 md:mb-12">My Profile</p>
+      <div className="flex mb-6 md:mb-12" style={{ justifyContent: 'space-between' }}>
+        <p className="md:text-4xl text-2xl text-center md:text-justify font-bold text-black">My Profile</p>
+        <Link to="/delete-account" className="bg-red-500 rounded-xl text-white p-4">
+          Delete Account
+        </Link>
+      </div>
       <form onSubmit={handleSubmit}>
         <CardWithTitle title="My personal Information">
           <div className="p-2 md:grid md:grid-cols-2 gap-4 mt-6">

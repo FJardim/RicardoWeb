@@ -37,6 +37,8 @@ import Orders from "./pages/Orders";
 import OrdersDetails from "./pages/OrdersDetails";
 import PurchasedProducts from "./pages/PurchasedProducts";
 import ResetPassword from "./pages/ResetPassword";
+import PrivacyPolicies from "./pages/PrivacyPolicies";
+import DeleteAccountInfo from "./pages/DeleteAccountInfo";
 import RecipeBook from "./pages/RecipeBook";
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
         <AppLayout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/legal/privacy-policy" element={<PrivacyPolicies />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/plan/:slug" element={<PlanDetail />} />
@@ -68,6 +71,7 @@ function App() {
               </RequireAuth>
             }>
               <Route path="/accountinfo" element={<AccountInfo />} />
+              <Route path="/delete-account" element={<DeleteAccountInfo />} />
               <Route path="/configuration" element={<Configuration />} />
               <Route path="/overview" element={<OverviewUser />} />
               <Route path="/favorites" element={<MyFavoritesUser />} />
