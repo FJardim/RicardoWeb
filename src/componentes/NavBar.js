@@ -61,12 +61,20 @@ const NavBar = () => {
                                     Categories
                                 </p>
                             </Link>
-                            <Link to={"/Sellers"} className="hidden md:block hover:text-main">
+                            <Link to={"/sellers"} className="hidden md:block hover:text-main">
                                 <p className={clsx({
-                                    "text-main title-medium md:text-lg": currentPath === '/Sellers',
-                                    'text-white title-medium md:text-lg': currentPath !== '/Sellers'
+                                    "text-main title-medium md:text-lg": currentPath === '/sellers',
+                                    'text-white title-medium md:text-lg': currentPath !== '/sellers'
                                 })}>
                                     Sellers
+                                </p>
+                            </Link>
+                            <Link to={"/contact"} className="hidden md:block hover:text-main">
+                                <p className={clsx({
+                                    "text-main title-medium md:text-lg": currentPath === '/contact',
+                                    'text-white title-medium md:text-lg': currentPath !== '/contact'
+                                })}>
+                                    Contact
                                 </p>
                             </Link>
                             {

@@ -39,6 +39,7 @@ import PurchasedProducts from "./pages/PurchasedProducts";
 import ResetPassword from "./pages/ResetPassword";
 import PrivacyPolicies from "./pages/PrivacyPolicies";
 import DeleteAccountInfo from "./pages/DeleteAccountInfo";
+import RecipeBook from "./pages/RecipeBook";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
             <Route path="/plans" element={<Plans />} />
             <Route path="/payment" element={<PaymentMethod />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/contact" element={<Contactus />} />
             <Route element={
               <RequireAuth>
                 <MyAccountLayout />
@@ -77,7 +79,6 @@ function App() {
               <Route path="/chats" element={<Chats />} />
               <Route path="/chats/:id" element={<ChatsDetails />} />
               <Route path="/comments" element={<Comments />} />
-              <Route path="/contactus" element={<Contactus />} />
               <Route path="/saves" element={<Saves />} />
               <Route path="/meanplanoverview" element={<MealPlanOverview />} />
               <Route path="/my-plans" element={<MyPlans />} />
@@ -86,6 +87,7 @@ function App() {
               <Route path="/orders" element={<Orders />} />
               <Route path="/orders/:id" element={<OrdersDetails />} />
               <Route path="/orders/capture-order" element={<OrdersCapture />} />
+              <Route path="/recipe-book" element={<RecipeBook />} />
             </Route>
           </Routes>
         </AppLayout>
