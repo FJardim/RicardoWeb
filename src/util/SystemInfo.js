@@ -2,8 +2,8 @@ import logoBlanco from "../assets/logo-blanco.png";
 import logoShort from "../assets/logoR.png";
 
 const SystemInfo = {
-    name: "Recipes - Sellers",
-    description: "System for the management of the recipes.",
+    name: "Recipes",
+    description: "Find your favorites recipes and shared it with your friends.",
     logo: logoShort,
     logoBlanco: logoBlanco,
     logoShort: logoShort,
