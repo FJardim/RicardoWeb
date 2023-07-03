@@ -26,8 +26,8 @@ const CardRecipes = ({
   return (
     <div className="bg-white w-full mb-6 rounded-xl overflow-hidden">
       <div
-        className="h-64 w-74 relative"
-        style={{ backgroundImage: `url(${foto})`, backgroundSize: "100% 100%" }}
+        className="h-64 w-74 relative bg-cover"
+        style={{ backgroundImage: `url(${foto})` }}
       >
         <div className="relative h-full w-full bg-black bg-opacity-20 flex ">
           <div className="absolute left-0 top-1 w-full justify-center items-center flex">
