@@ -5,6 +5,7 @@ import useOverviewCalendar from "../hooks/useOverviewCalendar";
 import DateFormatter from "../componentes/DateFormatter";
 import useAxios from "../hooks/useAxios";
 import DayDetails from "../componentes/Overview/DayDetails";
+import clsx from "clsx";
 
 const CalendarCell = ({
   date,
@@ -12,6 +13,7 @@ const CalendarCell = ({
   mealPeriodBadges,
   gridRow,
   onClick,
+  selected,
 }) => {
   return (
     <>
@@ -25,7 +27,10 @@ const CalendarCell = ({
         ></span>
       )}
       <div
-        className="flex flex-col items-center border-r border-b py-2 space-y-1"
+        className={clsx(
+          "flex flex-col items-center border-r border-b py-2 space-y-1",
+          selected && "bg-gray-200"
+        )}
         style={{
           gridRow: isFirstDayOfWeek ? gridRow : "auto",
           gridColumn: isFirstDayOfWeek ? 1 : "auto",
@@ -157,6 +162,7 @@ const OverviewUser = () => {
                     mealPeriodBadges={mealPeriodBadges}
                     gridRow={i + 1}
                     onClick={() => setSelectedDate(date)}
+                    selected={selectedDate === date}
                   />
                 );
               })
@@ -165,7 +171,7 @@ const OverviewUser = () => {
         </section>
 
         {selectedDate && (
-          <div className="w-80">
+          <div className="w-80 animate__animated animate__backInRight">
             <DayDetails date={selectedDate} onRecipeScheduled={getOverview} />
           </div>
         )}
